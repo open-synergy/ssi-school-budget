@@ -67,3 +67,26 @@ Solution: Enter zero or a positive number
     def _check_student_count_condition(self):
         self.ensure_one()
         return self.student_count >= 0
+
+    @api.constrains("budget_id")
+    def _check_budget_org_type(self):
+        for record in self.sudo():
+            if not record._check_budget_org_type_condition():
+                error_message = (
+                    _(
+                        """
+Context: Save school budget assumption line
+Database ID: %s
+Problem: Student assumption lines are only allowed when the
+budget's Organization Type is Unit
+Solution: Remove this line, or change the budget's Organization
+Type to Unit
+"""
+                    )
+                    % (record.id,)
+                )
+                raise ValidationError(error_message)
+
+    def _check_budget_org_type_condition(self):
+        self.ensure_one()
+        return self.budget_id.org_type == "unit"
