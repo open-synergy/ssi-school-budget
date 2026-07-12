@@ -38,13 +38,17 @@ class AccountMoveLine(models.Model):
         analytic_account_ids = lines.mapped("analytic_account_id").ids
         company_ids = lines.mapped("company_id").ids
         dates = lines.mapped("date")
-        return self.env["school_budget"].sudo().search(
-            [
-                ("analytic_account_id", "in", analytic_account_ids),
-                ("company_id", "in", company_ids),
-                ("academic_year_id.date_start", "<=", max(dates)),
-                ("academic_year_id.date_end", ">=", min(dates)),
-            ]
+        return (
+            self.env["school_budget"]
+            .sudo()
+            .search(
+                [
+                    ("analytic_account_id", "in", analytic_account_ids),
+                    ("company_id", "in", company_ids),
+                    ("academic_year_id.date_start", "<=", max(dates)),
+                    ("academic_year_id.date_end", ">=", min(dates)),
+                ]
+            )
         )
 
     def _trigger_school_budget_realization(self, budgets):
