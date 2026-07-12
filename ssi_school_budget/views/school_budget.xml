@@ -129,6 +129,7 @@
                             <field name="amount_total" readonly="1" sum="Total" />
                         </tree>
                         <form>
+                            <field name="is_direct_income" invisible="1" />
                             <group>
                                 <field name="expense_category_id" />
                                 <field name="line_number" />
