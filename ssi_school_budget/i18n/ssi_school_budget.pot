@@ -1191,6 +1191,8 @@ msgid "Direct income amount allocated to this grade."
 msgstr ""
 
 #. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_account_move__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:ssi_school_budget.field_res_company__display_name
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school__display_name
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_branch__display_name
@@ -1534,6 +1536,8 @@ msgid "How this line's amount was derived."
 msgstr ""
 
 #. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_account_move__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_account_move_line__id
 #: model:ir.model.fields,field_description:ssi_school_budget.field_res_company__id
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school__id
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_branch__id
@@ -1696,12 +1700,24 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__label
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__label
 msgid "Label"
 msgstr ""
 
 #. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_account_move____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_account_move_line____last_update
 #: model:ir.model.fields,field_description:ssi_school_budget.field_res_company____last_update
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school____last_update
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_branch____last_update
@@ -2537,13 +2553,6 @@ msgstr ""
 #. module: ssi_school_budget
 #: model:ir.model,name:ssi_school_budget.model_school_budget_subsidy
 msgid "School Budget Subsidy"
-msgstr ""
-
-#. module: ssi_school_budget
-#: model:ir.actions.server,name:ssi_school_budget.ir_cron_school_budget_compute_realization_ir_actions_server
-#: model:ir.cron,cron_name:ssi_school_budget.ir_cron_school_budget_compute_realization
-#: model:ir.cron,name:ssi_school_budget.ir_cron_school_budget_compute_realization
-msgid "School Budget: Compute Realization"
 msgstr ""
 
 #. module: ssi_school_budget
