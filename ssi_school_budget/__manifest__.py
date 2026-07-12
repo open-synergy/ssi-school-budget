@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "School Budget",
-    "version": "14.0.14.0.0",
+    "version": "14.0.15.0.0",
     "website": "https://simetri-sinergi.id",
     # pylint: disable=line-too-long
     "author": "PT. Simetri Sinergi Indonesia, OpenSynergy Indonesia, Odoo Community Association (OCA)",  # noqa: B950
@@ -29,7 +29,6 @@
         "security/ir_model_access/school_budget_investment_category.xml",
         "security/ir_model_access/school_budget.xml",
         "security/ir_rule/school_budget.xml",
-        "data/ir_cron_data.xml",
         "ir_sequence/school_budget.xml",
         "sequence_template/school_budget.xml",
         "approval_template/school_budget.xml",

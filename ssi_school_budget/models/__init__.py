@@ -28,3 +28,5 @@ from . import school_budget_expense_realization  # noqa: F401
 from . import school_budget_income_realization  # noqa: F401
 from . import school_budget_expense_comparison  # noqa: F401
 from . import school_budget_income_comparison  # noqa: F401
+from . import account_move_line  # noqa: F401
+from . import account_move  # noqa: F401

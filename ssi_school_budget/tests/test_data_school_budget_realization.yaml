@@ -632,3 +632,341 @@ scenarios:
           - ["budget_id", "=", "EVAL: registry['budget_a'].id"]
         save_as: "check_idempotent_comparison"
         expect_count: 3
+
+      # ------------------------------------------------------------
+      # BL-0130 - realization follows account.move.line changes
+      # automatically, with no action_compute_realization call below
+      # (except the dedicated manual-button-still-works check at the
+      # very end). Reuses the foundation above: budget_a/budget_b,
+      # journal, account_expense_1, expense_category_1,
+      # school_a/school_b analytic accounts, academic_year.
+      # ------------------------------------------------------------
+
+      - step: "Move 9 - DRAFT, 2025-11-05, debit category 1 account 12,000,000, unit A"
+        action: "create"
+        model: "account.move"
+        save_as: "move_9"
+        values:
+          journal_id: "EVAL: registry['journal'].id"
+          date: "2025-11-05"
+          line_ids:
+            - - 0
+              - 0
+              - name: "Move 9 debit"
+                account_id: "EVAL: registry['account_expense_1'].id"
+                analytic_account_id: "EVAL: registry['school_a'].analytic_account_id.id"
+                debit: 12000000
+                credit: 0
+            - - 0
+              - 0
+              - name: "Move 9 credit"
+                account_id: "EVAL: registry['account_cash'].id"
+                debit: 0
+                credit: 12000000
+
+      - step: "BL-0130.1 - Post move 9 (no manual compute call)"
+        action: "call"
+        target: "move_9"
+        method: "action_post"
+
+      - step: "BL-0130.1 - Assert realization appeared automatically"
+        action: "search"
+        model: "school_budget_expense_realization"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_a'].id"]
+          - ["expense_category_id", "=", "EVAL: registry['expense_category_1'].id"]
+          - ["month", "=", 5]
+          - ["amount", "=", 12000000.0]
+        save_as: "check_move9_posted"
+        expect_count: 1
+
+      - step: "BL-0130.2 - Reset move 9 to draft"
+        action: "call"
+        target: "move_9"
+        method: "button_draft"
+
+      - step: "BL-0130.2 - Assert realization removed after reset to draft"
+        action: "search"
+        model: "school_budget_expense_realization"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_a'].id"]
+          - ["expense_category_id", "=", "EVAL: registry['expense_category_1'].id"]
+          - ["month", "=", 5]
+        save_as: "check_move9_reset"
+        expect_count: 0
+
+      - step: "Move 10 - posted, 2025-12-05, debit category 1 account 1,000,000, unit A"
+        action: "create"
+        model: "account.move"
+        save_as: "move_10"
+        values:
+          journal_id: "EVAL: registry['journal'].id"
+          date: "2025-12-05"
+          line_ids:
+            - - 0
+              - 0
+              - name: "Move 10 debit"
+                account_id: "EVAL: registry['account_expense_1'].id"
+                analytic_account_id: "EVAL: registry['school_a'].analytic_account_id.id"
+                debit: 1000000
+                credit: 0
+            - - 0
+              - 0
+              - name: "Move 10 credit"
+                account_id: "EVAL: registry['account_cash'].id"
+                debit: 0
+                credit: 1000000
+
+      - step: "Post move 10"
+        action: "call"
+        target: "move_10"
+        method: "action_post"
+
+      - step: "Get move 10's debit line"
+        action: "search"
+        model: "account.move.line"
+        domain:
+          - ["move_id", "=", "EVAL: registry['move_10'].id"]
+          - ["account_id", "=", "EVAL: registry['account_expense_1'].id"]
+        save_as: "move_10_debit_line"
+        expect_count: 1
+
+      - step:
+          "BL-0130.3 - Edit move 10's debit from 1,000,000 to 1,500,000 (unbalances the
+          move on purpose, just to isolate the recompute trigger)"
+        action: "write"
+        target: "move_10_debit_line"
+        context:
+          check_move_validity: false
+        values:
+          debit: 1500000
+
+      - step: "BL-0130.3 - Assert realization recomputed to 1,500,000"
+        action: "search"
+        model: "school_budget_expense_realization"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_a'].id"]
+          - ["expense_category_id", "=", "EVAL: registry['expense_category_1'].id"]
+          - ["month", "=", 6]
+          - ["amount", "=", 1500000.0]
+        save_as: "check_move10_edited"
+        expect_count: 1
+
+      - step: "BL-0130.4 - Unlink move 10's debit line"
+        action: "call"
+        target: "move_10_debit_line"
+        method: "unlink"
+        context:
+          force_delete: true
+          check_move_validity: false
+
+      - step: "BL-0130.4 - Assert realization removed after unlink"
+        action: "search"
+        model: "school_budget_expense_realization"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_a'].id"]
+          - ["expense_category_id", "=", "EVAL: registry['expense_category_1'].id"]
+          - ["month", "=", 6]
+        save_as: "check_move10_unlinked"
+        expect_count: 0
+
+      - step: "Move 11 - posted, 2026-01-15, debit category 1 account 8,000,000, unit A"
+        action: "create"
+        model: "account.move"
+        save_as: "move_11"
+        values:
+          journal_id: "EVAL: registry['journal'].id"
+          date: "2026-01-15"
+          line_ids:
+            - - 0
+              - 0
+              - name: "Move 11 debit"
+                account_id: "EVAL: registry['account_expense_1'].id"
+                analytic_account_id: "EVAL: registry['school_a'].analytic_account_id.id"
+                debit: 8000000
+                credit: 0
+            - - 0
+              - 0
+              - name: "Move 11 credit"
+                account_id: "EVAL: registry['account_cash'].id"
+                debit: 0
+                credit: 8000000
+
+      - step: "Post move 11"
+        action: "call"
+        target: "move_11"
+        method: "action_post"
+
+      - step: "BL-0130.5 - Assert realization on unit A before the analytic move"
+        action: "search"
+        model: "school_budget_expense_realization"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_a'].id"]
+          - ["expense_category_id", "=", "EVAL: registry['expense_category_1'].id"]
+          - ["month", "=", 7]
+          - ["amount", "=", 8000000.0]
+        save_as: "check_move11_before_a"
+        expect_count: 1
+
+      - step: "Get move 11's debit line"
+        action: "search"
+        model: "account.move.line"
+        domain:
+          - ["move_id", "=", "EVAL: registry['move_11'].id"]
+          - ["account_id", "=", "EVAL: registry['account_expense_1'].id"]
+        save_as: "move_11_debit_line"
+        expect_count: 1
+
+      - step:
+          "BL-0130.5 - Move the line's analytic account from unit A to unit B (tests the
+          before+after union on write)"
+        action: "write"
+        target: "move_11_debit_line"
+        values:
+          analytic_account_id: "EVAL: registry['school_b'].analytic_account_id.id"
+
+      - step: "BL-0130.5 - Assert unit A's realization for that month is gone"
+        action: "search"
+        model: "school_budget_expense_realization"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_a'].id"]
+          - ["expense_category_id", "=", "EVAL: registry['expense_category_1'].id"]
+          - ["month", "=", 7]
+        save_as: "check_move11_after_a"
+        expect_count: 0
+
+      - step: "BL-0130.5 - Assert unit B now has the realization"
+        action: "search"
+        model: "school_budget_expense_realization"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_b'].id"]
+          - ["expense_category_id", "=", "EVAL: registry['expense_category_1'].id"]
+          - ["month", "=", 7]
+          - ["amount", "=", 8000000.0]
+        save_as: "check_move11_after_b"
+        expect_count: 1
+
+      - step: "BL-0130.6 - Create accounting user without any School Budget group"
+        action: "create"
+        model: "res.users"
+        save_as: "accounting_user"
+        values:
+          name: "Realization Test Accounting User"
+          login: "school_budget_realization_accounting_user@example.com"
+          groups_id:
+            - - 6
+              - 0
+              - - "REF: base.group_user"
+                - "REF: account.group_account_user"
+
+      - step: "BL-0130.6 - Register an XML ID so as_user can reference this user"
+        action: "create"
+        model: "ir.model.data"
+        values:
+          module: "ssi_school_budget"
+          name: "test_school_budget_realization_accounting_user"
+          model: "res.users"
+          res_id: "EVAL: registry['accounting_user'].id"
+
+      - step: "Move 12 - draft, 2026-02-10, debit category 1 account 3,000,000, unit A"
+        action: "create"
+        model: "account.move"
+        save_as: "move_12"
+        as_user: "ssi_school_budget.test_school_budget_realization_accounting_user"
+        values:
+          journal_id: "EVAL: registry['journal'].id"
+          date: "2026-02-10"
+          line_ids:
+            - - 0
+              - 0
+              - name: "Move 12 debit"
+                account_id: "EVAL: registry['account_expense_1'].id"
+                analytic_account_id: "EVAL: registry['school_a'].analytic_account_id.id"
+                debit: 3000000
+                credit: 0
+            - - 0
+              - 0
+              - name: "Move 12 credit"
+                account_id: "EVAL: registry['account_cash'].id"
+                debit: 0
+                credit: 3000000
+
+      - step:
+          "BL-0130.6 - Post move 12 as the accounting user (no School Budget group, no
+          Access Error expected because the trigger runs with sudo())"
+        action: "call"
+        target: "move_12"
+        method: "action_post"
+        as_user: "ssi_school_budget.test_school_budget_realization_accounting_user"
+
+      - step: "BL-0130.6 - Assert realization was created despite the restricted user"
+        action: "search"
+        model: "school_budget_expense_realization"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_a'].id"]
+          - ["expense_category_id", "=", "EVAL: registry['expense_category_1'].id"]
+          - ["month", "=", 8]
+          - ["amount", "=", 3000000.0]
+        save_as: "check_sudo_realized"
+        expect_count: 1
+
+      - step:
+          "BL-0130.7 - Move 13 - draft, 2026-03-05, debit category 1 account 4,000,000,
+          unit A, created under skip_school_budget_realization"
+        action: "create"
+        model: "account.move"
+        save_as: "move_13"
+        context:
+          skip_school_budget_realization: true
+        values:
+          journal_id: "EVAL: registry['journal'].id"
+          date: "2026-03-05"
+          line_ids:
+            - - 0
+              - 0
+              - name: "Move 13 debit"
+                account_id: "EVAL: registry['account_expense_1'].id"
+                analytic_account_id: "EVAL: registry['school_a'].analytic_account_id.id"
+                debit: 4000000
+                credit: 0
+            - - 0
+              - 0
+              - name: "Move 13 credit"
+                account_id: "EVAL: registry['account_cash'].id"
+                debit: 0
+                credit: 4000000
+
+      - step: "BL-0130.7 - Post move 13 under skip_school_budget_realization"
+        action: "call"
+        target: "move_13"
+        method: "action_post"
+        context:
+          skip_school_budget_realization: true
+
+      - step: "BL-0130.7 - Assert the trigger was skipped (no realization row yet)"
+        action: "search"
+        model: "school_budget_expense_realization"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_a'].id"]
+          - ["expense_category_id", "=", "EVAL: registry['expense_category_1'].id"]
+          - ["month", "=", 9]
+        save_as: "check_skip_context_off"
+        expect_count: 0
+
+      - step:
+          "BL-0130.7 - Manual Compute Realization button still works after the cron
+          removal"
+        action: "call"
+        target: "budget_a"
+        method: "action_compute_realization"
+
+      - step: "BL-0130.7 - Assert realization now appears via the manual button"
+        action: "search"
+        model: "school_budget_expense_realization"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_a'].id"]
+          - ["expense_category_id", "=", "EVAL: registry['expense_category_1'].id"]
+          - ["month", "=", 9]
+          - ["amount", "=", 4000000.0]
+        save_as: "check_skip_context_manual"
+        expect_count: 1
