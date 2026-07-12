@@ -2097,7 +2097,7 @@ analytic account
             return result
         account_ids = list(category_by_account.keys())
         base_domain = self._prepare_realization_domain(account_ids)
-        move_line_model = self.env["account.move.line"]
+        move_line_model = self.env["account.move.line"].sudo()
         for month_index in range(1, 13):
             range_start, range_end = self._get_realization_month_date_range(month_index)
             month_domain = base_domain + [
@@ -2131,8 +2131,10 @@ analytic account
 
     def _generate_expense_realization(self):
         self.ensure_one()
-        categories = self.env["school_budget_expense_category"].search(
-            [("account_id", "!=", False)]
+        categories = (
+            self.env["school_budget_expense_category"]
+            .sudo()
+            .search([("account_id", "!=", False)])
         )
         data = self._compute_realization_data(categories, 1)
         vals_list = [
@@ -2149,8 +2151,10 @@ analytic account
 
     def _generate_income_realization(self):
         self.ensure_one()
-        categories = self.env["school_budget_income_category"].search(
-            [("account_id", "!=", False)]
+        categories = (
+            self.env["school_budget_income_category"]
+            .sudo()
+            .search([("account_id", "!=", False)])
         )
         data = self._compute_realization_data(categories, -1)
         vals_list = [
@@ -2164,18 +2168,6 @@ analytic account
         ]
         if vals_list:
             self.env["school_budget_income_realization"].create(vals_list)
-
-    @api.model
-    def _cron_compute_realization(self):
-        today = datetime_date.today()
-        budgets = self.search(
-            [
-                ("state", "in", ["confirm", "done"]),
-                ("academic_year_id.date_start", "<=", today),
-                ("academic_year_id.date_end", ">=", today),
-            ]
-        )
-        budgets.action_compute_realization()
 
     # ------------------------------------------------------------
     # Budget vs actual comparison and absorption rate (BL-0123)
