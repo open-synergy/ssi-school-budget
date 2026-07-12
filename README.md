@@ -17,7 +17,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[ssi_school_budget](ssi_school_budget/) | 14.0.14.0.0 |  | School Budget
+[ssi_school_budget](ssi_school_budget/) | 14.0.15.1.0 |  | School Budget
 
 [//]: # (end addons)
 
