@@ -43,8 +43,7 @@ class SchoolBudgetAssumptionLine(models.Model):
         (
             "unique_budget_grade",
             "unique(budget_id, grade_id)",
-            "Only one assumption line is allowed per grade on the "
-            "same budget.",
+            "Only one assumption line is allowed per grade on the " "same budget.",
         ),
     ]
 

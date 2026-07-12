@@ -2,12 +2,11 @@
 # Copyright 2026 PT. Simetri Sinergi Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo_yaml_test import YamlTransactionCase
 from psycopg2 import IntegrityError
 
 from odoo.exceptions import ValidationError
 from odoo.tests import tagged
-
-from odoo_yaml_test import YamlTransactionCase
 
 
 @tagged("post_install", "-at_install")
@@ -24,10 +23,16 @@ class TestSchoolBudgetSubsidy(YamlTransactionCase):
             }
         )
         branch_a = self.env["school_branch"].create(
-            {"name": "Branch Subsidy Constrain A %s" % suffix, "code": "BRSCA%s" % suffix}
+            {
+                "name": "Branch Subsidy Constrain A %s" % suffix,
+                "code": "BRSCA%s" % suffix,
+            }
         )
         branch_b = self.env["school_branch"].create(
-            {"name": "Branch Subsidy Constrain B %s" % suffix, "code": "BRSCB%s" % suffix}
+            {
+                "name": "Branch Subsidy Constrain B %s" % suffix,
+                "code": "BRSCB%s" % suffix,
+            }
         )
         school_a = self.env["school"].create(
             {

@@ -5,9 +5,9 @@
 from datetime import date as datetime_date
 
 from odoo import _, api, fields, models
+from odoo.exceptions import UserError, ValidationError
 
 from odoo.addons.ssi_decorator import ssi_decorator
-from odoo.exceptions import UserError, ValidationError
 
 
 class SchoolBudget(models.Model):
@@ -169,8 +169,7 @@ class SchoolBudget(models.Model):
                 ("readonly", False),
             ],
         },
-        help="Cash and cash-equivalent balance at the start of the "
-        "budget period.",
+        help="Cash and cash-equivalent balance at the start of the " "budget period.",
     )
     currency_id = fields.Many2one(
         string="Currency",
@@ -364,16 +363,12 @@ class SchoolBudget(models.Model):
                 record.expense_line_ids.mapped("foundation")
             )
             record.total_expense_bos = sum(record.expense_line_ids.mapped("bos"))
-            record.total_expense = sum(
-                record.expense_line_ids.mapped("amount_total")
-            )
+            record.total_expense = sum(record.expense_line_ids.mapped("amount_total"))
 
     @api.depends("income_line_ids.amount")
     def _compute_total_income_manual(self):
         for record in self:
-            record.total_income_manual = sum(
-                record.income_line_ids.mapped("amount")
-            )
+            record.total_income_manual = sum(record.income_line_ids.mapped("amount"))
 
     investment_ids = fields.One2many(
         string="Investments",
@@ -529,7 +524,9 @@ class SchoolBudget(models.Model):
         self.ensure_one()
         ancestors = self.env["school_budget"]
         if self.org_type == "unit" and self.branch_id:
-            ancestors += self._find_ancestor_budget("branch", branch_id=self.branch_id.id)
+            ancestors += self._find_ancestor_budget(
+                "branch", branch_id=self.branch_id.id
+            )
         if self.org_type in ("unit", "branch"):
             ancestors += self._find_ancestor_budget("center")
         return ancestors
@@ -594,8 +591,7 @@ class SchoolBudget(models.Model):
                 ("readonly", False),
             ],
         },
-        help="Subsidies given by this branch/center budget to other "
-        "organizations.",
+        help="Subsidies given by this branch/center budget to other " "organizations.",
     )
     received_subsidy_ids = fields.One2many(
         string="Subsidies Received",
@@ -614,8 +610,7 @@ class SchoolBudget(models.Model):
                 ("readonly", False),
             ],
         },
-        help="Manual overrides of automatically computed direct "
-        "income amounts.",
+        help="Manual overrides of automatically computed direct " "income amounts.",
     )
 
     @api.depends("assumption_line_ids.student_count")
@@ -1294,9 +1289,7 @@ Solution: Edit the existing budget instead of creating a duplicate
     @api.depends("income_result_ids.amount", "income_result_ids.auto_amount")
     def _compute_total_income_result(self):
         for record in self:
-            record.total_income_result = sum(
-                record.income_result_ids.mapped("amount")
-            )
+            record.total_income_result = sum(record.income_result_ids.mapped("amount"))
             record.total_income_result_auto = sum(
                 record.income_result_ids.mapped("auto_amount")
             )
@@ -1310,15 +1303,12 @@ Solution: Edit the existing budget instead of creating a duplicate
             non_operational = record.expense_result_ids.filtered(
                 lambda r: r.expense_group == "non_operational"
             )
-            record.total_expense_operational = sum(
-                operational.mapped("amount_total")
-            )
+            record.total_expense_operational = sum(operational.mapped("amount_total"))
             record.total_expense_non_operational = sum(
                 non_operational.mapped("amount_total")
             )
             record.total_expense_result = (
-                record.total_expense_operational
-                + record.total_expense_non_operational
+                record.total_expense_operational + record.total_expense_non_operational
             )
 
     def _get_unit_setoran_to_ancestor(self, ancestor_budget):
@@ -1403,9 +1393,9 @@ Solution: Edit the existing budget instead of creating a duplicate
     def _get_income_result_direct_income_vals(self):
         self.ensure_one()
         vals_list = []
-        direct_categories = self.expense_line_ids.mapped("expense_category_id").filtered(
-            "is_direct_income"
-        )
+        direct_categories = self.expense_line_ids.mapped(
+            "expense_category_id"
+        ).filtered("is_direct_income")
         for category in direct_categories:
             lines = self.expense_line_ids.filtered(
                 lambda line, cat=category: line.expense_category_id == cat
@@ -1413,9 +1403,7 @@ Solution: Edit the existing budget instead of creating a duplicate
             auto_amount = sum(lines.mapped("foundation"))
             target = category.maps_to_income_category_id
             if target.calc_method == "grade_based":
-                grade_total = sum(
-                    lines.mapped("grade_allocation_ids").mapped("amount")
-                )
+                grade_total = sum(lines.mapped("grade_allocation_ids").mapped("amount"))
                 if grade_total:
                     auto_amount = grade_total
             override = self.direct_income_override_ids.filtered(
@@ -1664,8 +1652,7 @@ Solution: Edit the existing budget instead of creating a duplicate
         compute="_compute_cash_summary",
         compute_sudo=True,
         currency_field="currency_id",
-        help="Same as Total Income Result (Auto), ignoring tariff "
-        "overrides.",
+        help="Same as Total Income Result (Auto), ignoring tariff " "overrides.",
     )
     total_cash_expense = fields.Monetary(
         string="Total Cash Expense",
@@ -1772,9 +1759,7 @@ Solution: Edit the existing budget instead of creating a duplicate
                 opening_cash_balance + cash_surplus_deficit_auto
             )
             record.total_accrual_expense = total_accrual_expense
-            record.accrual_surplus_deficit = (
-                total_cash_revenue - total_accrual_expense
-            )
+            record.accrual_surplus_deficit = total_cash_revenue - total_accrual_expense
             record.accrual_surplus_deficit_auto = (
                 total_cash_revenue_auto - total_accrual_expense
             )
@@ -1937,8 +1922,7 @@ Solution: Edit the existing budget instead of creating a duplicate
             ):
                 revenue += up_us["total_us_revenue"]
             revenue += sum(
-                vals["amount"]
-                for vals in self._get_income_result_direct_income_vals()
+                vals["amount"] for vals in self._get_income_result_direct_income_vals()
             )
         else:
             up_us = {}
@@ -1949,9 +1933,7 @@ Solution: Edit the existing budget instead of creating a duplicate
                 setoran_up, setoran_us = child._get_unit_setoran_to_ancestor(self)
                 revenue += setoran_up + setoran_us
         revenue += sum(vals["amount"] for vals in self._get_income_result_bos_vals())
-        revenue += sum(
-            vals["amount"] for vals in self._get_income_result_manual_vals()
-        )
+        revenue += sum(vals["amount"] for vals in self._get_income_result_manual_vals())
         revenue += sum(
             vals["amount"] for vals in self._get_income_result_subsidy_vals()
         )
@@ -1964,12 +1946,8 @@ Solution: Edit the existing budget instead of creating a duplicate
             for vals in self._get_expense_result_subsidy_given_vals()
         )
         if self.org_type == "unit" and include_parent_allocation:
-            expense += (
-                up_us["allocated_up_branch"] + up_us["allocated_up_center"]
-            )
-            expense += (
-                up_us["allocated_us_branch"] + up_us["allocated_us_center"]
-            )
+            expense += up_us["allocated_up_branch"] + up_us["allocated_up_center"]
+            expense += up_us["allocated_us_branch"] + up_us["allocated_us_center"]
             expense += (
                 up_us["allocated_new_investment_dep_branch"]
                 + up_us["allocated_new_investment_dep_center"]
@@ -2026,15 +2004,18 @@ Solution: Edit the existing budget instead of creating a duplicate
     def _10_check_analytic_account(self):
         self.ensure_one()
         if not self.analytic_account_id:
-            error_message = _(
-                """
+            error_message = (
+                _(
+                    """
 Context: Confirm school budget
 Database ID: %s
 Problem: The organization of this budget has no analytic account
 Solution: Open the school/branch/company and create or select its
 analytic account
 """
-            ) % (self.id,)
+                )
+                % (self.id,)
+            )
             raise UserError(error_message)
 
     # ------------------------------------------------------------
@@ -2118,9 +2099,7 @@ analytic account
         base_domain = self._prepare_realization_domain(account_ids)
         move_line_model = self.env["account.move.line"]
         for month_index in range(1, 13):
-            range_start, range_end = self._get_realization_month_date_range(
-                month_index
-            )
+            range_start, range_end = self._get_realization_month_date_range(month_index)
             month_domain = base_domain + [
                 ("date", ">=", range_start),
                 ("date", "<", range_end),
@@ -2309,9 +2288,9 @@ analytic account
             )
             realized_amount = sum(realizations.mapped("amount"))
             realized_amount_ytd = sum(
-                realizations.filtered(
-                    lambda r, m=current_month: r.month <= m
-                ).mapped("amount")
+                realizations.filtered(lambda r, m=current_month: r.month <= m).mapped(
+                    "amount"
+                )
             )
             vals_list.append(
                 {
@@ -2348,9 +2327,9 @@ analytic account
             )
             realized_amount = sum(realizations.mapped("amount"))
             realized_amount_ytd = sum(
-                realizations.filtered(
-                    lambda r, m=current_month: r.month <= m
-                ).mapped("amount")
+                realizations.filtered(lambda r, m=current_month: r.month <= m).mapped(
+                    "amount"
+                )
             )
             vals_list.append(
                 {

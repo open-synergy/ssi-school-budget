@@ -69,9 +69,9 @@ scenarios:
         domain:
           - ["id", "=", "EVAL: registry['expense_category_direct'].id"]
           - [
-                "maps_to_income_category_id",
-                "=",
-                "EVAL: registry['target_income_category'].id",
+              "maps_to_income_category_id",
+              "=",
+              "EVAL: registry['target_income_category'].id",
             ]
         save_as: "check_direct_income_target"
         expect_count: 1

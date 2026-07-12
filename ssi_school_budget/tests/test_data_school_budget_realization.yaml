@@ -222,7 +222,8 @@ scenarios:
           expense_category_id: "EVAL: registry['expense_category_1'].id"
           foundation: 100000000
 
-      - step: "Unit A - expense line under category 2 (budget 20,000,000, never realized)"
+      - step:
+          "Unit A - expense line under category 2 (budget 20,000,000, never realized)"
         action: "create"
         model: "school_budget_expense_line"
         save_as: "budget_a_expense_line_2"
@@ -376,7 +377,9 @@ scenarios:
         target: "move_5"
         method: "action_post"
 
-      - step: "Move 6 - posted, 2025-06-01 (outside academic year), debit category 1 account, unit A"
+      - step:
+          "Move 6 - posted, 2025-06-01 (outside academic year), debit category 1
+          account, unit A"
         action: "create"
         model: "account.move"
         save_as: "move_6"
@@ -477,7 +480,9 @@ scenarios:
         target: "budget_a"
         method: "invalidate_cache"
 
-      - step: "Assert September and October realization amounts (relative month index 3 and 4)"
+      - step:
+          "Assert September and October realization amounts (relative month index 3 and
+          4)"
         action: "search"
         model: "school_budget_expense_realization"
         domain:
@@ -499,7 +504,9 @@ scenarios:
         save_as: "check_month_october"
         expect_count: 1
 
-      - step: "Assert total realized for category 1 on unit A is 35,000,000 (draft/out-of-range/unmapped excluded)"
+      - step:
+          "Assert total realized for category 1 on unit A is 35,000,000
+          (draft/out-of-range/unmapped excluded)"
         action: "assert"
         target: "check_month_september"
         asserts:
@@ -507,7 +514,9 @@ scenarios:
             type: "value"
             operator: "is_truthy"
 
-      - step: "Search all category-1 realization rows on unit A (only 2 months, draft/out-of-range excluded)"
+      - step:
+          "Search all category-1 realization rows on unit A (only 2 months,
+          draft/out-of-range excluded)"
         action: "search"
         model: "school_budget_expense_realization"
         domain:
@@ -566,7 +575,8 @@ scenarios:
         save_as: "check_comparison_category_1"
         expect_count: 1
 
-      - step: "Assert budgeted-but-unrealized category 2 still appears with 0% absorption"
+      - step:
+          "Assert budgeted-but-unrealized category 2 still appears with 0% absorption"
         action: "search"
         model: "school_budget_expense_comparison"
         domain:
@@ -578,7 +588,9 @@ scenarios:
         save_as: "check_comparison_category_2"
         expect_count: 1
 
-      - step: "Assert unbudgeted-but-realized category 3 shows budget_amount=0 with 0% absorption guard"
+      - step:
+          "Assert unbudgeted-but-realized category 3 shows budget_amount=0 with 0%
+          absorption guard"
         action: "search"
         model: "school_budget_expense_comparison"
         domain:
@@ -590,7 +602,8 @@ scenarios:
         save_as: "check_comparison_category_3"
         expect_count: 1
 
-      - step: "Assert branch does not absorb unit A or unit B realization (no AA roll-up)"
+      - step:
+          "Assert branch does not absorb unit A or unit B realization (no AA roll-up)"
         action: "search"
         model: "school_budget_expense_realization"
         domain:

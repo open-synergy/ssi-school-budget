@@ -94,9 +94,7 @@ Solution: Select an account that is not mapped elsewhere
         if not self.account_id:
             return True
         account_id = self.account_id.id
-        if self.search_count(
-            [("account_id", "=", account_id), ("id", "!=", self.id)]
-        ):
+        if self.search_count([("account_id", "=", account_id), ("id", "!=", self.id)]):
             return False
         if self.env["school_budget_expense_category"].search_count(
             [("account_id", "=", account_id)]

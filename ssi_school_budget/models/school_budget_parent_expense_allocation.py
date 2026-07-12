@@ -26,8 +26,7 @@ class SchoolBudgetParentExpenseAllocation(models.Model):
         required=True,
         ondelete="cascade",
         readonly=True,
-        help="The branch/center budget document owning this "
-        "allocation setting.",
+        help="The branch/center budget document owning this " "allocation setting.",
     )
     expense_category_id = fields.Many2one(
         string="Expense Category",

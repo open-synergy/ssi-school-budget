@@ -104,9 +104,9 @@ scenarios:
         domain:
           - ["id", "=", "EVAL: registry['school_a'].id"]
           - [
-                "analytic_account_id",
-                "!=",
-                "EVAL: registry['school_b'].analytic_account_id.id",
+              "analytic_account_id",
+              "!=",
+              "EVAL: registry['school_b'].analytic_account_id.id",
             ]
         save_as: "check_different_aa"
         expect_count: 1
@@ -126,9 +126,9 @@ scenarios:
         domain:
           - ["id", "=", "EVAL: registry['budget_a'].id"]
           - [
-                "analytic_account_id",
-                "=",
-                "EVAL: registry['school_a'].analytic_account_id.id",
+              "analytic_account_id",
+              "=",
+              "EVAL: registry['school_a'].analytic_account_id.id",
             ]
         save_as: "check_budget_aa"
         expect_count: 1
@@ -148,9 +148,9 @@ scenarios:
         domain:
           - ["id", "=", "EVAL: registry['budget_branch'].id"]
           - [
-                "analytic_account_id",
-                "=",
-                "EVAL: registry['branch'].analytic_account_id.id",
+              "analytic_account_id",
+              "=",
+              "EVAL: registry['branch'].analytic_account_id.id",
             ]
         save_as: "check_branch_budget_aa"
         expect_count: 1

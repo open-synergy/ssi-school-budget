@@ -102,7 +102,8 @@ class SchoolBudgetOldAsset(models.Model):
                 dep_current_year = dep_per_year
             book_value = max(
                 0.0,
-                record.acquisition_cost - dep_per_year * (fiscal_year - acquisition_year),
+                record.acquisition_cost
+                - dep_per_year * (fiscal_year - acquisition_year),
             )
             record.dep_per_year = dep_per_year
             record.dep_current_year = dep_current_year

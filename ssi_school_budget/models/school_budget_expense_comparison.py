@@ -33,8 +33,7 @@ class SchoolBudgetExpenseComparison(models.Model):
     budget_amount = fields.Monetary(
         string="Budget Amount",
         currency_field="currency_id",
-        help="Sum of (foundation+bos) of expense lines under this "
-        "category.",
+        help="Sum of (foundation+bos) of expense lines under this " "category.",
     )
     realized_amount = fields.Monetary(
         string="Realized Amount",

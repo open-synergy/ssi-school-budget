@@ -125,10 +125,7 @@ if env.user.id in document.active_approver_user_ids.ids:
 </record>
 
 <!-- Manual Number -->
-<record
-        id="policy_template_school_budget_manual_number"
-        model="policy.template_detail"
-    >
+<record id="policy_template_school_budget_manual_number" model="policy.template_detail">
     <field name="template_id" ref="policy_template_school_budget" />
     <field
             name="field_id"

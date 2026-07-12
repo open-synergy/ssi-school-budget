@@ -530,7 +530,9 @@ scenarios:
         target: "budget_branch"
         method: "action_simulate"
 
-      - step: "Assert allocated dep uses pct_up (0.4*10,000,000=4,000,000), not pct_us (0.7*10,000,000=7,000,000)"
+      - step:
+          "Assert allocated dep uses pct_up (0.4*10,000,000=4,000,000), not pct_us
+          (0.7*10,000,000=7,000,000)"
         action: "search"
         model: "school_budget_expense_result"
         domain:
@@ -540,21 +542,27 @@ scenarios:
         save_as: "check_allocated_dep_new"
         expect_count: 1
 
-      - step: "Assert consolidation identity: unit allocated total equals branch contribution total"
+      - step:
+          "Assert consolidation identity: unit allocated total equals branch
+          contribution total"
         action: "search"
         model: "school_budget_expense_result"
         domain:
-          - ["budget_id", "in", ["EVAL: registry['budget_a'].id", "EVAL: registry['budget_b'].id"]]
           - [
-                "source",
-                "in",
-                [
-                    "allocated_up",
-                    "allocated_us",
-                    "allocated_dep_new",
-                    "allocated_dep_old",
-                    "allocated_financial_investment",
-                ],
+              "budget_id",
+              "in",
+              ["EVAL: registry['budget_a'].id", "EVAL: registry['budget_b'].id"],
+            ]
+          - [
+              "source",
+              "in",
+              [
+                "allocated_up",
+                "allocated_us",
+                "allocated_dep_new",
+                "allocated_dep_old",
+                "allocated_financial_investment",
+              ],
             ]
         save_as: "unit_allocated_rows"
         expect_count: 10
@@ -568,7 +576,9 @@ scenarios:
         save_as: "branch_contribution_rows"
         expect_count: 4
 
-      - step: "Assert branch contribution_up for unit A equals unit A setoran_up (68,000,000)"
+      - step:
+          "Assert branch contribution_up for unit A equals unit A setoran_up
+          (68,000,000)"
         action: "search"
         model: "school_budget_income_result"
         domain:
@@ -578,7 +588,9 @@ scenarios:
         save_as: "check_setoran_a_up"
         expect_count: 1
 
-      - step: "Assert branch contribution_us for unit A equals unit A setoran_us (135,000,000)"
+      - step:
+          "Assert branch contribution_us for unit A equals unit A setoran_us
+          (135,000,000)"
         action: "search"
         model: "school_budget_income_result"
         domain:
@@ -588,7 +600,9 @@ scenarios:
         save_as: "check_setoran_a_us"
         expect_count: 1
 
-      - step: "Assert branch contribution_up for unit B equals unit B setoran_up (102,000,000)"
+      - step:
+          "Assert branch contribution_up for unit B equals unit B setoran_up
+          (102,000,000)"
         action: "search"
         model: "school_budget_income_result"
         domain:
@@ -598,7 +612,9 @@ scenarios:
         save_as: "check_setoran_b_up"
         expect_count: 1
 
-      - step: "Assert branch contribution_us for unit B equals unit B setoran_us (45,000,000)"
+      - step:
+          "Assert branch contribution_us for unit B equals unit B setoran_us
+          (45,000,000)"
         action: "search"
         model: "school_budget_income_result"
         domain:

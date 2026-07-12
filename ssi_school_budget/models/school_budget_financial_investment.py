@@ -24,8 +24,7 @@ class SchoolBudgetFinancialInvestment(models.Model):
         required=True,
         ondelete="cascade",
         readonly=True,
-        help="The branch/center budget document holding this "
-        "financial investment.",
+        help="The branch/center budget document holding this " "financial investment.",
     )
     instrument_type = fields.Selection(
         string="Instrument Type",

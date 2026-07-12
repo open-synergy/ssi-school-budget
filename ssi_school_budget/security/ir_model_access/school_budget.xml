@@ -155,7 +155,10 @@
     <field name="perm_write" eval="0" />
     <field name="perm_unlink" eval="0" />
 </record>
-<record id="school_budget_parent_expense_allocation_user_access" model="ir.model.access">
+<record
+        id="school_budget_parent_expense_allocation_user_access"
+        model="ir.model.access"
+    >
     <field name="name">school_budget_parent_expense_allocation - user</field>
     <field name="model_id" ref="model_school_budget_parent_expense_allocation" />
     <field name="group_id" ref="school_budget_user_group" />

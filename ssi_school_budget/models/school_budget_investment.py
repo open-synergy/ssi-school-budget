@@ -87,8 +87,7 @@ class SchoolBudgetInvestment(models.Model):
         store=True,
         compute_sudo=True,
         currency_field="currency_id",
-        help="dep_per_year * (13 - start_month) / 12, start_month "
-        "clamped to 1..12.",
+        help="dep_per_year * (13 - start_month) / 12, start_month " "clamped to 1..12.",
     )
     end_book_value = fields.Monetary(
         string="End Book Value",

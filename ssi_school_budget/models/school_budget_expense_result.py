@@ -21,8 +21,7 @@ class SchoolBudgetExpenseResult(models.Model):
         comodel_name="school_budget",
         required=True,
         ondelete="cascade",
-        help="The budget document this generated expense line "
-        "belongs to.",
+        help="The budget document this generated expense line " "belongs to.",
     )
     expense_category_id = fields.Many2one(
         string="Expense Category",

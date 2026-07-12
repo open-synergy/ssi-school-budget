@@ -64,9 +64,7 @@ class SchoolBudgetSubsidy(models.Model):
         compute_sudo=True,
     )
 
-    @api.constrains(
-        "provider_budget_id", "recipient_budget_id", "amount"
-    )
+    @api.constrains("provider_budget_id", "recipient_budget_id", "amount")
     def _check_subsidy_relation(self):
         for record in self.sudo():
             if not record._check_subsidy_relation_condition():
