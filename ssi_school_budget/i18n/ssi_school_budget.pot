@@ -1,0 +1,3621 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ssi_school_budget
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Confirm school budget\n"
+"Database ID: %s\n"
+"Problem: The organization of this budget has no analytic account\n"
+"Solution: Open the school/branch/company and create or select its\n"
+"analytic account\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/res_company.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save company\n"
+"Database ID: %s\n"
+"Problem: Analytic Account '%s' is already used by another company,\n"
+"branch, or school unit for School Budget realization\n"
+"Solution: Select an Analytic Account that is not used elsewhere\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school\n"
+"Database ID: %s\n"
+"Problem: Analytic Account '%s' is already used by another company,\n"
+"branch, or school unit for School Budget realization\n"
+"Solution: Select an Analytic Account that is not used elsewhere\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_branch.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school branch\n"
+"Database ID: %s\n"
+"Problem: Analytic Account '%s' is already used by another company,\n"
+"branch, or school unit for School Budget realization\n"
+"Solution: Select an Analytic Account that is not used elsewhere\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget\n"
+"Database ID: %s\n"
+"Problem: A budget for this organization and academic year already\n"
+"exists\n"
+"Solution: Edit the existing budget instead of creating a duplicate\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget\n"
+"Database ID: %s\n"
+"Problem: New Student Count, Returning Student Count, or Staff Count\n"
+"is negative\n"
+"Solution: Enter zero or a positive number\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget\n"
+"Database ID: %s\n"
+"Problem: Student assumption lines are only allowed when Organization\n"
+"Type is Unit\n"
+"Solution: Remove the assumption lines, or change Organization Type\n"
+"to Unit\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget\n"
+"Database ID: %s\n"
+"Problem: The organization fields do not match Organization Type '%s'\n"
+"Solution: Unit requires School; Branch requires Branch (and no\n"
+"School); Center requires neither School nor Branch to be set\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_assumption_line.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget assumption line\n"
+"Database ID: %s\n"
+"Problem: Student Count is negative\n"
+"Solution: Enter zero or a positive number\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_assumption_line.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget assumption line\n"
+"Database ID: %s\n"
+"Problem: Student assumption lines are only allowed when the\n"
+"budget's Organization Type is Unit\n"
+"Solution: Remove this line, or change the budget's Organization\n"
+"Type to Unit\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_contribution_allocation.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget contribution allocation\n"
+"Database ID: %s\n"
+"Problem: Invalid parent/child organization type, parent equals\n"
+"child, mismatched academic year, or override percentage out of\n"
+"range (0.0-1.0)\n"
+"Solution: Parent budget must be branch/center, child budget must be\n"
+"a unit under the same academic year and different from the parent,\n"
+"and override percentages must be between 0.0 and 1.0\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_direct_income_override.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget direct income override\n"
+"Database ID: %s\n"
+"Problem: Expense Category '%s' does not have Direct Income enabled\n"
+"Solution: Select an expense category with Direct Income enabled\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_direct_income_override.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget direct income override\n"
+"Database ID: %s\n"
+"Problem: Override Amount is negative\n"
+"Solution: Enter zero or a positive number\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_expense_category.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget expense category\n"
+"Database ID: %s\n"
+"Problem: 'Direct Income' is enabled but 'Maps to Income Category' is\n"
+"empty\n"
+"Solution: Select the income category that should receive the direct\n"
+"income generated from this expense category\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_expense_category.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget expense category\n"
+"Database ID: %s\n"
+"Problem: Account '%s' is already mapped to another category. Mapping\n"
+"one account to two categories would count the same journal item\n"
+"twice\n"
+"Solution: Select an account that is not mapped elsewhere\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_expense_line.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget expense line\n"
+"Database ID: %s\n"
+"Problem: Line Number must be 1 or greater\n"
+"Solution: Enter a value of 1 or more\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_financial_investment.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget financial investment\n"
+"Database ID: %s\n"
+"Problem: Financial investments are only allowed on branch or center\n"
+"budgets, with a positive Amount\n"
+"Solution: Select a branch/center budget and enter an Amount greater\n"
+"than zero\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_income_category.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget income category\n"
+"Database ID: %s\n"
+"Problem: Account '%s' is already mapped to another category. Mapping\n"
+"one account to two categories would count the same journal item\n"
+"twice\n"
+"Solution: Select an account that is not mapped elsewhere\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_income_line.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget income line\n"
+"Database ID: %s\n"
+"Problem: This income category is calculated automatically by the\n"
+"simulation and cannot be entered manually\n"
+"Solution: Select an income category whose Calculation Method is\n"
+"Manual\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_investment.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget investment\n"
+"Database ID: %s\n"
+"Problem: Purchase Price must be greater than zero, Useful Life must\n"
+"be at least 1, and Start Month must be between 1 and 12\n"
+"Solution: Correct the values\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_investment_category.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget investment category\n"
+"Database ID: %s\n"
+"Problem: Account '%s' is already mapped to another category. Mapping\n"
+"one account to two categories would count the same journal item\n"
+"twice\n"
+"Solution: Select an account that is not mapped elsewhere\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_investment_category.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget investment category\n"
+"Database ID: %s\n"
+"Problem: Default Economic Life must be greater than zero\n"
+"Solution: Enter a value of 1 or more\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_old_asset.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget old asset\n"
+"Database ID: %s\n"
+"Problem: Acquisition Cost must be greater than zero, Useful Life\n"
+"must be at least 1, and Acquisition Year must be between 1900 and\n"
+"2100\n"
+"Solution: Correct the values\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_parent_expense_allocation.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget parent expense allocation\n"
+"Database ID: %s\n"
+"Problem: Parent expense allocations are only allowed on branch or\n"
+"center budgets\n"
+"Solution: Select a branch/center budget\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_subsidy.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget subsidy\n"
+"Database ID: %s\n"
+"Problem: Invalid provider/recipient relationship for this subsidy\n"
+"Solution: Provider must be a branch or center budget, different\n"
+"from the recipient. A branch may only subsidize its own units. A\n"
+"center may subsidize any branch or unit (but not another center).\n"
+"Provider and recipient must share the same academic year, and Amount\n"
+"must not be negative\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation__budget_id
+msgid "# Budget"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__name
+msgid "# Document"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__line_id
+msgid "# Expense Line"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__parent_budget_id
+msgid "# Parent Budget"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__provider_budget_id
+msgid "# Provider Budget"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_allocatable_base_up
+msgid ""
+"100% base before splitting among contributors: sum of (foundation+bos) of "
+"expense lines under affects_up categories, plus own new/old asset "
+"depreciation and financial investment."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_allocatable_base_us
+msgid ""
+"100% base before splitting among contributors: sum of (foundation+bos) of "
+"expense lines under non-affects_up categories."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__absorption_rate
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__absorption_rate
+msgid "Absorption Rate (%)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__academic_year_id
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_search
+msgid "Academic Year"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__account_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__account_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__account_id
+msgid "Account"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__accrual_surplus
+msgid "Accrual Surplus"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__accrual_surplus_no_alloc
+msgid "Accrual Surplus (No Allocation)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__accrual_surplus_deficit
+msgid "Accrual Surplus/Deficit"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__accrual_surplus_deficit_auto
+msgid "Accrual Surplus/Deficit (Auto)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__acquisition_cost
+msgid "Acquisition Cost"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__acquisition_year
+msgid "Acquisition Year"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_needaction
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_needaction
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_needaction
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__active
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__active
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__active
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation__active
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__active
+msgid "Active"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__active_approval_ids
+msgid "Active Approvals"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__active_approver_partner_ids
+msgid "Active Partners"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__active_approver_user_ids
+msgid "Active Users"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__activity_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__activity_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__activity_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__activity_exception_decoration
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__activity_exception_decoration
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__activity_exception_decoration
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__activity_state
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__activity_state
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__activity_state
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__activity_type_icon
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__activity_type_icon
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__activity_type_icon
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation__affects_up
+msgid "Affects UP"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:res.groups,name:ssi_school_budget.school_budget_all_group
+msgid "All"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Allocatable Base"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_expense_result__source__allocated_financial_investment
+msgid "Allocated Financial Investment"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocated_financial_investment_branch
+msgid "Allocated Financial Investment (Branch)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocated_financial_investment_center
+msgid "Allocated Financial Investment (Center)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_expense_result__source__allocated_dep_new
+msgid "Allocated New Investment Depreciation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocated_new_investment_dep_branch
+msgid "Allocated New Investment Depreciation (Branch)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocated_new_investment_dep_center
+msgid "Allocated New Investment Depreciation (Center)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_expense_result__source__allocated_dep_old
+msgid "Allocated Old Asset Depreciation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocated_old_asset_dep_branch
+msgid "Allocated Old Asset Depreciation (Branch)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocated_old_asset_dep_center
+msgid "Allocated Old Asset Depreciation (Center)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_expense_result__source__allocated_up
+msgid "Allocated UP"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocated_up_branch
+msgid "Allocated UP Cost (Branch)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocated_up_center
+msgid "Allocated UP Cost (Center)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_expense_result__source__allocated_us
+msgid "Allocated US"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocated_us_branch
+msgid "Allocated US Cost (Branch)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocated_us_center
+msgid "Allocated US Cost (Center)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Allocation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocation_result_ids
+msgid "Allocation Results"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allowed_policy_template_ids
+msgid "Allowed Policy Templates"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__amount
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__amount
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__amount
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__amount
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__amount
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__amount
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__amount
+msgid "Amount"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__bos
+msgid "Amount funded by government BOS/BOP/PBOS subsidy."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__foundation
+msgid "Amount funded by the foundation (Yayasan)."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school__analytic_account_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_branch__analytic_account_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__analytic_account_id
+msgid "Analytic Account"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__analytic_account_id
+msgid ""
+"Analytic Account of this budget's organization, used to pull realization "
+"from posted journal items. Automatically derived: Unit uses the school's "
+"Analytic Account, Branch uses the branch's, Center uses the company's. This "
+"field is never a manual input, so two budgets can never point to the same "
+"Analytic Account."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_res_company__school_analytic_account_id
+msgid ""
+"Analytic Account representing this Center on School Budget realization. Must"
+" not be shared with any branch or school unit."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_branch__analytic_account_id
+msgid ""
+"Analytic Account representing this branch on School Budget realization. Must"
+" not be shared with the company or any school unit."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school__analytic_account_id
+msgid ""
+"Analytic Account representing this school unit on School Budget realization."
+" Must not be shared with the company or any branch."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_branch__analytic_group_id
+msgid "Analytic Group"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_branch__analytic_group_id
+msgid ""
+"Analytic Group under which this branch's school units' analytic accounts are"
+" nested, for roll-up reporting."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__allocated_financial_investment_branch
+msgid ""
+"Ancestor branch's financial investment allocated by pct_up, at full nominal "
+"value (never depreciated)."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__allocated_financial_investment_center
+msgid ""
+"Ancestor center's financial investment allocated by pct_up, at full nominal "
+"value (never depreciated)."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__approval_template_id
+msgid "Approval Configuration"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__approval_template_id
+msgid "Approval Template"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__approval_ids
+msgid "Approvals"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__approve_ok
+msgid ""
+"Approve policy\n"
+"\n"
+"* If active user can see and execute 'Approve' button"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__approved
+msgid "Approved"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__asset_code
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__asset_code
+msgid "Asset Code"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__asset_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__asset_name
+msgid "Asset Name"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_attachment_count
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_attachment_count
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_attachment_count
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__auto_amount
+msgid "Auto Amount"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__auto_up_rate
+msgid "Auto UP Rate"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__auto_up_revenue
+msgid "Auto UP Revenue"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__auto_us_rate
+msgid "Auto US Rate"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__auto_us_revenue
+msgid "Auto US Revenue"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_result__auto_amount
+msgid "Automatically computed amount, ignoring overrides."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__bos
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__amount_bos
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__bos
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_result__source__bos
+msgid "BOS"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__basis
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__basis
+msgid "Basis"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_financial_investment__instrument_type__obligasi
+msgid "Bond"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__book_value
+msgid "Book Value"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__branch_id
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget__org_type__branch
+msgid "Branch"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.ui.menu,name:ssi_school_budget.menu_school_budget_budget
+msgid "Budget"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Budget AKRUAL"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__budget_amount
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__budget_amount
+msgid "Budget Amount"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Budget KAS"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Budget vs Actual"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__expense_comparison_ids
+msgid ""
+"Budget-vs-actual comparison per expense category, written by "
+"action_compute_realization()."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__income_comparison_ids
+msgid ""
+"Budget-vs-actual comparison per income category, written by "
+"action_compute_realization()."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__expense_line_ids
+msgid "Budgeted expense items."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.actions.act_window,name:ssi_school_budget.school_budget_action
+#: model:ir.ui.menu,name:ssi_school_budget.school_budget_menu
+msgid "Budgets"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_income_category_view_form
+msgid "Calculation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__calc_method
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_income_category_view_form
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_income_category_view_search
+msgid "Calculation Method"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__approve_ok
+msgid "Can Approve"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__cancel_ok
+msgid "Can Cancel"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__confirm_ok
+msgid "Can Confirm"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__done_ok
+msgid "Can Finished"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__manual_number_ok
+msgid "Can Input Manual Document Number"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__reject_ok
+msgid "Can Reject"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__restart_ok
+msgid "Can Restart"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__restart_approval_ok
+msgid "Can Restart Approval"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__cancel_reason_id
+msgid "Cancel Reason"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__cancel_ok
+msgid ""
+"Cancel policy\n"
+"\n"
+"* If active user can see and execute 'Cancel' button"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__cash_surplus
+msgid "Cash Surplus"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__cash_surplus_no_alloc
+msgid "Cash Surplus (No Allocation)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__cash_surplus_deficit
+msgid "Cash Surplus/Deficit"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__cash_surplus_deficit_auto
+msgid "Cash Surplus/Deficit (Auto)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__cash_balance
+msgid "Cash and cash-equivalent balance at the start of the budget period."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget__org_type__center
+msgid "Center"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__child_budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__child_budget_id
+msgid "Child Budget"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_expense_category_view_form
+msgid "Classification"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__code
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__code
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__code
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__code
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__code
+msgid "Code"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__company_id
+#: model:res.groups,name:ssi_school_budget.school_budget_company_group
+msgid "Company"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__company_partner_id
+msgid "Company Partner"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:res.groups,name:ssi_school_budget.school_budget_company_child_group
+msgid "Company and All Child Companies"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__company_id
+msgid ""
+"Company that own the document\n"
+"\n"
+"* Automatically filled with user's company.\n"
+"  Default company can be changed"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__comparative_result_ids
+msgid "Comparative Results"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Comparative Summary"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Compute Realization"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.ui.menu,name:ssi_school_budget.menu_school_budget_configuration
+msgid "Configuration"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__confirm_ok
+msgid ""
+"Confirm policy\n"
+"\n"
+"* If active user can see and execute 'Confirm' button"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Contribution Allocation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__contribution_allocation_ids
+msgid "Contribution Allocations"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__contribution_role
+msgid "Contribution Role"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__contribution_up
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_result__source__contribution_up
+msgid "Contribution UP"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__contribution_us
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_result__source__contribution_us
+msgid "Contribution US"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Cost Base"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_branch_view_form_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_view_form_school_budget
+msgid "Create Analytic Account"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__date
+msgid "Date"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__default_economic_life
+msgid "Default Economic Life (Years)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__default_economic_life
+msgid ""
+"Default useful life, in years, used to prefill new investment lines under "
+"this category. Must be greater than zero."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__dep_current_year
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__dep_current_year
+msgid "Depreciation Current Year"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__dep_per_year
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__dep_per_year
+msgid "Depreciation Per Year"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Depreciation Totals"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__description
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__description
+msgid "Description"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__is_direct_income
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__is_direct_income
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_result__source__direct_income
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_expense_category_view_form
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_expense_category_view_search
+msgid "Direct Income"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Direct Income Override"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__direct_income_override_ids
+msgid "Direct Income Overrides"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_grade_allocation__amount
+msgid "Direct income amount allocated to this grade."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_res_company__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_branch__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__sequence
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__sequence
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__sequence
+msgid "Display order of the category. Lower values appear first."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__done_ok
+msgid ""
+"Done policy\n"
+"\n"
+"* If active user can see and execute 'Done' button"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__end_book_value
+msgid "End Book Value"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__ending_cash_balance
+msgid "Ending Cash Balance"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__ending_cash_balance_auto
+msgid "Ending Cash Balance (Auto)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__expense
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Expense"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__expense_no_alloc
+msgid "Expense (No Allocation)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__expense_absorption_rate
+msgid "Expense Absorption Rate (%)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.actions.act_window,name:ssi_school_budget.school_budget_expense_category_action
+#: model:ir.ui.menu,name:ssi_school_budget.school_budget_expense_category_menu
+msgid "Expense Categories"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__expense_category_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__expense_category_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__expense_category_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__expense_category_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__expense_category_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation__expense_category_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__expense_category_id
+#: model:res.groups,name:ssi_school_budget.school_budget_expense_category_group
+msgid "Expense Category"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__expense_comparison_ids
+msgid "Expense Comparison"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__expense_group
+msgid "Expense Group"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__expense_line_ids
+msgid "Expense Lines"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.actions.act_window,name:ssi_school_budget.school_budget_expense_realization_action
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__expense_realization_ids
+#: model:ir.ui.menu,name:ssi_school_budget.school_budget_expense_realization_menu
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_expense_realization_view_pivot
+msgid "Expense Realization"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__expense_result_ids
+msgid "Expense Results"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Expense Simulation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__parent_expense_allocation_ids
+msgid ""
+"Expense categories of this branch/center budget that are pushed down into "
+"children's cost base."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__final_up_rate
+msgid "Final UP Rate"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__final_us_rate
+msgid "Final US Rate"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_result__amount
+msgid "Final amount, honoring any applicable override."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Financial Investment"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__financial_investment_ids
+msgid "Financial Investments"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__financial_investment_ids
+msgid "Financial instruments held (branch/center only)."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__fiscal_year
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__fiscal_year
+msgid "Fiscal Year"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__old_asset_ids
+msgid ""
+"Fixed assets acquired in a previous fiscal year, still being depreciated."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_expense_category_view_form
+msgid "Flags"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_follower_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_follower_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_follower_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_channel_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_channel_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_channel_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_partner_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_partner_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_partner_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__activity_type_icon
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__activity_type_icon
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__activity_type_icon
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__foundation
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__amount_foundation
+msgid "Foundation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__amount_total
+msgid "Foundation amount plus BOS amount."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__basis
+msgid "Free-text calculation basis, e.g. '24 x 12 x Rp 3,500,000'."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_line__basis
+msgid "Free-text calculation basis."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__description
+msgid "Free-text description of this expense item."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_line__description
+msgid "Free-text description of this income item."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__contribution_role
+msgid ""
+"Free-text label describing the role of this category in the parent-child "
+"contribution mechanism, e.g. 'up_to_pusat', 'subsidy_to_unit'. Informational"
+" only."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_category__calc_method__from_expense
+msgid "From Direct Income Expense Category"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_financial_investment__amount
+msgid "Full nominal amount. Never depreciated."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment__purchase_price
+msgid ""
+"Full purchase price. Always used as the depreciable base, regardless of the "
+"BOS-funded portion."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__account_id
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__account_id
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__account_id
+msgid ""
+"General ledger account used to pull the actual (realized) amount of this "
+"category from posted journal items. Leave empty when this category is not "
+"tracked against the ledger."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__expense_result_ids
+msgid "Generated expense lines, written by action_simulate()."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__income_result_ids
+msgid "Generated income lines, written by action_simulate()."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__allocation_result_ids
+msgid ""
+"Generated per-contributor allocation figures, written by action_simulate(). "
+"Only populated for branch/center budgets."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__comparative_result_ids
+msgid ""
+"Generated self-vs-descendant-units comparison, written by action_simulate()."
+" Only populated for branch/center budgets."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line__grade_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__grade_id
+msgid "Grade"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__grade_allocation_ids
+msgid "Grade Allocations"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_category__calc_method__grade_based
+msgid "Grade Based"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_income_category_view_search
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_search
+msgid "Group By"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__calc_method
+msgid ""
+"How the simulation engine computes the amount for this income category:\n"
+"- Manual: entered directly by the user on the income line.\n"
+"- Simulated - UP: taken from the unit's computed UP (Uang Pangkal) tariff revenue.\n"
+"- Simulated - US: taken from the unit's computed US (Uang Sekolah) tariff revenue.\n"
+"- From Direct Income Expense Category: derived from the foundation-funded amount of expense lines whose category has 'Direct Income' enabled and maps to this category.\n"
+"- Grade Based: same as above, but split using the expense line's grade allocation when available.\n"
+"- Sum From BOS: the sum of the BOS-funded portion of all expense lines and investments in the budget."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_result__source
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_result__source
+msgid "How this line's amount was derived."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_res_company__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_branch__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__id
+msgid "ID"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__activity_exception_icon
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__activity_exception_icon
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__activity_exception_icon
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__activity_exception_icon
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__activity_exception_icon
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__activity_exception_icon
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_accrual_revenue
+msgid ""
+"Identical to total_cash_revenue; there is no revenue side difference between"
+" cash and accrual."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__message_needaction
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__message_unread
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__message_needaction
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__message_unread
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__message_needaction
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__message_unread
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__message_needaction
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__message_has_error
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__message_has_error
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__message_has_error
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__include_parent_allocation
+msgid "Include Parent Allocation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Income"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.actions.act_window,name:ssi_school_budget.school_budget_income_category_action
+#: model:ir.ui.menu,name:ssi_school_budget.school_budget_income_category_menu
+msgid "Income Categories"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__income_category_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__income_category_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__income_category_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__income_category_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__income_category_id
+#: model:res.groups,name:ssi_school_budget.school_budget_income_category_group
+msgid "Income Category"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__income_comparison_ids
+msgid "Income Comparison"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__income_line_ids
+msgid "Income Lines"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.actions.act_window,name:ssi_school_budget.school_budget_income_realization_action
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__income_realization_ids
+#: model:ir.ui.menu,name:ssi_school_budget.school_budget_income_realization_menu
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_income_realization_view_pivot
+msgid "Income Realization"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__income_result_ids
+msgid "Income Results"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Income Simulation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__instrument_type
+msgid "Instrument Type"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Investment"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.actions.act_window,name:ssi_school_budget.school_budget_investment_category_action
+#: model:ir.ui.menu,name:ssi_school_budget.school_budget_investment_category_menu
+msgid "Investment Categories"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__investment_category_id
+#: model:res.groups,name:ssi_school_budget.school_budget_investment_category_group
+msgid "Investment Category"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__investment_ids
+msgid "Investments"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_is_follower
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_is_follower
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_is_follower
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__label
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__label
+msgid "Label"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_res_company____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_branch____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__line_number
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__line_number
+msgid "Line Number"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_main_attachment_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_main_attachment_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_main_attachment_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_category__calc_method__manual
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_result__source__manual
+msgid "Manual"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__manual_number_ok
+msgid ""
+"Manual number assignment policy\n"
+"\n"
+"* If active user can edit document number"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__direct_income_override_ids
+msgid "Manual overrides of automatically computed direct income amounts."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__income_line_ids
+msgid "Manually budgeted income items (calc_method=manual only)."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_line__amount
+msgid "Manually entered budgeted income amount."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__override_up_rate
+msgid ""
+"Manually forced UP tariff. Only used when 'Override UP Rate' is enabled."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__override_us_rate
+msgid ""
+"Manually forced US tariff. Only used when 'Override US Rate' is enabled."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_contribution_allocation__override_pct_up
+msgid ""
+"Manually forced pct_up (0.0-1.0). Only used when 'Override UP Percentage' is"
+" enabled."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_contribution_allocation__override_pct_us
+msgid ""
+"Manually forced pct_us (0.0-1.0). Only used when 'Override US Percentage' is"
+" enabled."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__maps_to_income_category_id
+msgid "Maps to Income Category"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__active
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__active
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__active
+msgid ""
+"Master data status\n"
+"\n"
+"* Inactive data can not be selected when creating new transaction\n"
+"* Transaction with inactive master data can still be viewed\n"
+"* Set master data as inactive if master data no longger needed,\n"
+"but master data already used on transaction"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__code
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__code
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__code
+msgid ""
+"Master data unique identifier.\n"
+"\n"
+"* Fill with '/' if You do not need unique identifier\n"
+"* Click 'Generate Code' button to automatically assign code.\n"
+"  Sequence template mush be set to perform this action\n"
+"  Only master data with '/' code will be assign automatic code"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_has_error
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_has_error
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_has_error
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__month
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__month
+msgid "Month"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment__start_month
+msgid ""
+"Month (1-12) the asset starts being used, for prorated first-year "
+"depreciation."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_realization__month
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_realization__month
+msgid ""
+"Month index, 1-12, relative to the academic year's start month (month 1 = "
+"the calendar month academic_year_id.date_start falls in), not the calendar "
+"year."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__expense_realization_ids
+msgid ""
+"Monthly realized expense per category, written by "
+"action_compute_realization()."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__income_realization_ids
+msgid ""
+"Monthly realized income per category, written by "
+"action_compute_realization()."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_financial_investment__instrument_type__reksa_dana
+msgid "Mutual Fund"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__my_activity_date_deadline
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__my_activity_date_deadline
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__my_activity_date_deadline
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__name
+msgid "Name"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__need_validation
+msgid "Need Validation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__new_student_count
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__new_student_count
+msgid "New Student Count"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__investment_ids
+msgid "New fixed-asset investments planned this fiscal year."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_contribution_allocation__new_student_count
+msgid ""
+"New student count key used to compute pct_up. Deliberately separate from the"
+" unit's own assumption; not synced automatically."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__activity_date_deadline
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__activity_date_deadline
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__activity_date_deadline
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__activity_summary
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__activity_summary
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__activity_summary
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__activity_type_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__activity_type_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__activity_type_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__next_approval_ids
+msgid "Next Approvals"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_expense_result__expense_group__non_operational
+msgid "Non Operational"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__note
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__note
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__note
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__note
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__note
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__note
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__note
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__note
+msgid "Note"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_needaction_counter
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_needaction_counter
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_needaction_counter
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_has_error_counter
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_has_error_counter
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_has_error_counter
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__message_needaction_counter
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__message_needaction_counter
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__message_needaction_counter
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__message_has_error_counter
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__message_has_error_counter
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__message_has_error_counter
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__new_student_count
+msgid ""
+"Number of new students. Used as the divisor of the UP tariff simulation."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__returning_student_count
+msgid "Number of returning students. Informational only."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__staff_count
+msgid "Number of staff. Informational only."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_assumption_line__student_count
+msgid "Number of students planned for this grade."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__message_unread_counter
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__message_unread_counter
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__message_unread_counter
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Old Asset"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__old_asset_ids
+msgid "Old Assets"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.constraint,message:ssi_school_budget.constraint_school_budget_parent_expense_allocation_unique_budget_expense_category
+msgid ""
+"Only one allocation setting is allowed per expense category on the same "
+"budget."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.constraint,message:ssi_school_budget.constraint_school_budget_assumption_line_unique_budget_grade
+msgid "Only one assumption line is allowed per grade on the same budget."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.constraint,message:ssi_school_budget.constraint_school_budget_contribution_allocation_unique_parent_child
+msgid ""
+"Only one contribution allocation is allowed per child budget under the same "
+"parent budget."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.constraint,message:ssi_school_budget.constraint_school_budget_direct_income_override_unique_budget_expense_category
+msgid ""
+"Only one direct income override is allowed per expense category on the same "
+"budget."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.constraint,message:ssi_school_budget.constraint_school_budget_expense_grade_allocation_unique_line_grade
+msgid ""
+"Only one grade allocation is allowed per grade on the same expense line."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.constraint,message:ssi_school_budget.constraint_school_budget_expense_realization_unique_budget_category_month
+#: model:ir.model.constraint,message:ssi_school_budget.constraint_school_budget_income_realization_unique_budget_category_month
+msgid ""
+"Only one realization row is allowed per category and month on the same "
+"budget."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__cash_balance
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__opening_cash_balance
+msgid "Opening Cash Balance"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__is_operational
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__is_operational
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_expense_result__expense_group__operational
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_expense_category_view_search
+msgid "Operational"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_line__line_number
+msgid "Ordering number of this line within its category."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__line_number
+msgid ""
+"Ordering number of this line within its category. Must be 1 or greater."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__org_type
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_search
+msgid "Organization Type"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_financial_investment__instrument_type__lainnya
+msgid "Other"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__override_amount
+msgid "Override Amount"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__is_pct_up_overridden
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__override_pct_up
+msgid "Override UP Percentage"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__is_up_rate_overridden
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__override_up_rate
+msgid "Override UP Rate"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__is_pct_us_overridden
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__override_pct_us
+msgid "Override US Percentage"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__is_us_rate_overridden
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__override_us_rate
+msgid "Override US Rate"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_expense_result__source__own
+msgid "Own"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__own_new_investment_dep
+msgid "Own New Investment Depreciation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__own_old_asset_dep
+msgid "Own Old Asset Depreciation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_own_up_cost
+msgid "Own UP Cost"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_own_us_cost
+msgid "Own US Cost"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_up_dep
+msgid ""
+"Own new/old asset depreciation plus depreciation allocated from branch and "
+"center."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Parent Cost Allocation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__parent_expense_allocation_ids
+msgid "Parent Expense Allocations"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__assumption_line_ids
+msgid "Planned student headcount per grade (org_type=unit only)."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__policy_template_id
+msgid "Policy Template"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment__bos
+msgid ""
+"Portion of the purchase price funded by government BOS/BOP/PBOS subsidy. "
+"Does NOT reduce the depreciable base."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__purchase_price
+msgid "Purchase Price"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Realization"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__realized_amount
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__realized_amount
+msgid "Realized Amount"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__realized_amount_ytd
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__realized_amount_ytd
+msgid "Realized Amount (YTD)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__recipient_budget_id
+msgid "Recipient Budget"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__reject_ok
+msgid ""
+"Reject policy\n"
+"\n"
+"* If active user can see and execute 'Reject' button"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__rejected
+msgid "Rejected"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_direct_income_override__override_amount
+msgid ""
+"Replaces the automatically computed direct-income amount (sum of the "
+"foundation column) for this category."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__user_id
+msgid "Responsible"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__activity_user_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__activity_user_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__activity_user_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__restart_approval_ok
+msgid ""
+"Restart approval policy\n"
+"\n"
+"* If active user can see and execute 'Restart Approval' button"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__restart_ok
+msgid ""
+"Restart policy\n"
+"\n"
+"* If active user can see and execute 'Restart' button"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__returning_student_count
+msgid "Returning Student Count"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__revenue
+msgid "Revenue"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__revenue_no_alloc
+msgid "Revenue (No Allocation)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__reviewer_id
+msgid "Reviewer"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_res_company__school_analytic_group_id
+msgid ""
+"Root Analytic Group under which branch/unit analytic groups are nested, for "
+"roll-up reporting."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_cash_expense
+msgid "Same as Total Expense Result."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_cash_revenue_auto
+msgid "Same as Total Income Result (Auto), ignoring tariff overrides."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_cash_revenue
+msgid "Same as Total Income Result (final amounts)."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__opening_cash_balance
+msgid "Same as cash_balance, exposed under the Summary page."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__school_id
+msgid "School"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_branch
+msgid "School Branch"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget
+#: model:ir.module.category,name:ssi_school_budget.school_budget_module_category
+#: model:ir.ui.menu,name:ssi_school_budget.menu_school_budget_root
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.view_company_form_school_budget
+msgid "School Budget"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.module.category,name:ssi_school_budget.school_budget_configurator_module_category
+msgid "School Budget - Configurator"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.module.category,name:ssi_school_budget.school_budget_data_ownership_module_category
+msgid "School Budget - Data Ownership"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.module.category,name:ssi_school_budget.school_budget_workflow_module_category
+msgid "School Budget - Workflow"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_allocation_result
+msgid "School Budget Allocation Result"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_res_company__school_analytic_account_id
+msgid "School Budget Analytic Account"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_res_company__school_analytic_group_id
+msgid "School Budget Analytic Group"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_comparative_result
+msgid "School Budget Comparative Result"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_contribution_allocation
+msgid "School Budget Contribution Allocation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_direct_income_override
+msgid "School Budget Direct Income Override"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_expense_category
+msgid "School Budget Expense Category"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_expense_comparison
+msgid "School Budget Expense Comparison"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_expense_grade_allocation
+msgid "School Budget Expense Grade Allocation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_expense_line
+msgid "School Budget Expense Line"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_expense_realization
+msgid "School Budget Expense Realization"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_expense_result
+msgid "School Budget Expense Result"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_financial_investment
+msgid "School Budget Financial Investment"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_income_category
+msgid "School Budget Income Category"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_income_comparison
+msgid "School Budget Income Comparison"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_income_line
+msgid "School Budget Income Line"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_income_realization
+msgid "School Budget Income Realization"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_income_result
+msgid "School Budget Income Result"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_investment
+msgid "School Budget Investment"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_investment_category
+msgid "School Budget Investment Category"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_old_asset
+msgid "School Budget Old Asset"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_parent_expense_allocation
+msgid "School Budget Parent Expense Allocation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_assumption_line
+msgid "School Budget Student Assumption"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_subsidy
+msgid "School Budget Subsidy"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.actions.server,name:ssi_school_budget.ir_cron_school_budget_compute_realization_ir_actions_server
+#: model:ir.cron,cron_name:ssi_school_budget.ir_cron_school_budget_compute_realization
+#: model:ir.cron,name:ssi_school_budget.ir_cron_school_budget_compute_realization
+msgid "School Budget: Compute Realization"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__sequence
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__sequence
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_contribution_allocation__pct_up
+msgid ""
+"Share of the parent's UP-allocatable cost pushed down to this child. "
+"Computed from all siblings under the same parent; not stored because it "
+"depends on sibling records."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_contribution_allocation__pct_us
+msgid ""
+"Share of the parent's US-allocatable cost pushed down to this child. "
+"Computed from all siblings under the same parent; not stored because it "
+"depends on sibling records."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Simulate"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_category__calc_method__simulated_up
+msgid "Simulated - Uang Pangkal (UP)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_category__calc_method__simulated_us
+msgid "Simulated - Uang Sekolah (US)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_result__source__simulated_up
+msgid "Simulated UP"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_result__source__simulated_us
+msgid "Simulated US"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__source
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__source
+msgid "Source"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__grade_allocation_ids
+msgid ""
+"Split of this expense line's direct income across grades, used when the "
+"target income category is grade-based."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__staff_count
+msgid "Staff Count"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__start_month
+msgid "Start Month"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__state
+msgid "State"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__activity_state
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__activity_state
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__activity_state
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_financial_investment__instrument_type__saham
+msgid "Stock"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Student Assumption"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__assumption_line_ids
+msgid "Student Assumption Lines"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line__student_count
+msgid "Student Count"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_contribution_allocation__total_student_count
+msgid ""
+"Student count key used to compute pct_us. Deliberately separate from the "
+"unit's own assumption line total; not synced automatically."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__subsidy_ids
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Subsidies Given"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__received_subsidy_ids
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Subsidies Received"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__subsidy_ids
+msgid "Subsidies given by this branch/center budget to other organizations."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__received_subsidy_ids
+msgid "Subsidies received from provider organizations."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_result__source__subsidy
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Subsidy"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_expense_result__source__subsidy_given
+msgid "Subsidy Given"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_category__calc_method__sum_from_bos
+msgid "Sum From BOS"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_own_us_cost
+msgid ""
+"Sum of (foundation + bos) of this unit's own expense lines that are "
+"operational, not a UP component, and not direct income."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_own_up_cost
+msgid ""
+"Sum of (foundation + bos) of this unit's own expense lines whose category is"
+" a UP component."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_comparison__budget_amount
+msgid "Sum of (foundation+bos) of expense lines under this category."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_financial_investment
+msgid "Sum of amount across all financial investments."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_income_manual
+msgid "Sum of amount across all manually entered income lines."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_comparison__budget_amount
+msgid ""
+"Sum of amount across income simulation result rows under this category."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_expense
+msgid "Sum of amount_total across all expense lines."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_investment_bos
+msgid "Sum of bos across all new investments."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_new_investment_dep
+msgid "Sum of dep_current_year across all new investments."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_old_asset_dep
+msgid "Sum of dep_current_year across all old assets."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_physical_investment
+msgid "Sum of purchase_price across all new investments."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_comparison__realized_amount
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_comparison__realized_amount
+msgid "Sum of realization across all 12 months."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_comparison__realized_amount_ytd
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_comparison__realized_amount_ytd
+msgid ""
+"Sum of realization from month 1 through the current month, relative to the "
+"academic year."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_student_count
+msgid ""
+"Sum of student_count across all assumption lines. Used as the divisor of the"
+" US tariff simulation."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_expense_bos
+msgid "Sum of the BOS column across all expense lines."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_expense_foundation
+msgid "Sum of the Foundation column across all expense lines."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Summary"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Sync Contribution Allocation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__target_budget_id
+msgid "Target Budget"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_comparative_result__expense
+msgid "Target's total expense, with parent allocation included."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_comparative_result__revenue
+msgid "Target's total revenue, with parent allocation included."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Tariff"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Tariff Override"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__academic_year_id
+msgid "The academic year this budget plans for."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__branch_id
+msgid ""
+"The branch this budget belongs to. When Organization Type is Unit, this is "
+"automatically derived from the school's branch. Required when Organization "
+"Type is Branch."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_allocation_result__budget_id
+msgid ""
+"The branch/center budget document (parent) this allocation result belongs "
+"to."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_comparative_result__budget_id
+msgid ""
+"The branch/center budget document (parent) this comparative result belongs "
+"to."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_subsidy__provider_budget_id
+msgid "The branch/center budget document giving the subsidy."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_financial_investment__budget_id
+msgid "The branch/center budget document holding this financial investment."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_parent_expense_allocation__budget_id
+msgid "The branch/center budget document owning this allocation setting."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_contribution_allocation__parent_budget_id
+msgid "The branch/center budget receiving the contribution."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_comparative_result__target_budget_id
+msgid ""
+"The budget being summarized: the parent itself, or one of its descendant "
+"units."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_subsidy__recipient_budget_id
+msgid ""
+"The budget document receiving the subsidy. A branch may only subsidize its "
+"own units; a center may subsidize any branch or unit."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_assumption_line__budget_id
+msgid "The budget document this assumption line belongs to."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_comparison__budget_id
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_comparison__budget_id
+msgid "The budget document this comparison line belongs to."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__budget_id
+msgid "The budget document this expense line belongs to."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_result__budget_id
+msgid "The budget document this generated expense line belongs to."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_result__budget_id
+msgid "The budget document this generated income line belongs to."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_line__budget_id
+msgid "The budget document this income line belongs to."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment__budget_id
+msgid "The budget document this investment belongs to."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_old_asset__budget_id
+msgid "The budget document this old asset belongs to."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_direct_income_override__budget_id
+msgid "The budget document this override belongs to."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_realization__budget_id
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_realization__budget_id
+msgid "The budget document this realization line belongs to."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_old_asset__fiscal_year
+msgid ""
+"The budget's fiscal year, used to compute the elapsed depreciation years."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__fiscal_year
+msgid ""
+"The calendar year the academic year starts in. Used by all depreciation "
+"computations in this budget."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_allocation_result__child_budget_id
+msgid "The contributing unit budget."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_direct_income_override__expense_category_id
+msgid "The direct-income expense category being overridden."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__date
+msgid "The document date, used by the sequence template."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_subsidy__expense_category_id
+msgid "The expense category booked at the provider."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_parent_expense_allocation__expense_category_id
+msgid "The expense category pushed down to children."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__expense_category_id
+msgid "The expense category this line is budgeted under."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_result__expense_category_id
+msgid ""
+"The expense category this line was generated for. Empty for synthetic rows "
+"that have no category equivalent."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_grade_allocation__line_id
+msgid "The expense line this grade allocation belongs to."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_assumption_line__grade_id
+msgid "The grade level this student count applies to."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_grade_allocation__grade_id
+msgid "The grade this allocated amount applies to."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_subsidy__income_category_id
+msgid "The income category booked at the recipient."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__maps_to_income_category_id
+msgid ""
+"The income category that receives the direct income amount generated from "
+"this expense category. Required when 'Direct Income' is enabled."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_line__income_category_id
+msgid ""
+"The income category this line is budgeted under. Only categories with "
+"Calculation Method = Manual are allowed."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_result__income_category_id
+msgid ""
+"The income category this line was generated for. Empty for synthetic rows "
+"that have no category equivalent."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment__investment_category_id
+msgid "The investment category, used to prefill Useful Life."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__org_type
+msgid ""
+"The organization level this budget belongs to: a school Unit, a Branch, or "
+"the Center (company)."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__school_id
+msgid ""
+"The school unit this budget belongs to. Required when Organization Type is "
+"Unit."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_contribution_allocation__child_budget_id
+msgid "The unit budget contributing to the parent."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_financial_investment__instrument_type__deposito
+msgid "Time Deposit"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__amount_total
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__amount_total
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Total"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_accrual_expense
+msgid "Total Accrual Expense"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_accrual_revenue
+msgid "Total Accrual Revenue"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_allocatable_base_up
+msgid "Total Allocatable Base (UP)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_allocatable_base_us
+msgid "Total Allocatable Base (US)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_cash_expense
+msgid "Total Cash Expense"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_cash_revenue
+msgid "Total Cash Revenue"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_cash_revenue_auto
+msgid "Total Cash Revenue (Auto)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_depreciation
+msgid "Total Depreciation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_expense
+msgid "Total Expense"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_expense_bos
+msgid "Total Expense (BOS)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_expense_foundation
+msgid "Total Expense (Foundation)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_expense_result
+msgid "Total Expense Result"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_expense_variance
+msgid "Total Expense Variance"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_financial_investment
+msgid "Total Financial Investment"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_income_result
+msgid "Total Income Result"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_income_result_auto
+msgid "Total Income Result (Auto)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_investment
+msgid "Total Investment"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_investment_bos
+msgid "Total Investment BOS"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_income_manual
+msgid "Total Manual Income"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_new_investment_dep
+msgid "Total New Investment Depreciation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_expense_non_operational
+msgid "Total Non Operational Expense Result"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_old_asset_dep
+msgid "Total Old Asset Depreciation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_expense_operational
+msgid "Total Operational Expense Result"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_physical_investment
+msgid "Total Physical Investment"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_realized_expense
+msgid "Total Realized Expense"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_realized_income
+msgid "Total Realized Income"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_student_count
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__total_student_count
+msgid "Total Student Count"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_up_cost
+msgid "Total UP Cost"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_up_cost_with_dep
+msgid "Total UP Cost With Depreciation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_up_dep
+msgid "Total UP Depreciation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_up_revenue
+msgid "Total UP Revenue"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_us_cost
+msgid "Total US Cost"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_us_revenue
+msgid "Total US Revenue"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Totals"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__name
+msgid ""
+"Transaction/document number\n"
+"\n"
+"* Unique indentifer of transaction\n"
+"* Leave '/' to automatically generate number\n"
+"* Change '/' into any number/identifier to manually assign number.\n"
+"  Manual number assignment can be done in 'Draft' state\n"
+"  Only user with 'Can Manualy Assign Number' policy can manually assign number.\n"
+"* Transaction with number other than '/' can not be deleted."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_financial_investment__instrument_type
+msgid "Type of financial instrument."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__activity_exception_decoration
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__activity_exception_decoration
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__activity_exception_decoration
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__is_up_component
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__is_up_component
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_expense_category_view_search
+msgid "UP Component"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__pct_up
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__pct_up
+msgid "UP Percentage"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "UP Simulation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__pct_us
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__pct_us
+msgid "US Percentage"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "US Simulation"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget__org_type__unit
+msgid "Unit"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__contribution_allocation_ids
+msgid ""
+"Units contributing to this branch/center budget, with their proportion keys."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_unread
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_unread
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_unread
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_unread_counter
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_unread_counter
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_unread_counter
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__useful_life
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__useful_life
+msgid "Useful Life (Years)"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment__useful_life
+msgid "Useful life in years."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:res.groups,name:ssi_school_budget.school_budget_user_group
+msgid "User"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__user_id
+msgid ""
+"User that responsible for document\n"
+"\n"
+"* Create user can be different with responsible user\n"
+"* Automatically filled with user that initiate document creation.\n"
+"  Default responsible can be changed."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__reviewer_id
+msgid ""
+"User that responsible to review document\n"
+"\n"
+"* Unless it configured to approve reviewer does not equal to approver"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__active_approver_user_ids
+msgid "Users that can approve/reject document"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:res.groups,name:ssi_school_budget.school_budget_validator_group
+msgid "Validator"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__variance
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__variance
+msgid "Variance"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:res.groups,name:ssi_school_budget.school_budget_viewer_group
+msgid "Viewer"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__website_message_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__website_message_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__website_message_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__website_message_ids
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__website_message_ids
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__website_message_ids
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__include_parent_allocation
+msgid ""
+"When enabled (default), costs and depreciation pushed down from ancestor "
+"(branch/center) budgets are included in this unit's UP/US cost base. When "
+"disabled, every allocated component is treated as zero."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_contribution_allocation__is_pct_up_overridden
+msgid ""
+"When enabled, Override UP Percentage is used as pct_up instead of the "
+"automatically computed proportion. Substitute for the reference "
+"application's 'None = automatic' semantics: an override of 0.0 is a valid "
+"value."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__is_up_rate_overridden
+msgid ""
+"When enabled, Override UP Rate is used as the final UP tariff instead of the"
+" automatically computed rate. This boolean is the substitute for the "
+"reference application's 'None = automatic' semantics: an override value of "
+"zero is only honored when this box is checked."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_contribution_allocation__is_pct_us_overridden
+msgid ""
+"When enabled, Override US Percentage is used as pct_us instead of the "
+"automatically computed proportion."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__is_us_rate_overridden
+msgid ""
+"When enabled, Override US Rate is used as the final US tariff instead of the"
+" automatically computed rate. This boolean is the substitute for the "
+"reference application's 'None = automatic' semantics: an override value of "
+"zero is only honored when this box is checked."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__is_up_component
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__is_up_component
+msgid ""
+"When enabled, expense lines under this category are included in the UP (Uang"
+" Pangkal) cost base used by the tariff simulation engine."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__is_direct_income
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__is_direct_income
+msgid ""
+"When enabled, expense lines under this category automatically generate a "
+"matching income line (based on the foundation-funded amount) booked under "
+"'Maps to Income Category'."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__is_operational
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__is_operational
+msgid ""
+"When enabled, this category represents an operational expense (e.g. account "
+"range 5110-5250). When disabled, it is a non-operational expense (e.g. "
+"account range 5500-5590)."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_parent_expense_allocation__affects_up
+msgid ""
+"When enabled, this cost category is pushed down into the children's UP base "
+"(split by new students). Otherwise it goes into the US base (split by total "
+"students)."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_old_asset__dep_per_year
+msgid "acquisition_cost / useful_life."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__auto_up_revenue
+msgid "auto_up_rate * new_student_count."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__auto_us_revenue
+msgid "auto_us_rate * total_student_count * 12."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_comparison__variance
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_comparison__variance
+msgid "budget_amount - realized_amount."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment__dep_current_year
+msgid "dep_per_year * (13 - start_month) / 12, start_month clamped to 1..12."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_old_asset__dep_current_year
+msgid ""
+"dep_per_year if the asset is still within its useful life this fiscal year, "
+"otherwise 0."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_up_revenue
+msgid "final_up_rate * new_student_count."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_us_revenue
+msgid "final_us_rate * total_student_count * 12."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_old_asset__book_value
+msgid "max(0, acquisition_cost - dep_per_year * years elapsed)."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__ending_cash_balance
+msgid "opening_cash_balance + cash_surplus_deficit."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__final_up_rate
+msgid ""
+"override_up_rate as-is when Override UP Rate is enabled, otherwise "
+"auto_up_rate."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__final_us_rate
+msgid ""
+"override_us_rate as-is when Override US Rate is enabled, otherwise "
+"auto_us_rate."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment__end_book_value
+msgid "purchase_price - dep_current_year."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment__dep_per_year
+msgid "purchase_price / useful_life (0 when useful_life <= 0)."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_comparison__absorption_rate
+msgid ""
+"realized_amount / budget_amount * 100. 0 when budget_amount is 0 (guarded "
+"against division by zero)."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_comparison__absorption_rate
+msgid ""
+"realized_amount / budget_amount * 100. 0 when budget_amount is 0 (guarded "
+"against division by zero). Values above 100 are valid (over-budget)."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_accrual_expense
+msgid ""
+"total_cash_expense + total_depreciation (own assets only; accrual accounting"
+" expenses depreciation instead of the investment purchase)."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__cash_surplus_deficit
+msgid ""
+"total_cash_revenue - total_cash_expense - total_investment (cash accounting "
+"expenses the full investment purchase)."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_depreciation
+msgid "total_new_investment_dep + total_old_asset_dep."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_up_cost
+msgid "total_own_up_cost + allocated_up_branch + allocated_up_center."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_us_cost
+msgid ""
+"total_own_us_cost + allocated_us_branch + allocated_us_center. Never "
+"includes depreciation."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_investment
+msgid "total_physical_investment + total_financial_investment."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__expense_absorption_rate
+msgid ""
+"total_realized_expense / total budgeted expense * 100. 0 when the budgeted "
+"total is 0 (guarded against division by zero)."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_up_cost_with_dep
+msgid ""
+"total_up_cost + total_up_dep + allocated financial investments from branch "
+"and center. This is the UP tariff divisor's numerator."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__auto_up_rate
+msgid ""
+"total_up_cost_with_dep / new_student_count (guarded: 0 students is treated "
+"as 1)."
+msgstr ""
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__auto_us_rate
+msgid ""
+"total_us_cost / (total_student_count * 12), guarded: 0 students is treated "
+"as 1."
+msgstr ""
