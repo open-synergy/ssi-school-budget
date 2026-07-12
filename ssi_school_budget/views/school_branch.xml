@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 OpenSynergy Indonesia
+     Copyright 2026 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<record id="school_branch_view_form_school_budget" model="ir.ui.view">
+    <field name="name">school_branch form - school budget analytic account</field>
+    <field name="model">school_branch</field>
+    <field name="inherit_id" ref="ssi_school.school_branch_view_form" />
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="analytic_group_id" />
+                <field name="analytic_account_id" readonly="1" />
+            </xpath>
+            <xpath expr="//div[@name='div_smart_buttons']" position="inside">
+                <button
+                        name="action_create_analytic_account"
+                        type="object"
+                        string="Create Analytic Account"
+                        class="oe_stat_button"
+                        icon="fa-sitemap"
+                        attrs="{'invisible': [('analytic_account_id', '!=', False)]}"
+                    />
+            </xpath>
+        </data>
+    </field>
+</record>
+</odoo>

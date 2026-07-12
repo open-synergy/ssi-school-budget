@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 OpenSynergy Indonesia
+     Copyright 2026 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<record id="school_budget_view_search" model="ir.ui.view">
+    <field name="name">school_budget - search</field>
+    <field name="model">school_budget</field>
+    <field
+            name="inherit_id"
+            ref="ssi_transaction_mixin.mixin_transaction_view_search"
+        />
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//search" position="inside">
+                <field name="org_type" />
+                <field name="academic_year_id" />
+                <group expand="0" string="Group By">
+                    <filter
+                            name="group_by_org_type"
+                            string="Organization Type"
+                            context="{'group_by': 'org_type'}"
+                        />
+                    <filter
+                            name="group_by_academic_year_id"
+                            string="Academic Year"
+                            context="{'group_by': 'academic_year_id'}"
+                        />
+                </group>
+            </xpath>
+        </data>
+    </field>
+</record>
+
+<record id="school_budget_view_tree" model="ir.ui.view">
+    <field name="name">school_budget - tree</field>
+    <field name="model">school_budget</field>
+    <field name="mode">primary</field>
+    <field name="inherit_id" ref="ssi_transaction_mixin.mixin_transaction_view_tree" />
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="date" />
+                <field name="org_type" />
+                <field name="school_id" />
+                <field name="branch_id" />
+                <field name="academic_year_id" />
+                <field name="fiscal_year" />
+            </xpath>
+        </data>
+    </field>
+</record>
+
+<record id="school_budget_view_form" model="ir.ui.view">
+    <field name="name">school_budget - form</field>
+    <field name="model">school_budget</field>
+    <field name="mode">primary</field>
+    <field name="inherit_id" ref="ssi_transaction_mixin.mixin_transaction_view_form" />
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//header/field[@name='state']" position="before">
+                <button
+                        name="action_simulate"
+                        type="object"
+                        string="Simulate"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('org_type', '=', False)]}"
+                    />
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="org_type" />
+                <field
+                        name="school_id"
+                        attrs="{'invisible': [('org_type', '!=', 'unit')], 'required': [('org_type', '=', 'unit')]}"
+                    />
+                <field
+                        name="branch_id"
+                        attrs="{'invisible': [('org_type', '=', 'center')], 'readonly': [('org_type', '=', 'unit')], 'required': [('org_type', '=', 'branch')]}"
+                    />
+                <field name="academic_year_id" />
+            </xpath>
+            <xpath expr="//group[@name='header_right']" position="inside">
+                <field name="date" />
+                <field name="fiscal_year" />
+                <field name="cash_balance" />
+                <field name="analytic_account_id" readonly="1" />
+            </xpath>
+            <xpath expr="//page[1]" position="before">
+                <page
+                        name="assumption"
+                        string="Student Assumption"
+                        attrs="{'invisible': [('org_type', '!=', 'unit')]}"
+                    >
+                    <field name="assumption_line_ids">
+                        <tree editable="bottom">
+                            <field name="grade_id" />
+                            <field name="student_count" />
+                        </tree>
+                    </field>
+                    <group name="assumption_group_1" string="Totals">
+                        <field name="total_student_count" readonly="1" />
+                        <field name="new_student_count" />
+                        <field name="returning_student_count" />
+                        <field name="staff_count" />
+                    </group>
+                    <group name="assumption_group_2" string="Tariff Override">
+                        <field name="is_up_rate_overridden" />
+                        <field
+                                name="override_up_rate"
+                                attrs="{'invisible': [('is_up_rate_overridden', '=', False)]}"
+                            />
+                        <field name="is_us_rate_overridden" />
+                        <field
+                                name="override_us_rate"
+                                attrs="{'invisible': [('is_us_rate_overridden', '=', False)]}"
+                            />
+                    </group>
+                </page>
+                <page name="expense" string="Expense">
+                    <field name="expense_line_ids">
+                        <tree editable="bottom">
+                            <field name="expense_category_id" />
+                            <field name="line_number" />
+                            <field name="description" />
+                            <field name="basis" />
+                            <field name="foundation" sum="Total" />
+                            <field name="bos" sum="Total" />
+                            <field name="amount_total" readonly="1" sum="Total" />
+                        </tree>
+                        <form>
+                            <field name="is_direct_income" invisible="1" />
+                            <group>
+                                <field name="expense_category_id" />
+                                <field name="line_number" />
+                                <field name="description" />
+                                <field name="basis" />
+                                <field name="foundation" />
+                                <field name="bos" />
+                                <field name="amount_total" readonly="1" />
+                                <field name="note" />
+                            </group>
+                            <field
+                                    name="grade_allocation_ids"
+                                    attrs="{'invisible': [('is_direct_income', '=', False)]}"
+                                >
+                                <tree editable="bottom">
+                                    <field name="grade_id" />
+                                    <field name="amount" />
+                                </tree>
+                            </field>
+                        </form>
+                    </field>
+                    <group name="expense_totals" string="Totals">
+                        <field name="total_expense_foundation" readonly="1" />
+                        <field name="total_expense_bos" readonly="1" />
+                        <field name="total_expense" readonly="1" />
+                    </group>
+                </page>
+                <page name="income" string="Income">
+                    <field name="income_line_ids">
+                        <tree editable="bottom">
+                            <field name="income_category_id" />
+                            <field name="line_number" />
+                            <field name="description" />
+                            <field name="basis" />
+                            <field name="amount" sum="Total" />
+                        </tree>
+                    </field>
+                    <group name="income_totals" string="Totals">
+                        <field name="total_income_manual" readonly="1" />
+                    </group>
+                </page>
+                <page name="investment" string="Investment">
+                    <field name="investment_ids">
+                        <tree editable="bottom">
+                            <field name="asset_code" />
+                            <field name="asset_name" />
+                            <field name="investment_category_id" />
+                            <field name="purchase_price" sum="Total" />
+                            <field name="bos" sum="Total" />
+                            <field name="useful_life" />
+                            <field name="start_month" />
+                            <field name="dep_per_year" readonly="1" />
+                            <field name="dep_current_year" readonly="1" sum="Total" />
+                            <field name="end_book_value" readonly="1" />
+                        </tree>
+                    </field>
+                </page>
+                <page name="old_asset" string="Old Asset">
+                    <field name="old_asset_ids">
+                        <tree editable="bottom">
+                            <field name="asset_code" />
+                            <field name="asset_name" />
+                            <field name="acquisition_cost" sum="Total" />
+                            <field name="useful_life" />
+                            <field name="acquisition_year" />
+                            <field name="dep_current_year" readonly="1" sum="Total" />
+                            <field name="book_value" readonly="1" />
+                        </tree>
+                    </field>
+                    <group name="depreciation_totals" string="Depreciation Totals">
+                        <field name="total_new_investment_dep" readonly="1" />
+                        <field name="total_old_asset_dep" readonly="1" />
+                        <field name="total_depreciation" readonly="1" />
+                    </group>
+                </page>
+                <page
+                        name="financial_investment"
+                        string="Financial Investment"
+                        attrs="{'invisible': [('org_type', '=', 'unit')]}"
+                    >
+                    <field name="financial_investment_ids">
+                        <tree editable="bottom">
+                            <field name="instrument_type" />
+                            <field name="name" />
+                            <field name="amount" sum="Total" />
+                            <field name="note" />
+                        </tree>
+                    </field>
+                </page>
+                <page
+                        name="parent_expense_allocation"
+                        string="Parent Cost Allocation"
+                        attrs="{'invisible': [('org_type', '=', 'unit')]}"
+                    >
+                    <field name="parent_expense_allocation_ids">
+                        <tree editable="bottom">
+                            <field name="expense_category_id" />
+                            <field name="affects_up" />
+                            <field name="active" />
+                        </tree>
+                    </field>
+                </page>
+                <page
+                        name="contribution_allocation"
+                        string="Contribution Allocation"
+                        attrs="{'invisible': [('org_type', '=', 'unit')]}"
+                    >
+                    <div>
+                        <button
+                                name="action_sync_contribution_allocation"
+                                type="object"
+                                string="Sync Contribution Allocation"
+                                class="btn-secondary"
+                            />
+                    </div>
+                    <field name="contribution_allocation_ids">
+                        <tree editable="bottom">
+                            <field name="child_budget_id" />
+                            <field name="new_student_count" />
+                            <field name="total_student_count" />
+                            <field name="pct_up" readonly="1" />
+                            <field name="is_pct_up_overridden" />
+                            <field name="override_pct_up" />
+                            <field name="pct_us" readonly="1" />
+                            <field name="is_pct_us_overridden" />
+                            <field name="override_pct_us" />
+                        </tree>
+                    </field>
+                </page>
+                <page name="subsidy" string="Subsidy">
+                    <group name="subsidy_received" string="Subsidies Received">
+                        <field name="received_subsidy_ids" nolabel="1">
+                            <tree>
+                                <field name="provider_budget_id" />
+                                <field name="expense_category_id" />
+                                <field name="income_category_id" />
+                                <field name="amount" sum="Total" />
+                                <field name="active" />
+                            </tree>
+                        </field>
+                    </group>
+                    <group
+                            name="subsidy_given"
+                            string="Subsidies Given"
+                            attrs="{'invisible': [('org_type', '=', 'unit')]}"
+                        >
+                        <field name="subsidy_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="recipient_budget_id" />
+                                <field name="expense_category_id" />
+                                <field name="income_category_id" />
+                                <field name="amount" sum="Total" />
+                                <field name="active" />
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+                <page
+                        name="direct_income_override"
+                        string="Direct Income Override"
+                        attrs="{'invisible': [('org_type', '!=', 'unit')]}"
+                    >
+                    <field name="direct_income_override_ids">
+                        <tree editable="bottom">
+                            <field
+                                    name="expense_category_id"
+                                    domain="[('is_direct_income', '=', True)]"
+                                />
+                            <field name="override_amount" />
+                            <field name="note" />
+                        </tree>
+                    </field>
+                </page>
+                <page
+                        name="up_simulation"
+                        string="UP Simulation"
+                        attrs="{'invisible': [('org_type', '!=', 'unit')]}"
+                    >
+                    <field name="include_parent_allocation" />
+                    <group name="up_simulation_cost" string="Cost Base">
+                        <field name="total_own_up_cost" readonly="1" />
+                        <field name="allocated_up_branch" readonly="1" />
+                        <field name="allocated_up_center" readonly="1" />
+                        <field name="total_up_cost" readonly="1" />
+                        <field name="own_new_investment_dep" readonly="1" />
+                        <field name="own_old_asset_dep" readonly="1" />
+                        <field
+                                name="allocated_new_investment_dep_branch"
+                                readonly="1"
+                            />
+                        <field
+                                name="allocated_new_investment_dep_center"
+                                readonly="1"
+                            />
+                        <field name="allocated_old_asset_dep_branch" readonly="1" />
+                        <field name="allocated_old_asset_dep_center" readonly="1" />
+                        <field
+                                name="allocated_financial_investment_branch"
+                                readonly="1"
+                            />
+                        <field
+                                name="allocated_financial_investment_center"
+                                readonly="1"
+                            />
+                        <field name="total_up_dep" readonly="1" />
+                        <field name="total_up_cost_with_dep" readonly="1" />
+                    </group>
+                    <group name="up_simulation_rate" string="Tariff">
+                        <field name="auto_up_rate" readonly="1" />
+                        <field name="final_up_rate" readonly="1" />
+                        <field name="auto_up_revenue" readonly="1" />
+                        <field name="total_up_revenue" readonly="1" />
+                    </group>
+                </page>
+                <page
+                        name="us_simulation"
+                        string="US Simulation"
+                        attrs="{'invisible': [('org_type', '!=', 'unit')]}"
+                    >
+                    <group name="us_simulation_cost" string="Cost Base">
+                        <field name="total_own_us_cost" readonly="1" />
+                        <field name="allocated_us_branch" readonly="1" />
+                        <field name="allocated_us_center" readonly="1" />
+                        <field name="total_us_cost" readonly="1" />
+                    </group>
+                    <group name="us_simulation_rate" string="Tariff">
+                        <field name="auto_us_rate" readonly="1" />
+                        <field name="final_us_rate" readonly="1" />
+                        <field name="auto_us_revenue" readonly="1" />
+                        <field name="total_us_revenue" readonly="1" />
+                    </group>
+                </page>
+                <page name="income_simulation" string="Income Simulation">
+                    <field name="income_result_ids">
+                        <tree>
+                            <field name="code" />
+                            <field name="label" />
+                            <field name="source" />
+                            <field name="auto_amount" sum="Total" />
+                            <field name="amount" sum="Total" />
+                        </tree>
+                    </field>
+                    <group name="income_result_totals" string="Totals">
+                        <field name="total_income_result_auto" readonly="1" />
+                        <field name="total_income_result" readonly="1" />
+                    </group>
+                </page>
+                <page name="expense_simulation" string="Expense Simulation">
+                    <field name="expense_result_ids">
+                        <tree>
+                            <field name="code" />
+                            <field name="label" />
+                            <field name="source" />
+                            <field name="expense_group" />
+                            <field name="amount_foundation" sum="Total" />
+                            <field name="amount_bos" sum="Total" />
+                            <field name="amount_total" sum="Total" />
+                        </tree>
+                    </field>
+                    <group name="expense_result_totals" string="Totals">
+                        <field name="total_expense_operational" readonly="1" />
+                        <field name="total_expense_non_operational" readonly="1" />
+                        <field name="total_expense_result" readonly="1" />
+                    </group>
+                </page>
+                <page name="summary" string="Summary">
+                    <group name="summary_cash" string="Budget KAS">
+                        <field name="total_cash_revenue" readonly="1" />
+                        <field name="total_cash_expense" readonly="1" />
+                        <field name="total_investment" readonly="1" />
+                        <field name="cash_surplus_deficit" readonly="1" />
+                        <field name="opening_cash_balance" readonly="1" />
+                        <field name="ending_cash_balance" readonly="1" />
+                    </group>
+                    <group name="summary_accrual" string="Budget AKRUAL">
+                        <field name="total_accrual_revenue" readonly="1" />
+                        <field name="total_accrual_expense" readonly="1" />
+                        <field name="total_depreciation" readonly="1" />
+                        <field name="accrual_surplus_deficit" readonly="1" />
+                    </group>
+                </page>
+                <page
+                        name="allocation"
+                        string="Allocation"
+                        attrs="{'invisible': [('org_type', '=', 'unit')]}"
+                    >
+                    <group name="allocatable_base" string="Allocatable Base">
+                        <field name="total_allocatable_base_up" readonly="1" />
+                        <field name="total_allocatable_base_us" readonly="1" />
+                    </group>
+                    <field name="allocation_result_ids">
+                        <tree>
+                            <field name="child_budget_id" />
+                            <field name="pct_up" />
+                            <field name="pct_us" />
+                            <field name="contribution_up" sum="Total" />
+                            <field name="contribution_us" sum="Total" />
+                        </tree>
+                    </field>
+                </page>
+                <page
+                        name="comparative_summary"
+                        string="Comparative Summary"
+                        attrs="{'invisible': [('org_type', '=', 'unit')]}"
+                    >
+                    <field name="comparative_result_ids">
+                        <tree>
+                            <field name="target_budget_id" />
+                            <field name="revenue" />
+                            <field name="expense" />
+                            <field name="cash_surplus" />
+                            <field name="accrual_surplus" />
+                            <field name="revenue_no_alloc" />
+                            <field name="expense_no_alloc" />
+                            <field name="cash_surplus_no_alloc" />
+                            <field name="accrual_surplus_no_alloc" />
+                        </tree>
+                    </field>
+                </page>
+                <page name="realization" string="Realization">
+                    <div>
+                        <button
+                                name="action_compute_realization"
+                                type="object"
+                                string="Compute Realization"
+                                class="btn-secondary"
+                            />
+                    </div>
+                    <field name="expense_realization_ids" readonly="1">
+                        <tree>
+                            <field name="expense_category_id" />
+                            <field name="month" />
+                            <field name="amount" sum="Total" />
+                        </tree>
+                    </field>
+                    <field name="income_realization_ids" readonly="1">
+                        <tree>
+                            <field name="income_category_id" />
+                            <field name="month" />
+                            <field name="amount" sum="Total" />
+                        </tree>
+                    </field>
+                </page>
+                <page name="budget_vs_actual" string="Budget vs Actual">
+                    <field name="expense_comparison_ids" readonly="1">
+                        <tree
+                                decoration-danger="absorption_rate > 100"
+                                decoration-warning="variance &lt; 0"
+                            >
+                            <field name="expense_category_id" />
+                            <field name="budget_amount" />
+                            <field name="realized_amount_ytd" />
+                            <field name="realized_amount" />
+                            <field name="variance" />
+                            <field name="absorption_rate" widget="percentage" />
+                        </tree>
+                    </field>
+                    <field name="income_comparison_ids" readonly="1">
+                        <tree
+                                decoration-danger="absorption_rate > 100"
+                                decoration-warning="variance &lt; 0"
+                            >
+                            <field name="income_category_id" />
+                            <field name="budget_amount" />
+                            <field name="realized_amount_ytd" />
+                            <field name="realized_amount" />
+                            <field name="variance" />
+                            <field name="absorption_rate" widget="percentage" />
+                        </tree>
+                    </field>
+                    <group name="budget_vs_actual_totals" string="Totals">
+                        <field name="total_realized_expense" readonly="1" />
+                        <field name="total_realized_income" readonly="1" />
+                        <field name="total_expense_variance" readonly="1" />
+                        <field
+                                name="expense_absorption_rate"
+                                readonly="1"
+                                widget="percentage"
+                            />
+                    </group>
+                </page>
+            </xpath>
+        </data>
+    </field>
+</record>
+
+<record id="school_budget_expense_realization_view_pivot" model="ir.ui.view">
+    <field name="name">school_budget_expense_realization - pivot</field>
+    <field name="model">school_budget_expense_realization</field>
+    <field name="arch" type="xml">
+        <pivot string="Expense Realization">
+            <field name="expense_category_id" type="row" />
+            <field name="month" type="col" />
+            <field name="amount" type="measure" />
+        </pivot>
+    </field>
+</record>
+
+<record id="school_budget_expense_realization_action" model="ir.actions.act_window">
+    <field name="name">Expense Realization</field>
+    <field name="res_model">school_budget_expense_realization</field>
+    <field name="view_mode">pivot,tree</field>
+</record>
+
+<menuitem
+        id="school_budget_expense_realization_menu"
+        name="Expense Realization"
+        parent="menu_school_budget_root"
+        action="school_budget_expense_realization_action"
+        groups="school_budget_viewer_group"
+        sequence="900"
+    />
+
+<record id="school_budget_income_realization_view_pivot" model="ir.ui.view">
+    <field name="name">school_budget_income_realization - pivot</field>
+    <field name="model">school_budget_income_realization</field>
+    <field name="arch" type="xml">
+        <pivot string="Income Realization">
+            <field name="income_category_id" type="row" />
+            <field name="month" type="col" />
+            <field name="amount" type="measure" />
+        </pivot>
+    </field>
+</record>
+
+<record id="school_budget_income_realization_action" model="ir.actions.act_window">
+    <field name="name">Income Realization</field>
+    <field name="res_model">school_budget_income_realization</field>
+    <field name="view_mode">pivot,tree</field>
+</record>
+
+<menuitem
+        id="school_budget_income_realization_menu"
+        name="Income Realization"
+        parent="menu_school_budget_root"
+        action="school_budget_income_realization_action"
+        groups="school_budget_viewer_group"
+        sequence="910"
+    />
+
+<record id="school_budget_action" model="ir.actions.act_window">
+    <field name="name">Budgets</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">school_budget</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem
+        id="school_budget_menu"
+        name="Budgets"
+        parent="menu_school_budget_budget"
+        action="school_budget_action"
+        groups="school_budget_viewer_group"
+        sequence="10"
+    />
+
+</odoo>

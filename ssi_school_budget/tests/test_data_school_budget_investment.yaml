@@ -1,0 +1,252 @@
+scenarios:
+  - name: "Investment Depreciation Start Month 1"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type Invest 1"
+          code: "GTI1"
+          sequence: 10
+
+      - step: "Setup - create school"
+        action: "create"
+        model: "school"
+        save_as: "school"
+        values:
+          name: "School Invest 1"
+          code: "SCHI1"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Invest 1"
+          code: "AYI1"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Setup - create investment category"
+        action: "create"
+        model: "school_budget_investment_category"
+        save_as: "investment_category"
+        values:
+          name: "IT Equipment Invest 1"
+          code: "1330.10"
+          default_economic_life: 4
+
+      - step: "Create unit budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Create investment start_month=1"
+        action: "create"
+        model: "school_budget_investment"
+        save_as: "investment_1"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          investment_category_id: "EVAL: registry['investment_category'].id"
+          asset_name: "Laptop Batch 1"
+          purchase_price: 120000000
+          useful_life: 4
+          start_month: 1
+
+      - step: "Assert depreciation figures"
+        action: "assert"
+        target: "investment_1"
+        asserts:
+          dep_per_year:
+            type: "value"
+            expected: 30000000.0
+          dep_current_year:
+            type: "value"
+            expected: 30000000.0
+          end_book_value:
+            type: "value"
+            expected: 90000000.0
+
+      - step: "Create investment start_month=7"
+        action: "create"
+        model: "school_budget_investment"
+        save_as: "investment_2"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          investment_category_id: "EVAL: registry['investment_category'].id"
+          asset_name: "Laptop Batch 2"
+          purchase_price: 120000000
+          useful_life: 4
+          start_month: 7
+
+      - step: "Assert prorated depreciation"
+        action: "assert"
+        target: "investment_2"
+        asserts:
+          dep_current_year:
+            type: "value"
+            expected: 15000000.0
+
+      - step: "Create investment with BOS portion"
+        action: "create"
+        model: "school_budget_investment"
+        save_as: "investment_3"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          investment_category_id: "EVAL: registry['investment_category'].id"
+          asset_name: "Laptop Batch 3"
+          purchase_price: 120000000
+          bos: 50000000
+          useful_life: 4
+          start_month: 1
+
+      - step: "Assert BOS does not reduce depreciation base"
+        action: "assert"
+        target: "investment_3"
+        asserts:
+          dep_current_year:
+            type: "value"
+            expected: 30000000.0
+
+      - step: "Invalidate cache before totals assert"
+        action: "call"
+        target: "budget"
+        method: "invalidate_cache"
+
+      - step: "Assert budget total depreciation"
+        action: "assert"
+        target: "budget"
+        asserts:
+          total_new_investment_dep:
+            type: "value"
+            expected: 75000000.0
+
+  - name: "Old Asset Depreciation Within Useful Life"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type Invest 2"
+          code: "GTI2"
+          sequence: 10
+
+      - step: "Setup - create school"
+        action: "create"
+        model: "school"
+        save_as: "school"
+        values:
+          name: "School Invest 2"
+          code: "SCHI2"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create academic year (fiscal_year 2025)"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Invest 2"
+          code: "AYI2"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Create unit budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Create old asset acquired 2023"
+        action: "create"
+        model: "school_budget_old_asset"
+        save_as: "old_asset_1"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          asset_name: "Old Furniture"
+          acquisition_cost: 100000000
+          useful_life: 5
+          acquisition_year: 2023
+
+      - step: "Assert old asset depreciation and book value"
+        action: "assert"
+        target: "old_asset_1"
+        asserts:
+          dep_per_year:
+            type: "value"
+            expected: 20000000.0
+          dep_current_year:
+            type: "value"
+            expected: 20000000.0
+          book_value:
+            type: "value"
+            expected: 60000000.0
+
+      - step: "Create old asset fully depreciated"
+        action: "create"
+        model: "school_budget_old_asset"
+        save_as: "old_asset_2"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          asset_name: "Fully Depreciated Furniture"
+          acquisition_cost: 50000000
+          useful_life: 5
+          acquisition_year: 2015
+
+      - step: "Assert fully depreciated asset"
+        action: "assert"
+        target: "old_asset_2"
+        asserts:
+          dep_current_year:
+            type: "value"
+            expected: 0.0
+          book_value:
+            type: "value"
+            expected: 0.0
+
+  - name: "Financial Investment Allowed On Branch Or Center Only"
+    steps:
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Invest 3"
+          code: "AYI3"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Create center budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_center"
+        values:
+          org_type: "center"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Create financial investment on center budget"
+        action: "create"
+        model: "school_budget_financial_investment"
+        save_as: "financial_investment_1"
+        values:
+          budget_id: "EVAL: registry['budget_center'].id"
+          instrument_type: "deposito"
+          name: "Time Deposit BCA"
+          amount: 50000000
+
+      - step: "Assert financial investment created"
+        action: "assert"
+        target: "financial_investment_1"
+        asserts:
+          amount:
+            type: "value"
+            expected: 50000000.0

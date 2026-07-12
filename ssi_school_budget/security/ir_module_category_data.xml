@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 OpenSynergy Indonesia
+     Copyright 2026 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<record id="school_budget_module_category" model="ir.module.category">
+    <field name="name">School Budget</field>
+</record>
+
+<record id="school_budget_workflow_module_category" model="ir.module.category">
+    <field name="name">School Budget - Workflow</field>
+    <field name="parent_id" ref="school_budget_module_category" />
+</record>
+
+<record id="school_budget_data_ownership_module_category" model="ir.module.category">
+    <field name="name">School Budget - Data Ownership</field>
+    <field name="parent_id" ref="school_budget_module_category" />
+</record>
+
+<record id="school_budget_configurator_module_category" model="ir.module.category">
+    <field name="name">School Budget - Configurator</field>
+    <field name="parent_id" ref="school_budget_module_category" />
+</record>
+
+</odoo>

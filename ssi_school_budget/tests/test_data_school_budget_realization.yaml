@@ -1,0 +1,634 @@
+# End-to-end realization scenario, per BL-0124 acceptance criteria.
+# Builds real posted/draft journal entries so the four failure modes
+# below are provably impossible, not just theoretically excluded:
+#   1. Draft journal items must NOT be counted.
+#   2. Journal items tagged with another organization's Analytic
+#      Account must NOT leak into this budget.
+#   3. A parent (branch) budget must NOT roll up its children's AA.
+#   4. action_compute_realization must be idempotent.
+scenarios:
+  - name: "Realization From Posted Journal Entries"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type Realization 1"
+          code: "GTREAL1"
+          sequence: 10
+
+      - step: "Setup - create branch"
+        action: "create"
+        model: "school_branch"
+        save_as: "branch"
+        values:
+          name: "Branch Realization 1"
+          code: "BRREAL1"
+
+      - step: "Setup - create school unit A"
+        action: "create"
+        model: "school"
+        save_as: "school_a"
+        values:
+          name: "School Realization 1A"
+          code: "SCHREAL1A"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+          branch_id: "EVAL: registry['branch'].id"
+
+      - step: "Setup - create school unit B"
+        action: "create"
+        model: "school"
+        save_as: "school_b"
+        values:
+          name: "School Realization 1B"
+          code: "SCHREAL1B"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+          branch_id: "EVAL: registry['branch'].id"
+
+      - step: "Create analytic account for branch"
+        action: "call"
+        target: "branch"
+        method: "action_create_analytic_account"
+
+      - step: "Create analytic account for unit A"
+        action: "call"
+        target: "school_a"
+        method: "action_create_analytic_account"
+
+      - step: "Create analytic account for unit B"
+        action: "call"
+        target: "school_b"
+        method: "action_create_analytic_account"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Realization 1"
+          code: "AYREAL1"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Setup - get expense account type"
+        action: "ref"
+        xml_id: "account.data_account_type_expenses"
+        save_as: "expense_account_type"
+
+      - step: "Setup - get revenue account type"
+        action: "ref"
+        xml_id: "account.data_account_type_revenue"
+        save_as: "revenue_account_type"
+
+      - step: "Setup - get liquidity account type"
+        action: "ref"
+        xml_id: "account.data_account_type_liquidity"
+        save_as: "liquidity_account_type"
+
+      - step: "Setup - create expense account 1"
+        action: "create"
+        model: "account.account"
+        save_as: "account_expense_1"
+        values:
+          name: "Expense Account 1 Realization"
+          code: "5900.01"
+          user_type_id: "EVAL: registry['expense_account_type'].id"
+
+      - step: "Setup - create expense account 2"
+        action: "create"
+        model: "account.account"
+        save_as: "account_expense_2"
+        values:
+          name: "Expense Account 2 Realization"
+          code: "5900.02"
+          user_type_id: "EVAL: registry['expense_account_type'].id"
+
+      - step: "Setup - create expense account 3 (unbudgeted)"
+        action: "create"
+        model: "account.account"
+        save_as: "account_expense_3"
+        values:
+          name: "Expense Account 3 Realization"
+          code: "5900.03"
+          user_type_id: "EVAL: registry['expense_account_type'].id"
+
+      - step: "Setup - create unmapped account"
+        action: "create"
+        model: "account.account"
+        save_as: "account_unmapped"
+        values:
+          name: "Unmapped Account Realization"
+          code: "5900.04"
+          user_type_id: "EVAL: registry['expense_account_type'].id"
+
+      - step: "Setup - create revenue account 1"
+        action: "create"
+        model: "account.account"
+        save_as: "account_revenue_1"
+        values:
+          name: "Revenue Account 1 Realization"
+          code: "4900.01"
+          user_type_id: "EVAL: registry['revenue_account_type'].id"
+
+      - step: "Setup - create cash account"
+        action: "create"
+        model: "account.account"
+        save_as: "account_cash"
+        values:
+          name: "Cash Account Realization"
+          code: "1900.01"
+          user_type_id: "EVAL: registry['liquidity_account_type'].id"
+
+      - step: "Setup - create journal"
+        action: "create"
+        model: "account.journal"
+        save_as: "journal"
+        values:
+          name: "Realization Test Journal"
+          code: "RLZ1"
+          type: "general"
+
+      - step: "Setup - create expense category 1 (budgeted, realized)"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "expense_category_1"
+        values:
+          name: "Expense Category Realization 1"
+          code: "5900.10"
+          account_id: "EVAL: registry['account_expense_1'].id"
+
+      - step: "Setup - create expense category 2 (budgeted, not realized)"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "expense_category_2"
+        values:
+          name: "Expense Category Realization 2"
+          code: "5900.11"
+          account_id: "EVAL: registry['account_expense_2'].id"
+
+      - step: "Setup - create expense category 3 (realized, not budgeted)"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "expense_category_3"
+        values:
+          name: "Expense Category Realization 3"
+          code: "5900.12"
+          account_id: "EVAL: registry['account_expense_3'].id"
+
+      - step: "Setup - create income category 1 (mapped)"
+        action: "create"
+        model: "school_budget_income_category"
+        save_as: "income_category_1"
+        values:
+          name: "Income Category Realization 1"
+          code: "4900.10"
+          calc_method: "manual"
+          account_id: "EVAL: registry['account_revenue_1'].id"
+
+      - step: "Create unit A budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_a"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school_a'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Create unit B budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_b"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school_b'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Create branch budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_branch"
+        values:
+          org_type: "branch"
+          branch_id: "EVAL: registry['branch'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Unit A - expense line under category 1 (budget 100,000,000)"
+        action: "create"
+        model: "school_budget_expense_line"
+        save_as: "budget_a_expense_line_1"
+        values:
+          budget_id: "EVAL: registry['budget_a'].id"
+          expense_category_id: "EVAL: registry['expense_category_1'].id"
+          foundation: 100000000
+
+      - step:
+          "Unit A - expense line under category 2 (budget 20,000,000, never realized)"
+        action: "create"
+        model: "school_budget_expense_line"
+        save_as: "budget_a_expense_line_2"
+        values:
+          budget_id: "EVAL: registry['budget_a'].id"
+          expense_category_id: "EVAL: registry['expense_category_2'].id"
+          foundation: 20000000
+
+      - step: "Simulate unit A"
+        action: "call"
+        target: "budget_a"
+        method: "action_simulate"
+
+      - step: "Simulate unit B"
+        action: "call"
+        target: "budget_b"
+        method: "action_simulate"
+
+      - step: "Simulate branch"
+        action: "call"
+        target: "budget_branch"
+        method: "action_simulate"
+
+      - step: "Move 1 - posted, 2025-09-15, debit category 1 account 25,000,000, unit A"
+        action: "create"
+        model: "account.move"
+        save_as: "move_1"
+        values:
+          journal_id: "EVAL: registry['journal'].id"
+          date: "2025-09-15"
+          line_ids:
+            - - 0
+              - 0
+              - name: "Move 1 debit"
+                account_id: "EVAL: registry['account_expense_1'].id"
+                analytic_account_id: "EVAL: registry['school_a'].analytic_account_id.id"
+                debit: 25000000
+                credit: 0
+            - - 0
+              - 0
+              - name: "Move 1 credit"
+                account_id: "EVAL: registry['account_cash'].id"
+                debit: 0
+                credit: 25000000
+
+      - step: "Post move 1"
+        action: "call"
+        target: "move_1"
+        method: "action_post"
+
+      - step: "Move 2 - posted, 2025-10-10, debit category 1 account 10,000,000, unit A"
+        action: "create"
+        model: "account.move"
+        save_as: "move_2"
+        values:
+          journal_id: "EVAL: registry['journal'].id"
+          date: "2025-10-10"
+          line_ids:
+            - - 0
+              - 0
+              - name: "Move 2 debit"
+                account_id: "EVAL: registry['account_expense_1'].id"
+                analytic_account_id: "EVAL: registry['school_a'].analytic_account_id.id"
+                debit: 10000000
+                credit: 0
+            - - 0
+              - 0
+              - name: "Move 2 credit"
+                account_id: "EVAL: registry['account_cash'].id"
+                debit: 0
+                credit: 10000000
+
+      - step: "Post move 2"
+        action: "call"
+        target: "move_2"
+        method: "action_post"
+
+      - step: "Move 3 - DRAFT (not posted), debit category 1 account 99,000,000, unit A"
+        action: "create"
+        model: "account.move"
+        save_as: "move_3"
+        values:
+          journal_id: "EVAL: registry['journal'].id"
+          date: "2025-09-20"
+          line_ids:
+            - - 0
+              - 0
+              - name: "Move 3 debit"
+                account_id: "EVAL: registry['account_expense_1'].id"
+                analytic_account_id: "EVAL: registry['school_a'].analytic_account_id.id"
+                debit: 99000000
+                credit: 0
+            - - 0
+              - 0
+              - name: "Move 3 credit"
+                account_id: "EVAL: registry['account_cash'].id"
+                debit: 0
+                credit: 99000000
+
+      - step: "Move 4 - posted, debit category 1 account 50,000,000, unit B"
+        action: "create"
+        model: "account.move"
+        save_as: "move_4"
+        values:
+          journal_id: "EVAL: registry['journal'].id"
+          date: "2025-09-15"
+          line_ids:
+            - - 0
+              - 0
+              - name: "Move 4 debit"
+                account_id: "EVAL: registry['account_expense_1'].id"
+                analytic_account_id: "EVAL: registry['school_b'].analytic_account_id.id"
+                debit: 50000000
+                credit: 0
+            - - 0
+              - 0
+              - name: "Move 4 credit"
+                account_id: "EVAL: registry['account_cash'].id"
+                debit: 0
+                credit: 50000000
+
+      - step: "Post move 4"
+        action: "call"
+        target: "move_4"
+        method: "action_post"
+
+      - step: "Move 5 - posted, credit income account 30,000,000, unit A"
+        action: "create"
+        model: "account.move"
+        save_as: "move_5"
+        values:
+          journal_id: "EVAL: registry['journal'].id"
+          date: "2025-09-15"
+          line_ids:
+            - - 0
+              - 0
+              - name: "Move 5 debit"
+                account_id: "EVAL: registry['account_cash'].id"
+                debit: 30000000
+                credit: 0
+            - - 0
+              - 0
+              - name: "Move 5 credit"
+                account_id: "EVAL: registry['account_revenue_1'].id"
+                analytic_account_id: "EVAL: registry['school_a'].analytic_account_id.id"
+                debit: 0
+                credit: 30000000
+
+      - step: "Post move 5"
+        action: "call"
+        target: "move_5"
+        method: "action_post"
+
+      - step:
+          "Move 6 - posted, 2025-06-01 (outside academic year), debit category 1
+          account, unit A"
+        action: "create"
+        model: "account.move"
+        save_as: "move_6"
+        values:
+          journal_id: "EVAL: registry['journal'].id"
+          date: "2025-06-01"
+          line_ids:
+            - - 0
+              - 0
+              - name: "Move 6 debit"
+                account_id: "EVAL: registry['account_expense_1'].id"
+                analytic_account_id: "EVAL: registry['school_a'].analytic_account_id.id"
+                debit: 15000000
+                credit: 0
+            - - 0
+              - 0
+              - name: "Move 6 credit"
+                account_id: "EVAL: registry['account_cash'].id"
+                debit: 0
+                credit: 15000000
+
+      - step: "Post move 6"
+        action: "call"
+        target: "move_6"
+        method: "action_post"
+
+      - step: "Move 7 - posted, unmapped account, unit A"
+        action: "create"
+        model: "account.move"
+        save_as: "move_7"
+        values:
+          journal_id: "EVAL: registry['journal'].id"
+          date: "2025-09-15"
+          line_ids:
+            - - 0
+              - 0
+              - name: "Move 7 debit"
+                account_id: "EVAL: registry['account_unmapped'].id"
+                analytic_account_id: "EVAL: registry['school_a'].analytic_account_id.id"
+                debit: 7000000
+                credit: 0
+            - - 0
+              - 0
+              - name: "Move 7 credit"
+                account_id: "EVAL: registry['account_cash'].id"
+                debit: 0
+                credit: 7000000
+
+      - step: "Post move 7"
+        action: "call"
+        target: "move_7"
+        method: "action_post"
+
+      - step: "Move 8 - posted, category 3 (unbudgeted) account, unit A, 5,000,000"
+        action: "create"
+        model: "account.move"
+        save_as: "move_8"
+        values:
+          journal_id: "EVAL: registry['journal'].id"
+          date: "2025-09-15"
+          line_ids:
+            - - 0
+              - 0
+              - name: "Move 8 debit"
+                account_id: "EVAL: registry['account_expense_3'].id"
+                analytic_account_id: "EVAL: registry['school_a'].analytic_account_id.id"
+                debit: 5000000
+                credit: 0
+            - - 0
+              - 0
+              - name: "Move 8 credit"
+                account_id: "EVAL: registry['account_cash'].id"
+                debit: 0
+                credit: 5000000
+
+      - step: "Post move 8"
+        action: "call"
+        target: "move_8"
+        method: "action_post"
+
+      - step: "Compute realization on unit A"
+        action: "call"
+        target: "budget_a"
+        method: "action_compute_realization"
+
+      - step: "Compute realization on unit B"
+        action: "call"
+        target: "budget_b"
+        method: "action_compute_realization"
+
+      - step: "Compute realization on branch"
+        action: "call"
+        target: "budget_branch"
+        method: "action_compute_realization"
+
+      - step: "Invalidate cache before asserting"
+        action: "call"
+        target: "budget_a"
+        method: "invalidate_cache"
+
+      - step:
+          "Assert September and October realization amounts (relative month index 3 and
+          4)"
+        action: "search"
+        model: "school_budget_expense_realization"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_a'].id"]
+          - ["expense_category_id", "=", "EVAL: registry['expense_category_1'].id"]
+          - ["month", "=", 3]
+          - ["amount", "=", 25000000.0]
+        save_as: "check_month_september"
+        expect_count: 1
+
+      - step: "Assert October amount"
+        action: "search"
+        model: "school_budget_expense_realization"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_a'].id"]
+          - ["expense_category_id", "=", "EVAL: registry['expense_category_1'].id"]
+          - ["month", "=", 4]
+          - ["amount", "=", 10000000.0]
+        save_as: "check_month_october"
+        expect_count: 1
+
+      - step:
+          "Assert total realized for category 1 on unit A is 35,000,000
+          (draft/out-of-range/unmapped excluded)"
+        action: "assert"
+        target: "check_month_september"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"
+
+      - step:
+          "Search all category-1 realization rows on unit A (only 2 months,
+          draft/out-of-range excluded)"
+        action: "search"
+        model: "school_budget_expense_realization"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_a'].id"]
+          - ["expense_category_id", "=", "EVAL: registry['expense_category_1'].id"]
+        save_as: "check_category_1_rows"
+        expect_count: 2
+
+      - step: "Assert unit B's journal item does not leak into unit A"
+        action: "search"
+        model: "school_budget_expense_realization"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_a'].id"]
+          - ["amount", "=", 50000000.0]
+        save_as: "check_no_leak_into_a"
+        expect_count: 0
+
+      - step: "Assert unit B has its own 50,000,000 realized"
+        action: "search"
+        model: "school_budget_expense_realization"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_b'].id"]
+          - ["expense_category_id", "=", "EVAL: registry['expense_category_1'].id"]
+          - ["amount", "=", 50000000.0]
+        save_as: "check_unit_b_realization"
+        expect_count: 1
+
+      - step: "Assert unmapped account produced no realization row anywhere"
+        action: "search"
+        model: "school_budget_expense_realization"
+        domain:
+          - ["amount", "=", 7000000.0]
+        save_as: "check_unmapped_excluded"
+        expect_count: 0
+
+      - step: "Assert income realization is positive (30,000,000)"
+        action: "search"
+        model: "school_budget_income_realization"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_a'].id"]
+          - ["income_category_id", "=", "EVAL: registry['income_category_1'].id"]
+          - ["amount", "=", 30000000.0]
+        save_as: "check_income_realized"
+        expect_count: 1
+
+      - step: "Assert expense_comparison for category 1 on unit A"
+        action: "search"
+        model: "school_budget_expense_comparison"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_a'].id"]
+          - ["expense_category_id", "=", "EVAL: registry['expense_category_1'].id"]
+          - ["budget_amount", "=", 100000000.0]
+          - ["realized_amount", "=", 35000000.0]
+          - ["variance", "=", 65000000.0]
+          - ["absorption_rate", "=", 35.0]
+        save_as: "check_comparison_category_1"
+        expect_count: 1
+
+      - step:
+          "Assert budgeted-but-unrealized category 2 still appears with 0% absorption"
+        action: "search"
+        model: "school_budget_expense_comparison"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_a'].id"]
+          - ["expense_category_id", "=", "EVAL: registry['expense_category_2'].id"]
+          - ["budget_amount", "=", 20000000.0]
+          - ["realized_amount", "=", 0.0]
+          - ["absorption_rate", "=", 0.0]
+        save_as: "check_comparison_category_2"
+        expect_count: 1
+
+      - step:
+          "Assert unbudgeted-but-realized category 3 shows budget_amount=0 with 0%
+          absorption guard"
+        action: "search"
+        model: "school_budget_expense_comparison"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_a'].id"]
+          - ["expense_category_id", "=", "EVAL: registry['expense_category_3'].id"]
+          - ["budget_amount", "=", 0.0]
+          - ["realized_amount", "=", 5000000.0]
+          - ["absorption_rate", "=", 0.0]
+        save_as: "check_comparison_category_3"
+        expect_count: 1
+
+      - step:
+          "Assert branch does not absorb unit A or unit B realization (no AA roll-up)"
+        action: "search"
+        model: "school_budget_expense_realization"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_branch'].id"]
+        save_as: "check_branch_no_rollup"
+        expect_count: 0
+
+      - step: "Re-compute realization on unit A (idempotency)"
+        action: "call"
+        target: "budget_a"
+        method: "action_compute_realization"
+
+      - step: "Assert row count for category 1 on unit A is still 2 after re-compute"
+        action: "search"
+        model: "school_budget_expense_realization"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_a'].id"]
+          - ["expense_category_id", "=", "EVAL: registry['expense_category_1'].id"]
+        save_as: "check_idempotent_rows"
+        expect_count: 2
+
+      - step: "Assert comparison row count for unit A is still 3 after re-compute"
+        action: "search"
+        model: "school_budget_expense_comparison"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_a'].id"]
+        save_as: "check_idempotent_comparison"
+        expect_count: 3

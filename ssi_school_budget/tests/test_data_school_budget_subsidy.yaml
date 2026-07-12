@@ -1,0 +1,195 @@
+scenarios:
+  - name: "Subsidy From Center And Branch To Same Unit"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type Subsidy 1"
+          code: "GTS1"
+          sequence: 10
+
+      - step: "Setup - create branch A"
+        action: "create"
+        model: "school_branch"
+        save_as: "branch_a"
+        values:
+          name: "Branch Subsidy 1A"
+          code: "BRS1A"
+
+      - step: "Setup - create school unit A"
+        action: "create"
+        model: "school"
+        save_as: "school_a"
+        values:
+          name: "School Subsidy 1A"
+          code: "SCHS1A"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+          branch_id: "EVAL: registry['branch_a'].id"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Subsidy 1"
+          code: "AYS1"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Setup - create expense category"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "expense_category"
+        values:
+          name: "Expense Subsidy 1"
+          code: "5110.60"
+
+      - step: "Setup - create income category"
+        action: "create"
+        model: "school_budget_income_category"
+        save_as: "income_category"
+        values:
+          name: "Income Subsidy 1"
+          code: "4120.60"
+          calc_method: "manual"
+
+      - step: "Create center budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_center"
+        values:
+          org_type: "center"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Create branch A budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_branch_a"
+        values:
+          org_type: "branch"
+          branch_id: "EVAL: registry['branch_a'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Create unit A budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_unit_a"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school_a'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Center subsidizes unit A"
+        action: "create"
+        model: "school_budget_subsidy"
+        save_as: "subsidy_center"
+        values:
+          provider_budget_id: "EVAL: registry['budget_center'].id"
+          recipient_budget_id: "EVAL: registry['budget_unit_a'].id"
+          expense_category_id: "EVAL: registry['expense_category'].id"
+          income_category_id: "EVAL: registry['income_category'].id"
+          amount: 5000000
+
+      - step: "Assert recipient of center subsidy"
+        action: "assert"
+        target: "subsidy_center"
+        asserts:
+          amount:
+            type: "value"
+            expected: 5000000.0
+
+      - step: "Branch A subsidizes unit A (its own child)"
+        action: "create"
+        model: "school_budget_subsidy"
+        save_as: "subsidy_branch"
+        values:
+          provider_budget_id: "EVAL: registry['budget_branch_a'].id"
+          recipient_budget_id: "EVAL: registry['budget_unit_a'].id"
+          expense_category_id: "EVAL: registry['expense_category'].id"
+          income_category_id: "EVAL: registry['income_category'].id"
+          amount: 2000000
+
+      - step: "Search subsidies received by unit A"
+        action: "search"
+        model: "school_budget_subsidy"
+        domain:
+          - ["recipient_budget_id", "=", "EVAL: registry['budget_unit_a'].id"]
+        save_as: "unit_a_subsidies"
+        expect_count: 2
+
+  - name: "Direct Income Override On Direct Income Category"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type Subsidy 2"
+          code: "GTS2"
+          sequence: 10
+
+      - step: "Setup - create school"
+        action: "create"
+        model: "school"
+        save_as: "school"
+        values:
+          name: "School Subsidy 2"
+          code: "SCHS2"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Subsidy 2"
+          code: "AYS2"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Setup - create target income category"
+        action: "create"
+        model: "school_budget_income_category"
+        save_as: "target_income_category"
+        values:
+          name: "Direct Income Target Subsidy 2"
+          code: "4120.61"
+          calc_method: "from_expense"
+
+      - step: "Setup - create direct income expense category"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "direct_income_expense_category"
+        values:
+          name: "Direct Income Expense Subsidy 2"
+          code: "5140.61"
+          is_direct_income: true
+          maps_to_income_category_id: "EVAL: registry['target_income_category'].id"
+
+      - step: "Create unit budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Create direct income override"
+        action: "create"
+        model: "school_budget_direct_income_override"
+        save_as: "override"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          expense_category_id: "EVAL: registry['direct_income_expense_category'].id"
+          override_amount: 8000000
+
+      - step: "Assert override amount"
+        action: "assert"
+        target: "override"
+        asserts:
+          override_amount:
+            type: "value"
+            expected: 8000000.0
