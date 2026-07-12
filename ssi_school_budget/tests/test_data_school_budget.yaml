@@ -1,0 +1,377 @@
+scenarios:
+  - name: "Create Unit Budget Computes Fiscal Year And Branch"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type Budget 1"
+          code: "GTB1"
+          sequence: 10
+
+      - step: "Setup - create branch"
+        action: "create"
+        model: "school_branch"
+        save_as: "branch"
+        values:
+          name: "Branch Budget 1"
+          code: "BRB1"
+
+      - step: "Setup - create school"
+        action: "create"
+        model: "school"
+        save_as: "school"
+        values:
+          name: "School Budget 1"
+          code: "SCHB1"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+          branch_id: "EVAL: registry['branch'].id"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Budget 1"
+          code: "AYB1"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Create unit budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+          cash_balance: 100000000
+
+      - step: "Assert fiscal year computed"
+        action: "assert"
+        target: "budget"
+        asserts:
+          fiscal_year:
+            type: "value"
+            expected: 2025
+          state:
+            type: "value"
+            expected: "draft"
+
+      - step: "Assert branch_id auto-derived from school"
+        action: "search"
+        model: "school_budget"
+        domain:
+          - ["id", "=", "EVAL: registry['budget'].id"]
+          - ["branch_id", "=", "EVAL: registry['branch'].id"]
+        save_as: "check_branch_derived"
+        expect_count: 1
+
+  - name: "Create Center Budget Has No School Or Branch"
+    steps:
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Budget 2"
+          code: "AYB2"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Create center budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_center"
+        values:
+          org_type: "center"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Assert center has no school/branch"
+        action: "assert"
+        target: "budget_center"
+        asserts:
+          school_id:
+            type: "value"
+            operator: "is_falsy"
+          branch_id:
+            type: "value"
+            operator: "is_falsy"
+
+  - name: "Budget Full Workflow To Done And Number Generated"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type Budget 3"
+          code: "GTB3"
+          sequence: 10
+
+      - step: "Setup - create school"
+        action: "create"
+        model: "school"
+        save_as: "school"
+        values:
+          name: "School Budget 3"
+          code: "SCHB3"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Budget 3"
+          code: "AYB3"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Create unit budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Confirm budget"
+        action: "call"
+        target: "budget"
+        method: "action_confirm"
+        as_user: "base.user_admin"
+        asserts:
+          state:
+            type: "value"
+            expected: "confirm"
+
+      - step: "Invalidate cache before approve"
+        action: "call"
+        target: "budget"
+        method: "invalidate_cache"
+
+      - step: "Approve budget (auto-completes to done)"
+        action: "call"
+        target: "budget"
+        method: "action_approve_approval"
+        as_user: "base.user_admin"
+        asserts:
+          state:
+            type: "value"
+            expected: "done"
+
+      - step: "Invalidate cache after approve"
+        action: "call"
+        target: "budget"
+        method: "invalidate_cache"
+
+      - step: "Assert number generated and not editable placeholder"
+        action: "assert"
+        target: "budget"
+        asserts:
+          name:
+            type: "value"
+            operator: "contains"
+            expected: "SB"
+
+  - name: "Cancel Budget"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type Budget 4"
+          code: "GTB4"
+          sequence: 10
+
+      - step: "Setup - create school"
+        action: "create"
+        model: "school"
+        save_as: "school"
+        values:
+          name: "School Budget 4"
+          code: "SCHB4"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Budget 4"
+          code: "AYB4"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Create unit budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Cancel budget"
+        action: "call"
+        target: "budget"
+        method: "action_cancel"
+        as_user: "base.user_admin"
+        asserts:
+          state:
+            type: "value"
+            expected: "cancel"
+
+  - name: "Assumption Lines Compute Total Student Count"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type Budget 5"
+          code: "GTB5"
+          sequence: 10
+
+      - step: "Setup - create grade 1"
+        action: "create"
+        model: "school_grade"
+        save_as: "grade_1"
+        values:
+          name: "Grade 1 Budget 5"
+          code: "G1B5"
+          sequence: 10
+          type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create grade 2"
+        action: "create"
+        model: "school_grade"
+        save_as: "grade_2"
+        values:
+          name: "Grade 2 Budget 5"
+          code: "G2B5"
+          sequence: 20
+          type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create grade 3"
+        action: "create"
+        model: "school_grade"
+        save_as: "grade_3"
+        values:
+          name: "Grade 3 Budget 5"
+          code: "G3B5"
+          sequence: 30
+          type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create school"
+        action: "create"
+        model: "school"
+        save_as: "school"
+        values:
+          name: "School Budget 5"
+          code: "SCHB5"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Budget 5"
+          code: "AYB5"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Create unit budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Create assumption line grade 1"
+        action: "create"
+        model: "school_budget_assumption_line"
+        save_as: "line_1"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          grade_id: "EVAL: registry['grade_1'].id"
+          student_count: 20
+
+      - step: "Create assumption line grade 2"
+        action: "create"
+        model: "school_budget_assumption_line"
+        save_as: "line_2"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          grade_id: "EVAL: registry['grade_2'].id"
+          student_count: 25
+
+      - step: "Create assumption line grade 3"
+        action: "create"
+        model: "school_budget_assumption_line"
+        save_as: "line_3"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          grade_id: "EVAL: registry['grade_3'].id"
+          student_count: 30
+
+      - step: "Invalidate cache before assert"
+        action: "call"
+        target: "budget"
+        method: "invalidate_cache"
+
+      - step: "Assert total student count is 75"
+        action: "assert"
+        target: "budget"
+        asserts:
+          total_student_count:
+            type: "value"
+            expected: 75
+
+      - step: "Write line 1 student_count to 10"
+        action: "write"
+        target: "line_1"
+        values:
+          student_count: 10
+
+      - step: "Invalidate cache before re-assert"
+        action: "call"
+        target: "budget"
+        method: "invalidate_cache"
+
+      - step: "Assert total student count is 55"
+        action: "assert"
+        target: "budget"
+        asserts:
+          total_student_count:
+            type: "value"
+            expected: 55
+
+      - step: "Write override tariffs on budget"
+        action: "write"
+        target: "budget"
+        values:
+          new_student_count: 20
+          is_up_rate_overridden: true
+          override_up_rate: 5000000
+
+      - step: "Assert override tariff values"
+        action: "assert"
+        target: "budget"
+        asserts:
+          new_student_count:
+            type: "value"
+            expected: 20
+          is_up_rate_overridden:
+            type: "value"
+            expected: true
+          override_up_rate:
+            type: "value"
+            expected: 5000000.0

@@ -1,0 +1,355 @@
+scenarios:
+  - name: "Cash Vs Accrual Summary Balances To Zero"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type Summary 1"
+          code: "GTSU1"
+          sequence: 10
+
+      - step: "Setup - create grade"
+        action: "create"
+        model: "school_grade"
+        save_as: "grade"
+        values:
+          name: "Grade Summary 1"
+          code: "GSU1"
+          sequence: 10
+          type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create school"
+        action: "create"
+        model: "school"
+        save_as: "school"
+        values:
+          name: "School Summary 1"
+          code: "SCHSU1"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Summary 1"
+          code: "AYSU1"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Setup - create UP-component expense category"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "expense_category_up"
+        values:
+          name: "UP Component Summary 1"
+          code: "5130.40"
+          is_up_component: true
+
+      - step: "Setup - create operational expense category"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "expense_category_us"
+        values:
+          name: "Operational Summary 1"
+          code: "5110.40"
+
+      - step: "Setup - create simulated UP income category"
+        action: "create"
+        model: "school_budget_income_category"
+        save_as: "income_category_up"
+        values:
+          name: "Simulated UP Summary 1"
+          code: "4110.40"
+          calc_method: "simulated_up"
+
+      - step: "Setup - create simulated US income category"
+        action: "create"
+        model: "school_budget_income_category"
+        save_as: "income_category_us"
+        values:
+          name: "Simulated US Summary 1"
+          code: "4110.41"
+          calc_method: "simulated_us"
+
+      - step: "Create unit budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+          new_student_count: 20
+          cash_balance: 10000000
+
+      - step: "Create assumption line (total_student_count=50)"
+        action: "create"
+        model: "school_budget_assumption_line"
+        save_as: "assumption_line"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          grade_id: "EVAL: registry['grade'].id"
+          student_count: 50
+
+      - step: "Create UP-component expense line"
+        action: "create"
+        model: "school_budget_expense_line"
+        save_as: "expense_line_up"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          expense_category_id: "EVAL: registry['expense_category_up'].id"
+          foundation: 40000000
+
+      - step: "Create operational expense line"
+        action: "create"
+        model: "school_budget_expense_line"
+        save_as: "expense_line_us"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          expense_category_id: "EVAL: registry['expense_category_us'].id"
+          foundation: 24000000
+
+      - step: "Create new investment"
+        action: "create"
+        model: "school_budget_investment"
+        save_as: "investment"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          asset_name: "Investment Summary 1"
+          purchase_price: 120000000
+          useful_life: 4
+          start_month: 1
+
+      - step: "Simulate"
+        action: "call"
+        target: "budget"
+        method: "action_simulate"
+
+      - step: "Invalidate cache before assert"
+        action: "call"
+        target: "budget"
+        method: "invalidate_cache"
+
+      - step: "Assert cash summary"
+        action: "assert"
+        target: "budget"
+        asserts:
+          total_cash_revenue:
+            type: "value"
+            expected: 94000000.0
+          total_cash_expense:
+            type: "value"
+            expected: 64000000.0
+          cash_surplus_deficit:
+            type: "value"
+            expected: -90000000.0
+          ending_cash_balance:
+            type: "value"
+            expected: -80000000.0
+
+      - step: "Assert accrual summary balances to zero"
+        action: "assert"
+        target: "budget"
+        asserts:
+          total_accrual_expense:
+            type: "value"
+            expected: 94000000.0
+          accrual_surplus_deficit:
+            type: "value"
+            expected: 0.0
+          total_accrual_revenue:
+            type: "value"
+            expected: 94000000.0
+
+      - step: "Simulate again (idempotency)"
+        action: "call"
+        target: "budget"
+        method: "action_simulate"
+
+      - step: "Invalidate cache after re-simulate"
+        action: "call"
+        target: "budget"
+        method: "invalidate_cache"
+
+      - step: "Assert totals unchanged after second simulate"
+        action: "assert"
+        target: "budget"
+        asserts:
+          total_cash_revenue:
+            type: "value"
+            expected: 94000000.0
+
+  - name: "Allocation And Comparative Results With Parent"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type Summary 2"
+          code: "GTSU2"
+          sequence: 10
+
+      - step: "Setup - create branch"
+        action: "create"
+        model: "school_branch"
+        save_as: "branch"
+        values:
+          name: "Branch Summary 2"
+          code: "BRSU2"
+
+      - step: "Setup - create school"
+        action: "create"
+        model: "school"
+        save_as: "school"
+        values:
+          name: "School Summary 2"
+          code: "SCHSU2"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+          branch_id: "EVAL: registry['branch'].id"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Summary 2"
+          code: "AYSU2"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Setup - create UP-component expense category"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "expense_category_up"
+        values:
+          name: "UP Component Summary 2"
+          code: "5130.50"
+          is_up_component: true
+
+      - step: "Create branch budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_branch"
+        values:
+          org_type: "branch"
+          branch_id: "EVAL: registry['branch'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Create unit budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_unit"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+          new_student_count: 10
+
+      - step: "Create unit UP-component expense line"
+        action: "create"
+        model: "school_budget_expense_line"
+        save_as: "expense_line_unit"
+        values:
+          budget_id: "EVAL: registry['budget_unit'].id"
+          expense_category_id: "EVAL: registry['expense_category_up'].id"
+          foundation: 10000000
+
+      - step: "Create branch expense line under UP-component category"
+        action: "create"
+        model: "school_budget_expense_line"
+        save_as: "branch_expense_line"
+        values:
+          budget_id: "EVAL: registry['budget_branch'].id"
+          expense_category_id: "EVAL: registry['expense_category_up'].id"
+          foundation: 30000000
+
+      - step: "Mark branch UP-component category as affecting UP"
+        action: "create"
+        model: "school_budget_parent_expense_allocation"
+        save_as: "pea"
+        values:
+          budget_id: "EVAL: registry['budget_branch'].id"
+          expense_category_id: "EVAL: registry['expense_category_up'].id"
+          affects_up: true
+
+      - step: "Register unit as sole contributor (pct_up=1.0)"
+        action: "create"
+        model: "school_budget_contribution_allocation"
+        save_as: "contribution"
+        values:
+          parent_budget_id: "EVAL: registry['budget_branch'].id"
+          child_budget_id: "EVAL: registry['budget_unit'].id"
+          is_pct_up_overridden: true
+          override_pct_up: 1.0
+
+      - step: "Simulate branch (also simulates allocation and comparative)"
+        action: "call"
+        target: "budget_branch"
+        method: "action_simulate"
+
+      - step: "Simulate unit"
+        action: "call"
+        target: "budget_unit"
+        method: "action_simulate"
+
+      - step: "Search allocation results on branch"
+        action: "search"
+        model: "school_budget_allocation_result"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_branch'].id"]
+        save_as: "allocation_results"
+        expect_count: 1
+
+      - step: "Assert allocation result contribution_up equals pushed-down cost"
+        action: "search"
+        model: "school_budget_allocation_result"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_branch'].id"]
+          - ["contribution_up", "=", 30000000.0]
+        save_as: "check_allocation_amount"
+        expect_count: 1
+
+      - step: "Search comparative results on branch (self + 1 unit)"
+        action: "search"
+        model: "school_budget_comparative_result"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_branch'].id"]
+        save_as: "comparative_results"
+        expect_count: 2
+
+      - step: "Get unit's comparative row"
+        action: "search"
+        model: "school_budget_comparative_result"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_branch'].id"]
+          - ["target_budget_id", "=", "EVAL: registry['budget_unit'].id"]
+        save_as: "unit_comparative"
+        expect_count: 1
+
+      - step: "Assert expense with allocation (40M) exceeds expense without (10M)"
+        action: "assert"
+        target: "unit_comparative"
+        asserts:
+          expense:
+            type: "value"
+            expected: 40000000.0
+          expense_no_alloc:
+            type: "value"
+            expected: 10000000.0
+
+      - step: "Re-simulate branch (idempotency)"
+        action: "call"
+        target: "budget_branch"
+        method: "action_simulate"
+
+      - step: "Assert allocation results still one row after re-simulate"
+        action: "search"
+        model: "school_budget_allocation_result"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget_branch'].id"]
+        save_as: "allocation_results_2"
+        expect_count: 1

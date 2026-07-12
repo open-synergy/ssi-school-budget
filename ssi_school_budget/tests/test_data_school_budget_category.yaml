@@ -1,0 +1,214 @@
+scenarios:
+  - name: "Create Income Category With Simulated UP Method"
+    steps:
+      - step: "Create income category"
+        action: "create"
+        model: "school_budget_income_category"
+        save_as: "income_category"
+        values:
+          name: "Uang Pangkal (UP)"
+          code: "4110.01"
+          calc_method: "simulated_up"
+      - step: "Assert calc_method"
+        action: "assert"
+        target: "income_category"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"
+          calc_method:
+            type: "value"
+            expected: "simulated_up"
+
+  - name: "Create Expense Category Defaults"
+    steps:
+      - step: "Create expense category"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "expense_category"
+        values:
+          name: "Teacher Study"
+          code: "5130.05"
+          is_up_component: true
+      - step: "Assert defaults"
+        action: "assert"
+        target: "expense_category"
+        asserts:
+          is_operational:
+            type: "value"
+            expected: true
+          is_direct_income:
+            type: "value"
+            expected: false
+          is_up_component:
+            type: "value"
+            expected: true
+
+  - name: "Direct Income With Target Category Succeeds"
+    steps:
+      - step: "Create target income category"
+        action: "create"
+        model: "school_budget_income_category"
+        save_as: "target_income_category"
+        values:
+          name: "Direct Income Target"
+          code: "4120.03"
+          calc_method: "from_expense"
+      - step: "Create direct income expense category with target"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "expense_category_direct"
+        values:
+          name: "Direct Income Good"
+          code: "5140.02"
+          is_direct_income: true
+          maps_to_income_category_id: "EVAL: registry['target_income_category'].id"
+      - step: "Assert maps_to_income_category_id via search"
+        action: "search"
+        model: "school_budget_expense_category"
+        domain:
+          - ["id", "=", "EVAL: registry['expense_category_direct'].id"]
+          - [
+                "maps_to_income_category_id",
+                "=",
+                "EVAL: registry['target_income_category'].id",
+            ]
+        save_as: "check_direct_income_target"
+        expect_count: 1
+
+  - name: "Create Investment Category Valid Economic Life"
+    steps:
+      - step: "Create investment category"
+        action: "create"
+        model: "school_budget_investment_category"
+        save_as: "investment_category"
+        values:
+          name: "IT Equipment"
+          code: "1330.01"
+          default_economic_life: 5
+      - step: "Assert economic life"
+        action: "assert"
+        target: "investment_category"
+        asserts:
+          default_economic_life:
+            type: "value"
+            expected: 5
+
+  - name: "Archive Category"
+    steps:
+      - step: "Create expense category to archive"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "expense_category_archive"
+        values:
+          name: "Archivable Category"
+          code: "5150.01"
+      - step: "Archive it"
+        action: "write"
+        target: "expense_category_archive"
+        values:
+          active: false
+      - step: "Assert archived"
+        action: "assert"
+        target: "expense_category_archive"
+        asserts:
+          active:
+            type: "value"
+            expected: false
+
+  - name: "Map Categories To Account With Cross Model Uniqueness"
+    steps:
+      - step: "Setup - get expense account type"
+        action: "ref"
+        xml_id: "account.data_account_type_expenses"
+        save_as: "expense_account_type"
+
+      - step: "Setup - get revenue account type"
+        action: "ref"
+        xml_id: "account.data_account_type_revenue"
+        save_as: "revenue_account_type"
+
+      - step: "Setup - create account 1 (expense)"
+        action: "create"
+        model: "account.account"
+        save_as: "account_1"
+        values:
+          name: "Account 1 Category Mapping"
+          code: "5199.01"
+          user_type_id: "EVAL: registry['expense_account_type'].id"
+
+      - step: "Setup - create account 2 (revenue)"
+        action: "create"
+        model: "account.account"
+        save_as: "account_2"
+        values:
+          name: "Account 2 Category Mapping"
+          code: "4199.01"
+          user_type_id: "EVAL: registry['revenue_account_type'].id"
+
+      - step: "Create expense category A mapped to account 1"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "expense_category_mapping_a"
+        values:
+          name: "Expense Category Mapping A"
+          code: "5160.01"
+          account_id: "EVAL: registry['account_1'].id"
+
+      - step: "Assert account_id set on expense category A"
+        action: "search"
+        model: "school_budget_expense_category"
+        domain:
+          - ["id", "=", "EVAL: registry['expense_category_mapping_a'].id"]
+          - ["account_id", "=", "EVAL: registry['account_1'].id"]
+        save_as: "check_account_mapping_a"
+        expect_count: 1
+
+      - step: "Create income category mapped to account 2 (different account)"
+        action: "create"
+        model: "school_budget_income_category"
+        save_as: "income_category_mapping"
+        values:
+          name: "Income Category Mapping"
+          code: "4130.01"
+          calc_method: "manual"
+          account_id: "EVAL: registry['account_2'].id"
+
+      - step: "Create investment category without account_id"
+        action: "create"
+        model: "school_budget_investment_category"
+        save_as: "investment_category_no_account"
+        values:
+          name: "Investment Category No Account"
+          code: "1340.01"
+
+      - step: "Assert investment category created without error"
+        action: "assert"
+        target: "investment_category_no_account"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"
+
+      - step: "Unmap account from expense category A"
+        action: "write"
+        target: "expense_category_mapping_a"
+        values:
+          account_id: false
+
+      - step: "Create expense category B reusing freed account 1"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "expense_category_mapping_b"
+        values:
+          name: "Expense Category Mapping B"
+          code: "5160.02"
+          account_id: "EVAL: registry['account_1'].id"
+
+      - step: "Assert expense category B mapping succeeded"
+        action: "assert"
+        target: "expense_category_mapping_b"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"

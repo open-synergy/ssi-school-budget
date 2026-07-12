@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 OpenSynergy Indonesia
+     Copyright 2026 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<record id="school_budget_income_category_view_search" model="ir.ui.view">
+    <field name="name">school_budget_income_category - search</field>
+    <field name="model">school_budget_income_category</field>
+    <field
+            name="inherit_id"
+            ref="ssi_master_data_mixin.mixin_master_data_view_search"
+        />
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//search" position="inside">
+                <field name="calc_method" />
+                <group expand="0" string="Group By">
+                    <filter
+                            name="group_by_calc_method"
+                            string="Calculation Method"
+                            context="{'group_by': 'calc_method'}"
+                        />
+                </group>
+            </xpath>
+        </data>
+    </field>
+</record>
+
+<record id="school_budget_income_category_view_tree" model="ir.ui.view">
+    <field name="name">school_budget_income_category - tree</field>
+    <field name="model">school_budget_income_category</field>
+    <field name="inherit_id" ref="ssi_master_data_mixin.mixin_master_data_view_tree" />
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//field[@name='code']" position="before">
+                <field name="sequence" widget="handle" />
+            </xpath>
+            <xpath expr="//field[@name='code']" position="after">
+                <field name="calc_method" />
+                <field name="account_id" optional="show" />
+            </xpath>
+        </data>
+    </field>
+</record>
+
+<record id="school_budget_income_category_view_form" model="ir.ui.view">
+    <field name="name">school_budget_income_category - form</field>
+    <field name="model">school_budget_income_category</field>
+    <field name="inherit_id" ref="ssi_master_data_mixin.mixin_master_data_view_form" />
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//field[@name='active']" position="after">
+                <field name="sequence" />
+            </xpath>
+            <xpath expr="//notebook/page[@name='note']" position="before">
+                <page name="calculation" string="Calculation">
+                    <group name="calculation_group_1" string="Calculation Method">
+                        <field name="calc_method" />
+                        <field name="account_id" />
+                    </group>
+                </page>
+            </xpath>
+        </data>
+    </field>
+</record>
+
+<record id="school_budget_income_category_action" model="ir.actions.act_window">
+    <field name="name">Income Categories</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">school_budget_income_category</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem
+        id="school_budget_income_category_menu"
+        name="Income Categories"
+        parent="menu_school_budget_configuration"
+        action="school_budget_income_category_action"
+        groups="school_budget_income_category_group"
+        sequence="20"
+    />
+
+</odoo>

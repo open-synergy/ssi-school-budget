@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 OpenSynergy Indonesia
+     Copyright 2026 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<record id="sequence_school_budget" model="ir.sequence">
+    <field name="name">School Budget</field>
+    <field name="code">school_budget</field>
+    <field name="padding">6</field>
+    <field name="prefix">SB/%(range_year)s/</field>
+    <field eval="1" name="number_next" />
+    <field eval="1" name="number_increment" />
+    <field name="use_date_range" eval="1" />
+</record>
+</odoo>

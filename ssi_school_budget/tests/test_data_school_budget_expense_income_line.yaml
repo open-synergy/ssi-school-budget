@@ -1,0 +1,236 @@
+scenarios:
+  - name: "Expense Line Computes Amount Total And Budget Totals"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type Line 1"
+          code: "GTL1"
+          sequence: 10
+
+      - step: "Setup - create grade"
+        action: "create"
+        model: "school_grade"
+        save_as: "grade"
+        values:
+          name: "Grade Line 1"
+          code: "GL1"
+          sequence: 10
+          type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create school"
+        action: "create"
+        model: "school"
+        save_as: "school"
+        values:
+          name: "School Line 1"
+          code: "SCHL1"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Line 1"
+          code: "AYL1"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Setup - create expense category"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "expense_category"
+        values:
+          name: "Operational Expense L1"
+          code: "5110.01"
+
+      - step: "Setup - create expense category 2"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "expense_category_2"
+        values:
+          name: "Operational Expense L1b"
+          code: "5110.02"
+
+      - step: "Setup - create manual income category"
+        action: "create"
+        model: "school_budget_income_category"
+        save_as: "income_category_manual"
+        values:
+          name: "Manual Income L1"
+          code: "4120.01"
+          calc_method: "manual"
+
+      - step: "Setup - create simulated income category"
+        action: "create"
+        model: "school_budget_income_category"
+        save_as: "income_category_up"
+        values:
+          name: "Simulated UP L1"
+          code: "4110.01"
+          calc_method: "simulated_up"
+
+      - step: "Create unit budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Create expense line"
+        action: "create"
+        model: "school_budget_expense_line"
+        save_as: "expense_line_1"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          expense_category_id: "EVAL: registry['expense_category'].id"
+          line_number: 1
+          foundation: 10000000
+          bos: 2000000
+
+      - step: "Assert amount total"
+        action: "assert"
+        target: "expense_line_1"
+        asserts:
+          amount_total:
+            type: "value"
+            expected: 12000000.0
+
+      - step: "Create second expense line"
+        action: "create"
+        model: "school_budget_expense_line"
+        save_as: "expense_line_2"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          expense_category_id: "EVAL: registry['expense_category_2'].id"
+          line_number: 1
+          foundation: 5000000
+          bos: 1000000
+
+      - step: "Invalidate cache before assert budget totals"
+        action: "call"
+        target: "budget"
+        method: "invalidate_cache"
+
+      - step: "Assert budget totals"
+        action: "assert"
+        target: "budget"
+        asserts:
+          total_expense:
+            type: "value"
+            expected: 18000000.0
+          total_expense_bos:
+            type: "value"
+            expected: 3000000.0
+          total_expense_foundation:
+            type: "value"
+            expected: 15000000.0
+
+      - step: "Create manual income line"
+        action: "create"
+        model: "school_budget_income_line"
+        save_as: "income_line_1"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          income_category_id: "EVAL: registry['income_category_manual'].id"
+          line_number: 1
+          amount: 3000000
+
+      - step: "Assert manual income line created"
+        action: "assert"
+        target: "income_line_1"
+        asserts:
+          id:
+            type: "value"
+            operator: "is_truthy"
+
+      - step: "Create grade allocation for expense line"
+        action: "create"
+        model: "school_budget_expense_grade_allocation"
+        save_as: "grade_allocation_1"
+        values:
+          line_id: "EVAL: registry['expense_line_1'].id"
+          grade_id: "EVAL: registry['grade'].id"
+          amount: 4000000
+
+      - step: "Assert grade allocation created"
+        action: "assert"
+        target: "grade_allocation_1"
+        asserts:
+          amount:
+            type: "value"
+            expected: 4000000.0
+
+  - name: "Delete Budget Cascades To Expense Lines"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type Line 2"
+          code: "GTL2"
+          sequence: 10
+
+      - step: "Setup - create school"
+        action: "create"
+        model: "school"
+        save_as: "school"
+        values:
+          name: "School Line 2"
+          code: "SCHL2"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Line 2"
+          code: "AYL2"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Setup - create expense category"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "expense_category"
+        values:
+          name: "Operational Expense L2"
+          code: "5110.03"
+
+      - step: "Create unit budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Create expense line"
+        action: "create"
+        model: "school_budget_expense_line"
+        save_as: "expense_line"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          expense_category_id: "EVAL: registry['expense_category'].id"
+          foundation: 1000000
+
+      - step: "Delete budget"
+        action: "call"
+        target: "budget"
+        method: "unlink"
+
+      - step: "Verify expense line deleted via cascade"
+        action: "search"
+        model: "school_budget_expense_line"
+        domain:
+          - ["id", "=", "EVAL: registry['expense_line'].id"]
+        save_as: "check_deleted"
+        expect_count: 0

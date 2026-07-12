@@ -1,0 +1,413 @@
+scenarios:
+  - name: "UP US Simulation Reference Numbers Without And With Parent"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type Sim 1"
+          code: "GTSIM1"
+          sequence: 10
+
+      - step: "Setup - create grade"
+        action: "create"
+        model: "school_grade"
+        save_as: "grade"
+        values:
+          name: "Grade Sim 1"
+          code: "GSIM1"
+          sequence: 10
+          type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create branch"
+        action: "create"
+        model: "school_branch"
+        save_as: "branch"
+        values:
+          name: "Branch Sim 1"
+          code: "BRSIM1"
+
+      - step: "Setup - create school"
+        action: "create"
+        model: "school"
+        save_as: "school"
+        values:
+          name: "School Sim 1"
+          code: "SCHSIM1"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+          branch_id: "EVAL: registry['branch'].id"
+
+      - step: "Setup - create academic year (fiscal_year 2025)"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Sim 1"
+          code: "AYSIM1"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Setup - create UP-component expense category"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "expense_category_up"
+        values:
+          name: "UP Component Sim 1"
+          code: "5130.10"
+          is_up_component: true
+
+      - step: "Setup - create operational non-UP expense category"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "expense_category_us"
+        values:
+          name: "Operational Sim 1"
+          code: "5110.10"
+
+      - step: "Create unit budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+          new_student_count: 20
+
+      - step: "Create assumption line (total_student_count=100)"
+        action: "create"
+        model: "school_budget_assumption_line"
+        save_as: "assumption_line"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          grade_id: "EVAL: registry['grade'].id"
+          student_count: 100
+
+      - step: "Create UP-component expense line (foundation=40,000,000)"
+        action: "create"
+        model: "school_budget_expense_line"
+        save_as: "expense_line_up"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          expense_category_id: "EVAL: registry['expense_category_up'].id"
+          foundation: 40000000
+
+      - step: "Create operational expense line (foundation=240,000,000)"
+        action: "create"
+        model: "school_budget_expense_line"
+        save_as: "expense_line_us"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          expense_category_id: "EVAL: registry['expense_category_us'].id"
+          foundation: 240000000
+
+      - step: "Create new investment (purchase_price=120,000,000, start_month=1)"
+        action: "create"
+        model: "school_budget_investment"
+        save_as: "investment"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          asset_name: "Investment Sim 1"
+          purchase_price: 120000000
+          useful_life: 4
+          start_month: 1
+
+      - step: "Invalidate cache before asserting reference numbers"
+        action: "call"
+        target: "budget"
+        method: "invalidate_cache"
+
+      - step: "Assert UP figures without parent"
+        action: "assert"
+        target: "budget"
+        asserts:
+          total_up_cost_with_dep:
+            type: "value"
+            expected: 70000000.0
+          auto_up_rate:
+            type: "value"
+            expected: 3500000.0
+          total_up_revenue:
+            type: "value"
+            expected: 70000000.0
+
+      - step: "Assert US figures without parent (no depreciation)"
+        action: "assert"
+        target: "budget"
+        asserts:
+          auto_us_rate:
+            type: "value"
+            expected: 200000.0
+          total_us_revenue:
+            type: "value"
+            expected: 240000000.0
+          total_us_cost:
+            type: "value"
+            expected: 240000000.0
+
+      - step: "Write UP rate override"
+        action: "write"
+        target: "budget"
+        values:
+          is_up_rate_overridden: true
+          override_up_rate: 4000000
+
+      - step: "Invalidate cache after override"
+        action: "call"
+        target: "budget"
+        method: "invalidate_cache"
+
+      - step: "Assert override used as-is, auto rate unchanged"
+        action: "assert"
+        target: "budget"
+        asserts:
+          final_up_rate:
+            type: "value"
+            expected: 4000000.0
+          auto_up_rate:
+            type: "value"
+            expected: 3500000.0
+
+      - step: "Create branch budget (parent)"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_branch"
+        values:
+          org_type: "branch"
+          branch_id: "EVAL: registry['branch'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Create branch expense line under UP-component category (100,000,000)"
+        action: "create"
+        model: "school_budget_expense_line"
+        save_as: "branch_expense_line"
+        values:
+          budget_id: "EVAL: registry['budget_branch'].id"
+          expense_category_id: "EVAL: registry['expense_category_up'].id"
+          foundation: 100000000
+
+      - step: "Mark branch UP-component category as affecting UP"
+        action: "create"
+        model: "school_budget_parent_expense_allocation"
+        save_as: "pea"
+        values:
+          budget_id: "EVAL: registry['budget_branch'].id"
+          expense_category_id: "EVAL: registry['expense_category_up'].id"
+          affects_up: true
+
+      - step: "Register unit as contributor with pct_up override 0.4"
+        action: "create"
+        model: "school_budget_contribution_allocation"
+        save_as: "contribution"
+        values:
+          parent_budget_id: "EVAL: registry['budget_branch'].id"
+          child_budget_id: "EVAL: registry['budget'].id"
+          is_pct_up_overridden: true
+          override_pct_up: 0.4
+
+      - step: "Invalidate cache before asserting allocated UP"
+        action: "call"
+        target: "budget"
+        method: "invalidate_cache"
+
+      - step: "Assert allocated UP from branch"
+        action: "assert"
+        target: "budget"
+        asserts:
+          allocated_up_branch:
+            type: "value"
+            expected: 40000000.0
+          total_up_cost:
+            type: "value"
+            expected: 80000000.0
+
+      - step: "Create financial investment on branch (50,000,000)"
+        action: "create"
+        model: "school_budget_financial_investment"
+        save_as: "financial_investment"
+        values:
+          budget_id: "EVAL: registry['budget_branch'].id"
+          instrument_type: "deposito"
+          name: "Time Deposit Sim 1"
+          amount: 50000000
+
+      - step: "Invalidate cache before asserting allocated financial investment"
+        action: "call"
+        target: "budget"
+        method: "invalidate_cache"
+
+      - step: "Assert allocated financial investment uses full nominal via pct_up"
+        action: "assert"
+        target: "budget"
+        asserts:
+          allocated_financial_investment_branch:
+            type: "value"
+            expected: 20000000.0
+
+      - step: "Disable parent allocation"
+        action: "write"
+        target: "budget"
+        values:
+          include_parent_allocation: false
+
+      - step: "Invalidate cache after disabling parent allocation"
+        action: "call"
+        target: "budget"
+        method: "invalidate_cache"
+
+      - step: "Assert all allocated components become zero"
+        action: "assert"
+        target: "budget"
+        asserts:
+          allocated_up_branch:
+            type: "value"
+            expected: 0.0
+          allocated_financial_investment_branch:
+            type: "value"
+            expected: 0.0
+
+  - name: "Zero New Student Count Guards Division"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type Sim 2"
+          code: "GTSIM2"
+          sequence: 10
+
+      - step: "Setup - create school"
+        action: "create"
+        model: "school"
+        save_as: "school"
+        values:
+          name: "School Sim 2"
+          code: "SCHSIM2"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Sim 2"
+          code: "AYSIM2"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Setup - create UP-component expense category"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "expense_category_up"
+        values:
+          name: "UP Component Sim 2"
+          code: "5130.20"
+          is_up_component: true
+
+      - step: "Create unit budget with new_student_count=0"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+          new_student_count: 0
+
+      - step: "Create UP-component expense line (foundation=10,000,000)"
+        action: "create"
+        model: "school_budget_expense_line"
+        save_as: "expense_line"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          expense_category_id: "EVAL: registry['expense_category_up'].id"
+          foundation: 10000000
+
+      - step: "Invalidate cache"
+        action: "call"
+        target: "budget"
+        method: "invalidate_cache"
+
+      - step: "Assert divisor guarded to 1 (no ZeroDivisionError)"
+        action: "assert"
+        target: "budget"
+        asserts:
+          auto_up_rate:
+            type: "value"
+            expected: 10000000.0
+          total_up_cost_with_dep:
+            type: "value"
+            expected: 10000000.0
+
+  - name: "Branch And Center Budgets Have Zero UP US Fields"
+    steps:
+      - step: "Setup - create branch"
+        action: "create"
+        model: "school_branch"
+        save_as: "branch"
+        values:
+          name: "Branch Sim 3"
+          code: "BRSIM3"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Sim 3"
+          code: "AYSIM3"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Create branch budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_branch"
+        values:
+          org_type: "branch"
+          branch_id: "EVAL: registry['branch'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Create center budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_center"
+        values:
+          org_type: "center"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Assert branch budget has zero UP US fields"
+        action: "assert"
+        target: "budget_branch"
+        asserts:
+          total_up_cost:
+            type: "value"
+            expected: 0.0
+          auto_up_rate:
+            type: "value"
+            expected: 0.0
+          total_us_cost:
+            type: "value"
+            expected: 0.0
+          auto_us_rate:
+            type: "value"
+            expected: 0.0
+
+      - step: "Assert center budget has zero UP US fields"
+        action: "assert"
+        target: "budget_center"
+        asserts:
+          total_up_cost:
+            type: "value"
+            expected: 0.0
+          auto_up_rate:
+            type: "value"
+            expected: 0.0
+          total_us_cost:
+            type: "value"
+            expected: 0.0
+          auto_us_rate:
+            type: "value"
+            expected: 0.0

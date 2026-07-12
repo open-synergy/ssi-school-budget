@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 OpenSynergy Indonesia
+     Copyright 2026 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<record id="school_budget_all_access" model="ir.model.access">
+    <field name="name">school_budget - all</field>
+    <field name="model_id" ref="model_school_budget" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+<record id="school_budget_user_access" model="ir.model.access">
+    <field name="name">school_budget - user</field>
+    <field name="model_id" ref="model_school_budget" />
+    <field name="group_id" ref="school_budget_user_group" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_unlink" eval="1" />
+</record>
+
+<record id="school_budget_assumption_line_all_access" model="ir.model.access">
+    <field name="name">school_budget_assumption_line - all</field>
+    <field name="model_id" ref="model_school_budget_assumption_line" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+<record id="school_budget_assumption_line_user_access" model="ir.model.access">
+    <field name="name">school_budget_assumption_line - user</field>
+    <field name="model_id" ref="model_school_budget_assumption_line" />
+    <field name="group_id" ref="school_budget_user_group" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_unlink" eval="1" />
+</record>
+
+<record id="school_budget_expense_line_all_access" model="ir.model.access">
+    <field name="name">school_budget_expense_line - all</field>
+    <field name="model_id" ref="model_school_budget_expense_line" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+<record id="school_budget_expense_line_user_access" model="ir.model.access">
+    <field name="name">school_budget_expense_line - user</field>
+    <field name="model_id" ref="model_school_budget_expense_line" />
+    <field name="group_id" ref="school_budget_user_group" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_unlink" eval="1" />
+</record>
+
+<record id="school_budget_expense_grade_allocation_all_access" model="ir.model.access">
+    <field name="name">school_budget_expense_grade_allocation - all</field>
+    <field name="model_id" ref="model_school_budget_expense_grade_allocation" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+<record id="school_budget_expense_grade_allocation_user_access" model="ir.model.access">
+    <field name="name">school_budget_expense_grade_allocation - user</field>
+    <field name="model_id" ref="model_school_budget_expense_grade_allocation" />
+    <field name="group_id" ref="school_budget_user_group" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_unlink" eval="1" />
+</record>
+
+<record id="school_budget_income_line_all_access" model="ir.model.access">
+    <field name="name">school_budget_income_line - all</field>
+    <field name="model_id" ref="model_school_budget_income_line" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+<record id="school_budget_income_line_user_access" model="ir.model.access">
+    <field name="name">school_budget_income_line - user</field>
+    <field name="model_id" ref="model_school_budget_income_line" />
+    <field name="group_id" ref="school_budget_user_group" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_unlink" eval="1" />
+</record>
+
+<record id="school_budget_investment_all_access" model="ir.model.access">
+    <field name="name">school_budget_investment - all</field>
+    <field name="model_id" ref="model_school_budget_investment" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+<record id="school_budget_investment_user_access" model="ir.model.access">
+    <field name="name">school_budget_investment - user</field>
+    <field name="model_id" ref="model_school_budget_investment" />
+    <field name="group_id" ref="school_budget_user_group" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_unlink" eval="1" />
+</record>
+
+<record id="school_budget_old_asset_all_access" model="ir.model.access">
+    <field name="name">school_budget_old_asset - all</field>
+    <field name="model_id" ref="model_school_budget_old_asset" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+<record id="school_budget_old_asset_user_access" model="ir.model.access">
+    <field name="name">school_budget_old_asset - user</field>
+    <field name="model_id" ref="model_school_budget_old_asset" />
+    <field name="group_id" ref="school_budget_user_group" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_unlink" eval="1" />
+</record>
+
+<record id="school_budget_financial_investment_all_access" model="ir.model.access">
+    <field name="name">school_budget_financial_investment - all</field>
+    <field name="model_id" ref="model_school_budget_financial_investment" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+<record id="school_budget_financial_investment_user_access" model="ir.model.access">
+    <field name="name">school_budget_financial_investment - user</field>
+    <field name="model_id" ref="model_school_budget_financial_investment" />
+    <field name="group_id" ref="school_budget_user_group" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_unlink" eval="1" />
+</record>
+
+<record id="school_budget_parent_expense_allocation_all_access" model="ir.model.access">
+    <field name="name">school_budget_parent_expense_allocation - all</field>
+    <field name="model_id" ref="model_school_budget_parent_expense_allocation" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+<record id="school_budget_parent_expense_allocation_user_access" model="ir.model.access">
+    <field name="name">school_budget_parent_expense_allocation - user</field>
+    <field name="model_id" ref="model_school_budget_parent_expense_allocation" />
+    <field name="group_id" ref="school_budget_user_group" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_unlink" eval="1" />
+</record>
+
+<record id="school_budget_contribution_allocation_all_access" model="ir.model.access">
+    <field name="name">school_budget_contribution_allocation - all</field>
+    <field name="model_id" ref="model_school_budget_contribution_allocation" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+<record id="school_budget_contribution_allocation_user_access" model="ir.model.access">
+    <field name="name">school_budget_contribution_allocation - user</field>
+    <field name="model_id" ref="model_school_budget_contribution_allocation" />
+    <field name="group_id" ref="school_budget_user_group" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_unlink" eval="1" />
+</record>
+
+<record id="school_budget_subsidy_all_access" model="ir.model.access">
+    <field name="name">school_budget_subsidy - all</field>
+    <field name="model_id" ref="model_school_budget_subsidy" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+<record id="school_budget_subsidy_user_access" model="ir.model.access">
+    <field name="name">school_budget_subsidy - user</field>
+    <field name="model_id" ref="model_school_budget_subsidy" />
+    <field name="group_id" ref="school_budget_user_group" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_unlink" eval="1" />
+</record>
+
+<record id="school_budget_direct_income_override_all_access" model="ir.model.access">
+    <field name="name">school_budget_direct_income_override - all</field>
+    <field name="model_id" ref="model_school_budget_direct_income_override" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+<record id="school_budget_direct_income_override_user_access" model="ir.model.access">
+    <field name="name">school_budget_direct_income_override - user</field>
+    <field name="model_id" ref="model_school_budget_direct_income_override" />
+    <field name="group_id" ref="school_budget_user_group" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="1" />
+    <field name="perm_write" eval="1" />
+    <field name="perm_unlink" eval="1" />
+</record>
+
+<record id="school_budget_income_result_all_access" model="ir.model.access">
+    <field name="name">school_budget_income_result - all</field>
+    <field name="model_id" ref="model_school_budget_income_result" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+<record id="school_budget_income_result_user_access" model="ir.model.access">
+    <field name="name">school_budget_income_result - user</field>
+    <field name="model_id" ref="model_school_budget_income_result" />
+    <field name="group_id" ref="school_budget_user_group" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+
+<record id="school_budget_expense_result_all_access" model="ir.model.access">
+    <field name="name">school_budget_expense_result - all</field>
+    <field name="model_id" ref="model_school_budget_expense_result" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+<record id="school_budget_expense_result_user_access" model="ir.model.access">
+    <field name="name">school_budget_expense_result - user</field>
+    <field name="model_id" ref="model_school_budget_expense_result" />
+    <field name="group_id" ref="school_budget_user_group" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+
+<record id="school_budget_allocation_result_all_access" model="ir.model.access">
+    <field name="name">school_budget_allocation_result - all</field>
+    <field name="model_id" ref="model_school_budget_allocation_result" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+<record id="school_budget_allocation_result_user_access" model="ir.model.access">
+    <field name="name">school_budget_allocation_result - user</field>
+    <field name="model_id" ref="model_school_budget_allocation_result" />
+    <field name="group_id" ref="school_budget_user_group" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+
+<record id="school_budget_comparative_result_all_access" model="ir.model.access">
+    <field name="name">school_budget_comparative_result - all</field>
+    <field name="model_id" ref="model_school_budget_comparative_result" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+<record id="school_budget_comparative_result_user_access" model="ir.model.access">
+    <field name="name">school_budget_comparative_result - user</field>
+    <field name="model_id" ref="model_school_budget_comparative_result" />
+    <field name="group_id" ref="school_budget_user_group" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+
+<record id="school_budget_expense_realization_all_access" model="ir.model.access">
+    <field name="name">school_budget_expense_realization - all</field>
+    <field name="model_id" ref="model_school_budget_expense_realization" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+<record id="school_budget_expense_realization_user_access" model="ir.model.access">
+    <field name="name">school_budget_expense_realization - user</field>
+    <field name="model_id" ref="model_school_budget_expense_realization" />
+    <field name="group_id" ref="school_budget_user_group" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+
+<record id="school_budget_income_realization_all_access" model="ir.model.access">
+    <field name="name">school_budget_income_realization - all</field>
+    <field name="model_id" ref="model_school_budget_income_realization" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+<record id="school_budget_income_realization_user_access" model="ir.model.access">
+    <field name="name">school_budget_income_realization - user</field>
+    <field name="model_id" ref="model_school_budget_income_realization" />
+    <field name="group_id" ref="school_budget_user_group" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+
+<record id="school_budget_expense_comparison_all_access" model="ir.model.access">
+    <field name="name">school_budget_expense_comparison - all</field>
+    <field name="model_id" ref="model_school_budget_expense_comparison" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+<record id="school_budget_expense_comparison_user_access" model="ir.model.access">
+    <field name="name">school_budget_expense_comparison - user</field>
+    <field name="model_id" ref="model_school_budget_expense_comparison" />
+    <field name="group_id" ref="school_budget_user_group" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+
+<record id="school_budget_income_comparison_all_access" model="ir.model.access">
+    <field name="name">school_budget_income_comparison - all</field>
+    <field name="model_id" ref="model_school_budget_income_comparison" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+<record id="school_budget_income_comparison_user_access" model="ir.model.access">
+    <field name="name">school_budget_income_comparison - user</field>
+    <field name="model_id" ref="model_school_budget_income_comparison" />
+    <field name="group_id" ref="school_budget_user_group" />
+    <field name="perm_read" eval="1" />
+    <field name="perm_create" eval="0" />
+    <field name="perm_write" eval="0" />
+    <field name="perm_unlink" eval="0" />
+</record>
+</odoo>

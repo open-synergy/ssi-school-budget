@@ -1,0 +1,166 @@
+scenarios:
+  - name: "Create Analytic Account Idempotent And Auto Assigned On Budget"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type AA 1"
+          code: "GTAA1"
+          sequence: 10
+
+      - step: "Setup - create branch"
+        action: "create"
+        model: "school_branch"
+        save_as: "branch"
+        values:
+          name: "Branch AA 1"
+          code: "BRAA1"
+
+      - step: "Setup - create school A"
+        action: "create"
+        model: "school"
+        save_as: "school_a"
+        values:
+          name: "School AA 1A"
+          code: "SCHAA1A"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+          branch_id: "EVAL: registry['branch'].id"
+
+      - step: "Setup - create school B"
+        action: "create"
+        model: "school"
+        save_as: "school_b"
+        values:
+          name: "School AA 1B"
+          code: "SCHAA1B"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+          branch_id: "EVAL: registry['branch'].id"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year AA 1"
+          code: "AYAA1"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Create analytic account for branch"
+        action: "call"
+        target: "branch"
+        method: "action_create_analytic_account"
+
+      - step: "Assert branch analytic_account_id is set"
+        action: "assert"
+        target: "branch"
+        asserts:
+          analytic_account_id:
+            type: "value"
+            operator: "is_truthy"
+
+      - step: "Save branch's analytic account for later comparison"
+        action: "search"
+        model: "account.analytic.account"
+        domain:
+          - ["id", "=", "EVAL: registry['branch'].analytic_account_id.id"]
+        save_as: "aa_first"
+        expect_count: 1
+
+      - step: "Create analytic account for branch again (idempotent)"
+        action: "call"
+        target: "branch"
+        method: "action_create_analytic_account"
+
+      - step: "Invalidate cache after second call"
+        action: "call"
+        target: "branch"
+        method: "invalidate_cache"
+
+      - step: "Assert branch still points to the same analytic account"
+        action: "search"
+        model: "school_branch"
+        domain:
+          - ["id", "=", "EVAL: registry['branch'].id"]
+          - ["analytic_account_id", "=", "EVAL: registry['aa_first'].id"]
+        save_as: "check_idempotent_aa"
+        expect_count: 1
+
+      - step: "Create analytic account for unit A"
+        action: "call"
+        target: "school_a"
+        method: "action_create_analytic_account"
+
+      - step: "Create analytic account for unit B"
+        action: "call"
+        target: "school_b"
+        method: "action_create_analytic_account"
+
+      - step: "Assert unit A and unit B have different analytic accounts"
+        action: "search"
+        model: "school"
+        domain:
+          - ["id", "=", "EVAL: registry['school_a'].id"]
+          - [
+                "analytic_account_id",
+                "!=",
+                "EVAL: registry['school_b'].analytic_account_id.id",
+            ]
+        save_as: "check_different_aa"
+        expect_count: 1
+
+      - step: "Create unit A budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_a"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school_a'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Assert budget A analytic_account_id matches school A's"
+        action: "search"
+        model: "school_budget"
+        domain:
+          - ["id", "=", "EVAL: registry['budget_a'].id"]
+          - [
+                "analytic_account_id",
+                "=",
+                "EVAL: registry['school_a'].analytic_account_id.id",
+            ]
+        save_as: "check_budget_aa"
+        expect_count: 1
+
+      - step: "Create branch budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_branch"
+        values:
+          org_type: "branch"
+          branch_id: "EVAL: registry['branch'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Assert branch budget analytic_account_id matches branch's"
+        action: "search"
+        model: "school_budget"
+        domain:
+          - ["id", "=", "EVAL: registry['budget_branch'].id"]
+          - [
+                "analytic_account_id",
+                "=",
+                "EVAL: registry['branch'].analytic_account_id.id",
+            ]
+        save_as: "check_branch_budget_aa"
+        expect_count: 1
+
+      - step: "Confirm unit A budget succeeds since school A has an analytic account"
+        action: "call"
+        target: "budget_a"
+        method: "action_confirm"
+        as_user: "base.user_admin"
+        asserts:
+          state:
+            type: "value"
+            expected: "confirm"

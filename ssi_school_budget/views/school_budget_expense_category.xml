@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 OpenSynergy Indonesia
+     Copyright 2026 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<record id="school_budget_expense_category_view_search" model="ir.ui.view">
+    <field name="name">school_budget_expense_category - search</field>
+    <field name="model">school_budget_expense_category</field>
+    <field
+            name="inherit_id"
+            ref="ssi_master_data_mixin.mixin_master_data_view_search"
+        />
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//search" position="inside">
+                <filter
+                        name="filter_is_operational"
+                        string="Operational"
+                        domain="[('is_operational', '=', True)]"
+                    />
+                <filter
+                        name="filter_is_up_component"
+                        string="UP Component"
+                        domain="[('is_up_component', '=', True)]"
+                    />
+                <filter
+                        name="filter_is_direct_income"
+                        string="Direct Income"
+                        domain="[('is_direct_income', '=', True)]"
+                    />
+            </xpath>
+        </data>
+    </field>
+</record>
+
+<record id="school_budget_expense_category_view_tree" model="ir.ui.view">
+    <field name="name">school_budget_expense_category - tree</field>
+    <field name="model">school_budget_expense_category</field>
+    <field name="inherit_id" ref="ssi_master_data_mixin.mixin_master_data_view_tree" />
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//field[@name='code']" position="before">
+                <field name="sequence" widget="handle" />
+            </xpath>
+            <xpath expr="//field[@name='code']" position="after">
+                <field name="is_operational" />
+                <field name="is_up_component" />
+                <field name="is_direct_income" />
+                <field name="account_id" optional="show" />
+            </xpath>
+        </data>
+    </field>
+</record>
+
+<record id="school_budget_expense_category_view_form" model="ir.ui.view">
+    <field name="name">school_budget_expense_category - form</field>
+    <field name="model">school_budget_expense_category</field>
+    <field name="inherit_id" ref="ssi_master_data_mixin.mixin_master_data_view_form" />
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//field[@name='active']" position="after">
+                <field name="sequence" />
+            </xpath>
+            <xpath expr="//notebook/page[@name='note']" position="before">
+                <page name="classification" string="Classification">
+                    <group name="classification_group_1" string="Flags">
+                        <field name="is_operational" />
+                        <field name="is_up_component" />
+                        <field name="contribution_role" />
+                        <field name="account_id" />
+                    </group>
+                    <group name="classification_group_2" string="Direct Income">
+                        <field name="is_direct_income" />
+                        <field
+                                name="maps_to_income_category_id"
+                                attrs="{'invisible': [('is_direct_income', '=', False)], 'required': [('is_direct_income', '=', True)]}"
+                            />
+                    </group>
+                </page>
+            </xpath>
+        </data>
+    </field>
+</record>
+
+<record id="school_budget_expense_category_action" model="ir.actions.act_window">
+    <field name="name">Expense Categories</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">school_budget_expense_category</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem
+        id="school_budget_expense_category_menu"
+        name="Expense Categories"
+        parent="menu_school_budget_configuration"
+        action="school_budget_expense_category_action"
+        groups="school_budget_expense_category_group"
+        sequence="10"
+    />
+
+</odoo>
