@@ -166,7 +166,7 @@ class TestSchoolBudgetSubsidy(YamlTransactionCase):
         target_income_category = self.env["school_budget_income_category"].create(
             {
                 "name": "Direct Income Target Constrain 5",
-                "code": "4120.75",
+                "code": "4120.85",
                 "calc_method": "from_expense",
             }
         )
@@ -196,7 +196,7 @@ class TestSchoolBudgetSubsidy(YamlTransactionCase):
         target_income_category = self.env["school_budget_income_category"].create(
             {
                 "name": "Direct Income Target Constrain 6",
-                "code": "4120.76",
+                "code": "4120.86",
                 "calc_method": "from_expense",
             }
         )

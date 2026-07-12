@@ -160,6 +160,15 @@ scenarios:
           code: "4130.90"
           calc_method: "sum_from_bos"
 
+      - step: "Setup - create investment category"
+        action: "create"
+        model: "school_budget_investment_category"
+        save_as: "investment_category"
+        values:
+          name: "Investment Category E2E"
+          code: "1330.90"
+          default_economic_life: 4
+
       - step: "Create center budget"
         action: "create"
         model: "school_budget"
@@ -249,6 +258,7 @@ scenarios:
         save_as: "a_investment"
         values:
           budget_id: "EVAL: registry['budget_a'].id"
+          investment_category_id: "EVAL: registry['investment_category'].id"
           asset_name: "Investment E2E A"
           purchase_price: 120000000
           bos: 50000000
@@ -318,6 +328,7 @@ scenarios:
         save_as: "branch_investment"
         values:
           budget_id: "EVAL: registry['budget_branch'].id"
+          investment_category_id: "EVAL: registry['investment_category'].id"
           asset_name: "Investment E2E Branch"
           purchase_price: 40000000
           useful_life: 4
@@ -458,6 +469,7 @@ scenarios:
         save_as: "a_investment_extra"
         values:
           budget_id: "EVAL: registry['budget_a'].id"
+          investment_category_id: "EVAL: registry['investment_category'].id"
           asset_name: "Investment E2E A Extra"
           purchase_price: 24000000
           useful_life: 4
@@ -668,6 +680,16 @@ scenarios:
           expense:
             type: "value"
             expected: 496000000.0
+
+      - step: "Create analytic account for school A (required before confirm)"
+        action: "call"
+        target: "school_a"
+        method: "action_create_analytic_account"
+
+      - step: "Invalidate cache before confirm"
+        action: "call"
+        target: "budget_a"
+        method: "invalidate_cache"
 
       - step: "Workflow - confirm unit A"
         action: "call"

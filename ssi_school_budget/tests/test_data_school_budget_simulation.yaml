@@ -65,6 +65,15 @@ scenarios:
           name: "Operational Sim 1"
           code: "5110.10"
 
+      - step: "Setup - create investment category"
+        action: "create"
+        model: "school_budget_investment_category"
+        save_as: "investment_category"
+        values:
+          name: "Investment Category Sim 1"
+          code: "1330.60"
+          default_economic_life: 4
+
       - step: "Create unit budget"
         action: "create"
         model: "school_budget"
@@ -108,6 +117,7 @@ scenarios:
         save_as: "investment"
         values:
           budget_id: "EVAL: registry['budget'].id"
+          investment_category_id: "EVAL: registry['investment_category'].id"
           asset_name: "Investment Sim 1"
           purchase_price: 120000000
           useful_life: 4

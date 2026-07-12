@@ -138,6 +138,11 @@ scenarios:
           school_id: "EVAL: registry['school'].id"
           academic_year_id: "EVAL: registry['academic_year'].id"
 
+      - step: "Create analytic account for school (required before confirm)"
+        action: "call"
+        target: "school"
+        method: "action_create_analytic_account"
+
       - step: "Confirm budget"
         action: "call"
         target: "budget"
@@ -346,13 +351,13 @@ scenarios:
         target: "budget"
         method: "invalidate_cache"
 
-      - step: "Assert total student count is 55"
+      - step: "Assert total student count is 65"
         action: "assert"
         target: "budget"
         asserts:
           total_student_count:
             type: "value"
-            expected: 55
+            expected: 65
 
       - step: "Write override tariffs on budget"
         action: "write"
