@@ -3,7 +3,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo_yaml_test import YamlTransactionCase
-from psycopg2 import IntegrityError
 
 from odoo.exceptions import ValidationError
 from odoo.tests import tagged
@@ -56,7 +55,13 @@ class TestSchoolBudgetExpenseIncomeLine(YamlTransactionCase):
 
     def test_constrain_income_line_non_manual_category_blocks_create(self):
         """Income lines can only be created under manual-calc-method
-        income categories."""
+        income categories.
+
+        Pure Python -- trigger P10 (L-09/L-10: the fixture builds a
+        grade type, school, academic year, and budget
+        programmatically across several linked models, which the
+        ``EVAL:`` sandbox cannot express).
+        """
         _grade_type, _school, budget = self._setup_budget("I1")
         income_category = self.env["school_budget_income_category"].create(
             {
@@ -75,7 +80,13 @@ class TestSchoolBudgetExpenseIncomeLine(YamlTransactionCase):
             )
 
     def test_constrain_expense_line_number_zero_blocks_create(self):
-        """line_number=0 on an expense line must be rejected."""
+        """line_number=0 on an expense line must be rejected.
+
+        Pure Python -- trigger P10 (L-09/L-10: the fixture builds a
+        grade type, school, academic year, and budget
+        programmatically across several linked models, which the
+        ``EVAL:`` sandbox cannot express).
+        """
         _grade_type, _school, budget = self._setup_budget("E1")
         expense_category = self.env["school_budget_expense_category"].create(
             {
@@ -95,7 +106,13 @@ class TestSchoolBudgetExpenseIncomeLine(YamlTransactionCase):
 
     def test_constrain_duplicate_grade_allocation_same_grade_blocks_create(self):
         """Two grade allocations for the same grade on the same
-        expense line must be rejected."""
+        expense line must be rejected.
+
+        Pure Python — trigger P10 (L-09/L-10: the fixture builds a
+        grade type, school, academic year, budget, expense line, and
+        grade programmatically across several linked models, which
+        the ``EVAL:`` sandbox cannot express).
+        """
         grade_type, _school, budget = self._setup_budget("G1")
         expense_category = self.env["school_budget_expense_category"].create(
             {
@@ -125,13 +142,11 @@ class TestSchoolBudgetExpenseIncomeLine(YamlTransactionCase):
                 "amount": 500000,
             }
         )
-        with self.assertRaises(IntegrityError):
-            with self.env.cr.savepoint():
-                self.env["school_budget_expense_grade_allocation"].create(
-                    {
-                        "line_id": expense_line.id,
-                        "grade_id": grade.id,
-                        "amount": 200000,
-                    }
-                )
-                self.env["school_budget_expense_grade_allocation"].flush()
+        with self.assertRaises(ValidationError):
+            self.env["school_budget_expense_grade_allocation"].create(
+                {
+                    "line_id": expense_line.id,
+                    "grade_id": grade.id,
+                    "amount": 200000,
+                }
+            )

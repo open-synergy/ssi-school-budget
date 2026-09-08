@@ -3,7 +3,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo_yaml_test import YamlTransactionCase
-from psycopg2 import IntegrityError
 
 from odoo.exceptions import ValidationError
 from odoo.tests import tagged
@@ -116,7 +115,13 @@ class TestSchoolBudgetSubsidy(YamlTransactionCase):
 
     def test_constrain_branch_subsidy_to_other_branch_unit_blocks_create(self):
         """A branch cannot subsidize a unit that is not its own
-        child."""
+        child.
+
+        Pure Python -- trigger P10 (L-09/L-10: the fixture builds two
+        branches, two units, and a center budget programmatically
+        across several linked models, which the ``EVAL:`` sandbox
+        cannot express).
+        """
         data = self._setup_two_branches("1")
         with self.assertRaises(ValidationError):
             self.env["school_budget_subsidy"].create(
@@ -130,7 +135,13 @@ class TestSchoolBudgetSubsidy(YamlTransactionCase):
             )
 
     def test_constrain_unit_subsidy_provider_blocks_create(self):
-        """A unit budget cannot be a subsidy provider."""
+        """A unit budget cannot be a subsidy provider.
+
+        Pure Python -- trigger P10 (L-09/L-10: the fixture builds two
+        branches, two units, and a center budget programmatically
+        across several linked models, which the ``EVAL:`` sandbox
+        cannot express).
+        """
         data = self._setup_two_branches("2")
         with self.assertRaises(ValidationError):
             self.env["school_budget_subsidy"].create(
@@ -144,7 +155,13 @@ class TestSchoolBudgetSubsidy(YamlTransactionCase):
             )
 
     def test_constrain_subsidy_to_center_blocks_create(self):
-        """A subsidy recipient cannot be a center budget."""
+        """A subsidy recipient cannot be a center budget.
+
+        Pure Python -- trigger P10 (L-09/L-10: the fixture builds two
+        branches, two units, and a center budget programmatically
+        across several linked models, which the ``EVAL:`` sandbox
+        cannot express).
+        """
         data = self._setup_two_branches("3")
         with self.assertRaises(ValidationError):
             self.env["school_budget_subsidy"].create(
@@ -159,7 +176,13 @@ class TestSchoolBudgetSubsidy(YamlTransactionCase):
 
     def test_constrain_direct_income_override_on_non_direct_income_category(self):
         """A direct income override on a non-direct-income category
-        must be rejected."""
+        must be rejected.
+
+        Pure Python -- trigger P10 (L-09/L-10: the fixture builds two
+        branches, two units, and a center budget programmatically
+        across several linked models, which the ``EVAL:`` sandbox
+        cannot express).
+        """
         data = self._setup_two_branches("4")
         with self.assertRaises(ValidationError):
             self.env["school_budget_direct_income_override"].create(
@@ -171,7 +194,13 @@ class TestSchoolBudgetSubsidy(YamlTransactionCase):
             )
 
     def test_constrain_negative_direct_income_override_amount_blocks_create(self):
-        """override_amount must not be negative."""
+        """override_amount must not be negative.
+
+        Pure Python -- trigger P10 (L-09/L-10: the fixture builds two
+        branches, two units, and a center budget programmatically
+        across several linked models, which the ``EVAL:`` sandbox
+        cannot express).
+        """
         data = self._setup_two_branches("5")
         target_income_category = self.env["school_budget_income_category"].create(
             {
@@ -201,7 +230,13 @@ class TestSchoolBudgetSubsidy(YamlTransactionCase):
 
     def test_constrain_duplicate_direct_income_override_category_blocks_create(self):
         """Two overrides for the same category on the same budget
-        must be rejected."""
+        must be rejected.
+
+        Pure Python — trigger P10 (L-09/L-10: the fixture builds two
+        branches, two units, and a center budget programmatically
+        across several linked models, which the ``EVAL:`` sandbox
+        cannot express).
+        """
         data = self._setup_two_branches("6")
         target_income_category = self.env["school_budget_income_category"].create(
             {
@@ -227,13 +262,11 @@ class TestSchoolBudgetSubsidy(YamlTransactionCase):
                 "override_amount": 1000000,
             }
         )
-        with self.assertRaises(IntegrityError):
-            with self.env.cr.savepoint():
-                self.env["school_budget_direct_income_override"].create(
-                    {
-                        "budget_id": data["budget_unit_a"].id,
-                        "expense_category_id": direct_income_expense_category.id,
-                        "override_amount": 2000000,
-                    }
-                )
-                self.env["school_budget_direct_income_override"].flush()
+        with self.assertRaises(ValidationError):
+            self.env["school_budget_direct_income_override"].create(
+                {
+                    "budget_id": data["budget_unit_a"].id,
+                    "expense_category_id": direct_income_expense_category.id,
+                    "override_amount": 2000000,
+                }
+            )

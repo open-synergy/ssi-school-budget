@@ -55,7 +55,13 @@ class TestSchoolBudgetInvestment(YamlTransactionCase):
         return self.env["school_budget"].create(vals)
 
     def test_constrain_investment_start_month_13_blocks_create(self):
-        """start_month must be between 1 and 12."""
+        """start_month must be between 1 and 12.
+
+        Pure Python -- trigger P10 (L-09/L-10: the fixture builds a
+        grade type, school, academic year, and budget
+        programmatically across several linked models, which the
+        ``EVAL:`` sandbox cannot express).
+        """
         budget = self._setup_budget("S1")
         investment_category = self.env["school_budget_investment_category"].create(
             {
@@ -77,7 +83,13 @@ class TestSchoolBudgetInvestment(YamlTransactionCase):
             )
 
     def test_constrain_financial_investment_on_unit_budget_blocks_create(self):
-        """Financial investments are not allowed on unit budgets."""
+        """Financial investments are not allowed on unit budgets.
+
+        Pure Python -- trigger P10 (L-09/L-10: the fixture builds a
+        grade type, school, academic year, and budget
+        programmatically across several linked models, which the
+        ``EVAL:`` sandbox cannot express).
+        """
         budget = self._setup_budget("F1", org_type="unit")
         with self.assertRaises(ValidationError):
             self.env["school_budget_financial_investment"].create(

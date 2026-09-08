@@ -18,7 +18,12 @@ class TestSchoolBudgetAnalyticAccount(YamlTransactionCase):
 
     def test_constrain_analytic_account_reused_by_other_unit_blocks_write(self):
         """Assigning an analytic account already used by another
-        school unit must be rejected."""
+        school unit must be rejected.
+
+        Pure Python -- trigger P10 (L-09/L-10: the fixture builds a
+        grade type and two schools programmatically, which the
+        ``EVAL:`` sandbox cannot express).
+        """
         grade_type = self.env["school_grade_type"].create(
             {"name": "Grade Type AA Constrain 1", "code": "GTAAC1", "sequence": 10}
         )
@@ -42,7 +47,12 @@ class TestSchoolBudgetAnalyticAccount(YamlTransactionCase):
 
     def test_constrain_analytic_account_reused_by_branch_blocks_write(self):
         """Assigning a unit's analytic account to a branch must be
-        rejected."""
+        rejected.
+
+        Pure Python -- trigger P10 (L-09/L-10: the fixture builds a
+        grade type, school, and branch programmatically, which the
+        ``EVAL:`` sandbox cannot express).
+        """
         grade_type = self.env["school_grade_type"].create(
             {"name": "Grade Type AA Constrain 2", "code": "GTAAC2", "sequence": 10}
         )
@@ -62,7 +72,13 @@ class TestSchoolBudgetAnalyticAccount(YamlTransactionCase):
 
     def test_constrain_confirm_budget_without_analytic_account_blocks(self):
         """Confirming a budget whose organization has no analytic
-        account must raise a UserError."""
+        account must raise a UserError.
+
+        Pure Python -- trigger P10 (L-09/L-10: the fixture builds a
+        grade type, school, academic year, and budget
+        programmatically across several linked models, which the
+        ``EVAL:`` sandbox cannot express).
+        """
         grade_type = self.env["school_grade_type"].create(
             {"name": "Grade Type AA Constrain 3", "code": "GTAAC3", "sequence": 10}
         )
