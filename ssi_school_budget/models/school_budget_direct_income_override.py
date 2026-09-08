@@ -96,6 +96,10 @@ duplicate
 
     @api.constrains("expense_category_id")
     def _check_direct_income_category(self):
+        """Reject an expense category without Direct Income enabled.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_direct_income_category_condition():
                 error_message = (
@@ -115,11 +119,19 @@ Solution: Select an expense category with Direct Income enabled
                 raise ValidationError(error_message)
 
     def _check_direct_income_category_condition(self):
+        """Return whether the expense category is direct-income.
+
+        :return: ``True`` when ``expense_category_id.is_direct_income``
+        """
         self.ensure_one()
         return self.expense_category_id.is_direct_income
 
     @api.constrains("override_amount")
     def _check_override_amount(self):
+        """Reject a negative override amount.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_override_amount_condition():
                 error_message = (
@@ -136,5 +148,9 @@ Solution: Enter zero or a positive number
                 raise ValidationError(error_message)
 
     def _check_override_amount_condition(self):
+        """Return whether ``override_amount`` is non-negative.
+
+        :return: ``True`` when ``override_amount`` >= 0
+        """
         self.ensure_one()
         return self.override_amount >= 0

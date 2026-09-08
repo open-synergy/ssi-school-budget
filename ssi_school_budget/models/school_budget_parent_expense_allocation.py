@@ -92,6 +92,10 @@ duplicate
 
     @api.constrains("budget_id")
     def _check_parent_org_type(self):
+        """Reject a parent expense allocation on a unit budget.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_parent_org_type_condition():
                 error_message = (
@@ -109,5 +113,10 @@ Solution: Select a branch/center budget
                 raise ValidationError(error_message)
 
     def _check_parent_org_type_condition(self):
+        """Return whether the budget is org_type branch/center.
+
+        :return: ``True`` when ``budget_id.org_type`` is ``branch``
+            or ``center``
+        """
         self.ensure_one()
         return self.budget_id.org_type in ("branch", "center")

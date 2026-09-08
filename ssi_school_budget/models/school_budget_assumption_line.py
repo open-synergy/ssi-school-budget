@@ -81,6 +81,10 @@ Solution: Edit the existing line instead of creating a duplicate
 
     @api.constrains("student_count")
     def _check_student_count(self):
+        """Reject a negative student count.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_student_count_condition():
                 error_message = (
@@ -97,11 +101,19 @@ Solution: Enter zero or a positive number
                 raise ValidationError(error_message)
 
     def _check_student_count_condition(self):
+        """Return whether ``student_count`` is non-negative.
+
+        :return: ``True`` when ``student_count`` >= 0
+        """
         self.ensure_one()
         return self.student_count >= 0
 
     @api.constrains("budget_id")
     def _check_budget_org_type(self):
+        """Reject a line whose budget is not org_type=unit.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_budget_org_type_condition():
                 error_message = (
@@ -120,5 +132,9 @@ Type to Unit
                 raise ValidationError(error_message)
 
     def _check_budget_org_type_condition(self):
+        """Return whether the parent budget is org_type=unit.
+
+        :return: ``True`` when ``budget_id.org_type == "unit"``
+        """
         self.ensure_one()
         return self.budget_id.org_type == "unit"

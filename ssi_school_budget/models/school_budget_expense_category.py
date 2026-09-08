@@ -85,6 +85,10 @@ class SchoolBudgetExpenseCategory(models.Model):
 
     @api.constrains("account_id")
     def _check_budget_account_unique(self):
+        """Reject an account already mapped to another category.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_budget_account_unique_condition():
                 error_message = (
@@ -106,6 +110,14 @@ Solution: Select an account that is not mapped elsewhere
                 raise ValidationError(error_message)
 
     def _check_budget_account_unique_condition(self):
+        """Return whether ``account_id`` is unique across categories.
+
+        Checks against other expense categories, income categories,
+        and investment categories.
+
+        :return: ``True`` when the account is empty or not mapped
+            elsewhere
+        """
         self.ensure_one()
         if not self.account_id:
             return True
@@ -124,6 +136,10 @@ Solution: Select an account that is not mapped elsewhere
 
     @api.constrains("is_direct_income", "maps_to_income_category_id")
     def _check_direct_income_target(self):
+        """Reject Direct Income enabled without a target category.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_direct_income_target_condition():
                 error_message = (
@@ -142,6 +158,12 @@ income generated from this expense category
                 raise ValidationError(error_message)
 
     def _check_direct_income_target_condition(self):
+        """Return whether the direct-income target is set when needed.
+
+        :return: ``True`` when ``is_direct_income`` is disabled, or
+            when it is enabled and ``maps_to_income_category_id`` is
+            set
+        """
         self.ensure_one()
         if not self.is_direct_income:
             return True

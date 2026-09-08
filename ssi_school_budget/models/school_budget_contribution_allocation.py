@@ -144,6 +144,11 @@ duplicate
         "parent_budget_id.contribution_allocation_ids.override_pct_us",
     )
     def _compute_pct(self):
+        """Derive pct_up/pct_us from sibling contribution allocations.
+
+        Delegates the split-remaining-by-count math to
+        ``_compute_ancestor_pct`` for each of the UP and US sides.
+        """
         for record in self:
             if not record.parent_budget_id:
                 record.pct_up = 0.0
@@ -165,6 +170,23 @@ duplicate
     def _compute_ancestor_pct(
         self, siblings, override_flag_field, override_value_field, count_field
     ):
+        """Return this record's share of a parent's allocatable base.
+
+        Siblings with the override flag keep their exact override
+        value; the remaining percentage (1.0 minus the sum of
+        overrides) is split among non-overridden siblings
+        proportional to ``count_field``.
+
+        :param siblings: all contribution allocations under the
+            same ``parent_budget_id``
+        :param override_flag_field: name of the boolean override
+            flag field
+        :param override_value_field: name of the override value
+            field
+        :param count_field: name of the student-count field used as
+            the proportion key
+        :return: the computed percentage (0.0-1.0) for this record
+        """
         self.ensure_one()
         if self[override_flag_field]:
             return self[override_value_field]
@@ -182,6 +204,10 @@ duplicate
         "override_pct_us",
     )
     def _check_contribution_allocation(self):
+        """Reject an invalid parent/child pairing or override value.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_contribution_allocation_condition():
                 error_message = (
@@ -202,6 +228,13 @@ and override percentages must be between 0.0 and 1.0
                 raise ValidationError(error_message)
 
     def _check_contribution_allocation_condition(self):
+        """Return whether this allocation's org/year/pct are valid.
+
+        :return: ``True`` when parent is branch/center, child is a
+            unit different from the parent under the same academic
+            year, and both override percentages are within
+            0.0-1.0
+        """
         self.ensure_one()
         if self.parent_budget_id.org_type not in ("branch", "center"):
             return False

@@ -38,6 +38,10 @@ class SchoolBudgetInvestmentCategory(models.Model):
 
     @api.constrains("default_economic_life")
     def _check_default_economic_life(self):
+        """Reject a non-positive default economic life.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_default_economic_life_condition():
                 error_message = (
@@ -54,6 +58,10 @@ Solution: Enter a value of 1 or more
                 raise ValidationError(error_message)
 
     def _check_default_economic_life_condition(self):
+        """Return whether ``default_economic_life`` is positive.
+
+        :return: ``True`` when ``default_economic_life`` > 0
+        """
         self.ensure_one()
         return self.default_economic_life > 0
 
@@ -69,6 +77,10 @@ Solution: Enter a value of 1 or more
 
     @api.constrains("account_id")
     def _check_budget_account_unique(self):
+        """Reject an account already mapped to another category.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_budget_account_unique_condition():
                 error_message = (
@@ -90,6 +102,14 @@ Solution: Select an account that is not mapped elsewhere
                 raise ValidationError(error_message)
 
     def _check_budget_account_unique_condition(self):
+        """Return whether ``account_id`` is unique across categories.
+
+        Checks against other investment categories, expense
+        categories, and income categories.
+
+        :return: ``True`` when the account is empty or not mapped
+            elsewhere
+        """
         self.ensure_one()
         if not self.account_id:
             return True
