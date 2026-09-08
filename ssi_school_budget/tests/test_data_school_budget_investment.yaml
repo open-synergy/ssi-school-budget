@@ -309,3 +309,65 @@ scenarios:
           instrument_type: "deposito"
           name: "Bad Financial Investment"
           amount: 1000000
+
+  - name: "Onchange Useful Life Prefilled From Investment Category"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type Onchange Invest"
+          code: "GTOCI1"
+          sequence: 10
+
+      - step: "Setup - create school"
+        action: "create"
+        model: "school"
+        save_as: "school"
+        values:
+          name: "School Onchange Invest"
+          code: "SCHOCI1"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Onchange Invest"
+          code: "AYOCI1"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Setup - create investment category"
+        action: "create"
+        model: "school_budget_investment_category"
+        save_as: "investment_category"
+        values:
+          name: "IT Equipment Onchange"
+          code: "1330.20"
+          default_economic_life: 4
+
+      - step: "Setup - create unit budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Form - set investment_category_id prefills useful_life"
+        action: "form"
+        model: "school_budget_investment"
+        save: false
+        ops:
+          - set: {budget_id: "REC: budget"}
+          - set: {asset_name: "Onchange Investment"}
+          - set: {purchase_price: 40000000}
+          - set: {investment_category_id: "REC: investment_category"}
+          - assert:
+              useful_life:
+                type: "value"
+                expected: 4
