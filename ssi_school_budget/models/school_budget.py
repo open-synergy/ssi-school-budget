@@ -667,6 +667,10 @@ class SchoolBudget(models.Model):
 
     @api.constrains("new_student_count", "returning_student_count", "staff_count")
     def _check_assumption_counts(self):
+        """Reject negative student/staff counts.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_assumption_counts_condition():
                 error_message = (
@@ -684,6 +688,12 @@ Solution: Enter zero or a positive number
                 raise ValidationError(error_message)
 
     def _check_assumption_counts_condition(self):
+        """Return whether the assumption counts are non-negative.
+
+        :return: ``True`` when ``new_student_count``,
+            ``returning_student_count``, and ``staff_count`` are all
+            >= 0
+        """
         self.ensure_one()
         return (
             self.new_student_count >= 0
@@ -693,6 +703,10 @@ Solution: Enter zero or a positive number
 
     @api.constrains("org_type", "assumption_line_ids")
     def _check_assumption_org_type(self):
+        """Reject assumption lines on a non-unit budget.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_assumption_org_type_condition():
                 error_message = (
@@ -711,6 +725,11 @@ to Unit
                 raise ValidationError(error_message)
 
     def _check_assumption_org_type_condition(self):
+        """Return whether assumption_line_ids matches org_type.
+
+        :return: ``True`` when ``org_type`` is ``unit``, or when it
+            is not ``unit`` and ``assumption_line_ids`` is empty
+        """
         self.ensure_one()
         if self.org_type == "unit":
             return True
@@ -718,6 +737,10 @@ to Unit
 
     @api.constrains("org_type", "school_id", "branch_id")
     def _check_organization(self):
+        """Reject organization fields that do not match org_type.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_organization_condition():
                 error_message = (
@@ -738,6 +761,12 @@ School); Center requires neither School nor Branch to be set
                 raise ValidationError(error_message)
 
     def _check_organization_condition(self):
+        """Return whether school_id/branch_id match org_type.
+
+        :return: ``True`` when unit has ``school_id``, branch has
+            ``branch_id`` without ``school_id``, or center has
+            neither
+        """
         self.ensure_one()
         if self.org_type == "unit":
             return bool(self.school_id)
@@ -750,6 +779,10 @@ School); Center requires neither School nor Branch to be set
         "org_type", "school_id", "branch_id", "company_id", "academic_year_id"
     )
     def _check_unique_budget(self):
+        """Reject a duplicate budget for the same org/year.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_unique_budget_condition():
                 error_message = (
@@ -767,6 +800,14 @@ Solution: Edit the existing budget instead of creating a duplicate
                 raise ValidationError(error_message)
 
     def _check_unique_budget_condition(self):
+        """Return whether this budget is unique for its org/year.
+
+        A cancelled budget does not count as a duplicate, so a new
+        one may be created in its place.
+
+        :return: ``True`` when no other non-cancelled budget shares
+            the same organization, company, and academic year
+        """
         self.ensure_one()
         domain = [
             ("id", "!=", self.id),
@@ -2008,6 +2049,12 @@ Solution: Edit the existing budget instead of creating a duplicate
 
     @ssi_decorator.pre_confirm_check()
     def _10_check_analytic_account(self):
+        """Block Confirm when the organization has no analytic account.
+
+        Hooked as a ``pre_confirm_check`` via ``ssi_decorator``.
+
+        :raises: :class:`~odoo.exceptions.UserError`
+        """
         self.ensure_one()
         if not self.analytic_account_id:
             error_message = (
