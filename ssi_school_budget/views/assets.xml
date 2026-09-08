@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 OpenSynergy Indonesia
+     Copyright 2026 PT. Simetri Sinergi Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<template
+        id="assets_tests"
+        name="ssi_school_budget assets tests"
+        inherit_id="web.assets_tests"
+    >
+    <xpath expr="." position="inside">
+        <script
+                type="text/javascript"
+                src="/ssi_school_budget/static/tests/tours/school_budget_tour.js"
+            />
+        <script
+                type="text/javascript"
+                src="/ssi_school_budget/static/tests/tours/school_budget_income_category_tour.js"
+            />
+        <script
+                type="text/javascript"
+                src="/ssi_school_budget/static/tests/tours/school_budget_expense_category_tour.js"
+            />
+        <script
+                type="text/javascript"
+                src="/ssi_school_budget/static/tests/tours/school_budget_investment_category_tour.js"
+            />
+    </xpath>
+</template>
+</odoo>

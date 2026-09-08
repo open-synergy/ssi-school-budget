@@ -19,6 +19,7 @@
         "ssi_transaction_cancel_mixin",
         "ssi_decorator",
         "ssi_financial_accounting",
+        "web_tour",
     ],
     "data": [
         "security/ir_module_category_data.xml",
@@ -41,5 +42,6 @@
         "views/school_branch.xml",
         "views/school.xml",
         "views/school_budget.xml",
+        "views/assets.xml",
     ],
 }

@@ -1,0 +1,23 @@
+# Copyright 2026 OpenSynergy Indonesia
+# Copyright 2026 PT. Simetri Sinergi Indonesia
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from odoo.tests import HttpSavepointCase, tagged
+
+
+@tagged("post_install", "-at_install")
+class TestUiSchoolBudgetIncomeCategory(HttpSavepointCase):
+    """Tour test for the ``school_budget_income_category`` work
+    instructions.
+    """
+
+    def test_create(self):
+        """Run the create tour for ``school_budget_income_category``.
+
+        IK: docs/school_budget_income_category/01-create.md
+        """
+        self.start_tour(
+            "/web",
+            "ssi_school_budget_school_budget_income_category_create",
+            login="admin",
+        )
