@@ -39,13 +39,45 @@ class SchoolBudgetAssumptionLine(models.Model):
         help="Number of students planned for this grade.",
     )
 
-    _sql_constraints = [
-        (
-            "unique_budget_grade",
-            "unique(budget_id, grade_id)",
-            "Only one assumption line is allowed per grade on the " "same budget.",
-        ),
-    ]
+    @api.constrains("budget_id", "grade_id")
+    def _check_unique_budget_grade(self):
+        """Reject a duplicate grade on the same budget.
+
+        Replaces the former ``_sql_constraints`` entry so the error
+        is raised as ``ValidationError`` instead of a raw
+        ``IntegrityError``.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
+        for record in self.sudo():
+            if not record._check_unique_budget_grade_condition():
+                error_message = (
+                    _(
+                        """
+Context: Save school budget assumption line
+Database ID: %s
+Problem: Only one assumption line is allowed per grade on the
+same budget
+Solution: Edit the existing line instead of creating a duplicate
+"""
+                    )
+                    % (record.id,)
+                )
+                raise ValidationError(error_message)
+
+    def _check_unique_budget_grade_condition(self):
+        """Return whether ``grade_id`` is unique on this budget.
+
+        :return: ``True`` when no other line shares the same
+            ``budget_id``/``grade_id`` pair
+        """
+        self.ensure_one()
+        domain = [
+            ("id", "!=", self.id),
+            ("budget_id", "=", self.budget_id.id),
+            ("grade_id", "=", self.grade_id.id),
+        ]
+        return self.search_count(domain) == 0
 
     @api.constrains("student_count")
     def _check_student_count(self):

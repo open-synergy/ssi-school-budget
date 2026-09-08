@@ -53,14 +53,46 @@ class SchoolBudgetDirectIncomeOverride(models.Model):
         compute_sudo=True,
     )
 
-    _sql_constraints = [
-        (
-            "unique_budget_expense_category",
-            "unique(budget_id, expense_category_id)",
-            "Only one direct income override is allowed per expense "
-            "category on the same budget.",
-        ),
-    ]
+    @api.constrains("budget_id", "expense_category_id")
+    def _check_unique_budget_expense_category(self):
+        """Reject a duplicate expense category on the same budget.
+
+        Replaces the former ``_sql_constraints`` entry so the
+        error is raised as ``ValidationError`` instead of a
+        raw ``IntegrityError``.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
+        for record in self.sudo():
+            if not record._check_unique_budget_expense_category_condition():
+                error_message = (
+                    _(
+                        """
+Context: Save school budget direct income override
+Database ID: %s
+Problem: Only one direct income override is allowed per expense
+category on the same budget
+Solution: Edit the existing override instead of creating a
+duplicate
+"""
+                    )
+                    % (record.id,)
+                )
+                raise ValidationError(error_message)
+
+    def _check_unique_budget_expense_category_condition(self):
+        """Return whether the unique key still holds.
+
+        :return: ``True`` when no other record shares the
+            same key
+        """
+        self.ensure_one()
+        domain = [
+            ("id", "!=", self.id),
+            ("budget_id", "=", self.budget_id.id),
+            ("expense_category_id", "=", self.expense_category_id.id),
+        ]
+        return self.search_count(domain) == 0
 
     @api.constrains("expense_category_id")
     def _check_direct_income_category(self):

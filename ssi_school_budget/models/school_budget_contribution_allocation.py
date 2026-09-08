@@ -93,14 +93,46 @@ class SchoolBudgetContributionAllocation(models.Model):
         "parent; not stored because it depends on sibling records.",
     )
 
-    _sql_constraints = [
-        (
-            "unique_parent_child",
-            "unique(parent_budget_id, child_budget_id)",
-            "Only one contribution allocation is allowed per child "
-            "budget under the same parent budget.",
-        ),
-    ]
+    @api.constrains("parent_budget_id", "child_budget_id")
+    def _check_unique_parent_child(self):
+        """Reject a duplicate child budget under the same parent.
+
+        Replaces the former ``_sql_constraints`` entry so the
+        error is raised as ``ValidationError`` instead of a
+        raw ``IntegrityError``.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
+        for record in self.sudo():
+            if not record._check_unique_parent_child_condition():
+                error_message = (
+                    _(
+                        """
+Context: Save school budget contribution allocation
+Database ID: %s
+Problem: Only one contribution allocation is allowed per child
+budget under the same parent budget
+Solution: Edit the existing allocation instead of creating a
+duplicate
+"""
+                    )
+                    % (record.id,)
+                )
+                raise ValidationError(error_message)
+
+    def _check_unique_parent_child_condition(self):
+        """Return whether the unique key still holds.
+
+        :return: ``True`` when no other record shares the
+            same key
+        """
+        self.ensure_one()
+        domain = [
+            ("id", "!=", self.id),
+            ("parent_budget_id", "=", self.parent_budget_id.id),
+            ("child_budget_id", "=", self.child_budget_id.id),
+        ]
+        return self.search_count(domain) == 0
 
     @api.depends(
         "parent_budget_id",
