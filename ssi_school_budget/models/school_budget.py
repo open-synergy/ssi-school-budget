@@ -533,6 +533,10 @@ class SchoolBudget(models.Model):
     )
 
     def _get_ancestor_budgets(self):
+        """Return this budget's branch and/or center ancestors.
+
+        :return: recordset of ``school_budget`` ancestors
+        """
         self.ensure_one()
         ancestors = self.env["school_budget"]
         if self.org_type == "unit" and self.branch_id:
@@ -588,6 +592,13 @@ class SchoolBudget(models.Model):
                 )
 
     def _get_descendant_unit_budgets(self):
+        """Return the unit budgets contributing to this budget.
+
+        Branch budgets return units under the same branch; center
+        budgets return every unit in the academic year/company.
+
+        :return: recordset of ``school_budget`` (org_type=unit)
+        """
         self.ensure_one()
         domain = [
             ("org_type", "=", "unit"),
@@ -1054,6 +1065,12 @@ Solution: Edit the existing budget instead of creating a duplicate
     )
 
     def _get_pct_from_ancestor(self, ancestor_budget):
+        """Return this unit's (pct_up, pct_us) under ``ancestor_budget``.
+
+        :param ancestor_budget: the branch/center ``school_budget``
+        :return: tuple ``(pct_up, pct_us)``, ``(0.0, 0.0)`` when no
+            contribution allocation links the two
+        """
         self.ensure_one()
         allocation = self.env["school_budget_contribution_allocation"].search(
             [
@@ -1067,6 +1084,14 @@ Solution: Edit the existing budget instead of creating a duplicate
         return allocation.pct_up, allocation.pct_us
 
     def _get_allocated_components_from_ancestor(self, ancestor_budget):
+        """Return this unit's share of ancestor's push-down costs.
+
+        Splits each active ``parent_expense_allocation_ids`` category
+        of ``ancestor_budget`` by this unit's pct_up/pct_us.
+
+        :param ancestor_budget: the branch/center ``school_budget``
+        :return: tuple ``(allocated_up, allocated_us)``
+        """
         self.ensure_one()
         pct_up, pct_us = self._get_pct_from_ancestor(ancestor_budget)
         allocated_up = 0.0
@@ -1084,6 +1109,15 @@ Solution: Edit the existing budget instead of creating a duplicate
         return allocated_up, allocated_us
 
     def _get_allocated_dep_from_ancestor(self, ancestor_budget):
+        """Return this unit's share of ancestor's depreciation/investment.
+
+        Uses pct_up only, applied to the ancestor's new-investment
+        depreciation, old-asset depreciation, and financial
+        investment totals.
+
+        :param ancestor_budget: the branch/center ``school_budget``
+        :return: tuple ``(dep_new, dep_old, fin_inv)``
+        """
         self.ensure_one()
         pct_up, _pct_us = self._get_pct_from_ancestor(ancestor_budget)
         dep_new = pct_up * ancestor_budget.total_new_investment_dep
@@ -1092,6 +1126,19 @@ Solution: Edit the existing budget instead of creating a duplicate
         return dep_new, dep_old, fin_inv
 
     def _get_parent_allocated_components(self, include_parent_allocation=None):
+        """Sum allocated cost/depreciation components from ancestors.
+
+        Split by ancestor level (branch vs. center) into a single
+        dict, or all-zero when ``include_parent_allocation`` is
+        false.
+
+        :param include_parent_allocation: overrides
+            ``self.include_parent_allocation`` when given
+        :return: dict of ``up_branch``/``up_center``/``us_branch``/
+            ``us_center``/``dep_new_branch``/``dep_new_center``/
+            ``dep_old_branch``/``dep_old_center``/
+            ``fin_inv_branch``/``fin_inv_center``
+        """
         self.ensure_one()
         if include_parent_allocation is None:
             include_parent_allocation = self.include_parent_allocation
@@ -1407,6 +1454,14 @@ Solution: Edit the existing budget instead of creating a duplicate
             )
 
     def _get_unit_setoran_to_ancestor(self, ancestor_budget):
+        """Return this unit's total UP/US contribution to an ancestor.
+
+        Combines allocated cost with allocated depreciation/
+        investment (UP side only).
+
+        :param ancestor_budget: the branch/center ``school_budget``
+        :return: tuple ``(setoran_up, setoran_us)``
+        """
         self.ensure_one()
         allocated_up, allocated_us = self._get_allocated_components_from_ancestor(
             ancestor_budget
@@ -1456,6 +1511,13 @@ Solution: Edit the existing budget instead of creating a duplicate
             result_model.create(vals_list)
 
     def _get_income_result_simulated_up_vals(self):
+        """Return income_result vals sourced from the UP simulation.
+
+        One row per income category with ``calc_method ==
+        "simulated_up"``, amount from ``total_up_revenue``.
+
+        :return: list of value dicts for ``school_budget_income_result``
+        """
         self.ensure_one()
         categories = self.env["school_budget_income_category"].search(
             [("calc_method", "=", "simulated_up")]
@@ -1474,6 +1536,13 @@ Solution: Edit the existing budget instead of creating a duplicate
         ]
 
     def _get_income_result_simulated_us_vals(self):
+        """Return income_result vals sourced from the US simulation.
+
+        One row per income category with ``calc_method ==
+        "simulated_us"``, amount from ``total_us_revenue``.
+
+        :return: list of value dicts for ``school_budget_income_result``
+        """
         self.ensure_one()
         categories = self.env["school_budget_income_category"].search(
             [("calc_method", "=", "simulated_us")]
@@ -1492,6 +1561,15 @@ Solution: Edit the existing budget instead of creating a duplicate
         ]
 
     def _get_income_result_direct_income_vals(self):
+        """Return income_result vals from direct-income expense lines.
+
+        For each direct-income expense category, the auto amount is
+        the sum of ``foundation`` (or the grade allocation total when
+        the target income category is grade-based); a matching
+        ``direct_income_override_ids`` row replaces it.
+
+        :return: list of value dicts for ``school_budget_income_result``
+        """
         self.ensure_one()
         vals_list = []
         direct_categories = self.expense_line_ids.mapped(
@@ -1525,6 +1603,14 @@ Solution: Edit the existing budget instead of creating a duplicate
         return vals_list
 
     def _get_income_result_bos_vals(self):
+        """Return income_result vals summing BOS across lines/investments.
+
+        One row per income category with ``calc_method ==
+        "sum_from_bos"``, amount = sum of ``expense_line_ids.bos``
+        plus ``investment_ids.bos``.
+
+        :return: list of value dicts for ``school_budget_income_result``
+        """
         self.ensure_one()
         categories = self.env["school_budget_income_category"].search(
             [("calc_method", "=", "sum_from_bos")]
@@ -1548,6 +1634,12 @@ Solution: Edit the existing budget instead of creating a duplicate
         return vals_list
 
     def _get_income_result_manual_vals(self):
+        """Return income_result vals from manually entered income lines.
+
+        One row per income category present in ``income_line_ids``.
+
+        :return: list of value dicts for ``school_budget_income_result``
+        """
         self.ensure_one()
         categories = self.income_line_ids.mapped("income_category_id")
         vals_list = []
@@ -1570,6 +1662,14 @@ Solution: Edit the existing budget instead of creating a duplicate
         return vals_list
 
     def _get_income_result_contribution_vals(self):
+        """Return income_result vals from children's UP/US contributions.
+
+        Two rows per contributing child that has
+        ``include_parent_allocation`` enabled: one for the UP setoran,
+        one for the US setoran (``_get_unit_setoran_to_ancestor``).
+
+        :return: list of value dicts for ``school_budget_income_result``
+        """
         self.ensure_one()
         vals_list = []
         for allocation in self.contribution_allocation_ids:
@@ -1600,6 +1700,13 @@ Solution: Edit the existing budget instead of creating a duplicate
         return vals_list
 
     def _get_income_result_subsidy_vals(self):
+        """Return income_result vals from active received subsidies.
+
+        One row per income category present in
+        ``received_subsidy_ids``.
+
+        :return: list of value dicts for ``school_budget_income_result``
+        """
         self.ensure_one()
         subsidies = self.received_subsidy_ids.filtered("active")
         categories = subsidies.mapped("income_category_id")
@@ -1639,6 +1746,13 @@ Solution: Edit the existing budget instead of creating a duplicate
             result_model.create(vals_list)
 
     def _get_expense_result_own_vals(self):
+        """Return expense_result vals from this budget's own expense lines.
+
+        One row per expense category present in
+        ``expense_line_ids``.
+
+        :return: list of value dicts for ``school_budget_expense_result``
+        """
         self.ensure_one()
         categories = self.expense_line_ids.mapped("expense_category_id")
         vals_list = []
@@ -1666,6 +1780,12 @@ Solution: Edit the existing budget instead of creating a duplicate
         return vals_list
 
     def _get_expense_result_subsidy_given_vals(self):
+        """Return expense_result vals from active subsidies given.
+
+        One row per expense category present in ``subsidy_ids``.
+
+        :return: list of value dicts for ``school_budget_expense_result``
+        """
         self.ensure_one()
         subsidies = self.subsidy_ids.filtered("active")
         categories = subsidies.mapped("expense_category_id")
@@ -1693,6 +1813,13 @@ Solution: Edit the existing budget instead of creating a duplicate
         return vals_list
 
     def _get_expense_result_allocated_vals(self):
+        """Return expense_result vals from allocated parent components.
+
+        One row per non-zero allocated component (UP cost, US cost,
+        new/old depreciation) split from ancestor budgets.
+
+        :return: list of value dicts for ``school_budget_expense_result``
+        """
         self.ensure_one()
         components = [
             (
@@ -1982,6 +2109,13 @@ Solution: Edit the existing budget instead of creating a duplicate
             result_model.create(vals_list)
 
     def _get_comparative_targets(self):
+        """Return the unit budgets compared against this budget.
+
+        Includes self plus every unit under the same branch/center
+        for the same academic year.
+
+        :return: recordset of ``school_budget``
+        """
         self.ensure_one()
         domain = [
             ("org_type", "=", "unit"),
