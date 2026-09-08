@@ -68,6 +68,72 @@ scenarios:
         save_as: "check_branch_derived"
         expect_count: 1
 
+      - step: "A second unit budget for the same school and year must be rejected"
+        action: "create"
+        model: "school_budget"
+        expect_error:
+          type: "ValidationError"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "org_type=center with school_id set must be rejected"
+        action: "create"
+        model: "school_budget"
+        expect_error:
+          type: "ValidationError"
+        values:
+          org_type: "center"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "A negative new_student_count must be rejected"
+        action: "write"
+        target: "budget"
+        expect_error:
+          type: "ValidationError"
+        values:
+          new_student_count: -1
+
+      - step: "Setup - create center budget for assumption org_type check"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_center_neg"
+        values:
+          org_type: "center"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Setup - create grade for assumption line negative checks"
+        action: "create"
+        model: "school_grade"
+        save_as: "grade_neg"
+        values:
+          name: "Grade Budget 1 Negative"
+          code: "GB1NEG"
+          sequence: 10
+          type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "An assumption line on a center budget must be rejected"
+        action: "create"
+        model: "school_budget_assumption_line"
+        expect_error:
+          type: "ValidationError"
+        values:
+          budget_id: "EVAL: registry['budget_center_neg'].id"
+          grade_id: "EVAL: registry['grade_neg'].id"
+          student_count: 10
+
+      - step: "A negative student_count on an assumption line must be rejected"
+        action: "create"
+        model: "school_budget_assumption_line"
+        expect_error:
+          type: "ValidationError"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          grade_id: "EVAL: registry['grade_neg'].id"
+          student_count: -1
+
   - name: "Create Center Budget Has No School Or Branch"
     steps:
       - step: "Setup - create academic year"

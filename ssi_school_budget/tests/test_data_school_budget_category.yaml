@@ -44,6 +44,17 @@ scenarios:
             type: "value"
             expected: true
 
+      - step:
+          "A direct-income category without a target income category must be rejected"
+        action: "create"
+        model: "school_budget_expense_category"
+        expect_error:
+          type: "ValidationError"
+        values:
+          name: "Direct Income No Target"
+          code: "5140.03"
+          is_direct_income: true
+
   - name: "Direct Income With Target Category Succeeds"
     steps:
       - step: "Create target income category"
@@ -93,6 +104,16 @@ scenarios:
           default_economic_life:
             type: "value"
             expected: 5
+
+      - step: "An investment category with default_economic_life 0 must be rejected"
+        action: "create"
+        model: "school_budget_investment_category"
+        expect_error:
+          type: "ValidationError"
+        values:
+          name: "IT Equipment Bad"
+          code: "1330.03"
+          default_economic_life: 0
 
   - name: "Archive Category"
     steps:
@@ -163,6 +184,38 @@ scenarios:
           - ["account_id", "=", "EVAL: registry['account_1'].id"]
         save_as: "check_account_mapping_a"
         expect_count: 1
+
+      - step: "Another expense category mapping the same account 1 must be rejected"
+        action: "create"
+        model: "school_budget_expense_category"
+        expect_error:
+          type: "ValidationError"
+        values:
+          name: "Expense Category Mapping Dup"
+          code: "5160.03"
+          account_id: "EVAL: registry['account_1'].id"
+
+      - step: "An income category mapping account 1 (used by expense) must be rejected"
+        action: "create"
+        model: "school_budget_income_category"
+        expect_error:
+          type: "ValidationError"
+        values:
+          name: "Income Category Mapping Dup"
+          code: "4130.02"
+          calc_method: "manual"
+          account_id: "EVAL: registry['account_1'].id"
+
+      - step:
+          "An investment category mapping account 1 (used by expense) must be rejected"
+        action: "create"
+        model: "school_budget_investment_category"
+        expect_error:
+          type: "ValidationError"
+        values:
+          name: "Investment Category Mapping Dup"
+          code: "1340.02"
+          account_id: "EVAL: registry['account_1'].id"
 
       - step: "Create income category mapped to account 2 (different account)"
         action: "create"

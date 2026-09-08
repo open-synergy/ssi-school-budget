@@ -160,3 +160,28 @@ scenarios:
           state:
             type: "value"
             expected: "confirm"
+
+      - step: "Reassigning unit B's analytic account to unit A must be rejected"
+        action: "write"
+        target: "school_a"
+        expect_error:
+          type: "ValidationError"
+        values:
+          analytic_account_id: "EVAL: registry['school_b'].analytic_account_id.id"
+
+      - step: "Assigning unit A's analytic account to the branch must be rejected"
+        action: "write"
+        target: "branch"
+        expect_error:
+          type: "ValidationError"
+        values:
+          analytic_account_id: "EVAL: registry['school_a'].analytic_account_id.id"
+
+      - step: "Assigning unit A's analytic account to the company must be rejected"
+        action: "write"
+        target: "company"
+        expect_error:
+          type: "ValidationError"
+        values:
+          school_analytic_account_id:
+            "EVAL: registry['school_a'].analytic_account_id.id"

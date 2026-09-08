@@ -119,6 +119,18 @@ scenarios:
         save_as: "unit_a_subsidies"
         expect_count: 2
 
+      - step: "A subsidy to a center budget must be rejected"
+        action: "create"
+        model: "school_budget_subsidy"
+        expect_error:
+          type: "ValidationError"
+        values:
+          provider_budget_id: "EVAL: registry['budget_center'].id"
+          recipient_budget_id: "EVAL: registry['budget_center'].id"
+          expense_category_id: "EVAL: registry['expense_category'].id"
+          income_category_id: "EVAL: registry['income_category'].id"
+          amount: 1000000
+
   - name: "Direct Income Override On Direct Income Category"
     steps:
       - step: "Setup - create grade type"
@@ -193,3 +205,29 @@ scenarios:
           override_amount:
             type: "value"
             expected: 8000000.0
+
+      - step: "Setup - create non-direct-income expense category"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "non_direct_income_expense_category"
+        values:
+          name: "Non Direct Income Expense Subsidy 2"
+          code: "5110.62"
+
+      - step: "An override on a non-direct-income category must be rejected"
+        action: "create"
+        model: "school_budget_direct_income_override"
+        expect_error:
+          type: "ValidationError"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          expense_category_id: "EVAL: registry['non_direct_income_expense_category'].id"
+          override_amount: 1000000
+
+      - step: "A negative override_amount must be rejected"
+        action: "write"
+        target: "override"
+        expect_error:
+          type: "ValidationError"
+        values:
+          override_amount: -1

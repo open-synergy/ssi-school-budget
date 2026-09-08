@@ -162,6 +162,28 @@ scenarios:
             type: "value"
             expected: 4000000.0
 
+      - step: "An expense line with line_number 0 must be rejected"
+        action: "create"
+        model: "school_budget_expense_line"
+        expect_error:
+          type: "ValidationError"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          expense_category_id: "EVAL: registry['expense_category'].id"
+          line_number: 0
+          foundation: 1000000
+
+      - step: "An income line under a non-manual category must be rejected"
+        action: "create"
+        model: "school_budget_income_line"
+        expect_error:
+          type: "ValidationError"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          income_category_id: "EVAL: registry['income_category_up'].id"
+          line_number: 1
+          amount: 1000000
+
   - name: "Delete Budget Cascades To Expense Lines"
     steps:
       - step: "Setup - create grade type"
