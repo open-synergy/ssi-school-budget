@@ -358,16 +358,41 @@ scenarios:
           school_id: "EVAL: registry['school'].id"
           academic_year_id: "EVAL: registry['academic_year'].id"
 
-      - step: "Form - set investment_category_id prefills useful_life"
+      # budget_id is readonly=True at the field level (no `states`), so a
+      # standalone `action: form / model: school_budget_investment` can never
+      # set it (AssertionError: can't write on readonly field budget_id).
+      # Open the Form on the PARENT budget instead and build the investment
+      # line inline via `new:` — the O2M relation fills budget_id itself, and
+      # useful_life is left unset in `values:` so onchange_useful_life's
+      # `and not self.useful_life` guard is satisfied when
+      # investment_category_id is assigned.
+      - step:
+          "Form - add investment inline; investment_category_id prefills useful_life"
         action: "form"
-        model: "school_budget_investment"
-        save: false
+        target: "budget"
+        save: true
         ops:
-          - set: {budget_id: "REC: budget"}
-          - set: {asset_name: "Onchange Investment"}
-          - set: {purchase_price: 40000000}
-          - set: {investment_category_id: "REC: investment_category"}
-          - assert:
-              useful_life:
-                type: "value"
-                expected: 4
+          - new:
+              field: "investment_ids"
+              values:
+                asset_name: "Onchange Investment"
+                purchase_price: 40000000
+                investment_category_id: "REC: investment_category"
+
+      - step: "Find the investment created inline"
+        action: "search"
+        model: "school_budget_investment"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget'].id"]
+          - ["asset_name", "=", "Onchange Investment"]
+        save_as: "onchange_investment"
+        expect_count: 1
+
+      - step:
+          "Assert onchange_useful_life prefilled useful_life from the category default"
+        action: "assert"
+        target: "onchange_investment"
+        asserts:
+          useful_life:
+            type: "value"
+            expected: 4

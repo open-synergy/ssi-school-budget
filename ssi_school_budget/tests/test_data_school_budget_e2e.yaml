@@ -196,6 +196,11 @@ scenarios:
           school_id: "EVAL: registry['school_a'].id"
           academic_year_id: "EVAL: registry['academic_year'].id"
           new_student_count: 20
+          # T-05: this scenario runs with auto_refresh, so budget_a is
+          # re-read under as_user (confirm/approve steps below); without an
+          # explicit user_id the record is owned by superuser and
+          # school_budget_internal_user_rule rejects the read.
+          user_id: "REF: base.user_admin"
 
       - step: "Create unit B budget"
         action: "create"

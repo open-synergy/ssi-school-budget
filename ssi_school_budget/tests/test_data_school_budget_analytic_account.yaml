@@ -115,6 +115,11 @@ scenarios:
           org_type: "unit"
           school_id: "EVAL: registry['school_a'].id"
           academic_year_id: "EVAL: registry['academic_year'].id"
+          # T-05: this scenario runs with auto_refresh, so budget_a is
+          # re-read under as_user below; without an explicit user_id the
+          # record is owned by superuser and school_budget_internal_user_rule
+          # rejects the read.
+          user_id: "REF: base.user_admin"
 
       - step: "Assert budget A analytic_account_id matches school A's"
         action: "search"
