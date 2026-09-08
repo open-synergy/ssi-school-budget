@@ -358,6 +358,11 @@ class SchoolBudget(models.Model):
         "expense_line_ids.amount_total",
     )
     def _compute_total_expense(self):
+        """Sum expense line amounts into the expense totals.
+
+        Fills ``total_expense_foundation``, ``total_expense_bos``,
+        and ``total_expense`` from ``expense_line_ids``.
+        """
         for record in self:
             record.total_expense_foundation = sum(
                 record.expense_line_ids.mapped("foundation")
@@ -367,6 +372,7 @@ class SchoolBudget(models.Model):
 
     @api.depends("income_line_ids.amount")
     def _compute_total_income_manual(self):
+        """Sum ``income_line_ids.amount`` into total_income_manual."""
         for record in self:
             record.total_income_manual = sum(record.income_line_ids.mapped("amount"))
 
@@ -472,6 +478,12 @@ class SchoolBudget(models.Model):
         "financial_investment_ids.amount",
     )
     def _compute_total_depreciation(self):
+        """Sum new-investment and old-asset depreciation totals.
+
+        Fills ``total_new_investment_dep``, ``total_old_asset_dep``,
+        ``total_depreciation``, ``total_physical_investment``, and
+        ``total_financial_investment``.
+        """
         for record in self:
             record.total_new_investment_dep = sum(
                 record.investment_ids.mapped("dep_current_year")
@@ -615,6 +627,7 @@ class SchoolBudget(models.Model):
 
     @api.depends("assumption_line_ids.student_count")
     def _compute_total_student_count(self):
+        """Sum ``assumption_line_ids.student_count``."""
         for record in self:
             record.total_student_count = sum(
                 record.assumption_line_ids.mapped("student_count")
@@ -622,6 +635,11 @@ class SchoolBudget(models.Model):
 
     @api.depends("org_type", "school_id", "school_id.branch_id")
     def _compute_branch_id(self):
+        """Derive ``branch_id`` from the organization type.
+
+        Unit budgets take the school's branch; center budgets have
+        no branch; branch budgets keep the user-selected value.
+        """
         for record in self:
             if record.org_type == "unit":
                 record.branch_id = record.school_id.branch_id
@@ -633,6 +651,7 @@ class SchoolBudget(models.Model):
 
     @api.depends("academic_year_id", "academic_year_id.date_start")
     def _compute_fiscal_year(self):
+        """Derive the fiscal year from the academic year's start date."""
         for record in self:
             record.fiscal_year = (
                 record.academic_year_id.date_start.year
@@ -1226,6 +1245,12 @@ Solution: Edit the existing budget instead of creating a duplicate
         "override_up_rate",
     )
     def _compute_up_simulation(self):
+        """Fill the UP (Uang Pangkal) simulation result fields.
+
+        Delegates the actual math to
+        ``_compute_up_us_values(include_parent_allocation)`` and
+        copies the UP-specific keys onto this record.
+        """
         up_fields = [
             "total_own_up_cost",
             "allocated_up_branch",
@@ -1264,6 +1289,12 @@ Solution: Edit the existing budget instead of creating a duplicate
         "override_us_rate",
     )
     def _compute_us_simulation(self):
+        """Fill the US (Uang Sekolah) simulation result fields.
+
+        Delegates the actual math to
+        ``_compute_up_us_values(include_parent_allocation)`` and
+        copies the US-specific keys onto this record.
+        """
         us_fields = [
             "total_own_us_cost",
             "allocated_us_branch",
@@ -1335,6 +1366,11 @@ Solution: Edit the existing budget instead of creating a duplicate
 
     @api.depends("income_result_ids.amount", "income_result_ids.auto_amount")
     def _compute_total_income_result(self):
+        """Sum income_result_ids into the income result totals.
+
+        Fills ``total_income_result`` and
+        ``total_income_result_auto``.
+        """
         for record in self:
             record.total_income_result = sum(record.income_result_ids.mapped("amount"))
             record.total_income_result_auto = sum(
@@ -1343,6 +1379,12 @@ Solution: Edit the existing budget instead of creating a duplicate
 
     @api.depends("expense_result_ids.amount_total", "expense_result_ids.expense_group")
     def _compute_total_expense_result(self):
+        """Split expense_result_ids into operational/non-operational.
+
+        Fills ``total_expense_operational``,
+        ``total_expense_non_operational``, and
+        ``total_expense_result``.
+        """
         for record in self:
             operational = record.expense_result_ids.filtered(
                 lambda r: r.expense_group == "operational"
@@ -1782,6 +1824,13 @@ Solution: Edit the existing budget instead of creating a duplicate
         "cash_balance",
     )
     def _compute_cash_summary(self):
+        """Derive the cash and accrual budget summary totals.
+
+        Combines income/expense simulation results, investments,
+        depreciation, and the opening cash balance into the
+        cash/accrual revenue, expense, and surplus/deficit fields
+        shown on the Summary tab.
+        """
         for record in self:
             total_cash_revenue = record.total_income_result
             total_cash_revenue_auto = record.total_income_result_auto
@@ -1843,6 +1892,13 @@ Solution: Edit the existing budget instead of creating a duplicate
         "financial_investment_ids.amount",
     )
     def _compute_allocatable_base(self):
+        """Compute the 100% UP/US base before splitting to children.
+
+        Fills ``total_allocatable_base_up`` (own expense lines under
+        ``affects_up`` categories, plus depreciation and financial
+        investment) and ``total_allocatable_base_us`` (own expense
+        lines under non-``affects_up`` categories).
+        """
         for record in self:
             base_up = 0.0
             base_us = 0.0
@@ -2037,6 +2093,11 @@ Solution: Edit the existing budget instead of creating a duplicate
         "company_id.school_analytic_account_id",
     )
     def _compute_analytic_account_id(self):
+        """Derive ``analytic_account_id`` from the organization.
+
+        Unit uses the school's analytic account, branch uses the
+        branch's, center uses the company's.
+        """
         for record in self:
             if record.org_type == "unit":
                 record.analytic_account_id = record.school_id.analytic_account_id
@@ -2172,6 +2233,12 @@ analytic account
             record._compute_realization()
 
     def _compute_realization(self):
+        """Rebuild the realization and budget-vs-actual rows.
+
+        Deletes and regenerates ``expense_realization_ids``,
+        ``income_realization_ids``, ``expense_comparison_ids``, and
+        ``income_comparison_ids`` from posted journal items.
+        """
         self.ensure_one()
         self.expense_realization_ids.unlink()
         self.income_realization_ids.unlink()
@@ -2279,6 +2346,12 @@ analytic account
         "income_comparison_ids.realized_amount",
     )
     def _compute_comparison_totals(self):
+        """Sum budget-vs-actual comparison rows into totals.
+
+        Fills ``total_realized_expense``, ``total_realized_income``,
+        ``total_expense_variance``, and
+        ``expense_absorption_rate``.
+        """
         for record in self:
             total_realized_expense = sum(
                 record.expense_comparison_ids.mapped("realized_amount")
