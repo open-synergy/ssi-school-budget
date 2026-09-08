@@ -112,7 +112,7 @@ class SchoolBudgetInvestment(models.Model):
             record.end_book_value = record.purchase_price - dep_current_year
 
     @api.onchange("investment_category_id")
-    def _onchange_useful_life(self):
+    def onchange_useful_life(self):
         if self.investment_category_id and not self.useful_life:
             self.useful_life = self.investment_category_id.default_economic_life
 

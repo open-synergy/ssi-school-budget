@@ -641,12 +641,18 @@ class SchoolBudget(models.Model):
             )
 
     @api.onchange("org_type")
-    def _onchange_org_type(self):
+    def onchange_school_id(self):
         if self.org_type != "unit":
             self.school_id = False
 
     @api.onchange("school_id")
-    def _onchange_assumption_line_ids(self):
+    def onchange_assumption_line_ids(self):
+        """Seed ``assumption_line_ids`` with the school's grades.
+
+        Adds one new (unsaved) assumption line per grade of
+        ``school_id.grade_type_id`` that does not already have a
+        line, leaving existing lines untouched.
+        """
         if not self.school_id or not self.school_id.grade_type_id:
             return
         existing_grade_ids = self.assumption_line_ids.mapped("grade_id").ids
