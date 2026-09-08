@@ -1,5 +1,6 @@
 scenarios:
   - name: "Simulate Generates Income And Expense Results With Identity Check"
+    options: {auto_refresh: true}
     steps:
       - step: "Setup - create grade type"
         action: "create"
@@ -169,11 +170,6 @@ scenarios:
         action: "call"
         target: "budget_branch"
         method: "action_simulate"
-
-      - step: "Invalidate cache before assert"
-        action: "call"
-        target: "budget_unit"
-        method: "invalidate_cache"
 
       - step: "Assert simulated UP income result equals total_up_revenue"
         action: "search"

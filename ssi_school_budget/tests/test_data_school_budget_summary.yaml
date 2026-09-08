@@ -1,5 +1,6 @@
 scenarios:
   - name: "Cash Vs Accrual Summary Balances To Zero"
+    options: {auto_refresh: true}
     steps:
       - step: "Setup - create grade type"
         action: "create"
@@ -138,11 +139,6 @@ scenarios:
         target: "budget"
         method: "action_simulate"
 
-      - step: "Invalidate cache before assert"
-        action: "call"
-        target: "budget"
-        method: "invalidate_cache"
-
       - step: "Assert cash summary"
         action: "assert"
         target: "budget"
@@ -178,11 +174,6 @@ scenarios:
         action: "call"
         target: "budget"
         method: "action_simulate"
-
-      - step: "Invalidate cache after re-simulate"
-        action: "call"
-        target: "budget"
-        method: "invalidate_cache"
 
       - step: "Assert totals unchanged after second simulate"
         action: "assert"

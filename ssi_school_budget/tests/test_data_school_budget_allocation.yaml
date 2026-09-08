@@ -1,5 +1,6 @@
 scenarios:
   - name: "Contribution Allocation Percentage Split Two Units No Override"
+    options: {auto_refresh: true}
     steps:
       - step: "Setup - create grade type"
         action: "create"
@@ -150,11 +151,6 @@ scenarios:
           is_pct_up_overridden: true
           override_pct_up: 0.5
 
-      - step: "Invalidate cache before re-assert pct_up with override mixed in"
-        action: "call"
-        target: "alloc_a"
-        method: "invalidate_cache"
-
       - step: "Assert pct_up A becomes 0.2 (remaining 0.5 split 20:30)"
         action: "assert"
         target: "alloc_a"
@@ -162,11 +158,6 @@ scenarios:
           pct_up:
             type: "value"
             expected: 0.2
-
-      - step: "Invalidate cache for B"
-        action: "call"
-        target: "alloc_b"
-        method: "invalidate_cache"
 
       - step: "Assert pct_up B becomes 0.3"
         action: "assert"
@@ -185,6 +176,7 @@ scenarios:
             expected: 0.5
 
   - name: "Sync Contribution Allocation Creates Rows Without Overwriting Override"
+    options: {auto_refresh: true}
     steps:
       - step: "Setup - create grade type"
         action: "create"
@@ -284,11 +276,6 @@ scenarios:
           - ["parent_budget_id", "=", "EVAL: registry['budget_branch'].id"]
         save_as: "check_allocations"
         expect_count: 2
-
-      - step: "Invalidate cache before assert override preserved"
-        action: "call"
-        target: "alloc_a"
-        method: "invalidate_cache"
 
       - step: "Assert override on A preserved after sync"
         action: "assert"

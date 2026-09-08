@@ -1,5 +1,6 @@
 scenarios:
   - name: "UP US Simulation Reference Numbers Without And With Parent"
+    options: {auto_refresh: true}
     steps:
       - step: "Setup - create grade type"
         action: "create"
@@ -123,11 +124,6 @@ scenarios:
           useful_life: 4
           start_month: 1
 
-      - step: "Invalidate cache before asserting reference numbers"
-        action: "call"
-        target: "budget"
-        method: "invalidate_cache"
-
       - step: "Assert UP figures without parent"
         action: "assert"
         target: "budget"
@@ -162,11 +158,6 @@ scenarios:
         values:
           is_up_rate_overridden: true
           override_up_rate: 4000000
-
-      - step: "Invalidate cache after override"
-        action: "call"
-        target: "budget"
-        method: "invalidate_cache"
 
       - step: "Assert override used as-is, auto rate unchanged"
         action: "assert"
@@ -216,11 +207,6 @@ scenarios:
           is_pct_up_overridden: true
           override_pct_up: 0.4
 
-      - step: "Invalidate cache before asserting allocated UP"
-        action: "call"
-        target: "budget"
-        method: "invalidate_cache"
-
       - step: "Assert allocated UP from branch"
         action: "assert"
         target: "budget"
@@ -242,11 +228,6 @@ scenarios:
           name: "Time Deposit Sim 1"
           amount: 50000000
 
-      - step: "Invalidate cache before asserting allocated financial investment"
-        action: "call"
-        target: "budget"
-        method: "invalidate_cache"
-
       - step: "Assert allocated financial investment uses full nominal via pct_up"
         action: "assert"
         target: "budget"
@@ -261,11 +242,6 @@ scenarios:
         values:
           include_parent_allocation: false
 
-      - step: "Invalidate cache after disabling parent allocation"
-        action: "call"
-        target: "budget"
-        method: "invalidate_cache"
-
       - step: "Assert all allocated components become zero"
         action: "assert"
         target: "budget"
@@ -278,6 +254,7 @@ scenarios:
             expected: 0.0
 
   - name: "Zero New Student Count Guards Division"
+    options: {auto_refresh: true}
     steps:
       - step: "Setup - create grade type"
         action: "create"
@@ -334,11 +311,6 @@ scenarios:
           budget_id: "EVAL: registry['budget'].id"
           expense_category_id: "EVAL: registry['expense_category_up'].id"
           foundation: 10000000
-
-      - step: "Invalidate cache"
-        action: "call"
-        target: "budget"
-        method: "invalidate_cache"
 
       - step: "Assert divisor guarded to 1 (no ZeroDivisionError)"
         action: "assert"

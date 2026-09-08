@@ -153,10 +153,14 @@ scenarios:
             type: "value"
             expected: "confirm"
 
-      - step: "Invalidate cache before approve"
-        action: "call"
+      - step: "Assert state confirm before approve (forces cache refresh)"
+        action: "assert"
         target: "budget"
-        method: "invalidate_cache"
+        refresh: true
+        asserts:
+          state:
+            type: "value"
+            expected: "confirm"
 
       - step: "Approve budget (auto-completes to done)"
         action: "call"
@@ -168,14 +172,10 @@ scenarios:
             type: "value"
             expected: "done"
 
-      - step: "Invalidate cache after approve"
-        action: "call"
-        target: "budget"
-        method: "invalidate_cache"
-
       - step: "Assert number generated and not editable placeholder"
         action: "assert"
         target: "budget"
+        refresh: true
         asserts:
           name:
             type: "value"
@@ -232,6 +232,7 @@ scenarios:
             expected: "cancel"
 
   - name: "Assumption Lines Compute Total Student Count"
+    options: {auto_refresh: true}
     steps:
       - step: "Setup - create grade type"
         action: "create"
@@ -327,11 +328,6 @@ scenarios:
           grade_id: "EVAL: registry['grade_3'].id"
           student_count: 30
 
-      - step: "Invalidate cache before assert"
-        action: "call"
-        target: "budget"
-        method: "invalidate_cache"
-
       - step: "Assert total student count is 75"
         action: "assert"
         target: "budget"
@@ -345,11 +341,6 @@ scenarios:
         target: "line_1"
         values:
           student_count: 10
-
-      - step: "Invalidate cache before re-assert"
-        action: "call"
-        target: "budget"
-        method: "invalidate_cache"
 
       - step: "Assert total student count is 65"
         action: "assert"

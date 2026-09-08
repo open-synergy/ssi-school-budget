@@ -1,5 +1,6 @@
 scenarios:
   - name: "Create Analytic Account Idempotent And Auto Assigned On Budget"
+    options: {auto_refresh: true}
     steps:
       - step: "Setup - create grade type"
         action: "create"
@@ -73,11 +74,6 @@ scenarios:
         action: "call"
         target: "branch"
         method: "action_create_analytic_account"
-
-      - step: "Invalidate cache after second call"
-        action: "call"
-        target: "branch"
-        method: "invalidate_cache"
 
       - step: "Assert branch still points to the same analytic account"
         action: "search"

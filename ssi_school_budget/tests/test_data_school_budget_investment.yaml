@@ -1,5 +1,6 @@
 scenarios:
   - name: "Investment Depreciation Start Month 1"
+    options: {auto_refresh: true}
     steps:
       - step: "Setup - create grade type"
         action: "create"
@@ -113,11 +114,6 @@ scenarios:
           dep_current_year:
             type: "value"
             expected: 30000000.0
-
-      - step: "Invalidate cache before totals assert"
-        action: "call"
-        target: "budget"
-        method: "invalidate_cache"
 
       - step: "Assert budget total depreciation"
         action: "assert"

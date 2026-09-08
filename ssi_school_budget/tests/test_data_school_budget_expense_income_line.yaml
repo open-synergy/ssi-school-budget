@@ -1,5 +1,6 @@
 scenarios:
   - name: "Expense Line Computes Amount Total And Budget Totals"
+    options: {auto_refresh: true}
     steps:
       - step: "Setup - create grade type"
         action: "create"
@@ -111,11 +112,6 @@ scenarios:
           line_number: 1
           foundation: 5000000
           bos: 1000000
-
-      - step: "Invalidate cache before assert budget totals"
-        action: "call"
-        target: "budget"
-        method: "invalidate_cache"
 
       - step: "Assert budget totals"
         action: "assert"
