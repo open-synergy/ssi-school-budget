@@ -35,6 +35,12 @@ class ResCompany(models.Model):
 
     @api.constrains("school_analytic_account_id")
     def _check_school_analytic_account_unique(self):
+        """Reject an analytic account already used elsewhere.
+
+        Checks against other companies, branches, and school units.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_school_analytic_account_unique_condition():
                 error_message = (
@@ -55,6 +61,11 @@ Solution: Select an Analytic Account that is not used elsewhere
                 raise ValidationError(error_message)
 
     def _check_school_analytic_account_unique_condition(self):
+        """Return whether ``school_analytic_account_id`` is unique.
+
+        :return: ``True`` when no other company, branch, or school
+            uses the same analytic account
+        """
         self.ensure_one()
         if not self.school_analytic_account_id:
             return True
