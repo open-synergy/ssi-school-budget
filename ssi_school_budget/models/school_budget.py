@@ -544,6 +544,12 @@ class SchoolBudget(models.Model):
         return ancestors
 
     def _find_ancestor_budget(self, org_type, branch_id=None):
+        """Return the first non-cancelled ancestor budget, if any.
+
+        :param org_type: ``branch`` or ``center``
+        :param branch_id: restrict the search to this branch
+        :return: recordset of at most one ``school_budget``
+        """
         self.ensure_one()
         domain = [
             ("org_type", "=", org_type),
@@ -1428,6 +1434,12 @@ Solution: Edit the existing budget instead of creating a duplicate
         self._generate_comparative_result()
 
     def _generate_income_result(self):
+        """Build income_result_ids rows from the simulated/manual vals.
+
+        Called by ``action_simulate()``; combines the UP/US
+        simulation, BOS, manual, subsidy, and (for branch/center)
+        contribution helper vals into one batch ``create``.
+        """
         self.ensure_one()
         result_model = self.env["school_budget_income_result"]
         vals_list = []
@@ -1611,6 +1623,11 @@ Solution: Edit the existing budget instead of creating a duplicate
         return vals_list
 
     def _generate_expense_result(self):
+        """Build expense_result_ids rows from the own/subsidy vals.
+
+        Called by ``action_simulate()``; adds allocated-cost vals
+        for unit budgets with ``include_parent_allocation`` enabled.
+        """
         self.ensure_one()
         result_model = self.env["school_budget_expense_result"]
         vals_list = []
@@ -1938,6 +1955,11 @@ Solution: Edit the existing budget instead of creating a duplicate
     )
 
     def _generate_allocation_result(self):
+        """Build allocation_result_ids from each child's contribution.
+
+        Only populated for branch/center budgets; one row per
+        contributing unit under ``contribution_allocation_ids``.
+        """
         self.ensure_one()
         if self.org_type not in ("branch", "center"):
             return
@@ -1972,6 +1994,12 @@ Solution: Edit the existing budget instead of creating a duplicate
         return self + self.search(domain)
 
     def _generate_comparative_result(self):
+        """Build comparative_result_ids for self vs. descendant units.
+
+        Only populated for branch/center budgets; one row per
+        target from ``_get_comparative_targets()``, comparing
+        revenue/expense/surplus with and without parent allocation.
+        """
         self.ensure_one()
         if self.org_type not in ("branch", "center"):
             return
@@ -2250,6 +2278,11 @@ analytic account
         self._generate_income_comparison()
 
     def _generate_expense_realization(self):
+        """Build expense_realization_ids from posted journal items.
+
+        One row per (expense category, month) with a non-zero
+        realized amount, via ``_compute_realization_data``.
+        """
         self.ensure_one()
         categories = (
             self.env["school_budget_expense_category"]
@@ -2270,6 +2303,11 @@ analytic account
             self.env["school_budget_expense_realization"].create(vals_list)
 
     def _generate_income_realization(self):
+        """Build income_realization_ids from posted journal items.
+
+        One row per (income category, month) with a non-zero
+        realized amount, via ``_compute_realization_data``.
+        """
         self.ensure_one()
         categories = (
             self.env["school_budget_income_category"]
@@ -2390,6 +2428,12 @@ analytic account
         return (today.year - start.year) * 12 + (today.month - start.month) + 1
 
     def _generate_expense_comparison(self):
+        """Build expense_comparison_ids (budget vs. actual, by category).
+
+        One row per expense category present in either
+        ``expense_line_ids`` or ``expense_realization_ids``, with
+        variance and absorption rate.
+        """
         self.ensure_one()
         current_month = self._get_current_month_index()
         categories = self.expense_line_ids.mapped(
@@ -2429,6 +2473,12 @@ analytic account
             self.env["school_budget_expense_comparison"].create(vals_list)
 
     def _generate_income_comparison(self):
+        """Build income_comparison_ids (budget vs. actual, by category).
+
+        One row per income category present in either
+        ``income_result_ids`` or ``income_realization_ids``, with
+        variance and absorption rate.
+        """
         self.ensure_one()
         current_month = self._get_current_month_index()
         categories = self.income_result_ids.mapped(
