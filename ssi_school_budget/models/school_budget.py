@@ -566,10 +566,21 @@ class SchoolBudget(models.Model):
         return self.search(domain, limit=1)
 
     def action_sync_contribution_allocation(self):
+        """Sync contribution allocation rows for each record.
+
+        Button action layer; delegates to
+        ``_sync_contribution_allocation()`` per record.
+        """
         for record in self.sudo():
             record._sync_contribution_allocation()
 
     def _sync_contribution_allocation(self):
+        """Create/update contribution_allocation_ids from descendants.
+
+        One row per descendant unit budget
+        (``_get_descendant_unit_budgets``), updating student counts
+        on existing rows and creating rows for new units.
+        """
         self.ensure_one()
         allocation_model = self.env["school_budget_contribution_allocation"]
         for child in self._get_descendant_unit_budgets():
@@ -1474,10 +1485,21 @@ Solution: Edit the existing budget instead of creating a duplicate
         return setoran_up, setoran_us
 
     def action_simulate(self):
+        """Recompute the simulation result tabs for each record.
+
+        Button action layer; delegates to ``_simulate()`` per
+        record.
+        """
         for record in self.sudo():
             record._simulate()
 
     def _simulate(self):
+        """Rebuild income/expense/allocation/comparative result rows.
+
+        Deletes and regenerates ``income_result_ids``,
+        ``expense_result_ids``, ``allocation_result_ids``, and
+        ``comparative_result_ids`` from the current UP/US simulation.
+        """
         self.ensure_one()
         self.income_result_ids.unlink()
         self.expense_result_ids.unlink()
@@ -2391,6 +2413,11 @@ analytic account
         return result
 
     def action_compute_realization(self):
+        """Recompute the realization tabs for each record.
+
+        Button action layer; delegates to
+        ``_compute_realization()`` per record.
+        """
         for record in self.sudo():
             record._compute_realization()
 
