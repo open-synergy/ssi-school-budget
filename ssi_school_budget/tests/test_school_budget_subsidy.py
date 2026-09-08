@@ -11,10 +11,20 @@ from odoo.tests import tagged
 
 @tagged("post_install", "-at_install")
 class TestSchoolBudgetSubsidy(YamlTransactionCase):
+    """YAML scenario and Python constraint tests for subsidies."""
+
     def test_school_budget_subsidy(self):
+        """Run the school_budget_subsidy YAML scenario."""
         self.run_yaml_scenario("test_data_school_budget_subsidy.yaml")
 
     def _setup_two_branches(self, suffix):
+        """Create two branches, each with a unit, plus a center budget.
+
+        :param suffix: unique suffix appended to fixture names/codes
+        :return: dict with keys ``budget_center``, ``budget_branch_a``,
+            ``budget_unit_a``, ``budget_unit_b``, ``expense_category``,
+            and ``income_category``
+        """
         grade_type = self.env["school_grade_type"].create(
             {
                 "name": "Grade Type Subsidy Constrain %s" % suffix,

@@ -11,10 +11,18 @@ from odoo.tests import tagged
 
 @tagged("post_install", "-at_install")
 class TestSchoolBudgetExpenseIncomeLine(YamlTransactionCase):
+    """YAML scenario and Python constraint tests for expense/income lines."""
+
     def test_school_budget_expense_income_line(self):
+        """Run the school_budget_expense_income_line YAML scenario."""
         self.run_yaml_scenario("test_data_school_budget_expense_income_line.yaml")
 
     def _setup_budget(self, suffix):
+        """Create a grade type, school, academic year, and budget fixture.
+
+        :param suffix: unique suffix appended to fixture names/codes
+        :return: tuple ``(grade_type, school, budget)``
+        """
         grade_type = self.env["school_grade_type"].create(
             {
                 "name": "Grade Type Line Constrain %s" % suffix,

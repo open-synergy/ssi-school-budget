@@ -10,7 +10,10 @@ from odoo.tests import tagged
 
 @tagged("post_install", "-at_install")
 class TestSchoolBudgetCategory(YamlTransactionCase):
+    """YAML scenario and Python constraint tests for categories."""
+
     def test_school_budget_category(self):
+        """Run the school_budget_category YAML scenario."""
         self.run_yaml_scenario("test_data_school_budget_category.yaml")
 
     def test_constrain_direct_income_without_target_blocks_create(self):

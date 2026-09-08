@@ -11,10 +11,22 @@ from odoo.tests import tagged
 
 @tagged("post_install", "-at_install")
 class TestSchoolBudgetAllocation(YamlTransactionCase):
+    """YAML scenario and Python constraint tests for allocation."""
+
     def test_school_budget_allocation(self):
+        """Run the school_budget_allocation YAML scenario."""
         self.run_yaml_scenario("test_data_school_budget_allocation.yaml")
 
     def _setup_budgets(self, suffix):
+        """Create a unit budget and two center budgets fixture.
+
+        The two center budgets belong to different academic years,
+        so tests can probe cross-year rejection.
+
+        :param suffix: unique suffix appended to fixture names/codes
+        :return: tuple ``(unit_budget, center_budget,
+            center_budget_other_year)``
+        """
         grade_type = self.env["school_grade_type"].create(
             {
                 "name": "Grade Type Alloc Constrain %s" % suffix,

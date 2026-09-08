@@ -10,7 +10,10 @@ from odoo.tests import tagged
 
 @tagged("post_install", "-at_install")
 class TestSchoolBudgetAnalyticAccount(YamlTransactionCase):
+    """YAML scenario and Python constraint tests for analytic account."""
+
     def test_school_budget_analytic_account(self):
+        """Run the school_budget_analytic_account YAML scenario."""
         self.run_yaml_scenario("test_data_school_budget_analytic_account.yaml")
 
     def test_constrain_analytic_account_reused_by_other_unit_blocks_write(self):
