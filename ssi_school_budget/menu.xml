@@ -4,23 +4,17 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 <menuitem
-        id="menu_school_budget_root"
-        name="School Budget"
-        web_icon="ssi_school_budget,static/description/icon.png"
-    />
-
-<menuitem
         id="menu_school_budget_budget"
         name="Budget"
-        parent="menu_school_budget_root"
-        sequence="100"
+        parent="ssi_school.menu_school_root"
+        sequence="70"
     />
 
 <menuitem
         id="menu_school_budget_configuration"
-        name="Configuration"
-        parent="menu_school_budget_root"
-        sequence="990"
+        name="Budget"
+        parent="ssi_school.menu_school_configuration"
+        sequence="999"
     />
 
 </odoo>

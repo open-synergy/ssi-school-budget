@@ -537,7 +537,7 @@
 <menuitem
         id="school_budget_expense_realization_menu"
         name="Expense Realization"
-        parent="menu_school_budget_root"
+        parent="ssi_school.menu_school_report"
         action="school_budget_expense_realization_action"
         groups="school_budget_viewer_group"
         sequence="900"
@@ -564,7 +564,7 @@
 <menuitem
         id="school_budget_income_realization_menu"
         name="Income Realization"
-        parent="menu_school_budget_root"
+        parent="ssi_school.menu_school_report"
         action="school_budget_income_realization_action"
         groups="school_budget_viewer_group"
         sequence="910"
