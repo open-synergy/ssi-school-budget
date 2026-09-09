@@ -122,8 +122,7 @@ scenarios:
         model: "school_budget_assumption_line"
         expect_error:
           type: "ValidationError"
-          message_contains:
-            "Student assumption lines are only allowed when Organization"
+          message_contains: "budget's Organization Type is Unit"
         values:
           budget_id: "EVAL: registry['budget_center_neg'].id"
           grade_id: "EVAL: registry['grade_neg'].id"
