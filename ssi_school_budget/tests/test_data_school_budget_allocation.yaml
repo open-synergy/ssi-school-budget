@@ -374,6 +374,7 @@ scenarios:
         model: "school_budget_parent_expense_allocation"
         expect_error:
           type: "ValidationError"
+          message_contains: "Parent expense allocations are only allowed on branch or"
         values:
           budget_id: "EVAL: registry['budget_unit_neg'].id"
           expense_category_id: "EVAL: registry['expense_category'].id"
@@ -383,8 +384,144 @@ scenarios:
         model: "school_budget_contribution_allocation"
         expect_error:
           type: "ValidationError"
+          message_contains: "Invalid parent/child organization type"
         values:
           parent_budget_id: "EVAL: registry['budget_branch'].id"
           child_budget_id: "EVAL: registry['budget_unit_neg'].id"
           is_pct_up_overridden: true
           override_pct_up: 1.5
+
+  - name: "Contribution Allocation Rejects Invalid Parent Type And Cross-Year Child"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type Alloc 4"
+          code: "GTA4"
+          sequence: 10
+
+      - step: "Setup - create school"
+        action: "create"
+        model: "school"
+        save_as: "school"
+        values:
+          name: "School Alloc 4"
+          code: "SCHA4"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create academic year A"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year_a"
+        values:
+          name: "Year Alloc 4 A"
+          code: "AYA4A"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Setup - create academic year B"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year_b"
+        values:
+          name: "Year Alloc 4 B"
+          code: "AYA4B"
+          date_start: "2026-07-01"
+          date_end: "2027-06-30"
+
+      - step: "Create unit budget (year A)"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_unit"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year_a'].id"
+
+      - step: "Create center budget (year B)"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_center_b"
+        values:
+          org_type: "center"
+          academic_year_id: "EVAL: registry['academic_year_b'].id"
+
+      - step: "A contribution allocation whose parent is a unit budget must be rejected"
+        action: "create"
+        model: "school_budget_contribution_allocation"
+        expect_error:
+          type: "ValidationError"
+          message_contains: "Invalid parent/child organization type"
+        values:
+          parent_budget_id: "EVAL: registry['budget_unit'].id"
+          child_budget_id: "EVAL: registry['budget_unit'].id"
+
+      - step:
+          "A contribution allocation with parent/child in different academic years must
+          be rejected"
+        action: "create"
+        model: "school_budget_contribution_allocation"
+        expect_error:
+          type: "ValidationError"
+          message_contains: "Invalid parent/child organization type"
+        values:
+          parent_budget_id: "EVAL: registry['budget_center_b'].id"
+          child_budget_id: "EVAL: registry['budget_unit'].id"
+
+  - name: "Parent Expense Allocation Rejects Duplicate Category"
+    steps:
+      - step: "Setup - create branch"
+        action: "create"
+        model: "school_branch"
+        save_as: "branch"
+        values:
+          name: "Branch Alloc 5"
+          code: "BRA5"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Alloc 5"
+          code: "AYA5"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Setup - create expense category"
+        action: "create"
+        model: "school_budget_expense_category"
+        save_as: "expense_category"
+        values:
+          name: "Expense Alloc 5"
+          code: "5110.55"
+
+      - step: "Create branch budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_branch"
+        values:
+          org_type: "branch"
+          branch_id: "EVAL: registry['branch'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Create first parent expense allocation"
+        action: "create"
+        model: "school_budget_parent_expense_allocation"
+        save_as: "pea_first"
+        values:
+          budget_id: "EVAL: registry['budget_branch'].id"
+          expense_category_id: "EVAL: registry['expense_category'].id"
+
+      - step:
+          "A second allocation for the same category on the same budget must be rejected"
+        action: "create"
+        model: "school_budget_parent_expense_allocation"
+        expect_error:
+          type: "ValidationError"
+          message_contains: "Only one allocation setting is allowed per expense"
+        values:
+          budget_id: "EVAL: registry['budget_branch'].id"
+          expense_category_id: "EVAL: registry['expense_category'].id"
