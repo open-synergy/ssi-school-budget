@@ -2,7 +2,8 @@
 # Copyright 2026 PT. Simetri Sinergi Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class SchoolBudgetExpenseGradeAllocation(models.Model):
@@ -44,11 +45,43 @@ class SchoolBudgetExpenseGradeAllocation(models.Model):
         compute_sudo=True,
     )
 
-    _sql_constraints = [
-        (
-            "unique_line_grade",
-            "unique(line_id, grade_id)",
-            "Only one grade allocation is allowed per grade on the "
-            "same expense line.",
-        ),
-    ]
+    @api.constrains("line_id", "grade_id")
+    def _check_unique_line_grade(self):
+        """Reject a duplicate grade on the same expense line.
+
+        Replaces the former ``_sql_constraints`` entry so the
+        error is raised as ``ValidationError`` instead of a
+        raw ``IntegrityError``.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
+        for record in self.sudo():
+            if not record._check_unique_line_grade_condition():
+                error_message = (
+                    _(
+                        """
+Context: Save school budget expense grade allocation
+Database ID: %s
+Problem: Only one grade allocation is allowed per grade on the
+same expense line
+Solution: Edit the existing allocation instead of creating a
+duplicate
+"""
+                    )
+                    % (record.id,)
+                )
+                raise ValidationError(error_message)
+
+    def _check_unique_line_grade_condition(self):
+        """Return whether the unique key still holds.
+
+        :return: ``True`` when no other record shares the
+            same key
+        """
+        self.ensure_one()
+        domain = [
+            ("id", "!=", self.id),
+            ("line_id", "=", self.line_id.id),
+            ("grade_id", "=", self.grade_id.id),
+        ]
+        return self.search_count(domain) == 0

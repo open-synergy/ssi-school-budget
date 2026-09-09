@@ -100,6 +100,11 @@ class SchoolBudgetInvestment(models.Model):
 
     @api.depends("purchase_price", "useful_life", "start_month")
     def _compute_depreciation(self):
+        """Straight-line depreciation, prorated for the start month.
+
+        Fills ``dep_per_year``, ``dep_current_year`` (prorated by
+        ``13 - start_month`` over 12 months), and ``end_book_value``.
+        """
         for record in self:
             if record.useful_life and record.useful_life > 0:
                 dep_per_year = record.purchase_price / record.useful_life
@@ -112,12 +117,16 @@ class SchoolBudgetInvestment(models.Model):
             record.end_book_value = record.purchase_price - dep_current_year
 
     @api.onchange("investment_category_id")
-    def _onchange_useful_life(self):
+    def onchange_useful_life(self):
         if self.investment_category_id and not self.useful_life:
             self.useful_life = self.investment_category_id.default_economic_life
 
     @api.constrains("purchase_price", "useful_life", "start_month")
     def _check_investment_values(self):
+        """Reject invalid purchase price, useful life, or start month.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_investment_values_condition():
                 error_message = (
@@ -135,6 +144,11 @@ Solution: Correct the values
                 raise ValidationError(error_message)
 
     def _check_investment_values_condition(self):
+        """Return whether purchase price/useful life/start month are valid.
+
+        :return: ``True`` when ``purchase_price`` > 0, ``useful_life``
+            >= 1, and ``start_month`` is between 1 and 12
+        """
         self.ensure_one()
         return (
             self.purchase_price > 0

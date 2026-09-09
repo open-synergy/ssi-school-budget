@@ -14,3 +14,7 @@ from . import test_school_budget_summary
 from . import test_school_budget_e2e
 from . import test_school_budget_analytic_account
 from . import test_school_budget_realization
+from . import test_ui_school_budget
+from . import test_ui_school_budget_income_category
+from . import test_ui_school_budget_expense_category
+from . import test_ui_school_budget_investment_category

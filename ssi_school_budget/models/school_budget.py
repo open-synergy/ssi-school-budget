@@ -358,6 +358,11 @@ class SchoolBudget(models.Model):
         "expense_line_ids.amount_total",
     )
     def _compute_total_expense(self):
+        """Sum expense line amounts into the expense totals.
+
+        Fills ``total_expense_foundation``, ``total_expense_bos``,
+        and ``total_expense`` from ``expense_line_ids``.
+        """
         for record in self:
             record.total_expense_foundation = sum(
                 record.expense_line_ids.mapped("foundation")
@@ -367,6 +372,7 @@ class SchoolBudget(models.Model):
 
     @api.depends("income_line_ids.amount")
     def _compute_total_income_manual(self):
+        """Sum ``income_line_ids.amount`` into total_income_manual."""
         for record in self:
             record.total_income_manual = sum(record.income_line_ids.mapped("amount"))
 
@@ -472,6 +478,12 @@ class SchoolBudget(models.Model):
         "financial_investment_ids.amount",
     )
     def _compute_total_depreciation(self):
+        """Sum new-investment and old-asset depreciation totals.
+
+        Fills ``total_new_investment_dep``, ``total_old_asset_dep``,
+        ``total_depreciation``, ``total_physical_investment``, and
+        ``total_financial_investment``.
+        """
         for record in self:
             record.total_new_investment_dep = sum(
                 record.investment_ids.mapped("dep_current_year")
@@ -521,6 +533,10 @@ class SchoolBudget(models.Model):
     )
 
     def _get_ancestor_budgets(self):
+        """Return this budget's branch and/or center ancestors.
+
+        :return: recordset of ``school_budget`` ancestors
+        """
         self.ensure_one()
         ancestors = self.env["school_budget"]
         if self.org_type == "unit" and self.branch_id:
@@ -532,6 +548,12 @@ class SchoolBudget(models.Model):
         return ancestors
 
     def _find_ancestor_budget(self, org_type, branch_id=None):
+        """Return the first non-cancelled ancestor budget, if any.
+
+        :param org_type: ``branch`` or ``center``
+        :param branch_id: restrict the search to this branch
+        :return: recordset of at most one ``school_budget``
+        """
         self.ensure_one()
         domain = [
             ("org_type", "=", org_type),
@@ -544,10 +566,21 @@ class SchoolBudget(models.Model):
         return self.search(domain, limit=1)
 
     def action_sync_contribution_allocation(self):
+        """Sync contribution allocation rows for each record.
+
+        Button action layer; delegates to
+        ``_sync_contribution_allocation()`` per record.
+        """
         for record in self.sudo():
             record._sync_contribution_allocation()
 
     def _sync_contribution_allocation(self):
+        """Create/update contribution_allocation_ids from descendants.
+
+        One row per descendant unit budget
+        (``_get_descendant_unit_budgets``), updating student counts
+        on existing rows and creating rows for new units.
+        """
         self.ensure_one()
         allocation_model = self.env["school_budget_contribution_allocation"]
         for child in self._get_descendant_unit_budgets():
@@ -570,6 +603,13 @@ class SchoolBudget(models.Model):
                 )
 
     def _get_descendant_unit_budgets(self):
+        """Return the unit budgets contributing to this budget.
+
+        Branch budgets return units under the same branch; center
+        budgets return every unit in the academic year/company.
+
+        :return: recordset of ``school_budget`` (org_type=unit)
+        """
         self.ensure_one()
         domain = [
             ("org_type", "=", "unit"),
@@ -615,6 +655,7 @@ class SchoolBudget(models.Model):
 
     @api.depends("assumption_line_ids.student_count")
     def _compute_total_student_count(self):
+        """Sum ``assumption_line_ids.student_count``."""
         for record in self:
             record.total_student_count = sum(
                 record.assumption_line_ids.mapped("student_count")
@@ -622,6 +663,11 @@ class SchoolBudget(models.Model):
 
     @api.depends("org_type", "school_id", "school_id.branch_id")
     def _compute_branch_id(self):
+        """Derive ``branch_id`` from the organization type.
+
+        Unit budgets take the school's branch; center budgets have
+        no branch; branch budgets keep the user-selected value.
+        """
         for record in self:
             if record.org_type == "unit":
                 record.branch_id = record.school_id.branch_id
@@ -633,6 +679,7 @@ class SchoolBudget(models.Model):
 
     @api.depends("academic_year_id", "academic_year_id.date_start")
     def _compute_fiscal_year(self):
+        """Derive the fiscal year from the academic year's start date."""
         for record in self:
             record.fiscal_year = (
                 record.academic_year_id.date_start.year
@@ -641,12 +688,18 @@ class SchoolBudget(models.Model):
             )
 
     @api.onchange("org_type")
-    def _onchange_org_type(self):
+    def onchange_school_id(self):
         if self.org_type != "unit":
             self.school_id = False
 
     @api.onchange("school_id")
-    def _onchange_assumption_line_ids(self):
+    def onchange_assumption_line_ids(self):
+        """Seed ``assumption_line_ids`` with the school's grades.
+
+        Adds one new (unsaved) assumption line per grade of
+        ``school_id.grade_type_id`` that does not already have a
+        line, leaving existing lines untouched.
+        """
         if not self.school_id or not self.school_id.grade_type_id:
             return
         existing_grade_ids = self.assumption_line_ids.mapped("grade_id").ids
@@ -661,6 +714,10 @@ class SchoolBudget(models.Model):
 
     @api.constrains("new_student_count", "returning_student_count", "staff_count")
     def _check_assumption_counts(self):
+        """Reject negative student/staff counts.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_assumption_counts_condition():
                 error_message = (
@@ -678,6 +735,12 @@ Solution: Enter zero or a positive number
                 raise ValidationError(error_message)
 
     def _check_assumption_counts_condition(self):
+        """Return whether the assumption counts are non-negative.
+
+        :return: ``True`` when ``new_student_count``,
+            ``returning_student_count``, and ``staff_count`` are all
+            >= 0
+        """
         self.ensure_one()
         return (
             self.new_student_count >= 0
@@ -687,6 +750,10 @@ Solution: Enter zero or a positive number
 
     @api.constrains("org_type", "assumption_line_ids")
     def _check_assumption_org_type(self):
+        """Reject assumption lines on a non-unit budget.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_assumption_org_type_condition():
                 error_message = (
@@ -705,6 +772,11 @@ to Unit
                 raise ValidationError(error_message)
 
     def _check_assumption_org_type_condition(self):
+        """Return whether assumption_line_ids matches org_type.
+
+        :return: ``True`` when ``org_type`` is ``unit``, or when it
+            is not ``unit`` and ``assumption_line_ids`` is empty
+        """
         self.ensure_one()
         if self.org_type == "unit":
             return True
@@ -712,6 +784,10 @@ to Unit
 
     @api.constrains("org_type", "school_id", "branch_id")
     def _check_organization(self):
+        """Reject organization fields that do not match org_type.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_organization_condition():
                 error_message = (
@@ -732,6 +808,12 @@ School); Center requires neither School nor Branch to be set
                 raise ValidationError(error_message)
 
     def _check_organization_condition(self):
+        """Return whether school_id/branch_id match org_type.
+
+        :return: ``True`` when unit has ``school_id``, branch has
+            ``branch_id`` without ``school_id``, or center has
+            neither
+        """
         self.ensure_one()
         if self.org_type == "unit":
             return bool(self.school_id)
@@ -744,6 +826,10 @@ School); Center requires neither School nor Branch to be set
         "org_type", "school_id", "branch_id", "company_id", "academic_year_id"
     )
     def _check_unique_budget(self):
+        """Reject a duplicate budget for the same org/year.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_unique_budget_condition():
                 error_message = (
@@ -761,6 +847,14 @@ Solution: Edit the existing budget instead of creating a duplicate
                 raise ValidationError(error_message)
 
     def _check_unique_budget_condition(self):
+        """Return whether this budget is unique for its org/year.
+
+        A cancelled budget does not count as a duplicate, so a new
+        one may be created in its place.
+
+        :return: ``True`` when no other non-cancelled budget shares
+            the same organization, company, and academic year
+        """
         self.ensure_one()
         domain = [
             ("id", "!=", self.id),
@@ -982,6 +1076,12 @@ Solution: Edit the existing budget instead of creating a duplicate
     )
 
     def _get_pct_from_ancestor(self, ancestor_budget):
+        """Return this unit's (pct_up, pct_us) under ``ancestor_budget``.
+
+        :param ancestor_budget: the branch/center ``school_budget``
+        :return: tuple ``(pct_up, pct_us)``, ``(0.0, 0.0)`` when no
+            contribution allocation links the two
+        """
         self.ensure_one()
         allocation = self.env["school_budget_contribution_allocation"].search(
             [
@@ -995,6 +1095,14 @@ Solution: Edit the existing budget instead of creating a duplicate
         return allocation.pct_up, allocation.pct_us
 
     def _get_allocated_components_from_ancestor(self, ancestor_budget):
+        """Return this unit's share of ancestor's push-down costs.
+
+        Splits each active ``parent_expense_allocation_ids`` category
+        of ``ancestor_budget`` by this unit's pct_up/pct_us.
+
+        :param ancestor_budget: the branch/center ``school_budget``
+        :return: tuple ``(allocated_up, allocated_us)``
+        """
         self.ensure_one()
         pct_up, pct_us = self._get_pct_from_ancestor(ancestor_budget)
         allocated_up = 0.0
@@ -1012,6 +1120,15 @@ Solution: Edit the existing budget instead of creating a duplicate
         return allocated_up, allocated_us
 
     def _get_allocated_dep_from_ancestor(self, ancestor_budget):
+        """Return this unit's share of ancestor's depreciation/investment.
+
+        Uses pct_up only, applied to the ancestor's new-investment
+        depreciation, old-asset depreciation, and financial
+        investment totals.
+
+        :param ancestor_budget: the branch/center ``school_budget``
+        :return: tuple ``(dep_new, dep_old, fin_inv)``
+        """
         self.ensure_one()
         pct_up, _pct_us = self._get_pct_from_ancestor(ancestor_budget)
         dep_new = pct_up * ancestor_budget.total_new_investment_dep
@@ -1020,6 +1137,19 @@ Solution: Edit the existing budget instead of creating a duplicate
         return dep_new, dep_old, fin_inv
 
     def _get_parent_allocated_components(self, include_parent_allocation=None):
+        """Sum allocated cost/depreciation components from ancestors.
+
+        Split by ancestor level (branch vs. center) into a single
+        dict, or all-zero when ``include_parent_allocation`` is
+        false.
+
+        :param include_parent_allocation: overrides
+            ``self.include_parent_allocation`` when given
+        :return: dict of ``up_branch``/``up_center``/``us_branch``/
+            ``us_center``/``dep_new_branch``/``dep_new_center``/
+            ``dep_old_branch``/``dep_old_center``/
+            ``fin_inv_branch``/``fin_inv_center``
+        """
         self.ensure_one()
         if include_parent_allocation is None:
             include_parent_allocation = self.include_parent_allocation
@@ -1179,6 +1309,12 @@ Solution: Edit the existing budget instead of creating a duplicate
         "override_up_rate",
     )
     def _compute_up_simulation(self):
+        """Fill the UP (Uang Pangkal) simulation result fields.
+
+        Delegates the actual math to
+        ``_compute_up_us_values(include_parent_allocation)`` and
+        copies the UP-specific keys onto this record.
+        """
         up_fields = [
             "total_own_up_cost",
             "allocated_up_branch",
@@ -1217,6 +1353,12 @@ Solution: Edit the existing budget instead of creating a duplicate
         "override_us_rate",
     )
     def _compute_us_simulation(self):
+        """Fill the US (Uang Sekolah) simulation result fields.
+
+        Delegates the actual math to
+        ``_compute_up_us_values(include_parent_allocation)`` and
+        copies the US-specific keys onto this record.
+        """
         us_fields = [
             "total_own_us_cost",
             "allocated_us_branch",
@@ -1288,6 +1430,11 @@ Solution: Edit the existing budget instead of creating a duplicate
 
     @api.depends("income_result_ids.amount", "income_result_ids.auto_amount")
     def _compute_total_income_result(self):
+        """Sum income_result_ids into the income result totals.
+
+        Fills ``total_income_result`` and
+        ``total_income_result_auto``.
+        """
         for record in self:
             record.total_income_result = sum(record.income_result_ids.mapped("amount"))
             record.total_income_result_auto = sum(
@@ -1296,6 +1443,12 @@ Solution: Edit the existing budget instead of creating a duplicate
 
     @api.depends("expense_result_ids.amount_total", "expense_result_ids.expense_group")
     def _compute_total_expense_result(self):
+        """Split expense_result_ids into operational/non-operational.
+
+        Fills ``total_expense_operational``,
+        ``total_expense_non_operational``, and
+        ``total_expense_result``.
+        """
         for record in self:
             operational = record.expense_result_ids.filtered(
                 lambda r: r.expense_group == "operational"
@@ -1312,6 +1465,14 @@ Solution: Edit the existing budget instead of creating a duplicate
             )
 
     def _get_unit_setoran_to_ancestor(self, ancestor_budget):
+        """Return this unit's total UP/US contribution to an ancestor.
+
+        Combines allocated cost with allocated depreciation/
+        investment (UP side only).
+
+        :param ancestor_budget: the branch/center ``school_budget``
+        :return: tuple ``(setoran_up, setoran_us)``
+        """
         self.ensure_one()
         allocated_up, allocated_us = self._get_allocated_components_from_ancestor(
             ancestor_budget
@@ -1324,10 +1485,21 @@ Solution: Edit the existing budget instead of creating a duplicate
         return setoran_up, setoran_us
 
     def action_simulate(self):
+        """Recompute the simulation result tabs for each record.
+
+        Button action layer; delegates to ``_simulate()`` per
+        record.
+        """
         for record in self.sudo():
             record._simulate()
 
     def _simulate(self):
+        """Rebuild income/expense/allocation/comparative result rows.
+
+        Deletes and regenerates ``income_result_ids``,
+        ``expense_result_ids``, ``allocation_result_ids``, and
+        ``comparative_result_ids`` from the current UP/US simulation.
+        """
         self.ensure_one()
         self.income_result_ids.unlink()
         self.expense_result_ids.unlink()
@@ -1339,6 +1511,12 @@ Solution: Edit the existing budget instead of creating a duplicate
         self._generate_comparative_result()
 
     def _generate_income_result(self):
+        """Build income_result_ids rows from the simulated/manual vals.
+
+        Called by ``action_simulate()``; combines the UP/US
+        simulation, BOS, manual, subsidy, and (for branch/center)
+        contribution helper vals into one batch ``create``.
+        """
         self.ensure_one()
         result_model = self.env["school_budget_income_result"]
         vals_list = []
@@ -1355,6 +1533,13 @@ Solution: Edit the existing budget instead of creating a duplicate
             result_model.create(vals_list)
 
     def _get_income_result_simulated_up_vals(self):
+        """Return income_result vals sourced from the UP simulation.
+
+        One row per income category with ``calc_method ==
+        "simulated_up"``, amount from ``total_up_revenue``.
+
+        :return: list of value dicts for ``school_budget_income_result``
+        """
         self.ensure_one()
         categories = self.env["school_budget_income_category"].search(
             [("calc_method", "=", "simulated_up")]
@@ -1373,6 +1558,13 @@ Solution: Edit the existing budget instead of creating a duplicate
         ]
 
     def _get_income_result_simulated_us_vals(self):
+        """Return income_result vals sourced from the US simulation.
+
+        One row per income category with ``calc_method ==
+        "simulated_us"``, amount from ``total_us_revenue``.
+
+        :return: list of value dicts for ``school_budget_income_result``
+        """
         self.ensure_one()
         categories = self.env["school_budget_income_category"].search(
             [("calc_method", "=", "simulated_us")]
@@ -1391,6 +1583,15 @@ Solution: Edit the existing budget instead of creating a duplicate
         ]
 
     def _get_income_result_direct_income_vals(self):
+        """Return income_result vals from direct-income expense lines.
+
+        For each direct-income expense category, the auto amount is
+        the sum of ``foundation`` (or the grade allocation total when
+        the target income category is grade-based); a matching
+        ``direct_income_override_ids`` row replaces it.
+
+        :return: list of value dicts for ``school_budget_income_result``
+        """
         self.ensure_one()
         vals_list = []
         direct_categories = self.expense_line_ids.mapped(
@@ -1424,6 +1625,14 @@ Solution: Edit the existing budget instead of creating a duplicate
         return vals_list
 
     def _get_income_result_bos_vals(self):
+        """Return income_result vals summing BOS across lines/investments.
+
+        One row per income category with ``calc_method ==
+        "sum_from_bos"``, amount = sum of ``expense_line_ids.bos``
+        plus ``investment_ids.bos``.
+
+        :return: list of value dicts for ``school_budget_income_result``
+        """
         self.ensure_one()
         categories = self.env["school_budget_income_category"].search(
             [("calc_method", "=", "sum_from_bos")]
@@ -1447,6 +1656,12 @@ Solution: Edit the existing budget instead of creating a duplicate
         return vals_list
 
     def _get_income_result_manual_vals(self):
+        """Return income_result vals from manually entered income lines.
+
+        One row per income category present in ``income_line_ids``.
+
+        :return: list of value dicts for ``school_budget_income_result``
+        """
         self.ensure_one()
         categories = self.income_line_ids.mapped("income_category_id")
         vals_list = []
@@ -1469,6 +1684,14 @@ Solution: Edit the existing budget instead of creating a duplicate
         return vals_list
 
     def _get_income_result_contribution_vals(self):
+        """Return income_result vals from children's UP/US contributions.
+
+        Two rows per contributing child that has
+        ``include_parent_allocation`` enabled: one for the UP setoran,
+        one for the US setoran (``_get_unit_setoran_to_ancestor``).
+
+        :return: list of value dicts for ``school_budget_income_result``
+        """
         self.ensure_one()
         vals_list = []
         for allocation in self.contribution_allocation_ids:
@@ -1499,6 +1722,13 @@ Solution: Edit the existing budget instead of creating a duplicate
         return vals_list
 
     def _get_income_result_subsidy_vals(self):
+        """Return income_result vals from active received subsidies.
+
+        One row per income category present in
+        ``received_subsidy_ids``.
+
+        :return: list of value dicts for ``school_budget_income_result``
+        """
         self.ensure_one()
         subsidies = self.received_subsidy_ids.filtered("active")
         categories = subsidies.mapped("income_category_id")
@@ -1522,6 +1752,11 @@ Solution: Edit the existing budget instead of creating a duplicate
         return vals_list
 
     def _generate_expense_result(self):
+        """Build expense_result_ids rows from the own/subsidy vals.
+
+        Called by ``action_simulate()``; adds allocated-cost vals
+        for unit budgets with ``include_parent_allocation`` enabled.
+        """
         self.ensure_one()
         result_model = self.env["school_budget_expense_result"]
         vals_list = []
@@ -1533,6 +1768,13 @@ Solution: Edit the existing budget instead of creating a duplicate
             result_model.create(vals_list)
 
     def _get_expense_result_own_vals(self):
+        """Return expense_result vals from this budget's own expense lines.
+
+        One row per expense category present in
+        ``expense_line_ids``.
+
+        :return: list of value dicts for ``school_budget_expense_result``
+        """
         self.ensure_one()
         categories = self.expense_line_ids.mapped("expense_category_id")
         vals_list = []
@@ -1560,6 +1802,12 @@ Solution: Edit the existing budget instead of creating a duplicate
         return vals_list
 
     def _get_expense_result_subsidy_given_vals(self):
+        """Return expense_result vals from active subsidies given.
+
+        One row per expense category present in ``subsidy_ids``.
+
+        :return: list of value dicts for ``school_budget_expense_result``
+        """
         self.ensure_one()
         subsidies = self.subsidy_ids.filtered("active")
         categories = subsidies.mapped("expense_category_id")
@@ -1587,6 +1835,13 @@ Solution: Edit the existing budget instead of creating a duplicate
         return vals_list
 
     def _get_expense_result_allocated_vals(self):
+        """Return expense_result vals from allocated parent components.
+
+        One row per non-zero allocated component (UP cost, US cost,
+        new/old depreciation) split from ancestor budgets.
+
+        :return: list of value dicts for ``school_budget_expense_result``
+        """
         self.ensure_one()
         components = [
             (
@@ -1735,6 +1990,13 @@ Solution: Edit the existing budget instead of creating a duplicate
         "cash_balance",
     )
     def _compute_cash_summary(self):
+        """Derive the cash and accrual budget summary totals.
+
+        Combines income/expense simulation results, investments,
+        depreciation, and the opening cash balance into the
+        cash/accrual revenue, expense, and surplus/deficit fields
+        shown on the Summary tab.
+        """
         for record in self:
             total_cash_revenue = record.total_income_result
             total_cash_revenue_auto = record.total_income_result_auto
@@ -1796,6 +2058,13 @@ Solution: Edit the existing budget instead of creating a duplicate
         "financial_investment_ids.amount",
     )
     def _compute_allocatable_base(self):
+        """Compute the 100% UP/US base before splitting to children.
+
+        Fills ``total_allocatable_base_up`` (own expense lines under
+        ``affects_up`` categories, plus depreciation and financial
+        investment) and ``total_allocatable_base_us`` (own expense
+        lines under non-``affects_up`` categories).
+        """
         for record in self:
             base_up = 0.0
             base_us = 0.0
@@ -1835,6 +2104,11 @@ Solution: Edit the existing budget instead of creating a duplicate
     )
 
     def _generate_allocation_result(self):
+        """Build allocation_result_ids from each child's contribution.
+
+        Only populated for branch/center budgets; one row per
+        contributing unit under ``contribution_allocation_ids``.
+        """
         self.ensure_one()
         if self.org_type not in ("branch", "center"):
             return
@@ -1857,6 +2131,13 @@ Solution: Edit the existing budget instead of creating a duplicate
             result_model.create(vals_list)
 
     def _get_comparative_targets(self):
+        """Return the unit budgets compared against this budget.
+
+        Includes self plus every unit under the same branch/center
+        for the same academic year.
+
+        :return: recordset of ``school_budget``
+        """
         self.ensure_one()
         domain = [
             ("org_type", "=", "unit"),
@@ -1869,6 +2150,12 @@ Solution: Edit the existing budget instead of creating a duplicate
         return self + self.search(domain)
 
     def _generate_comparative_result(self):
+        """Build comparative_result_ids for self vs. descendant units.
+
+        Only populated for branch/center budgets; one row per
+        target from ``_get_comparative_targets()``, comparing
+        revenue/expense/surplus with and without parent allocation.
+        """
         self.ensure_one()
         if self.org_type not in ("branch", "center"):
             return
@@ -1990,6 +2277,11 @@ Solution: Edit the existing budget instead of creating a duplicate
         "company_id.school_analytic_account_id",
     )
     def _compute_analytic_account_id(self):
+        """Derive ``analytic_account_id`` from the organization.
+
+        Unit uses the school's analytic account, branch uses the
+        branch's, center uses the company's.
+        """
         for record in self:
             if record.org_type == "unit":
                 record.analytic_account_id = record.school_id.analytic_account_id
@@ -2002,6 +2294,12 @@ Solution: Edit the existing budget instead of creating a duplicate
 
     @ssi_decorator.pre_confirm_check()
     def _10_check_analytic_account(self):
+        """Block Confirm when the organization has no analytic account.
+
+        Hooked as a ``pre_confirm_check`` via ``ssi_decorator``.
+
+        :raises: :class:`~odoo.exceptions.UserError`
+        """
         self.ensure_one()
         if not self.analytic_account_id:
             error_message = (
@@ -2115,10 +2413,21 @@ analytic account
         return result
 
     def action_compute_realization(self):
+        """Recompute the realization tabs for each record.
+
+        Button action layer; delegates to
+        ``_compute_realization()`` per record.
+        """
         for record in self.sudo():
             record._compute_realization()
 
     def _compute_realization(self):
+        """Rebuild the realization and budget-vs-actual rows.
+
+        Deletes and regenerates ``expense_realization_ids``,
+        ``income_realization_ids``, ``expense_comparison_ids``, and
+        ``income_comparison_ids`` from posted journal items.
+        """
         self.ensure_one()
         self.expense_realization_ids.unlink()
         self.income_realization_ids.unlink()
@@ -2130,6 +2439,11 @@ analytic account
         self._generate_income_comparison()
 
     def _generate_expense_realization(self):
+        """Build expense_realization_ids from posted journal items.
+
+        One row per (expense category, month) with a non-zero
+        realized amount, via ``_compute_realization_data``.
+        """
         self.ensure_one()
         categories = (
             self.env["school_budget_expense_category"]
@@ -2150,6 +2464,11 @@ analytic account
             self.env["school_budget_expense_realization"].create(vals_list)
 
     def _generate_income_realization(self):
+        """Build income_realization_ids from posted journal items.
+
+        One row per (income category, month) with a non-zero
+        realized amount, via ``_compute_realization_data``.
+        """
         self.ensure_one()
         categories = (
             self.env["school_budget_income_category"]
@@ -2226,6 +2545,12 @@ analytic account
         "income_comparison_ids.realized_amount",
     )
     def _compute_comparison_totals(self):
+        """Sum budget-vs-actual comparison rows into totals.
+
+        Fills ``total_realized_expense``, ``total_realized_income``,
+        ``total_expense_variance``, and
+        ``expense_absorption_rate``.
+        """
         for record in self:
             total_realized_expense = sum(
                 record.expense_comparison_ids.mapped("realized_amount")
@@ -2264,6 +2589,12 @@ analytic account
         return (today.year - start.year) * 12 + (today.month - start.month) + 1
 
     def _generate_expense_comparison(self):
+        """Build expense_comparison_ids (budget vs. actual, by category).
+
+        One row per expense category present in either
+        ``expense_line_ids`` or ``expense_realization_ids``, with
+        variance and absorption rate.
+        """
         self.ensure_one()
         current_month = self._get_current_month_index()
         categories = self.expense_line_ids.mapped(
@@ -2303,6 +2634,12 @@ analytic account
             self.env["school_budget_expense_comparison"].create(vals_list)
 
     def _generate_income_comparison(self):
+        """Build income_comparison_ids (budget vs. actual, by category).
+
+        One row per income category present in either
+        ``income_result_ids`` or ``income_realization_ids``, with
+        variance and absorption rate.
+        """
         self.ensure_one()
         current_month = self._get_current_month_index()
         categories = self.income_result_ids.mapped(

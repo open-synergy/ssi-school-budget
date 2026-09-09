@@ -1,5 +1,6 @@
 scenarios:
   - name: "Investment Depreciation Start Month 1"
+    options: {auto_refresh: true}
     steps:
       - step: "Setup - create grade type"
         action: "create"
@@ -114,11 +115,6 @@ scenarios:
             type: "value"
             expected: 30000000.0
 
-      - step: "Invalidate cache before totals assert"
-        action: "call"
-        target: "budget"
-        method: "invalidate_cache"
-
       - step: "Assert budget total depreciation"
         action: "assert"
         target: "budget"
@@ -126,6 +122,19 @@ scenarios:
           total_new_investment_dep:
             type: "value"
             expected: 75000000.0
+
+      - step: "An investment with purchase_price 0 must be rejected"
+        action: "create"
+        model: "school_budget_investment"
+        expect_error:
+          type: "ValidationError"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          investment_category_id: "EVAL: registry['investment_category'].id"
+          asset_name: "Bad Investment Value"
+          purchase_price: 0
+          useful_life: 4
+          start_month: 1
 
   - name: "Old Asset Depreciation Within Useful Life"
     steps:
@@ -213,6 +222,18 @@ scenarios:
             type: "value"
             expected: 0.0
 
+      - step: "An old asset with acquisition_cost 0 must be rejected"
+        action: "create"
+        model: "school_budget_old_asset"
+        expect_error:
+          type: "ValidationError"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          asset_name: "Bad Old Asset"
+          acquisition_cost: 0
+          useful_life: 5
+          acquisition_year: 2023
+
   - name: "Financial Investment Allowed On Branch Or Center Only"
     steps:
       - step: "Setup - create academic year"
@@ -250,3 +271,128 @@ scenarios:
           amount:
             type: "value"
             expected: 50000000.0
+
+      - step: "Setup - create grade type for unit negative check"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type_neg"
+        values:
+          name: "Grade Type Invest 3 Negative"
+          code: "GTI3NEG"
+          sequence: 10
+
+      - step: "Setup - create school for unit negative check"
+        action: "create"
+        model: "school"
+        save_as: "school_neg"
+        values:
+          name: "School Invest 3 Negative"
+          code: "SCHI3NEG"
+          grade_type_id: "EVAL: registry['grade_type_neg'].id"
+
+      - step: "Setup - create unit budget for negative check"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_unit_neg"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school_neg'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "A financial investment on a unit budget must be rejected"
+        action: "create"
+        model: "school_budget_financial_investment"
+        expect_error:
+          type: "ValidationError"
+        values:
+          budget_id: "EVAL: registry['budget_unit_neg'].id"
+          instrument_type: "deposito"
+          name: "Bad Financial Investment"
+          amount: 1000000
+
+  - name: "Onchange Useful Life Prefilled From Investment Category"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type Onchange Invest"
+          code: "GTOCI1"
+          sequence: 10
+
+      - step: "Setup - create school"
+        action: "create"
+        model: "school"
+        save_as: "school"
+        values:
+          name: "School Onchange Invest"
+          code: "SCHOCI1"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Onchange Invest"
+          code: "AYOCI1"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Setup - create investment category"
+        action: "create"
+        model: "school_budget_investment_category"
+        save_as: "investment_category"
+        values:
+          name: "IT Equipment Onchange"
+          code: "1330.20"
+          default_economic_life: 4
+
+      - step: "Setup - create unit budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      # budget_id is readonly=True at the field level (no `states`), so a
+      # standalone `action: form / model: school_budget_investment` can never
+      # set it (AssertionError: can't write on readonly field budget_id).
+      # Open the Form on the PARENT budget instead and build the investment
+      # line inline via `new:` — the O2M relation fills budget_id itself, and
+      # useful_life is left unset in `values:` so onchange_useful_life's
+      # `and not self.useful_life` guard is satisfied when
+      # investment_category_id is assigned.
+      - step:
+          "Form - add investment inline; investment_category_id prefills useful_life"
+        action: "form"
+        target: "budget"
+        save: true
+        ops:
+          - new:
+              field: "investment_ids"
+              values:
+                asset_name: "Onchange Investment"
+                purchase_price: 40000000
+                investment_category_id: "REC: investment_category"
+
+      - step: "Find the investment created inline"
+        action: "search"
+        model: "school_budget_investment"
+        domain:
+          - ["budget_id", "=", "EVAL: registry['budget'].id"]
+          - ["asset_name", "=", "Onchange Investment"]
+        save_as: "onchange_investment"
+        expect_count: 1
+
+      - step:
+          "Assert onchange_useful_life prefilled useful_life from the category default"
+        action: "assert"
+        target: "onchange_investment"
+        asserts:
+          useful_life:
+            type: "value"
+            expected: 4

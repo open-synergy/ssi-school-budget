@@ -88,6 +88,12 @@ class SchoolBudgetOldAsset(models.Model):
 
     @api.depends("acquisition_cost", "useful_life", "acquisition_year", "fiscal_year")
     def _compute_depreciation(self):
+        """Straight-line depreciation from the acquisition year.
+
+        Fills ``dep_per_year``, ``dep_current_year`` (0 outside the
+        asset's useful-life window relative to the budget's fiscal
+        year), and ``book_value``.
+        """
         for record in self:
             if record.useful_life and record.useful_life > 0:
                 dep_per_year = record.acquisition_cost / record.useful_life
@@ -111,6 +117,10 @@ class SchoolBudgetOldAsset(models.Model):
 
     @api.constrains("acquisition_cost", "useful_life", "acquisition_year")
     def _check_old_asset_values(self):
+        """Reject invalid acquisition cost, useful life, or year.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_old_asset_values_condition():
                 error_message = (
@@ -129,6 +139,12 @@ Solution: Correct the values
                 raise ValidationError(error_message)
 
     def _check_old_asset_values_condition(self):
+        """Return whether acquisition cost/useful life/year are valid.
+
+        :return: ``True`` when ``acquisition_cost`` > 0,
+            ``useful_life`` >= 1, and ``acquisition_year`` is
+            between 1900 and 2100
+        """
         self.ensure_one()
         return (
             self.acquisition_cost > 0

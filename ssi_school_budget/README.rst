@@ -14,6 +14,27 @@ This module ships with no seed data. Income, expense, and investment
 categories must be configured by the user/client before use.
 
 
+Work Instruction
+================
+
+* `Create School Budget <docs/school_budget/index.html>`_
+* `Edit School Budget <docs/school_budget/index.html>`_
+* `Confirm School Budget <docs/school_budget/index.html>`_
+* `Approve School Budget <docs/school_budget/index.html>`_
+* `Reject School Budget <docs/school_budget/index.html>`_
+* `Cancel School Budget <docs/school_budget/index.html>`_
+* `Restart School Budget <docs/school_budget/index.html>`_
+* `Simulate School Budget <docs/school_budget/index.html>`_
+* `Compute Realization - School Budget <docs/school_budget/index.html>`_
+* `Sync Contribution Allocation - School Budget <docs/school_budget/index.html>`_
+* `Create School Budget Income Category <docs/school_budget_income_category/index.html>`_
+* `Create School Budget Expense Category <docs/school_budget_expense_category/index.html>`_
+* `Create School Budget Investment Category <docs/school_budget_investment_category/index.html>`_
+* `Create Analytic Account - School <docs/school/index.html>`_
+* `Create Analytic Account - School Branch <docs/school_branch/index.html>`_
+* `Edit Company - School Budget Analytic Account <docs/res_company/index.html>`_
+
+
 Installation
 ============
 

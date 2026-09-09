@@ -66,6 +66,10 @@ class SchoolBudgetSubsidy(models.Model):
 
     @api.constrains("provider_budget_id", "recipient_budget_id", "amount")
     def _check_subsidy_relation(self):
+        """Reject an invalid provider/recipient subsidy relationship.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_subsidy_relation_condition():
                 error_message = (
@@ -86,6 +90,15 @@ must not be negative
                 raise ValidationError(error_message)
 
     def _check_subsidy_relation_condition(self):
+        """Return whether the provider/recipient relationship is valid.
+
+        Provider must be branch/center, different from the
+        recipient, sharing the recipient's academic year, with a
+        non-negative amount; a branch may only subsidize its own
+        units, and a center may not subsidize another center.
+
+        :return: ``True`` when the relationship is valid
+        """
         self.ensure_one()
         provider = self.provider_budget_id
         recipient = self.recipient_budget_id

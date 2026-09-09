@@ -108,11 +108,16 @@ class SchoolBudgetExpenseLine(models.Model):
 
     @api.depends("foundation", "bos")
     def _compute_amount_total(self):
+        """Sum ``foundation`` and ``bos`` into ``amount_total``."""
         for record in self:
             record.amount_total = record.foundation + record.bos
 
     @api.constrains("line_number")
     def _check_line_number(self):
+        """Reject a line number below 1.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_line_number_condition():
                 error_message = (
@@ -129,5 +134,9 @@ Solution: Enter a value of 1 or more
                 raise ValidationError(error_message)
 
     def _check_line_number_condition(self):
+        """Return whether ``line_number`` is 1 or greater.
+
+        :return: ``True`` when ``line_number`` >= 1
+        """
         self.ensure_one()
         return self.line_number >= 1

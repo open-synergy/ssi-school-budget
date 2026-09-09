@@ -61,6 +61,10 @@ class SchoolBudgetFinancialInvestment(models.Model):
 
     @api.constrains("budget_id", "amount")
     def _check_org_type(self):
+        """Reject a financial investment on a unit budget or <= 0.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_org_type_condition():
                 error_message = (
@@ -79,5 +83,10 @@ than zero
                 raise ValidationError(error_message)
 
     def _check_org_type_condition(self):
+        """Return whether org_type and amount are valid.
+
+        :return: ``True`` when the budget is branch/center and
+            ``amount`` is positive
+        """
         self.ensure_one()
         return self.budget_id.org_type in ("branch", "center") and self.amount > 0

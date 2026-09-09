@@ -49,17 +49,53 @@ class SchoolBudgetParentExpenseAllocation(models.Model):
         default=True,
     )
 
-    _sql_constraints = [
-        (
-            "unique_budget_expense_category",
-            "unique(budget_id, expense_category_id)",
-            "Only one allocation setting is allowed per expense "
-            "category on the same budget.",
-        ),
-    ]
+    @api.constrains("budget_id", "expense_category_id")
+    def _check_unique_budget_expense_category(self):
+        """Reject a duplicate expense category on the same budget.
+
+        Replaces the former ``_sql_constraints`` entry so the
+        error is raised as ``ValidationError`` instead of a
+        raw ``IntegrityError``.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
+        for record in self.sudo():
+            if not record._check_unique_budget_expense_category_condition():
+                error_message = (
+                    _(
+                        """
+Context: Save school budget parent expense allocation
+Database ID: %s
+Problem: Only one allocation setting is allowed per expense
+category on the same budget
+Solution: Edit the existing allocation instead of creating a
+duplicate
+"""
+                    )
+                    % (record.id,)
+                )
+                raise ValidationError(error_message)
+
+    def _check_unique_budget_expense_category_condition(self):
+        """Return whether the unique key still holds.
+
+        :return: ``True`` when no other record shares the
+            same key
+        """
+        self.ensure_one()
+        domain = [
+            ("id", "!=", self.id),
+            ("budget_id", "=", self.budget_id.id),
+            ("expense_category_id", "=", self.expense_category_id.id),
+        ]
+        return self.search_count(domain) == 0
 
     @api.constrains("budget_id")
     def _check_parent_org_type(self):
+        """Reject a parent expense allocation on a unit budget.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_parent_org_type_condition():
                 error_message = (
@@ -77,5 +113,10 @@ Solution: Select a branch/center budget
                 raise ValidationError(error_message)
 
     def _check_parent_org_type_condition(self):
+        """Return whether the budget is org_type branch/center.
+
+        :return: ``True`` when ``budget_id.org_type`` is ``branch``
+            or ``center``
+        """
         self.ensure_one()
         return self.budget_id.org_type in ("branch", "center")

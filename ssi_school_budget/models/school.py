@@ -25,10 +25,21 @@ class School(models.Model):
     )
 
     def action_create_analytic_account(self):
+        """Create the School Budget analytic account for each record.
+
+        Button action layer; delegates to
+        ``_create_analytic_account()`` per record.
+        """
         for record in self.sudo():
             record._create_analytic_account()
 
     def _create_analytic_account(self):
+        """Create and assign ``analytic_account_id`` if not set yet.
+
+        The new account is nested under the branch's analytic group
+        when this school belongs to a branch, otherwise under the
+        company's ``school_analytic_group_id``.
+        """
         self.ensure_one()
         if self.analytic_account_id:
             return
@@ -48,6 +59,12 @@ class School(models.Model):
 
     @api.constrains("analytic_account_id")
     def _check_school_analytic_account_unique(self):
+        """Reject an analytic account already used elsewhere.
+
+        Checks against other schools, branches, and companies.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_school_analytic_account_unique_condition():
                 error_message = (
@@ -68,6 +85,11 @@ Solution: Select an Analytic Account that is not used elsewhere
                 raise ValidationError(error_message)
 
     def _check_school_analytic_account_unique_condition(self):
+        """Return whether ``analytic_account_id`` is unique.
+
+        :return: ``True`` when no other school, branch, or company
+            uses the same analytic account
+        """
         self.ensure_one()
         if not self.analytic_account_id:
             return True

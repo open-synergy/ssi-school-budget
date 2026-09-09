@@ -66,6 +66,10 @@ class SchoolBudgetIncomeLine(models.Model):
 
     @api.constrains("income_category_id")
     def _check_manual_income_category(self):
+        """Reject a non-manual income category on a manual line.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
         for record in self.sudo():
             if not record._check_manual_income_category_condition():
                 error_message = (
@@ -84,6 +88,11 @@ Manual
                 raise ValidationError(error_message)
 
     def _check_manual_income_category_condition(self):
+        """Return whether the income category's calc_method is manual.
+
+        :return: ``True`` when ``income_category_id`` is empty or
+            its ``calc_method`` is ``manual``
+        """
         self.ensure_one()
         if not self.income_category_id:
             return True

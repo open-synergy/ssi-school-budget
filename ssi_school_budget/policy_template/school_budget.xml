@@ -86,6 +86,30 @@
     <field name="restrict_additional" eval="0" />
 </record>
 
+<!-- Restart Approval -->
+<record
+        id="policy_template_school_budget_restart_approval"
+        model="policy.template_detail"
+    >
+    <field name="template_id" ref="policy_template_school_budget" />
+    <field
+            name="field_id"
+            search="[('model_id.model','=','school_budget'),('name','=','restart_approval_ok')]"
+        />
+    <field name="restrict_state" eval="1" />
+    <field
+            name="state_ids"
+            search="[('field_id.model_id.model','=','school_budget'),('value','=','confirm')]"
+        />
+    <field name="restrict_user" eval="1" />
+    <field name="computation_method">use_group</field>
+    <field name="group_ids" eval="[(6,0,[ref('school_budget_validator_group')])]" />
+    <field name="restrict_additional" eval="1" />
+    <field name="additional_python_code">result = False
+if not document.approval_template_id:
+    result = True</field>
+</record>
+
 <!-- Reject -->
 <record id="policy_template_school_budget_reject" model="policy.template_detail">
     <field name="template_id" ref="policy_template_school_budget" />

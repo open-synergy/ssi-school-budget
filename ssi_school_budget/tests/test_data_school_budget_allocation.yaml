@@ -1,5 +1,6 @@
 scenarios:
   - name: "Contribution Allocation Percentage Split Two Units No Override"
+    options: {auto_refresh: true}
     steps:
       - step: "Setup - create grade type"
         action: "create"
@@ -150,11 +151,6 @@ scenarios:
           is_pct_up_overridden: true
           override_pct_up: 0.5
 
-      - step: "Invalidate cache before re-assert pct_up with override mixed in"
-        action: "call"
-        target: "alloc_a"
-        method: "invalidate_cache"
-
       - step: "Assert pct_up A becomes 0.2 (remaining 0.5 split 20:30)"
         action: "assert"
         target: "alloc_a"
@@ -162,11 +158,6 @@ scenarios:
           pct_up:
             type: "value"
             expected: 0.2
-
-      - step: "Invalidate cache for B"
-        action: "call"
-        target: "alloc_b"
-        method: "invalidate_cache"
 
       - step: "Assert pct_up B becomes 0.3"
         action: "assert"
@@ -185,6 +176,7 @@ scenarios:
             expected: 0.5
 
   - name: "Sync Contribution Allocation Creates Rows Without Overwriting Override"
+    options: {auto_refresh: true}
     steps:
       - step: "Setup - create grade type"
         action: "create"
@@ -285,11 +277,6 @@ scenarios:
         save_as: "check_allocations"
         expect_count: 2
 
-      - step: "Invalidate cache before assert override preserved"
-        action: "call"
-        target: "alloc_a"
-        method: "invalidate_cache"
-
       - step: "Assert override on A preserved after sync"
         action: "assert"
         target: "alloc_a"
@@ -329,6 +316,24 @@ scenarios:
           name: "Expense Alloc 3"
           code: "5110.50"
 
+      - step: "Setup - create grade type for unit negative check"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type_neg"
+        values:
+          name: "Grade Type Alloc 3 Negative"
+          code: "GTA3NEG"
+          sequence: 10
+
+      - step: "Setup - create school for unit negative check"
+        action: "create"
+        model: "school"
+        save_as: "school_neg"
+        values:
+          name: "School Alloc 3 Negative"
+          code: "SCHA3NEG"
+          grade_type_id: "EVAL: registry['grade_type_neg'].id"
+
       - step: "Create branch budget"
         action: "create"
         model: "school_budget"
@@ -354,3 +359,32 @@ scenarios:
           affects_up:
             type: "value"
             expected: true
+
+      - step: "Setup - create unit budget for parent org_type negative check"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget_unit_neg"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school_neg'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "A parent expense allocation on a unit budget must be rejected"
+        action: "create"
+        model: "school_budget_parent_expense_allocation"
+        expect_error:
+          type: "ValidationError"
+        values:
+          budget_id: "EVAL: registry['budget_unit_neg'].id"
+          expense_category_id: "EVAL: registry['expense_category'].id"
+
+      - step: "A contribution allocation with an out-of-range override must be rejected"
+        action: "create"
+        model: "school_budget_contribution_allocation"
+        expect_error:
+          type: "ValidationError"
+        values:
+          parent_budget_id: "EVAL: registry['budget_branch'].id"
+          child_budget_id: "EVAL: registry['budget_unit_neg'].id"
+          is_pct_up_overridden: true
+          override_pct_up: 1.5

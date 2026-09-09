@@ -39,6 +39,7 @@
 # (68M+135M+102M+45M = 350,000,000).
 scenarios:
   - name: "End To End Center Branch Two Units"
+    options: {auto_refresh: true}
     steps:
       - step: "Setup - create grade type"
         action: "create"
@@ -195,6 +196,11 @@ scenarios:
           school_id: "EVAL: registry['school_a'].id"
           academic_year_id: "EVAL: registry['academic_year'].id"
           new_student_count: 20
+          # T-05: this scenario runs with auto_refresh, so budget_a is
+          # re-read under as_user (confirm/approve steps below); without an
+          # explicit user_id the record is owned by superuser and
+          # school_budget_internal_user_rule rejects the read.
+          user_id: "REF: base.user_admin"
 
       - step: "Create unit B budget"
         action: "create"
@@ -407,11 +413,6 @@ scenarios:
         target: "budget_center"
         method: "action_simulate"
 
-      - step: "Invalidate cache before asserting unit A tariffs"
-        action: "call"
-        target: "budget_a"
-        method: "invalidate_cache"
-
       - step: "Assert unit A UP figures"
         action: "assert"
         target: "budget_a"
@@ -475,11 +476,6 @@ scenarios:
           useful_life: 4
           start_month: 1
 
-      - step: "Invalidate cache after adding extra investment"
-        action: "call"
-        target: "budget_a"
-        method: "invalidate_cache"
-
       - step: "Assert total_us_cost unchanged, total_up_cost_with_dep increased"
         action: "assert"
         target: "budget_a"
@@ -510,10 +506,6 @@ scenarios:
         values:
           is_up_rate_overridden: true
           override_up_rate: 8000000
-      - step: "Invalidate cache after override"
-        action: "call"
-        target: "budget_a"
-        method: "invalidate_cache"
       - step: "Assert override used as-is and auto rate untouched"
         action: "assert"
         target: "budget_a"
@@ -686,11 +678,6 @@ scenarios:
         target: "school_a"
         method: "action_create_analytic_account"
 
-      - step: "Invalidate cache before confirm"
-        action: "call"
-        target: "budget_a"
-        method: "invalidate_cache"
-
       - step: "Workflow - confirm unit A"
         action: "call"
         target: "budget_a"
@@ -701,10 +688,14 @@ scenarios:
             type: "value"
             expected: "confirm"
 
-      - step: "Invalidate cache before approve"
-        action: "call"
+      - step: "Assert state confirm before approve (forces cache refresh)"
+        action: "assert"
         target: "budget_a"
-        method: "invalidate_cache"
+        refresh: true
+        asserts:
+          state:
+            type: "value"
+            expected: "confirm"
 
       - step: "Workflow - approve unit A (auto-completes to done)"
         action: "call"

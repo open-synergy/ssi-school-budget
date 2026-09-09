@@ -3,7 +3,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo_yaml_test import YamlTransactionCase
-from psycopg2 import IntegrityError
 
 from odoo.exceptions import ValidationError
 from odoo.tests import tagged
@@ -11,10 +10,22 @@ from odoo.tests import tagged
 
 @tagged("post_install", "-at_install")
 class TestSchoolBudgetAllocation(YamlTransactionCase):
+    """YAML scenario and Python constraint tests for allocation."""
+
     def test_school_budget_allocation(self):
+        """Run the school_budget_allocation YAML scenario."""
         self.run_yaml_scenario("test_data_school_budget_allocation.yaml")
 
     def _setup_budgets(self, suffix):
+        """Create a unit budget and two center budgets fixture.
+
+        The two center budgets belong to different academic years,
+        so tests can probe cross-year rejection.
+
+        :param suffix: unique suffix appended to fixture names/codes
+        :return: tuple ``(unit_budget, center_budget,
+            center_budget_other_year)``
+        """
         grade_type = self.env["school_grade_type"].create(
             {
                 "name": "Grade Type Alloc Constrain %s" % suffix,
@@ -68,7 +79,13 @@ class TestSchoolBudgetAllocation(YamlTransactionCase):
 
     def test_constrain_contribution_allocation_parent_is_unit_blocks_create(self):
         """A unit budget cannot be the parent of a contribution
-        allocation."""
+        allocation.
+
+        Pure Python -- trigger P10 (L-09/L-10: the fixture builds a
+        grade type, school, two academic years, and three budgets
+        programmatically across several linked models, which the
+        ``EVAL:`` sandbox cannot express).
+        """
         unit_budget, _center, _center_other = self._setup_budgets("C1")
         with self.assertRaises(ValidationError):
             self.env["school_budget_contribution_allocation"].create(
@@ -82,7 +99,13 @@ class TestSchoolBudgetAllocation(YamlTransactionCase):
         self,
     ):
         """Parent and child budgets must share the same academic
-        year."""
+        year.
+
+        Pure Python -- trigger P10 (L-09/L-10: the fixture builds a
+        grade type, school, two academic years, and three budgets
+        programmatically across several linked models, which the
+        ``EVAL:`` sandbox cannot express).
+        """
         unit_budget, _center, center_other_year = self._setup_budgets("C2")
         with self.assertRaises(ValidationError):
             self.env["school_budget_contribution_allocation"].create(
@@ -94,7 +117,13 @@ class TestSchoolBudgetAllocation(YamlTransactionCase):
 
     def test_constrain_parent_expense_allocation_on_unit_blocks_create(self):
         """Parent expense allocations are not allowed on unit
-        budgets."""
+        budgets.
+
+        Pure Python -- trigger P10 (L-09/L-10: the fixture builds a
+        grade type, school, two academic years, and three budgets
+        programmatically across several linked models, which the
+        ``EVAL:`` sandbox cannot express).
+        """
         unit_budget, _center, _center_other = self._setup_budgets("C3")
         expense_category = self.env["school_budget_expense_category"].create(
             {
@@ -114,7 +143,13 @@ class TestSchoolBudgetAllocation(YamlTransactionCase):
         self,
     ):
         """Two allocation settings for the same category on the same
-        budget must be rejected."""
+        budget must be rejected.
+
+        Pure Python — trigger P10 (L-09/L-10: the fixture builds a
+        grade type, school, two academic years, and three budgets
+        programmatically across several linked models, which the
+        ``EVAL:`` sandbox cannot express).
+        """
         _unit_budget, center_budget, _center_other = self._setup_budgets("C4")
         expense_category = self.env["school_budget_expense_category"].create(
             {
@@ -128,12 +163,10 @@ class TestSchoolBudgetAllocation(YamlTransactionCase):
                 "expense_category_id": expense_category.id,
             }
         )
-        with self.assertRaises(IntegrityError):
-            with self.env.cr.savepoint():
-                self.env["school_budget_parent_expense_allocation"].create(
-                    {
-                        "budget_id": center_budget.id,
-                        "expense_category_id": expense_category.id,
-                    }
-                )
-                self.env["school_budget_parent_expense_allocation"].flush()
+        with self.assertRaises(ValidationError):
+            self.env["school_budget_parent_expense_allocation"].create(
+                {
+                    "budget_id": center_budget.id,
+                    "expense_category_id": expense_category.id,
+                }
+            )

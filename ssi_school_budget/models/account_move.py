@@ -20,6 +20,17 @@ class AccountMove(models.Model):
     _inherit = ["account.move"]
 
     def write(self, vals):
+        """Trigger School Budget realization recompute on state change.
+
+        ``account.move.line.parent_state`` is a stored related field
+        to ``account.move.state``, so ``action_post()``/
+        ``button_draft()`` never call ``AccountMoveLine.write()``
+        themselves; this override is what makes the state change
+        reach ``_trigger_school_budget_realization``.
+
+        :param vals: values to write
+        :return: result of ``super().write(vals)``
+        """
         result = super().write(vals)
         if "state" in vals:
             lines = self.mapped("line_ids")

@@ -9,5 +9,8 @@ from odoo.tests import tagged
 
 @tagged("post_install", "-at_install")
 class TestSchoolBudgetSummary(YamlTransactionCase):
+    """YAML scenario test for the cash/accrual budget summary."""
+
     def test_school_budget_summary(self):
+        """Run the school_budget_summary YAML scenario."""
         self.run_yaml_scenario("test_data_school_budget_summary.yaml")

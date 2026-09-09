@@ -1,5 +1,6 @@
 scenarios:
   - name: "Create Analytic Account Idempotent And Auto Assigned On Budget"
+    options: {auto_refresh: true}
     steps:
       - step: "Setup - create grade type"
         action: "create"
@@ -74,11 +75,6 @@ scenarios:
         target: "branch"
         method: "action_create_analytic_account"
 
-      - step: "Invalidate cache after second call"
-        action: "call"
-        target: "branch"
-        method: "invalidate_cache"
-
       - step: "Assert branch still points to the same analytic account"
         action: "search"
         model: "school_branch"
@@ -119,6 +115,11 @@ scenarios:
           org_type: "unit"
           school_id: "EVAL: registry['school_a'].id"
           academic_year_id: "EVAL: registry['academic_year'].id"
+          # T-05: this scenario runs with auto_refresh, so budget_a is
+          # re-read under as_user below; without an explicit user_id the
+          # record is owned by superuser and school_budget_internal_user_rule
+          # rejects the read.
+          user_id: "REF: base.user_admin"
 
       - step: "Assert budget A analytic_account_id matches school A's"
         action: "search"
@@ -164,3 +165,28 @@ scenarios:
           state:
             type: "value"
             expected: "confirm"
+
+      - step: "Reassigning unit B's analytic account to unit A must be rejected"
+        action: "write"
+        target: "school_a"
+        expect_error:
+          type: "ValidationError"
+        values:
+          analytic_account_id: "EVAL: registry['school_b'].analytic_account_id.id"
+
+      - step: "Assigning unit A's analytic account to the branch must be rejected"
+        action: "write"
+        target: "branch"
+        expect_error:
+          type: "ValidationError"
+        values:
+          analytic_account_id: "EVAL: registry['school_a'].analytic_account_id.id"
+
+      - step: "Assigning unit A's analytic account to the company must be rejected"
+        action: "write"
+        target: "company"
+        expect_error:
+          type: "ValidationError"
+        values:
+          school_analytic_account_id:
+            "EVAL: registry['school_a'].analytic_account_id.id"

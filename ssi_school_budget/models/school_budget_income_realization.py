@@ -2,7 +2,8 @@
 # Copyright 2026 PT. Simetri Sinergi Indonesia
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class SchoolBudgetIncomeRealization(models.Model):
@@ -49,11 +50,43 @@ class SchoolBudgetIncomeRealization(models.Model):
         compute_sudo=True,
     )
 
-    _sql_constraints = [
-        (
-            "unique_budget_category_month",
-            "unique(budget_id, income_category_id, month)",
-            "Only one realization row is allowed per category and "
-            "month on the same budget.",
-        ),
-    ]
+    @api.constrains("budget_id", "income_category_id", "month")
+    def _check_unique_budget_category_month(self):
+        """Reject a duplicate category/month on the same budget.
+
+        Replaces the former ``_sql_constraints`` entry so the
+        error is raised as ``ValidationError`` instead of a
+        raw ``IntegrityError``.
+
+        :raises: :class:`~odoo.exceptions.ValidationError`
+        """
+        for record in self.sudo():
+            if not record._check_unique_budget_category_month_condition():
+                error_message = (
+                    _(
+                        """
+Context: Save school budget income realization
+Database ID: %s
+Problem: Only one realization row is allowed per category and
+month on the same budget
+Solution: Edit the existing row instead of creating a duplicate
+"""
+                    )
+                    % (record.id,)
+                )
+                raise ValidationError(error_message)
+
+    def _check_unique_budget_category_month_condition(self):
+        """Return whether the unique key still holds.
+
+        :return: ``True`` when no other record shares the
+            same key
+        """
+        self.ensure_one()
+        domain = [
+            ("id", "!=", self.id),
+            ("budget_id", "=", self.budget_id.id),
+            ("income_category_id", "=", self.income_category_id.id),
+            ("month", "=", self.month),
+        ]
+        return self.search_count(domain) == 0
