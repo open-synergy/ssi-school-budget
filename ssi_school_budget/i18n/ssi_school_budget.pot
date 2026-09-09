@@ -117,6 +117,18 @@ msgid ""
 "\n"
 "Context: Save school budget assumption line\n"
 "Database ID: %s\n"
+"Problem: Only one assumption line is allowed per grade on the\n"
+"same budget\n"
+"Solution: Edit the existing line instead of creating a duplicate\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_assumption_line.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget assumption line\n"
+"Database ID: %s\n"
 "Problem: Student Count is negative\n"
 "Solution: Enter zero or a positive number\n"
 msgstr ""
@@ -150,6 +162,19 @@ msgid ""
 msgstr ""
 
 #. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_contribution_allocation.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget contribution allocation\n"
+"Database ID: %s\n"
+"Problem: Only one contribution allocation is allowed per child\n"
+"budget under the same parent budget\n"
+"Solution: Edit the existing allocation instead of creating a\n"
+"duplicate\n"
+msgstr ""
+
+#. module: ssi_school_budget
 #: code:addons/ssi_school_budget/models/school_budget_direct_income_override.py:0
 #, python-format
 msgid ""
@@ -158,6 +183,19 @@ msgid ""
 "Database ID: %s\n"
 "Problem: Expense Category '%s' does not have Direct Income enabled\n"
 "Solution: Select an expense category with Direct Income enabled\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_direct_income_override.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget direct income override\n"
+"Database ID: %s\n"
+"Problem: Only one direct income override is allowed per expense\n"
+"category on the same budget\n"
+"Solution: Edit the existing override instead of creating a\n"
+"duplicate\n"
 msgstr ""
 
 #. module: ssi_school_budget
@@ -198,6 +236,19 @@ msgid ""
 msgstr ""
 
 #. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_expense_grade_allocation.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget expense grade allocation\n"
+"Database ID: %s\n"
+"Problem: Only one grade allocation is allowed per grade on the\n"
+"same expense line\n"
+"Solution: Edit the existing allocation instead of creating a\n"
+"duplicate\n"
+msgstr ""
+
+#. module: ssi_school_budget
 #: code:addons/ssi_school_budget/models/school_budget_expense_line.py:0
 #, python-format
 msgid ""
@@ -206,6 +257,18 @@ msgid ""
 "Database ID: %s\n"
 "Problem: Line Number must be 1 or greater\n"
 "Solution: Enter a value of 1 or more\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_expense_realization.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget expense realization\n"
+"Database ID: %s\n"
+"Problem: Only one realization row is allowed per category and\n"
+"month on the same budget\n"
+"Solution: Edit the existing row instead of creating a duplicate\n"
 msgstr ""
 
 #. module: ssi_school_budget
@@ -245,6 +308,18 @@ msgid ""
 "simulation and cannot be entered manually\n"
 "Solution: Select an income category whose Calculation Method is\n"
 "Manual\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_income_realization.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget income realization\n"
+"Database ID: %s\n"
+"Problem: Only one realization row is allowed per category and\n"
+"month on the same budget\n"
+"Solution: Edit the existing row instead of creating a duplicate\n"
 msgstr ""
 
 #. module: ssi_school_budget
@@ -294,6 +369,19 @@ msgid ""
 "must be at least 1, and Acquisition Year must be between 1900 and\n"
 "2100\n"
 "Solution: Correct the values\n"
+msgstr ""
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_parent_expense_allocation.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget parent expense allocation\n"
+"Database ID: %s\n"
+"Problem: Only one allocation setting is allowed per expense\n"
+"category on the same budget\n"
+"Solution: Edit the existing allocation instead of creating a\n"
+"duplicate\n"
 msgstr ""
 
 #. module: ssi_school_budget
@@ -791,6 +879,7 @@ msgstr ""
 
 #. module: ssi_school_budget
 #: model:ir.ui.menu,name:ssi_school_budget.menu_school_budget_budget
+#: model:ir.ui.menu,name:ssi_school_budget.menu_school_budget_configuration
 msgid "Budget"
 msgstr ""
 
@@ -998,11 +1087,6 @@ msgstr ""
 #. module: ssi_school_budget
 #: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
 msgid "Compute Realization"
-msgstr ""
-
-#. module: ssi_school_budget
-#: model:ir.ui.menu,name:ssi_school_budget.menu_school_budget_configuration
-msgid "Configuration"
 msgstr ""
 
 #. module: ssi_school_budget
@@ -2115,46 +2199,6 @@ msgid "Old Assets"
 msgstr ""
 
 #. module: ssi_school_budget
-#: model:ir.model.constraint,message:ssi_school_budget.constraint_school_budget_parent_expense_allocation_unique_budget_expense_category
-msgid ""
-"Only one allocation setting is allowed per expense category on the same "
-"budget."
-msgstr ""
-
-#. module: ssi_school_budget
-#: model:ir.model.constraint,message:ssi_school_budget.constraint_school_budget_assumption_line_unique_budget_grade
-msgid "Only one assumption line is allowed per grade on the same budget."
-msgstr ""
-
-#. module: ssi_school_budget
-#: model:ir.model.constraint,message:ssi_school_budget.constraint_school_budget_contribution_allocation_unique_parent_child
-msgid ""
-"Only one contribution allocation is allowed per child budget under the same "
-"parent budget."
-msgstr ""
-
-#. module: ssi_school_budget
-#: model:ir.model.constraint,message:ssi_school_budget.constraint_school_budget_direct_income_override_unique_budget_expense_category
-msgid ""
-"Only one direct income override is allowed per expense category on the same "
-"budget."
-msgstr ""
-
-#. module: ssi_school_budget
-#: model:ir.model.constraint,message:ssi_school_budget.constraint_school_budget_expense_grade_allocation_unique_line_grade
-msgid ""
-"Only one grade allocation is allowed per grade on the same expense line."
-msgstr ""
-
-#. module: ssi_school_budget
-#: model:ir.model.constraint,message:ssi_school_budget.constraint_school_budget_expense_realization_unique_budget_category_month
-#: model:ir.model.constraint,message:ssi_school_budget.constraint_school_budget_income_realization_unique_budget_category_month
-msgid ""
-"Only one realization row is allowed per category and month on the same "
-"budget."
-msgstr ""
-
-#. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__cash_balance
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__opening_cash_balance
 msgid "Opening Cash Balance"
@@ -2415,7 +2459,6 @@ msgstr ""
 #. module: ssi_school_budget
 #: model:ir.model,name:ssi_school_budget.model_school_budget
 #: model:ir.module.category,name:ssi_school_budget.school_budget_module_category
-#: model:ir.ui.menu,name:ssi_school_budget.menu_school_budget_root
 #: model_terms:ir.ui.view,arch_db:ssi_school_budget.view_company_form_school_budget
 msgid "School Budget"
 msgstr ""
