@@ -50,6 +50,8 @@ scenarios:
         model: "school_budget_expense_category"
         expect_error:
           type: "ValidationError"
+          message_contains:
+            "'Direct Income' is enabled but 'Maps to Income Category' is"
         values:
           name: "Direct Income No Target"
           code: "5140.03"
@@ -110,6 +112,7 @@ scenarios:
         model: "school_budget_investment_category"
         expect_error:
           type: "ValidationError"
+          message_contains: "Default Economic Life must be greater than zero"
         values:
           name: "IT Equipment Bad"
           code: "1330.03"
@@ -190,6 +193,7 @@ scenarios:
         model: "school_budget_expense_category"
         expect_error:
           type: "ValidationError"
+          message_contains: "is already mapped to another category. Mapping"
         values:
           name: "Expense Category Mapping Dup"
           code: "5160.03"
@@ -200,6 +204,7 @@ scenarios:
         model: "school_budget_income_category"
         expect_error:
           type: "ValidationError"
+          message_contains: "is already mapped to another category. Mapping"
         values:
           name: "Income Category Mapping Dup"
           code: "4130.02"
@@ -212,6 +217,7 @@ scenarios:
         model: "school_budget_investment_category"
         expect_error:
           type: "ValidationError"
+          message_contains: "is already mapped to another category. Mapping"
         values:
           name: "Investment Category Mapping Dup"
           code: "1340.02"

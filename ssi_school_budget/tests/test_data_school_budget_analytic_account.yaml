@@ -171,6 +171,7 @@ scenarios:
         target: "school_a"
         expect_error:
           type: "ValidationError"
+          message_contains: "is already used by another company,"
         values:
           analytic_account_id: "EVAL: registry['school_b'].analytic_account_id.id"
 
@@ -179,6 +180,7 @@ scenarios:
         target: "branch"
         expect_error:
           type: "ValidationError"
+          message_contains: "is already used by another company,"
         values:
           analytic_account_id: "EVAL: registry['school_a'].analytic_account_id.id"
 
@@ -187,6 +189,57 @@ scenarios:
         target: "company"
         expect_error:
           type: "ValidationError"
+          message_contains: "is already used by another company,"
         values:
           school_analytic_account_id:
             "EVAL: registry['school_a'].analytic_account_id.id"
+
+  - name: "Confirm Budget Without Analytic Account Rejected"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type AA 2"
+          code: "GTAA2"
+          sequence: 10
+
+      - step: "Setup - create school (no analytic account created)"
+        action: "create"
+        model: "school"
+        save_as: "school"
+        values:
+          name: "School AA 2"
+          code: "SCHAA2"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year AA 2"
+          code: "AYAA2"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Create unit budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step:
+          "Confirming a budget whose organization has no analytic account must be
+          rejected"
+        action: "call"
+        target: "budget"
+        method: "action_confirm"
+        as_user: "base.user_admin"
+        expect_error:
+          type: "UserError"
+          message_contains: "organization of this budget has no analytic account"

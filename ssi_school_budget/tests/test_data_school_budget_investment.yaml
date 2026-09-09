@@ -128,6 +128,7 @@ scenarios:
         model: "school_budget_investment"
         expect_error:
           type: "ValidationError"
+          message_contains: "Purchase Price must be greater than zero, Useful Life must"
         values:
           budget_id: "EVAL: registry['budget'].id"
           investment_category_id: "EVAL: registry['investment_category'].id"
@@ -227,6 +228,7 @@ scenarios:
         model: "school_budget_old_asset"
         expect_error:
           type: "ValidationError"
+          message_contains: "Acquisition Cost must be greater than zero, Useful Life"
         values:
           budget_id: "EVAL: registry['budget'].id"
           asset_name: "Bad Old Asset"
@@ -304,6 +306,7 @@ scenarios:
         model: "school_budget_financial_investment"
         expect_error:
           type: "ValidationError"
+          message_contains: "Financial investments are only allowed on branch or center"
         values:
           budget_id: "EVAL: registry['budget_unit_neg'].id"
           instrument_type: "deposito"
@@ -396,3 +399,65 @@ scenarios:
           useful_life:
             type: "value"
             expected: 4
+
+  - name: "Investment Start Month Out Of Range Rejected"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type Invest 4"
+          code: "GTI4"
+          sequence: 10
+
+      - step: "Setup - create school"
+        action: "create"
+        model: "school"
+        save_as: "school"
+        values:
+          name: "School Invest 4"
+          code: "SCHI4"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Invest 4"
+          code: "AYI4"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Setup - create investment category"
+        action: "create"
+        model: "school_budget_investment_category"
+        save_as: "investment_category"
+        values:
+          name: "IT Equipment Invest 4"
+          code: "1330.30"
+          default_economic_life: 4
+
+      - step: "Create unit budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "An investment with start_month 13 must be rejected"
+        action: "create"
+        model: "school_budget_investment"
+        expect_error:
+          type: "ValidationError"
+          message_contains: "Purchase Price must be greater than zero, Useful Life must"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          investment_category_id: "EVAL: registry['investment_category'].id"
+          asset_name: "Bad Start Month"
+          purchase_price: 10000000
+          useful_life: 4
+          start_month: 13

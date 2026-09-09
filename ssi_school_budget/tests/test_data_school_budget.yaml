@@ -73,6 +73,7 @@ scenarios:
         model: "school_budget"
         expect_error:
           type: "ValidationError"
+          message_contains: "A budget for this organization and academic year already"
         values:
           org_type: "unit"
           school_id: "EVAL: registry['school'].id"
@@ -83,6 +84,7 @@ scenarios:
         model: "school_budget"
         expect_error:
           type: "ValidationError"
+          message_contains: "do not match Organization Type"
         values:
           org_type: "center"
           school_id: "EVAL: registry['school'].id"
@@ -93,6 +95,7 @@ scenarios:
         target: "budget"
         expect_error:
           type: "ValidationError"
+          message_contains: "Returning Student Count, or Staff Count"
         values:
           new_student_count: -1
 
@@ -119,6 +122,8 @@ scenarios:
         model: "school_budget_assumption_line"
         expect_error:
           type: "ValidationError"
+          message_contains:
+            "Student assumption lines are only allowed when Organization"
         values:
           budget_id: "EVAL: registry['budget_center_neg'].id"
           grade_id: "EVAL: registry['grade_neg'].id"
@@ -129,6 +134,7 @@ scenarios:
         model: "school_budget_assumption_line"
         expect_error:
           type: "ValidationError"
+          message_contains: "Student Count is negative"
         values:
           budget_id: "EVAL: registry['budget'].id"
           grade_id: "EVAL: registry['grade_neg'].id"
@@ -496,3 +502,94 @@ scenarios:
               school_id:
                 type: "value"
                 operator: "is_falsy"
+
+  - name: "Unit Budget Without School Rejected"
+    steps:
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Budget 6"
+          code: "AYB6"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "A unit budget without school_id must be rejected"
+        action: "create"
+        model: "school_budget"
+        expect_error:
+          type: "ValidationError"
+          message_contains: "do not match Organization Type"
+        values:
+          org_type: "unit"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+  - name: "Duplicate Assumption Line Same Grade Rejected"
+    steps:
+      - step: "Setup - create grade type"
+        action: "create"
+        model: "school_grade_type"
+        save_as: "grade_type"
+        values:
+          name: "Grade Type Budget 7"
+          code: "GTB7"
+          sequence: 10
+
+      - step: "Setup - create school"
+        action: "create"
+        model: "school"
+        save_as: "school"
+        values:
+          name: "School Budget 7"
+          code: "SCHB7"
+          grade_type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Setup - create academic year"
+        action: "create"
+        model: "school_academic_year"
+        save_as: "academic_year"
+        values:
+          name: "Year Budget 7"
+          code: "AYB7"
+          date_start: "2025-07-01"
+          date_end: "2026-06-30"
+
+      - step: "Setup - create grade"
+        action: "create"
+        model: "school_grade"
+        save_as: "grade"
+        values:
+          name: "Grade Budget 7"
+          code: "GB7"
+          sequence: 10
+          type_id: "EVAL: registry['grade_type'].id"
+
+      - step: "Create unit budget"
+        action: "create"
+        model: "school_budget"
+        save_as: "budget"
+        values:
+          org_type: "unit"
+          school_id: "EVAL: registry['school'].id"
+          academic_year_id: "EVAL: registry['academic_year'].id"
+
+      - step: "Create first assumption line for the grade"
+        action: "create"
+        model: "school_budget_assumption_line"
+        save_as: "line_first"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          grade_id: "EVAL: registry['grade'].id"
+          student_count: 10
+
+      - step: "A second assumption line for the same grade must be rejected"
+        action: "create"
+        model: "school_budget_assumption_line"
+        expect_error:
+          type: "ValidationError"
+          message_contains: "Only one assumption line is allowed per grade"
+        values:
+          budget_id: "EVAL: registry['budget'].id"
+          grade_id: "EVAL: registry['grade'].id"
+          student_count: 5
