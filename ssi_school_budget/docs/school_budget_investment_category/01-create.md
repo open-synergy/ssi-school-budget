@@ -1,6 +1,6 @@
 # Create School Budget Investment Category
 
-> **Module:** ssi_school_budget\
+> **Module:** `ssi_school_budget`\
 > **Model:** `school_budget_investment_category`\
 > **Menu:** School > Configuration > Budget > Investment Categories\
 > **Actor:** Member of `school_budget_investment_category_group`\

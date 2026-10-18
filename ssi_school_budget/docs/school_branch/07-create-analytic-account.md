@@ -1,6 +1,6 @@
 # Create Analytic Account — School Branch
 
-> **Module:** ssi_school_budget\
+> **Module:** `ssi_school_budget`\
 > **Extends:** ssi_school — model `school_branch`\
 > **Model:** `school_branch`\
 > **Menu:** School > Configuration > Branches\

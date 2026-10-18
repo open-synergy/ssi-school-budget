@@ -1,6 +1,6 @@
 # Create School Budget Expense Category
 
-> **Module:** ssi_school_budget\
+> **Module:** `ssi_school_budget`\
 > **Model:** `school_budget_expense_category`\
 > **Menu:** School > Configuration > Budget > Expense Categories\
 > **Actor:** Member of `school_budget_expense_category_group`\

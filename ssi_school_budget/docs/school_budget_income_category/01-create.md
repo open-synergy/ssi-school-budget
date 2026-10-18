@@ -1,6 +1,6 @@
 # Create School Budget Income Category
 
-> **Module:** ssi_school_budget\
+> **Module:** `ssi_school_budget`\
 > **Model:** `school_budget_income_category`\
 > **Menu:** School > Configuration > Budget > Income Categories\
 > **Actor:** Member of `school_budget_income_category_group`\
