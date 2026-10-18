@@ -1,6 +1,6 @@
 # Create School Branch
 
-> **Module:** ssi_school_budget\
+> **Module:** `ssi_school_budget`\
 > **Extends:** ssi_school — model `school_branch`, aksi `01-create`
 
 ## Additional Fields

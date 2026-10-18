@@ -1,6 +1,6 @@
 # Edit Company — School Budget Analytic Account
 
-> **Module:** ssi_school_budget\
+> **Module:** `ssi_school_budget`\
 > **Extends:** base — model `res.company` (Settings > Companies > Company form; `base`\
 > is core Odoo and does not publish an SSI-style numbered IK to anchor to, so this file\
 > documents the added fields directly rather than as a delta on a specific base aksi)\

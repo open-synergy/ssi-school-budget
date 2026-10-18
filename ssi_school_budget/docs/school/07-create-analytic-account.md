@@ -1,6 +1,6 @@
 # Create Analytic Account — School
 
-> **Module:** ssi_school_budget\
+> **Module:** `ssi_school_budget`\
 > **Extends:** ssi_school — model `school`\
 > **Model:** `school`\
 > **Menu:** School > Configuration > Grade > Schools\
