@@ -1,6 +1,6 @@
 # Sync Contribution Allocation — School Budget
 
-> **Module:** ssi_school_budget\
+> **Module:** `ssi_school_budget`\
 > **Model:** `school_budget`\
 > **Menu:** School > Budget > Budgets\
 > **Actor:** School Budget / User (`school_budget_user_group`)\
