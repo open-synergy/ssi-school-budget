@@ -1,6 +1,6 @@
 # Restart School Budget
 
-> **Module:** ssi_school_budget\
+> **Module:** `ssi_school_budget`\
 > **Model:** `school_budget`\
 > **Menu:** School > Budget > Budgets\
 > **Actor:** Member of `school_budget_validator_group`\
