@@ -1,0 +1,3764 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ssi_school_budget
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Confirm school budget\n"
+"Database ID: %s\n"
+"Problem: The organization of this budget has no analytic account\n"
+"Solution: Open the school/branch/company and create or select its\n"
+"analytic account\n"
+msgstr ""
+"\n"
+"Konteks: Konfirmasi anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Organisasi anggaran ini tidak memiliki akun analitik\n"
+"Solusi: Buka sekolah/cabang/perusahaan lalu buat atau pilih akun\n"
+"analitiknya\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/res_company.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save company\n"
+"Database ID: %s\n"
+"Problem: Analytic Account '%s' is already used by another company,\n"
+"branch, or school unit for School Budget realization\n"
+"Solution: Select an Analytic Account that is not used elsewhere\n"
+msgstr ""
+"\n"
+"Konteks: Simpan perusahaan\n"
+"ID Basis Data: %s\n"
+"Masalah: Akun Analitik '%s' sudah digunakan oleh perusahaan, cabang, atau unit\n"
+"sekolah lain untuk realisasi Anggaran Sekolah\n"
+"Solusi: Pilih Akun Analitik yang tidak digunakan di tempat lain\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school\n"
+"Database ID: %s\n"
+"Problem: Analytic Account '%s' is already used by another company,\n"
+"branch, or school unit for School Budget realization\n"
+"Solution: Select an Analytic Account that is not used elsewhere\n"
+msgstr ""
+"\n"
+"Konteks: Simpan sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Akun Analitik '%s' sudah digunakan oleh perusahaan, cabang, atau unit\n"
+"sekolah lain untuk realisasi Anggaran Sekolah\n"
+"Solusi: Pilih Akun Analitik yang tidak digunakan di tempat lain\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_branch.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school branch\n"
+"Database ID: %s\n"
+"Problem: Analytic Account '%s' is already used by another company,\n"
+"branch, or school unit for School Budget realization\n"
+"Solution: Select an Analytic Account that is not used elsewhere\n"
+msgstr ""
+"\n"
+"Konteks: Simpan cabang sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Akun Analitik '%s' sudah digunakan oleh perusahaan, cabang, atau unit\n"
+"sekolah lain untuk realisasi Anggaran Sekolah\n"
+"Solusi: Pilih Akun Analitik yang tidak digunakan di tempat lain\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget\n"
+"Database ID: %s\n"
+"Problem: A budget for this organization and academic year already\n"
+"exists\n"
+"Solution: Edit the existing budget instead of creating a duplicate\n"
+msgstr ""
+"\n"
+"Konteks: Simpan anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Anggaran untuk organisasi dan tahun akademik ini sudah ada\n"
+"Solusi: Ubah anggaran yang sudah ada, jangan membuat duplikat\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget\n"
+"Database ID: %s\n"
+"Problem: New Student Count, Returning Student Count, or Staff Count\n"
+"is negative\n"
+"Solution: Enter zero or a positive number\n"
+msgstr ""
+"\n"
+"Konteks: Simpan anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Jumlah Siswa Baru, Jumlah Siswa Lanjutan, atau Jumlah Staf\n"
+"bernilai negatif\n"
+"Solusi: Isi dengan nol atau bilangan positif\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget\n"
+"Database ID: %s\n"
+"Problem: Student assumption lines are only allowed when Organization\n"
+"Type is Unit\n"
+"Solution: Remove the assumption lines, or change Organization Type\n"
+"to Unit\n"
+msgstr ""
+"\n"
+"Konteks: Simpan anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Baris asumsi siswa hanya diizinkan bila Tipe Organisasi\n"
+"adalah Unit\n"
+"Solusi: Hapus baris asumsi, atau ubah Tipe Organisasi menjadi Unit\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget\n"
+"Database ID: %s\n"
+"Problem: The organization fields do not match Organization Type '%s'\n"
+"Solution: Unit requires School; Branch requires Branch (and no\n"
+"School); Center requires neither School nor Branch to be set\n"
+msgstr ""
+"\n"
+"Konteks: Simpan anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Isian organisasi tidak sesuai dengan Tipe Organisasi '%s'\n"
+"Solusi: Unit membutuhkan Sekolah; Cabang membutuhkan Cabang (tanpa\n"
+"Sekolah); Pusat mengharuskan Sekolah dan Cabang tidak diisi\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_assumption_line.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget assumption line\n"
+"Database ID: %s\n"
+"Problem: Only one assumption line is allowed per grade on the\n"
+"same budget\n"
+"Solution: Edit the existing line instead of creating a duplicate\n"
+msgstr ""
+"\n"
+"Konteks: Simpan baris asumsi anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Hanya satu baris asumsi yang diizinkan per jenjang pada\n"
+"anggaran yang sama\n"
+"Solusi: Ubah baris yang sudah ada, jangan membuat duplikat\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_assumption_line.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget assumption line\n"
+"Database ID: %s\n"
+"Problem: Student Count is negative\n"
+"Solution: Enter zero or a positive number\n"
+msgstr ""
+"\n"
+"Konteks: Simpan baris asumsi anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Jumlah Siswa bernilai negatif\n"
+"Solusi: Isi dengan nol atau bilangan positif\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_assumption_line.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget assumption line\n"
+"Database ID: %s\n"
+"Problem: Student assumption lines are only allowed when the\n"
+"budget's Organization Type is Unit\n"
+"Solution: Remove this line, or change the budget's Organization\n"
+"Type to Unit\n"
+msgstr ""
+"\n"
+"Konteks: Simpan baris asumsi anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Baris asumsi siswa hanya diizinkan bila Tipe Organisasi\n"
+"anggaran adalah Unit\n"
+"Solusi: Hapus baris ini, atau ubah Tipe Organisasi anggaran menjadi Unit\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_contribution_allocation.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget contribution allocation\n"
+"Database ID: %s\n"
+"Problem: Invalid parent/child organization type, parent equals\n"
+"child, mismatched academic year, or override percentage out of\n"
+"range (0.0-1.0)\n"
+"Solution: Parent budget must be branch/center, child budget must be\n"
+"a unit under the same academic year and different from the parent,\n"
+"and override percentages must be between 0.0 and 1.0\n"
+msgstr ""
+"\n"
+"Konteks: Simpan alokasi kontribusi anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Tipe organisasi induk/anak tidak valid, induk sama dengan\n"
+"anak, tahun akademik tidak sama, atau persentase penggantian di\n"
+"luar rentang (0,0-1,0)\n"
+"Solusi: Anggaran induk harus berupa cabang/pusat, anggaran anak harus\n"
+"berupa unit pada tahun akademik yang sama dan berbeda dari induk,\n"
+"dan persentase penggantian harus antara 0,0 dan 1,0\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_contribution_allocation.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget contribution allocation\n"
+"Database ID: %s\n"
+"Problem: Only one contribution allocation is allowed per child\n"
+"budget under the same parent budget\n"
+"Solution: Edit the existing allocation instead of creating a\n"
+"duplicate\n"
+msgstr ""
+"\n"
+"Konteks: Simpan alokasi kontribusi anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Hanya satu alokasi kontribusi yang diizinkan per anggaran anak\n"
+"pada anggaran induk yang sama\n"
+"Solusi: Ubah alokasi yang sudah ada, jangan membuat duplikat\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_direct_income_override.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget direct income override\n"
+"Database ID: %s\n"
+"Problem: Expense Category '%s' does not have Direct Income enabled\n"
+"Solution: Select an expense category with Direct Income enabled\n"
+msgstr ""
+"\n"
+"Konteks: Simpan penggantian pendapatan langsung anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Kategori Biaya '%s' tidak mengaktifkan Pendapatan Langsung\n"
+"Solusi: Pilih kategori biaya yang mengaktifkan Pendapatan Langsung\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_direct_income_override.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget direct income override\n"
+"Database ID: %s\n"
+"Problem: Only one direct income override is allowed per expense\n"
+"category on the same budget\n"
+"Solution: Edit the existing override instead of creating a\n"
+"duplicate\n"
+msgstr ""
+"\n"
+"Konteks: Simpan penggantian pendapatan langsung anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Hanya satu penggantian pendapatan langsung yang diizinkan per\n"
+"kategori biaya pada anggaran yang sama\n"
+"Solusi: Ubah penggantian yang sudah ada, jangan membuat duplikat\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_direct_income_override.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget direct income override\n"
+"Database ID: %s\n"
+"Problem: Override Amount is negative\n"
+"Solution: Enter zero or a positive number\n"
+msgstr ""
+"\n"
+"Konteks: Simpan penggantian pendapatan langsung anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Jumlah Penggantian bernilai negatif\n"
+"Solusi: Isi dengan nol atau bilangan positif\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_expense_category.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget expense category\n"
+"Database ID: %s\n"
+"Problem: 'Direct Income' is enabled but 'Maps to Income Category' is\n"
+"empty\n"
+"Solution: Select the income category that should receive the direct\n"
+"income generated from this expense category\n"
+msgstr ""
+"\n"
+"Konteks: Simpan kategori biaya anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: 'Pendapatan Langsung' diaktifkan tetapi 'Dipetakan ke Kategori\n"
+"Pendapatan' kosong\n"
+"Solusi: Pilih kategori pendapatan yang menerima pendapatan langsung\n"
+"yang dihasilkan dari kategori biaya ini\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_expense_category.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget expense category\n"
+"Database ID: %s\n"
+"Problem: Account '%s' is already mapped to another category. Mapping\n"
+"one account to two categories would count the same journal item\n"
+"twice\n"
+"Solution: Select an account that is not mapped elsewhere\n"
+msgstr ""
+"\n"
+"Konteks: Simpan kategori biaya anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Akun '%s' sudah dipetakan ke kategori lain. Memetakan satu akun\n"
+"ke dua kategori akan menghitung item jurnal yang sama dua kali\n"
+"Solusi: Pilih akun yang tidak dipetakan di tempat lain\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_expense_grade_allocation.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget expense grade allocation\n"
+"Database ID: %s\n"
+"Problem: Only one grade allocation is allowed per grade on the\n"
+"same expense line\n"
+"Solution: Edit the existing allocation instead of creating a\n"
+"duplicate\n"
+msgstr ""
+"\n"
+"Konteks: Simpan alokasi jenjang biaya anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Hanya satu alokasi jenjang yang diizinkan per jenjang pada\n"
+"baris biaya yang sama\n"
+"Solusi: Ubah alokasi yang sudah ada, jangan membuat duplikat\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_expense_line.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget expense line\n"
+"Database ID: %s\n"
+"Problem: Line Number must be 1 or greater\n"
+"Solution: Enter a value of 1 or more\n"
+msgstr ""
+"\n"
+"Konteks: Simpan baris biaya anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Nomor Baris harus 1 atau lebih\n"
+"Solusi: Isi dengan nilai 1 atau lebih\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_expense_realization.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget expense realization\n"
+"Database ID: %s\n"
+"Problem: Only one realization row is allowed per category and\n"
+"month on the same budget\n"
+"Solution: Edit the existing row instead of creating a duplicate\n"
+msgstr ""
+"\n"
+"Konteks: Simpan realisasi biaya anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Hanya satu baris realisasi yang diizinkan per kategori dan\n"
+"bulan pada anggaran yang sama\n"
+"Solusi: Ubah baris yang sudah ada, jangan membuat duplikat\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_financial_investment.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget financial investment\n"
+"Database ID: %s\n"
+"Problem: Financial investments are only allowed on branch or center\n"
+"budgets, with a positive Amount\n"
+"Solution: Select a branch/center budget and enter an Amount greater\n"
+"than zero\n"
+msgstr ""
+"\n"
+"Konteks: Simpan investasi keuangan anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Investasi keuangan hanya diizinkan pada anggaran cabang atau\n"
+"pusat, dengan Jumlah positif\n"
+"Solusi: Pilih anggaran cabang/pusat dan isi Jumlah lebih besar dari nol\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_income_category.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget income category\n"
+"Database ID: %s\n"
+"Problem: Account '%s' is already mapped to another category. Mapping\n"
+"one account to two categories would count the same journal item\n"
+"twice\n"
+"Solution: Select an account that is not mapped elsewhere\n"
+msgstr ""
+"\n"
+"Konteks: Simpan kategori pendapatan anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Akun '%s' sudah dipetakan ke kategori lain. Memetakan satu akun\n"
+"ke dua kategori akan menghitung item jurnal yang sama dua kali\n"
+"Solusi: Pilih akun yang tidak dipetakan di tempat lain\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_income_line.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget income line\n"
+"Database ID: %s\n"
+"Problem: This income category is calculated automatically by the\n"
+"simulation and cannot be entered manually\n"
+"Solution: Select an income category whose Calculation Method is\n"
+"Manual\n"
+msgstr ""
+"\n"
+"Konteks: Simpan baris pendapatan anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Kategori pendapatan ini dihitung otomatis oleh simulasi dan\n"
+"tidak dapat diisi manual\n"
+"Solusi: Pilih kategori pendapatan yang Metode Perhitungannya Manual\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_income_realization.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget income realization\n"
+"Database ID: %s\n"
+"Problem: Only one realization row is allowed per category and\n"
+"month on the same budget\n"
+"Solution: Edit the existing row instead of creating a duplicate\n"
+msgstr ""
+"\n"
+"Konteks: Simpan realisasi pendapatan anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Hanya satu baris realisasi yang diizinkan per kategori dan\n"
+"bulan pada anggaran yang sama\n"
+"Solusi: Ubah baris yang sudah ada, jangan membuat duplikat\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_investment.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget investment\n"
+"Database ID: %s\n"
+"Problem: Purchase Price must be greater than zero, Useful Life must\n"
+"be at least 1, and Start Month must be between 1 and 12\n"
+"Solution: Correct the values\n"
+msgstr ""
+"\n"
+"Konteks: Simpan investasi anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Harga Beli harus lebih besar dari nol, Masa Manfaat minimal 1,\n"
+"dan Bulan Mulai harus antara 1 dan 12\n"
+"Solusi: Perbaiki nilainya\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_investment_category.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget investment category\n"
+"Database ID: %s\n"
+"Problem: Account '%s' is already mapped to another category. Mapping\n"
+"one account to two categories would count the same journal item\n"
+"twice\n"
+"Solution: Select an account that is not mapped elsewhere\n"
+msgstr ""
+"\n"
+"Konteks: Simpan kategori investasi anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Akun '%s' sudah dipetakan ke kategori lain. Memetakan satu akun\n"
+"ke dua kategori akan menghitung item jurnal yang sama dua kali\n"
+"Solusi: Pilih akun yang tidak dipetakan di tempat lain\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_investment_category.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget investment category\n"
+"Database ID: %s\n"
+"Problem: Default Economic Life must be greater than zero\n"
+"Solution: Enter a value of 1 or more\n"
+msgstr ""
+"\n"
+"Konteks: Simpan kategori investasi anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Umur Ekonomis Bawaan harus lebih besar dari nol\n"
+"Solusi: Isi dengan nilai 1 atau lebih\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_old_asset.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget old asset\n"
+"Database ID: %s\n"
+"Problem: Acquisition Cost must be greater than zero, Useful Life\n"
+"must be at least 1, and Acquisition Year must be between 1900 and\n"
+"2100\n"
+"Solution: Correct the values\n"
+msgstr ""
+"\n"
+"Konteks: Simpan aset lama anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Biaya Perolehan harus lebih besar dari nol, Masa Manfaat\n"
+"minimal 1, dan Tahun Perolehan harus antara 1900 dan 2100\n"
+"Solusi: Perbaiki nilainya\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_parent_expense_allocation.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget parent expense allocation\n"
+"Database ID: %s\n"
+"Problem: Only one allocation setting is allowed per expense\n"
+"category on the same budget\n"
+"Solution: Edit the existing allocation instead of creating a\n"
+"duplicate\n"
+msgstr ""
+"\n"
+"Konteks: Simpan alokasi biaya induk anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Hanya satu pengaturan alokasi yang diizinkan per kategori\n"
+"biaya pada anggaran yang sama\n"
+"Solusi: Ubah pengaturan yang sudah ada, jangan membuat duplikat\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_parent_expense_allocation.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget parent expense allocation\n"
+"Database ID: %s\n"
+"Problem: Parent expense allocations are only allowed on branch or\n"
+"center budgets\n"
+"Solution: Select a branch/center budget\n"
+msgstr ""
+"\n"
+"Konteks: Simpan alokasi biaya induk anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Alokasi biaya induk hanya diizinkan pada anggaran cabang atau\n"
+"pusat\n"
+"Solusi: Pilih anggaran cabang/pusat\n"
+
+#. module: ssi_school_budget
+#: code:addons/ssi_school_budget/models/school_budget_subsidy.py:0
+#, python-format
+msgid ""
+"\n"
+"Context: Save school budget subsidy\n"
+"Database ID: %s\n"
+"Problem: Invalid provider/recipient relationship for this subsidy\n"
+"Solution: Provider must be a branch or center budget, different\n"
+"from the recipient. A branch may only subsidize its own units. A\n"
+"center may subsidize any branch or unit (but not another center).\n"
+"Provider and recipient must share the same academic year, and Amount\n"
+"must not be negative\n"
+msgstr ""
+"\n"
+"Konteks: Simpan subsidi anggaran sekolah\n"
+"ID Basis Data: %s\n"
+"Masalah: Hubungan pemberi/penerima tidak valid untuk subsidi ini\n"
+"Solusi: Pemberi harus berupa anggaran cabang atau pusat, berbeda dari\n"
+"penerima. Cabang hanya boleh mensubsidi unitnya sendiri. Pusat\n"
+"boleh mensubsidi cabang atau unit mana pun (tetapi tidak pusat\n"
+"lain). Pemberi dan penerima harus berada pada tahun akademik yang\n"
+"sama, dan Jumlah tidak boleh negatif\n"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation__budget_id
+msgid "# Budget"
+msgstr "# Anggaran"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__name
+msgid "# Document"
+msgstr "No. Dokumen"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__line_id
+msgid "# Expense Line"
+msgstr "# Baris Biaya"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__parent_budget_id
+msgid "# Parent Budget"
+msgstr "# Anggaran Induk"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__provider_budget_id
+msgid "# Provider Budget"
+msgstr "# Anggaran Pemberi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_allocatable_base_up
+msgid "100% base before splitting among contributors: sum of (foundation+bos) of expense lines under affects_up categories, plus own new/old asset depreciation and financial investment."
+msgstr "Basis 100% sebelum dibagi antar kontributor: jumlah (yayasan+bos) baris biaya pada kategori affects_up, ditambah penyusutan aset baru/lama sendiri dan investasi keuangan."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_allocatable_base_us
+msgid "100% base before splitting among contributors: sum of (foundation+bos) of expense lines under non-affects_up categories."
+msgstr "Basis 100% sebelum dibagi antar kontributor: jumlah (yayasan+bos) baris biaya pada kategori non-affects_up."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__absorption_rate
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__absorption_rate
+msgid "Absorption Rate (%)"
+msgstr "Tingkat Penyerapan (%)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__academic_year_id
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_search
+msgid "Academic Year"
+msgstr "Tahun Akademik"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__account_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__account_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__account_id
+msgid "Account"
+msgstr "Akun"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__accrual_surplus
+msgid "Accrual Surplus"
+msgstr "Surplus Akrual"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__accrual_surplus_no_alloc
+msgid "Accrual Surplus (No Allocation)"
+msgstr "Surplus Akrual (Tanpa Alokasi)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__accrual_surplus_deficit
+msgid "Accrual Surplus/Deficit"
+msgstr "Surplus/Defisit Akrual"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__accrual_surplus_deficit_auto
+msgid "Accrual Surplus/Deficit (Auto)"
+msgstr "Surplus/Defisit Akrual (Otomatis)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__acquisition_cost
+msgid "Acquisition Cost"
+msgstr "Biaya Perolehan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__acquisition_year
+msgid "Acquisition Year"
+msgstr "Tahun Perolehan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_needaction
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_needaction
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_needaction
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_needaction
+msgid "Action Needed"
+msgstr "Perlu Tindakan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__active
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__active
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__active
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation__active
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__active
+msgid "Active"
+msgstr "Aktif"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__active_approval_ids
+msgid "Active Approvals"
+msgstr "Persetujuan Aktif"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__active_approver_partner_ids
+msgid "Active Partners"
+msgstr "Mitra Aktif"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__active_approver_user_ids
+msgid "Active Users"
+msgstr "Pengguna Aktif"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__activity_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__activity_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__activity_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__activity_ids
+msgid "Activities"
+msgstr "Aktivitas"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__activity_exception_decoration
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__activity_exception_decoration
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__activity_exception_decoration
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Dekorasi Aktivitas Pengecualian"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__activity_state
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__activity_state
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__activity_state
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__activity_state
+msgid "Activity State"
+msgstr "Status Aktivitas"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__activity_type_icon
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__activity_type_icon
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__activity_type_icon
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Ikon Jenis Aktivitas"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation__affects_up
+msgid "Affects UP"
+msgstr "Memengaruhi UP"
+
+#. module: ssi_school_budget
+#: model:res.groups,name:ssi_school_budget.school_budget_all_group
+msgid "All"
+msgstr "Semua"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Allocatable Base"
+msgstr "Basis yang Dapat Dialokasikan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_expense_result__source__allocated_financial_investment
+msgid "Allocated Financial Investment"
+msgstr "Investasi Keuangan yang Dialokasikan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocated_financial_investment_branch
+msgid "Allocated Financial Investment (Branch)"
+msgstr "Investasi Keuangan yang Dialokasikan (Cabang)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocated_financial_investment_center
+msgid "Allocated Financial Investment (Center)"
+msgstr "Investasi Keuangan yang Dialokasikan (Pusat)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_expense_result__source__allocated_dep_new
+msgid "Allocated New Investment Depreciation"
+msgstr "Penyusutan Investasi Baru yang Dialokasikan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocated_new_investment_dep_branch
+msgid "Allocated New Investment Depreciation (Branch)"
+msgstr "Penyusutan Investasi Baru yang Dialokasikan (Cabang)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocated_new_investment_dep_center
+msgid "Allocated New Investment Depreciation (Center)"
+msgstr "Penyusutan Investasi Baru yang Dialokasikan (Pusat)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_expense_result__source__allocated_dep_old
+msgid "Allocated Old Asset Depreciation"
+msgstr "Penyusutan Aset Lama yang Dialokasikan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocated_old_asset_dep_branch
+msgid "Allocated Old Asset Depreciation (Branch)"
+msgstr "Penyusutan Aset Lama yang Dialokasikan (Cabang)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocated_old_asset_dep_center
+msgid "Allocated Old Asset Depreciation (Center)"
+msgstr "Penyusutan Aset Lama yang Dialokasikan (Pusat)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_expense_result__source__allocated_up
+msgid "Allocated UP"
+msgstr "UP yang Dialokasikan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocated_up_branch
+msgid "Allocated UP Cost (Branch)"
+msgstr "Biaya UP yang Dialokasikan (Cabang)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocated_up_center
+msgid "Allocated UP Cost (Center)"
+msgstr "Biaya UP yang Dialokasikan (Pusat)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_expense_result__source__allocated_us
+msgid "Allocated US"
+msgstr "US yang Dialokasikan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocated_us_branch
+msgid "Allocated US Cost (Branch)"
+msgstr "Biaya US yang Dialokasikan (Cabang)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocated_us_center
+msgid "Allocated US Cost (Center)"
+msgstr "Biaya US yang Dialokasikan (Pusat)"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Allocation"
+msgstr "Alokasi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allocation_result_ids
+msgid "Allocation Results"
+msgstr "Hasil Alokasi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__allowed_policy_template_ids
+msgid "Allowed Policy Templates"
+msgstr "Templat Kebijakan yang Diizinkan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__amount
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__amount
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__amount
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__amount
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__amount
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__amount
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__amount
+msgid "Amount"
+msgstr "Jumlah"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__bos
+msgid "Amount funded by government BOS/BOP/PBOS subsidy."
+msgstr "Jumlah yang didanai oleh subsidi BOS/BOP/PBOS dari pemerintah."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__foundation
+msgid "Amount funded by the foundation (Yayasan)."
+msgstr "Jumlah yang didanai oleh yayasan."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school__analytic_account_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_branch__analytic_account_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__analytic_account_id
+msgid "Analytic Account"
+msgstr "Akun Analitik"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__analytic_account_id
+msgid "Analytic Account of this budget's organization, used to pull realization from posted journal items. Automatically derived: Unit uses the school's Analytic Account, Branch uses the branch's, Center uses the company's. This field is never a manual input, so two budgets can never point to the same Analytic Account."
+msgstr "Akun Analitik organisasi anggaran ini, digunakan untuk menarik realisasi dari item jurnal yang telah diposting. Diturunkan otomatis: Unit memakai Akun Analitik sekolah, Cabang memakai milik cabang, Pusat memakai milik perusahaan. Isian ini tidak pernah diinput manual, sehingga dua anggaran tidak mungkin menunjuk Akun Analitik yang sama."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_res_company__school_analytic_account_id
+msgid "Analytic Account representing this Center on School Budget realization. Must not be shared with any branch or school unit."
+msgstr "Akun Analitik yang mewakili Pusat ini pada realisasi Anggaran Sekolah. Tidak boleh dipakai bersama cabang atau unit sekolah mana pun."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_branch__analytic_account_id
+msgid "Analytic Account representing this branch on School Budget realization. Must not be shared with the company or any school unit."
+msgstr "Akun Analitik yang mewakili cabang ini pada realisasi Anggaran Sekolah. Tidak boleh dipakai bersama perusahaan atau unit sekolah mana pun."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school__analytic_account_id
+msgid "Analytic Account representing this school unit on School Budget realization. Must not be shared with the company or any branch."
+msgstr "Akun Analitik yang mewakili unit sekolah ini pada realisasi Anggaran Sekolah. Tidak boleh dipakai bersama perusahaan atau cabang mana pun."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_branch__analytic_group_id
+msgid "Analytic Group"
+msgstr "Grup Analitik"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_branch__analytic_group_id
+msgid "Analytic Group under which this branch's school units' analytic accounts are nested, for roll-up reporting."
+msgstr "Grup Analitik tempat akun analitik unit-unit sekolah cabang ini disusun bertingkat, untuk pelaporan konsolidasi."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__allocated_financial_investment_branch
+msgid "Ancestor branch's financial investment allocated by pct_up, at full nominal value (never depreciated)."
+msgstr "Investasi keuangan cabang induk yang dialokasikan menurut pct_up, pada nilai nominal penuh (tidak pernah disusutkan)."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__allocated_financial_investment_center
+msgid "Ancestor center's financial investment allocated by pct_up, at full nominal value (never depreciated)."
+msgstr "Investasi keuangan pusat induk yang dialokasikan menurut pct_up, pada nilai nominal penuh (tidak pernah disusutkan)."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__approval_template_id
+msgid "Approval Configuration"
+msgstr "Konfigurasi Persetujuan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__approval_template_id
+msgid "Approval Template"
+msgstr "Templat Persetujuan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__approval_ids
+msgid "Approvals"
+msgstr "Persetujuan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__approve_ok
+msgid ""
+"Approve policy\n"
+"\n"
+"* If active user can see and execute 'Approve' button"
+msgstr ""
+"Kebijakan setujui\n"
+"\n"
+"* Jika pengguna aktif dapat melihat dan menjalankan tombol 'Setujui'"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__approved
+msgid "Approved"
+msgstr "Disetujui"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__asset_code
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__asset_code
+msgid "Asset Code"
+msgstr "Kode Aset"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__asset_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__asset_name
+msgid "Asset Name"
+msgstr "Nama Aset"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_attachment_count
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_attachment_count
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_attachment_count
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_attachment_count
+msgid "Attachment Count"
+msgstr "Jumlah Lampiran"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__auto_amount
+msgid "Auto Amount"
+msgstr "Jumlah Otomatis"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__auto_up_rate
+msgid "Auto UP Rate"
+msgstr "Tarif UP Otomatis"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__auto_up_revenue
+msgid "Auto UP Revenue"
+msgstr "Pendapatan UP Otomatis"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__auto_us_rate
+msgid "Auto US Rate"
+msgstr "Tarif US Otomatis"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__auto_us_revenue
+msgid "Auto US Revenue"
+msgstr "Pendapatan US Otomatis"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_result__auto_amount
+msgid "Automatically computed amount, ignoring overrides."
+msgstr "Jumlah yang dihitung otomatis, mengabaikan penggantian."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__bos
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__amount_bos
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__bos
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_result__source__bos
+msgid "BOS"
+msgstr "BOS"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__basis
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__basis
+msgid "Basis"
+msgstr "Dasar"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_financial_investment__instrument_type__obligasi
+msgid "Bond"
+msgstr "Obligasi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__book_value
+msgid "Book Value"
+msgstr "Nilai Buku"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__branch_id
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget__org_type__branch
+msgid "Branch"
+msgstr "Cabang"
+
+#. module: ssi_school_budget
+#: model:ir.ui.menu,name:ssi_school_budget.menu_school_budget_budget
+#: model:ir.ui.menu,name:ssi_school_budget.menu_school_budget_configuration
+msgid "Budget"
+msgstr "Anggaran"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Budget AKRUAL"
+msgstr "Anggaran AKRUAL"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__budget_amount
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__budget_amount
+msgid "Budget Amount"
+msgstr "Jumlah Anggaran"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Budget KAS"
+msgstr "Anggaran KAS"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Budget vs Actual"
+msgstr "Anggaran vs Aktual"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__expense_comparison_ids
+msgid "Budget-vs-actual comparison per expense category, written by action_compute_realization()."
+msgstr "Perbandingan anggaran-vs-aktual per kategori biaya, ditulis oleh action_compute_realization()."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__income_comparison_ids
+msgid "Budget-vs-actual comparison per income category, written by action_compute_realization()."
+msgstr "Perbandingan anggaran-vs-aktual per kategori pendapatan, ditulis oleh action_compute_realization()."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__expense_line_ids
+msgid "Budgeted expense items."
+msgstr "Item biaya yang dianggarkan."
+
+#. module: ssi_school_budget
+#: model:ir.actions.act_window,name:ssi_school_budget.school_budget_action
+#: model:ir.ui.menu,name:ssi_school_budget.school_budget_menu
+msgid "Budgets"
+msgstr "Anggaran"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_income_category_view_form
+msgid "Calculation"
+msgstr "Perhitungan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__calc_method
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_income_category_view_form
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_income_category_view_search
+msgid "Calculation Method"
+msgstr "Metode Perhitungan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__approve_ok
+msgid "Can Approve"
+msgstr "Dapat Menyetujui"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__cancel_ok
+msgid "Can Cancel"
+msgstr "Dapat Membatalkan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__confirm_ok
+msgid "Can Confirm"
+msgstr "Dapat Mengonfirmasi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__done_ok
+msgid "Can Finished"
+msgstr "Dapat Diselesaikan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__manual_number_ok
+msgid "Can Input Manual Document Number"
+msgstr "Dapat Memasukkan Nomor Dokumen Secara Manual"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__reject_ok
+msgid "Can Reject"
+msgstr "Dapat Menolak"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__restart_ok
+msgid "Can Restart"
+msgstr "Dapat Memulai Ulang"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__restart_approval_ok
+msgid "Can Restart Approval"
+msgstr "Dapat Memulai Ulang Persetujuan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__cancel_reason_id
+msgid "Cancel Reason"
+msgstr "Alasan Pembatalan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__cancel_ok
+msgid ""
+"Cancel policy\n"
+"\n"
+"* If active user can see and execute 'Cancel' button"
+msgstr ""
+"Kebijakan batal\n"
+"\n"
+"* Jika pengguna aktif dapat melihat dan menjalankan tombol 'Batal'"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__cash_surplus
+msgid "Cash Surplus"
+msgstr "Surplus Kas"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__cash_surplus_no_alloc
+msgid "Cash Surplus (No Allocation)"
+msgstr "Surplus Kas (Tanpa Alokasi)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__cash_surplus_deficit
+msgid "Cash Surplus/Deficit"
+msgstr "Surplus/Defisit Kas"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__cash_surplus_deficit_auto
+msgid "Cash Surplus/Deficit (Auto)"
+msgstr "Surplus/Defisit Kas (Otomatis)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__cash_balance
+msgid "Cash and cash-equivalent balance at the start of the budget period."
+msgstr "Saldo kas dan setara kas pada awal periode anggaran."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget__org_type__center
+msgid "Center"
+msgstr "Pusat"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__child_budget_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__child_budget_id
+msgid "Child Budget"
+msgstr "Anggaran Anak"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_expense_category_view_form
+msgid "Classification"
+msgstr "Klasifikasi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__code
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__code
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__code
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__code
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__code
+msgid "Code"
+msgstr "Kode"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_res_company
+msgid "Companies"
+msgstr "Perusahaan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__company_id
+#: model:res.groups,name:ssi_school_budget.school_budget_company_group
+msgid "Company"
+msgstr "Perusahaan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__company_partner_id
+msgid "Company Partner"
+msgstr "Mitra Perusahaan"
+
+#. module: ssi_school_budget
+#: model:res.groups,name:ssi_school_budget.school_budget_company_child_group
+msgid "Company and All Child Companies"
+msgstr "Perusahaan dan Semua Perusahaan Anak"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__company_id
+msgid ""
+"Company that own the document\n"
+"\n"
+"* Automatically filled with user's company.\n"
+"  Default company can be changed"
+msgstr ""
+"Perusahaan pemilik dokumen\n"
+"\n"
+"* Otomatis diisi dengan perusahaan pengguna.\n"
+"  Perusahaan bawaan dapat diubah"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__comparative_result_ids
+msgid "Comparative Results"
+msgstr "Hasil Perbandingan"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Comparative Summary"
+msgstr "Ringkasan Perbandingan"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Compute Realization"
+msgstr "Hitung Realisasi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__confirm_ok
+msgid ""
+"Confirm policy\n"
+"\n"
+"* If active user can see and execute 'Confirm' button"
+msgstr ""
+"Kebijakan konfirmasi\n"
+"\n"
+"* Jika pengguna aktif dapat melihat dan menjalankan tombol 'Konfirmasi'"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Contribution Allocation"
+msgstr "Alokasi Kontribusi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__contribution_allocation_ids
+msgid "Contribution Allocations"
+msgstr "Alokasi Kontribusi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__contribution_role
+msgid "Contribution Role"
+msgstr "Peran Kontribusi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__contribution_up
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_result__source__contribution_up
+msgid "Contribution UP"
+msgstr "Kontribusi UP"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__contribution_us
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_result__source__contribution_us
+msgid "Contribution US"
+msgstr "Kontribusi US"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Cost Base"
+msgstr "Basis Biaya"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_branch_view_form_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_view_form_school_budget
+msgid "Create Analytic Account"
+msgstr "Buat Akun Analitik"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation__create_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__create_uid
+msgid "Created by"
+msgstr "Dibuat oleh"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation__create_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__create_date
+msgid "Created on"
+msgstr "Dibuat pada"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__currency_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__currency_id
+msgid "Currency"
+msgstr "Mata Uang"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__date
+msgid "Date"
+msgstr "Tanggal"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__default_economic_life
+msgid "Default Economic Life (Years)"
+msgstr "Umur Ekonomis Bawaan (Tahun)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__default_economic_life
+msgid "Default useful life, in years, used to prefill new investment lines under this category. Must be greater than zero."
+msgstr "Masa manfaat bawaan, dalam tahun, yang dipakai untuk mengisi awal baris investasi baru pada kategori ini. Harus lebih besar dari nol."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__dep_current_year
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__dep_current_year
+msgid "Depreciation Current Year"
+msgstr "Penyusutan Tahun Berjalan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__dep_per_year
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__dep_per_year
+msgid "Depreciation Per Year"
+msgstr "Penyusutan Per Tahun"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Depreciation Totals"
+msgstr "Total Penyusutan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__description
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__description
+msgid "Description"
+msgstr "Deskripsi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__is_direct_income
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__is_direct_income
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_result__source__direct_income
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_expense_category_view_form
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_expense_category_view_search
+msgid "Direct Income"
+msgstr "Pendapatan Langsung"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Direct Income Override"
+msgstr "Penggantian Pendapatan Langsung"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__direct_income_override_ids
+msgid "Direct Income Overrides"
+msgstr "Penggantian Pendapatan Langsung"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_grade_allocation__amount
+msgid "Direct income amount allocated to this grade."
+msgstr "Jumlah pendapatan langsung yang dialokasikan ke jenjang ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_account_move__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_res_company__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_branch__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation__display_name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__display_name
+msgid "Display Name"
+msgstr "Nama Tampilan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__sequence
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__sequence
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__sequence
+msgid "Display order of the category. Lower values appear first."
+msgstr "Urutan tampilan kategori. Nilai yang lebih kecil tampil lebih dulu."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__done_ok
+msgid ""
+"Done policy\n"
+"\n"
+"* If active user can see and execute 'Done' button"
+msgstr ""
+"Kebijakan selesai\n"
+"\n"
+"* Jika pengguna aktif dapat melihat dan menjalankan tombol 'Selesai'"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__end_book_value
+msgid "End Book Value"
+msgstr "Nilai Buku Akhir"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__ending_cash_balance
+msgid "Ending Cash Balance"
+msgstr "Saldo Kas Akhir"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__ending_cash_balance_auto
+msgid "Ending Cash Balance (Auto)"
+msgstr "Saldo Kas Akhir (Otomatis)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__expense
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Expense"
+msgstr "Biaya"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__expense_no_alloc
+msgid "Expense (No Allocation)"
+msgstr "Biaya (Tanpa Alokasi)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__expense_absorption_rate
+msgid "Expense Absorption Rate (%)"
+msgstr "Tingkat Penyerapan Biaya (%)"
+
+#. module: ssi_school_budget
+#: model:ir.actions.act_window,name:ssi_school_budget.school_budget_expense_category_action
+#: model:ir.ui.menu,name:ssi_school_budget.school_budget_expense_category_menu
+msgid "Expense Categories"
+msgstr "Kategori Biaya"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__expense_category_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__expense_category_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__expense_category_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__expense_category_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__expense_category_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation__expense_category_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__expense_category_id
+#: model:res.groups,name:ssi_school_budget.school_budget_expense_category_group
+msgid "Expense Category"
+msgstr "Kategori Biaya"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__expense_comparison_ids
+msgid "Expense Comparison"
+msgstr "Perbandingan Biaya"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__expense_group
+msgid "Expense Group"
+msgstr "Grup Biaya"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__expense_line_ids
+msgid "Expense Lines"
+msgstr "Baris Biaya"
+
+#. module: ssi_school_budget
+#: model:ir.actions.act_window,name:ssi_school_budget.school_budget_expense_realization_action
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__expense_realization_ids
+#: model:ir.ui.menu,name:ssi_school_budget.school_budget_expense_realization_menu
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_expense_realization_view_pivot
+msgid "Expense Realization"
+msgstr "Realisasi Biaya"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__expense_result_ids
+msgid "Expense Results"
+msgstr "Hasil Biaya"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Expense Simulation"
+msgstr "Simulasi Biaya"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__parent_expense_allocation_ids
+msgid "Expense categories of this branch/center budget that are pushed down into children's cost base."
+msgstr "Kategori biaya anggaran cabang/pusat ini yang didorong ke bawah menjadi basis biaya anak."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__final_up_rate
+msgid "Final UP Rate"
+msgstr "Tarif UP Final"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__final_us_rate
+msgid "Final US Rate"
+msgstr "Tarif US Final"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_result__amount
+msgid "Final amount, honoring any applicable override."
+msgstr "Jumlah final, dengan memperhatikan penggantian yang berlaku."
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Financial Investment"
+msgstr "Investasi Keuangan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__financial_investment_ids
+msgid "Financial Investments"
+msgstr "Investasi Keuangan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__financial_investment_ids
+msgid "Financial instruments held (branch/center only)."
+msgstr "Instrumen keuangan yang dimiliki (hanya cabang/pusat)."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__fiscal_year
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__fiscal_year
+msgid "Fiscal Year"
+msgstr "Tahun Fiskal"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__old_asset_ids
+msgid "Fixed assets acquired in a previous fiscal year, still being depreciated."
+msgstr "Aset tetap yang diperoleh pada tahun fiskal sebelumnya dan masih disusutkan."
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_expense_category_view_form
+msgid "Flags"
+msgstr "Penanda"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_follower_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_follower_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_follower_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_follower_ids
+msgid "Followers"
+msgstr "Pengikut"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_channel_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_channel_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_channel_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Pengikut (Saluran)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_partner_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_partner_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_partner_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Pengikut (Mitra)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__activity_type_icon
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__activity_type_icon
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__activity_type_icon
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Ikon Font awesome, mis. fa-tasks"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__foundation
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__amount_foundation
+msgid "Foundation"
+msgstr "Yayasan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__amount_total
+msgid "Foundation amount plus BOS amount."
+msgstr "Jumlah yayasan ditambah jumlah BOS."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__basis
+msgid "Free-text calculation basis, e.g. '24 x 12 x Rp 3,500,000'."
+msgstr "Dasar perhitungan teks bebas, mis. '24 x 12 x Rp 3.500.000'."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_line__basis
+msgid "Free-text calculation basis."
+msgstr "Dasar perhitungan teks bebas."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__description
+msgid "Free-text description of this expense item."
+msgstr "Deskripsi teks bebas untuk item biaya ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_line__description
+msgid "Free-text description of this income item."
+msgstr "Deskripsi teks bebas untuk item pendapatan ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__contribution_role
+msgid "Free-text label describing the role of this category in the parent-child contribution mechanism, e.g. 'up_to_pusat', 'subsidy_to_unit'. Informational only."
+msgstr "Label teks bebas yang menjelaskan peran kategori ini dalam mekanisme kontribusi induk-anak, mis. 'up_to_pusat', 'subsidy_to_unit'. Hanya bersifat informasi."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_category__calc_method__from_expense
+msgid "From Direct Income Expense Category"
+msgstr "Dari Kategori Biaya Pendapatan Langsung"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_financial_investment__amount
+msgid "Full nominal amount. Never depreciated."
+msgstr "Jumlah nominal penuh. Tidak pernah disusutkan."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment__purchase_price
+msgid "Full purchase price. Always used as the depreciable base, regardless of the BOS-funded portion."
+msgstr "Harga beli penuh. Selalu dipakai sebagai basis penyusutan, terlepas dari bagian yang didanai BOS."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__account_id
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__account_id
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__account_id
+msgid "General ledger account used to pull the actual (realized) amount of this category from posted journal items. Leave empty when this category is not tracked against the ledger."
+msgstr "Akun buku besar yang dipakai untuk menarik jumlah aktual (realisasi) kategori ini dari item jurnal yang telah diposting. Kosongkan bila kategori ini tidak dilacak terhadap buku besar."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__expense_result_ids
+msgid "Generated expense lines, written by action_simulate()."
+msgstr "Baris biaya hasil generate, ditulis oleh action_simulate()."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__income_result_ids
+msgid "Generated income lines, written by action_simulate()."
+msgstr "Baris pendapatan hasil generate, ditulis oleh action_simulate()."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__allocation_result_ids
+msgid "Generated per-contributor allocation figures, written by action_simulate(). Only populated for branch/center budgets."
+msgstr "Angka alokasi per kontributor hasil generate, ditulis oleh action_simulate(). Hanya terisi untuk anggaran cabang/pusat."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__comparative_result_ids
+msgid "Generated self-vs-descendant-units comparison, written by action_simulate(). Only populated for branch/center budgets."
+msgstr "Perbandingan diri sendiri vs unit turunan hasil generate, ditulis oleh action_simulate(). Hanya terisi untuk anggaran cabang/pusat."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line__grade_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__grade_id
+msgid "Grade"
+msgstr "Jenjang"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__grade_allocation_ids
+msgid "Grade Allocations"
+msgstr "Alokasi Jenjang"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_category__calc_method__grade_based
+msgid "Grade Based"
+msgstr "Berbasis Jenjang"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_income_category_view_search
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_search
+msgid "Group By"
+msgstr "Kelompokkan Menurut"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__calc_method
+msgid ""
+"How the simulation engine computes the amount for this income category:\n"
+"- Manual: entered directly by the user on the income line.\n"
+"- Simulated - UP: taken from the unit's computed UP (Uang Pangkal) tariff revenue.\n"
+"- Simulated - US: taken from the unit's computed US (Uang Sekolah) tariff revenue.\n"
+"- From Direct Income Expense Category: derived from the foundation-funded amount of expense lines whose category has 'Direct Income' enabled and maps to this category.\n"
+"- Grade Based: same as above, but split using the expense line's grade allocation when available.\n"
+"- Sum From BOS: the sum of the BOS-funded portion of all expense lines and investments in the budget."
+msgstr ""
+"Cara mesin simulasi menghitung jumlah untuk kategori pendapatan ini:\n"
+"- Manual: diinput langsung oleh pengguna pada baris pendapatan.\n"
+"- Simulasi - UP: diambil dari pendapatan tarif UP (Uang Pangkal) hasil perhitungan unit.\n"
+"- Simulasi - US: diambil dari pendapatan tarif US (Uang Sekolah) hasil perhitungan unit.\n"
+"- Dari Kategori Biaya Pendapatan Langsung: diturunkan dari jumlah yang didanai yayasan pada baris biaya yang kategorinya mengaktifkan 'Pendapatan Langsung' dan dipetakan ke kategori ini.\n"
+"- Berbasis Jenjang: sama seperti di atas, tetapi dibagi menurut alokasi jenjang baris biaya bila tersedia.\n"
+"- Jumlah dari BOS: jumlah bagian yang didanai BOS dari seluruh baris biaya dan investasi pada anggaran."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_result__source
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_result__source
+msgid "How this line's amount was derived."
+msgstr "Cara jumlah baris ini diturunkan."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_account_move__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_account_move_line__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_res_company__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_branch__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation__id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__id
+msgid "ID"
+msgstr "ID"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__activity_exception_icon
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__activity_exception_icon
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__activity_exception_icon
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__activity_exception_icon
+msgid "Icon"
+msgstr "Ikon"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__activity_exception_icon
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__activity_exception_icon
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__activity_exception_icon
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Ikon untuk menandai aktivitas pengecualian."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_accrual_revenue
+msgid "Identical to total_cash_revenue; there is no revenue side difference between cash and accrual."
+msgstr "Identik dengan total_cash_revenue; tidak ada selisih sisi pendapatan antara kas dan akrual."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__message_needaction
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__message_unread
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__message_needaction
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__message_unread
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__message_needaction
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__message_unread
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__message_needaction
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Jika dicentang, pesan baru memerlukan perhatian Anda."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__message_has_error
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__message_has_error
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__message_has_error
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Jika dicentang, sebagian pesan mengalami kesalahan pengiriman."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__include_parent_allocation
+msgid "Include Parent Allocation"
+msgstr "Sertakan Alokasi Induk"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Income"
+msgstr "Pendapatan"
+
+#. module: ssi_school_budget
+#: model:ir.actions.act_window,name:ssi_school_budget.school_budget_income_category_action
+#: model:ir.ui.menu,name:ssi_school_budget.school_budget_income_category_menu
+msgid "Income Categories"
+msgstr "Kategori Pendapatan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__income_category_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__income_category_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__income_category_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__income_category_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__income_category_id
+#: model:res.groups,name:ssi_school_budget.school_budget_income_category_group
+msgid "Income Category"
+msgstr "Kategori Pendapatan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__income_comparison_ids
+msgid "Income Comparison"
+msgstr "Perbandingan Pendapatan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__income_line_ids
+msgid "Income Lines"
+msgstr "Baris Pendapatan"
+
+#. module: ssi_school_budget
+#: model:ir.actions.act_window,name:ssi_school_budget.school_budget_income_realization_action
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__income_realization_ids
+#: model:ir.ui.menu,name:ssi_school_budget.school_budget_income_realization_menu
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_income_realization_view_pivot
+msgid "Income Realization"
+msgstr "Realisasi Pendapatan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__income_result_ids
+msgid "Income Results"
+msgstr "Hasil Pendapatan"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Income Simulation"
+msgstr "Simulasi Pendapatan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__instrument_type
+msgid "Instrument Type"
+msgstr "Jenis Instrumen"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Investment"
+msgstr "Investasi"
+
+#. module: ssi_school_budget
+#: model:ir.actions.act_window,name:ssi_school_budget.school_budget_investment_category_action
+#: model:ir.ui.menu,name:ssi_school_budget.school_budget_investment_category_menu
+msgid "Investment Categories"
+msgstr "Kategori Investasi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__investment_category_id
+#: model:res.groups,name:ssi_school_budget.school_budget_investment_category_group
+msgid "Investment Category"
+msgstr "Kategori Investasi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__investment_ids
+msgid "Investments"
+msgstr "Investasi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_is_follower
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_is_follower
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_is_follower
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_is_follower
+msgid "Is Follower"
+msgstr "Adalah Pengikut"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_account_move
+msgid "Journal Entry"
+msgstr "Entri Jurnal"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_account_move_line
+msgid "Journal Item"
+msgstr "Item Jurnal"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__label
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__label
+msgid "Label"
+msgstr "Label"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_account_move____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_res_company____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_branch____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation____last_update
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy____last_update
+msgid "Last Modified on"
+msgstr "Terakhir Diubah pada"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation__write_uid
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__write_uid
+msgid "Last Updated by"
+msgstr "Terakhir Diperbarui oleh"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_parent_expense_allocation__write_date
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__write_date
+msgid "Last Updated on"
+msgstr "Terakhir Diperbarui pada"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__line_number
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__line_number
+msgid "Line Number"
+msgstr "Nomor Baris"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_main_attachment_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_main_attachment_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_main_attachment_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Lampiran Utama"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_category__calc_method__manual
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_result__source__manual
+msgid "Manual"
+msgstr "Manual"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__manual_number_ok
+msgid ""
+"Manual number assignment policy\n"
+"\n"
+"* If active user can edit document number"
+msgstr ""
+"Kebijakan penetapan nomor manual\n"
+"\n"
+"* Jika pengguna aktif dapat mengubah nomor dokumen"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__direct_income_override_ids
+msgid "Manual overrides of automatically computed direct income amounts."
+msgstr "Penggantian manual atas jumlah pendapatan langsung yang dihitung otomatis."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__income_line_ids
+msgid "Manually budgeted income items (calc_method=manual only)."
+msgstr "Item pendapatan yang dianggarkan manual (hanya calc_method=manual)."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_line__amount
+msgid "Manually entered budgeted income amount."
+msgstr "Jumlah pendapatan anggaran yang diinput manual."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__override_up_rate
+msgid "Manually forced UP tariff. Only used when 'Override UP Rate' is enabled."
+msgstr "Tarif UP yang dipaksakan manual. Hanya dipakai bila 'Ganti Tarif UP' diaktifkan."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__override_us_rate
+msgid "Manually forced US tariff. Only used when 'Override US Rate' is enabled."
+msgstr "Tarif US yang dipaksakan manual. Hanya dipakai bila 'Ganti Tarif US' diaktifkan."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_contribution_allocation__override_pct_up
+msgid "Manually forced pct_up (0.0-1.0). Only used when 'Override UP Percentage' is enabled."
+msgstr "pct_up yang dipaksakan manual (0,0-1,0). Hanya dipakai bila 'Ganti Persentase UP' diaktifkan."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_contribution_allocation__override_pct_us
+msgid "Manually forced pct_us (0.0-1.0). Only used when 'Override US Percentage' is enabled."
+msgstr "pct_us yang dipaksakan manual (0,0-1,0). Hanya dipakai bila 'Ganti Persentase US' diaktifkan."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__maps_to_income_category_id
+msgid "Maps to Income Category"
+msgstr "Dipetakan ke Kategori Pendapatan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__active
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__active
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__active
+msgid ""
+"Master data status\n"
+"\n"
+"* Inactive data can not be selected when creating new transaction\n"
+"* Transaction with inactive master data can still be viewed\n"
+"* Set master data as inactive if master data no longger needed,\n"
+"but master data already used on transaction"
+msgstr ""
+"Status data master\n"
+"\n"
+"* Data tidak aktif tidak dapat dipilih saat membuat transaksi baru\n"
+"* Transaksi dengan data master tidak aktif tetap dapat dilihat\n"
+"* Jadikan data master tidak aktif bila data master tidak diperlukan lagi,\n"
+"tetapi data master sudah dipakai pada transaksi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__code
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__code
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__code
+msgid ""
+"Master data unique identifier.\n"
+"\n"
+"* Fill with '/' if You do not need unique identifier\n"
+"* Click 'Generate Code' button to automatically assign code.\n"
+"  Sequence template mush be set to perform this action\n"
+"  Only master data with '/' code will be assign automatic code"
+msgstr ""
+"Pengenal unik data master.\n"
+"\n"
+"* Isi dengan '/' bila Anda tidak memerlukan pengenal unik\n"
+"* Klik tombol 'Buat Kode' untuk menetapkan kode secara otomatis.\n"
+"  Templat urutan harus diatur untuk melakukan aksi ini\n"
+"  Hanya data master berkode '/' yang akan diberi kode otomatis"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_has_error
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_has_error
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_has_error
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_has_error
+msgid "Message Delivery error"
+msgstr "Kesalahan Pengiriman Pesan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_ids
+msgid "Messages"
+msgstr "Pesan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_realization__month
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_realization__month
+msgid "Month"
+msgstr "Bulan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment__start_month
+msgid "Month (1-12) the asset starts being used, for prorated first-year depreciation."
+msgstr "Bulan (1-12) aset mulai digunakan, untuk penyusutan tahun pertama secara prorata."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_realization__month
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_realization__month
+msgid "Month index, 1-12, relative to the academic year's start month (month 1 = the calendar month academic_year_id.date_start falls in), not the calendar year."
+msgstr "Indeks bulan, 1-12, relatif terhadap bulan awal tahun akademik (bulan 1 = bulan kalender tempat academic_year_id.date_start berada), bukan tahun kalender."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__expense_realization_ids
+msgid "Monthly realized expense per category, written by action_compute_realization()."
+msgstr "Realisasi biaya bulanan per kategori, ditulis oleh action_compute_realization()."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__income_realization_ids
+msgid "Monthly realized income per category, written by action_compute_realization()."
+msgstr "Realisasi pendapatan bulanan per kategori, ditulis oleh action_compute_realization()."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_financial_investment__instrument_type__reksa_dana
+msgid "Mutual Fund"
+msgstr "Reksa Dana"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__my_activity_date_deadline
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__my_activity_date_deadline
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__my_activity_date_deadline
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Batas Waktu Aktivitas Saya"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__name
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__name
+msgid "Name"
+msgstr "Nama"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__need_validation
+msgid "Need Validation"
+msgstr "Perlu Validasi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__new_student_count
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__new_student_count
+msgid "New Student Count"
+msgstr "Jumlah Siswa Baru"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__investment_ids
+msgid "New fixed-asset investments planned this fiscal year."
+msgstr "Investasi aset tetap baru yang direncanakan pada tahun fiskal ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_contribution_allocation__new_student_count
+msgid "New student count key used to compute pct_up. Deliberately separate from the unit's own assumption; not synced automatically."
+msgstr "Kunci jumlah siswa baru yang dipakai untuk menghitung pct_up. Sengaja dipisahkan dari asumsi unit itu sendiri; tidak disinkronkan otomatis."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__activity_date_deadline
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__activity_date_deadline
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__activity_date_deadline
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Batas Waktu Aktivitas Berikutnya"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__activity_summary
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__activity_summary
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__activity_summary
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__activity_summary
+msgid "Next Activity Summary"
+msgstr "Ringkasan Aktivitas Berikutnya"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__activity_type_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__activity_type_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__activity_type_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__activity_type_id
+msgid "Next Activity Type"
+msgstr "Jenis Aktivitas Berikutnya"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__next_approval_ids
+msgid "Next Approvals"
+msgstr "Persetujuan Berikutnya"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_expense_result__expense_group__non_operational
+msgid "Non Operational"
+msgstr "Non Operasional"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__note
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__note
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__note
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__note
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_financial_investment__note
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__note
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_line__note
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__note
+msgid "Note"
+msgstr "Catatan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_needaction_counter
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_needaction_counter
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_needaction_counter
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Jumlah Tindakan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_has_error_counter
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_has_error_counter
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_has_error_counter
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_has_error_counter
+msgid "Number of errors"
+msgstr "Jumlah kesalahan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__message_needaction_counter
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__message_needaction_counter
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__message_needaction_counter
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Jumlah pesan yang memerlukan tindakan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__message_has_error_counter
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__message_has_error_counter
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__message_has_error_counter
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Jumlah pesan dengan kesalahan pengiriman"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__new_student_count
+msgid "Number of new students. Used as the divisor of the UP tariff simulation."
+msgstr "Jumlah siswa baru. Dipakai sebagai pembagi simulasi tarif UP."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__returning_student_count
+msgid "Number of returning students. Informational only."
+msgstr "Jumlah siswa lanjutan. Hanya bersifat informasi."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__staff_count
+msgid "Number of staff. Informational only."
+msgstr "Jumlah staf. Hanya bersifat informasi."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_assumption_line__student_count
+msgid "Number of students planned for this grade."
+msgstr "Jumlah siswa yang direncanakan untuk jenjang ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__message_unread_counter
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__message_unread_counter
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__message_unread_counter
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Jumlah pesan yang belum dibaca"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Old Asset"
+msgstr "Aset Lama"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__old_asset_ids
+msgid "Old Assets"
+msgstr "Aset Lama"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__cash_balance
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__opening_cash_balance
+msgid "Opening Cash Balance"
+msgstr "Saldo Kas Awal"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__is_operational
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__is_operational
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_expense_result__expense_group__operational
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_expense_category_view_search
+msgid "Operational"
+msgstr "Operasional"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_line__line_number
+msgid "Ordering number of this line within its category."
+msgstr "Nomor urut baris ini dalam kategorinya."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__line_number
+msgid "Ordering number of this line within its category. Must be 1 or greater."
+msgstr "Nomor urut baris ini dalam kategorinya. Harus 1 atau lebih."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__org_type
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_search
+msgid "Organization Type"
+msgstr "Tipe Organisasi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_financial_investment__instrument_type__lainnya
+msgid "Other"
+msgstr "Lainnya"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_direct_income_override__override_amount
+msgid "Override Amount"
+msgstr "Jumlah Penggantian"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__is_pct_up_overridden
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__override_pct_up
+msgid "Override UP Percentage"
+msgstr "Ganti Persentase UP"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__is_up_rate_overridden
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__override_up_rate
+msgid "Override UP Rate"
+msgstr "Ganti Tarif UP"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__is_pct_us_overridden
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__override_pct_us
+msgid "Override US Percentage"
+msgstr "Ganti Persentase US"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__is_us_rate_overridden
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__override_us_rate
+msgid "Override US Rate"
+msgstr "Ganti Tarif US"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_expense_result__source__own
+msgid "Own"
+msgstr "Sendiri"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__own_new_investment_dep
+msgid "Own New Investment Depreciation"
+msgstr "Penyusutan Investasi Baru Sendiri"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__own_old_asset_dep
+msgid "Own Old Asset Depreciation"
+msgstr "Penyusutan Aset Lama Sendiri"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_own_up_cost
+msgid "Own UP Cost"
+msgstr "Biaya UP Sendiri"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_own_us_cost
+msgid "Own US Cost"
+msgstr "Biaya US Sendiri"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_up_dep
+msgid "Own new/old asset depreciation plus depreciation allocated from branch and center."
+msgstr "Penyusutan aset baru/lama sendiri ditambah penyusutan yang dialokasikan dari cabang dan pusat."
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Parent Cost Allocation"
+msgstr "Alokasi Biaya Induk"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__parent_expense_allocation_ids
+msgid "Parent Expense Allocations"
+msgstr "Alokasi Biaya Induk"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__assumption_line_ids
+msgid "Planned student headcount per grade (org_type=unit only)."
+msgstr "Rencana jumlah siswa per jenjang (hanya org_type=unit)."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__policy_template_id
+msgid "Policy Template"
+msgstr "Templat Kebijakan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment__bos
+msgid "Portion of the purchase price funded by government BOS/BOP/PBOS subsidy. Does NOT reduce the depreciable base."
+msgstr "Bagian harga beli yang didanai oleh subsidi BOS/BOP/PBOS dari pemerintah. TIDAK mengurangi basis penyusutan."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__purchase_price
+msgid "Purchase Price"
+msgstr "Harga Beli"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Realization"
+msgstr "Realisasi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__realized_amount
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__realized_amount
+msgid "Realized Amount"
+msgstr "Jumlah Realisasi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__realized_amount_ytd
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__realized_amount_ytd
+msgid "Realized Amount (YTD)"
+msgstr "Jumlah Realisasi (YTD)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_subsidy__recipient_budget_id
+msgid "Recipient Budget"
+msgstr "Anggaran Penerima"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__reject_ok
+msgid ""
+"Reject policy\n"
+"\n"
+"* If active user can see and execute 'Reject' button"
+msgstr ""
+"Kebijakan tolak\n"
+"\n"
+"* Jika pengguna aktif dapat melihat dan menjalankan tombol 'Tolak'"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__rejected
+msgid "Rejected"
+msgstr "Ditolak"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_direct_income_override__override_amount
+msgid "Replaces the automatically computed direct-income amount (sum of the foundation column) for this category."
+msgstr "Menggantikan jumlah pendapatan langsung yang dihitung otomatis (jumlah kolom yayasan) untuk kategori ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__user_id
+msgid "Responsible"
+msgstr "Penanggung Jawab"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__activity_user_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__activity_user_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__activity_user_id
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__activity_user_id
+msgid "Responsible User"
+msgstr "Pengguna Penanggung Jawab"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__restart_approval_ok
+msgid ""
+"Restart approval policy\n"
+"\n"
+"* If active user can see and execute 'Restart Approval' button"
+msgstr ""
+"Kebijakan mulai ulang persetujuan\n"
+"\n"
+"* Jika pengguna aktif dapat melihat dan menjalankan tombol 'Mulai Ulang Persetujuan'"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__restart_ok
+msgid ""
+"Restart policy\n"
+"\n"
+"* If active user can see and execute 'Restart' button"
+msgstr ""
+"Kebijakan mulai ulang\n"
+"\n"
+"* Jika pengguna aktif dapat melihat dan menjalankan tombol 'Mulai Ulang'"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__returning_student_count
+msgid "Returning Student Count"
+msgstr "Jumlah Siswa Lanjutan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__revenue
+msgid "Revenue"
+msgstr "Pendapatan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__revenue_no_alloc
+msgid "Revenue (No Allocation)"
+msgstr "Pendapatan (Tanpa Alokasi)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__reviewer_id
+msgid "Reviewer"
+msgstr "Pemeriksa"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_res_company__school_analytic_group_id
+msgid "Root Analytic Group under which branch/unit analytic groups are nested, for roll-up reporting."
+msgstr "Grup Analitik induk tempat grup analitik cabang/unit disusun bertingkat, untuk pelaporan konsolidasi."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_cash_expense
+msgid "Same as Total Expense Result."
+msgstr "Sama dengan Total Hasil Biaya."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_cash_revenue_auto
+msgid "Same as Total Income Result (Auto), ignoring tariff overrides."
+msgstr "Sama dengan Total Hasil Pendapatan (Otomatis), mengabaikan penggantian tarif."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_cash_revenue
+msgid "Same as Total Income Result (final amounts)."
+msgstr "Sama dengan Total Hasil Pendapatan (jumlah final)."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__opening_cash_balance
+msgid "Same as cash_balance, exposed under the Summary page."
+msgstr "Sama dengan cash_balance, ditampilkan pada halaman Ringkasan."
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__school_id
+msgid "School"
+msgstr "Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_branch
+msgid "School Branch"
+msgstr "Cabang Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget
+#: model:ir.module.category,name:ssi_school_budget.school_budget_module_category
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.view_company_form_school_budget
+msgid "School Budget"
+msgstr "Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.module.category,name:ssi_school_budget.school_budget_configurator_module_category
+msgid "School Budget - Configurator"
+msgstr "Anggaran Sekolah - Konfigurator"
+
+#. module: ssi_school_budget
+#: model:ir.module.category,name:ssi_school_budget.school_budget_data_ownership_module_category
+msgid "School Budget - Data Ownership"
+msgstr "Anggaran Sekolah - Kepemilikan Data"
+
+#. module: ssi_school_budget
+#: model:ir.module.category,name:ssi_school_budget.school_budget_workflow_module_category
+msgid "School Budget - Workflow"
+msgstr "Anggaran Sekolah - Alur Kerja"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_allocation_result
+msgid "School Budget Allocation Result"
+msgstr "Hasil Alokasi Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_res_company__school_analytic_account_id
+msgid "School Budget Analytic Account"
+msgstr "Akun Analitik Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_res_company__school_analytic_group_id
+msgid "School Budget Analytic Group"
+msgstr "Grup Analitik Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_comparative_result
+msgid "School Budget Comparative Result"
+msgstr "Hasil Perbandingan Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_contribution_allocation
+msgid "School Budget Contribution Allocation"
+msgstr "Alokasi Kontribusi Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_direct_income_override
+msgid "School Budget Direct Income Override"
+msgstr "Penggantian Pendapatan Langsung Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_expense_category
+msgid "School Budget Expense Category"
+msgstr "Kategori Biaya Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_expense_comparison
+msgid "School Budget Expense Comparison"
+msgstr "Perbandingan Biaya Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_expense_grade_allocation
+msgid "School Budget Expense Grade Allocation"
+msgstr "Alokasi Jenjang Biaya Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_expense_line
+msgid "School Budget Expense Line"
+msgstr "Baris Biaya Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_expense_realization
+msgid "School Budget Expense Realization"
+msgstr "Realisasi Biaya Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_expense_result
+msgid "School Budget Expense Result"
+msgstr "Hasil Biaya Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_financial_investment
+msgid "School Budget Financial Investment"
+msgstr "Investasi Keuangan Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_income_category
+msgid "School Budget Income Category"
+msgstr "Kategori Pendapatan Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_income_comparison
+msgid "School Budget Income Comparison"
+msgstr "Perbandingan Pendapatan Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_income_line
+msgid "School Budget Income Line"
+msgstr "Baris Pendapatan Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_income_realization
+msgid "School Budget Income Realization"
+msgstr "Realisasi Pendapatan Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_income_result
+msgid "School Budget Income Result"
+msgstr "Hasil Pendapatan Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_investment
+msgid "School Budget Investment"
+msgstr "Investasi Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_investment_category
+msgid "School Budget Investment Category"
+msgstr "Kategori Investasi Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_old_asset
+msgid "School Budget Old Asset"
+msgstr "Aset Lama Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_parent_expense_allocation
+msgid "School Budget Parent Expense Allocation"
+msgstr "Alokasi Biaya Induk Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_assumption_line
+msgid "School Budget Student Assumption"
+msgstr "Asumsi Siswa Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model,name:ssi_school_budget.model_school_budget_subsidy
+msgid "School Budget Subsidy"
+msgstr "Subsidi Anggaran Sekolah"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__sequence
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__sequence
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__sequence
+msgid "Sequence"
+msgstr "Urutan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_contribution_allocation__pct_up
+msgid "Share of the parent's UP-allocatable cost pushed down to this child. Computed from all siblings under the same parent; not stored because it depends on sibling records."
+msgstr "Bagian biaya induk yang dapat dialokasikan ke UP yang didorong ke anak ini. Dihitung dari seluruh saudara di bawah induk yang sama; tidak disimpan karena bergantung pada record saudara."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_contribution_allocation__pct_us
+msgid "Share of the parent's US-allocatable cost pushed down to this child. Computed from all siblings under the same parent; not stored because it depends on sibling records."
+msgstr "Bagian biaya induk yang dapat dialokasikan ke US yang didorong ke anak ini. Dihitung dari seluruh saudara di bawah induk yang sama; tidak disimpan karena bergantung pada record saudara."
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Simulate"
+msgstr "Simulasikan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_category__calc_method__simulated_up
+msgid "Simulated - Uang Pangkal (UP)"
+msgstr "Simulasi - Uang Pangkal (UP)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_category__calc_method__simulated_us
+msgid "Simulated - Uang Sekolah (US)"
+msgstr "Simulasi - Uang Sekolah (US)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_result__source__simulated_up
+msgid "Simulated UP"
+msgstr "UP Simulasi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_result__source__simulated_us
+msgid "Simulated US"
+msgstr "US Simulasi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__source
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_result__source
+msgid "Source"
+msgstr "Sumber"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__grade_allocation_ids
+msgid "Split of this expense line's direct income across grades, used when the target income category is grade-based."
+msgstr "Pembagian pendapatan langsung baris biaya ini ke tiap jenjang, dipakai bila kategori pendapatan tujuan berbasis jenjang."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__staff_count
+msgid "Staff Count"
+msgstr "Jumlah Staf"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__start_month
+msgid "Start Month"
+msgstr "Bulan Mulai"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__state
+msgid "State"
+msgstr "Status"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__activity_state
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__activity_state
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__activity_state
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Status berdasarkan aktivitas\n"
+"Terlambat: Tanggal jatuh tempo sudah lewat\n"
+"Hari ini: Tanggal aktivitas adalah hari ini\n"
+"Direncanakan: Aktivitas mendatang."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_financial_investment__instrument_type__saham
+msgid "Stock"
+msgstr "Saham"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Student Assumption"
+msgstr "Asumsi Siswa"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__assumption_line_ids
+msgid "Student Assumption Lines"
+msgstr "Baris Asumsi Siswa"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line__student_count
+msgid "Student Count"
+msgstr "Jumlah Siswa"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_contribution_allocation__total_student_count
+msgid "Student count key used to compute pct_us. Deliberately separate from the unit's own assumption line total; not synced automatically."
+msgstr "Kunci jumlah siswa yang dipakai untuk menghitung pct_us. Sengaja dipisahkan dari total baris asumsi unit itu sendiri; tidak disinkronkan otomatis."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__subsidy_ids
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Subsidies Given"
+msgstr "Subsidi yang Diberikan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__received_subsidy_ids
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Subsidies Received"
+msgstr "Subsidi yang Diterima"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__subsidy_ids
+msgid "Subsidies given by this branch/center budget to other organizations."
+msgstr "Subsidi yang diberikan anggaran cabang/pusat ini kepada organisasi lain."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__received_subsidy_ids
+msgid "Subsidies received from provider organizations."
+msgstr "Subsidi yang diterima dari organisasi pemberi."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_result__source__subsidy
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Subsidy"
+msgstr "Subsidi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_expense_result__source__subsidy_given
+msgid "Subsidy Given"
+msgstr "Subsidi yang Diberikan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_category__calc_method__sum_from_bos
+msgid "Sum From BOS"
+msgstr "Jumlah dari BOS"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_own_us_cost
+msgid "Sum of (foundation + bos) of this unit's own expense lines that are operational, not a UP component, and not direct income."
+msgstr "Jumlah (yayasan + bos) baris biaya unit ini sendiri yang bersifat operasional, bukan komponen UP, dan bukan pendapatan langsung."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_own_up_cost
+msgid "Sum of (foundation + bos) of this unit's own expense lines whose category is a UP component."
+msgstr "Jumlah (yayasan + bos) baris biaya unit ini sendiri yang kategorinya merupakan komponen UP."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_comparison__budget_amount
+msgid "Sum of (foundation+bos) of expense lines under this category."
+msgstr "Jumlah (yayasan+bos) baris biaya pada kategori ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_financial_investment
+msgid "Sum of amount across all financial investments."
+msgstr "Jumlah amount dari seluruh investasi keuangan."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_income_manual
+msgid "Sum of amount across all manually entered income lines."
+msgstr "Jumlah amount dari seluruh baris pendapatan yang diinput manual."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_comparison__budget_amount
+msgid "Sum of amount across income simulation result rows under this category."
+msgstr "Jumlah amount dari seluruh baris hasil simulasi pendapatan pada kategori ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_expense
+msgid "Sum of amount_total across all expense lines."
+msgstr "Jumlah amount_total dari seluruh baris biaya."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_investment_bos
+msgid "Sum of bos across all new investments."
+msgstr "Jumlah bos dari seluruh investasi baru."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_new_investment_dep
+msgid "Sum of dep_current_year across all new investments."
+msgstr "Jumlah dep_current_year dari seluruh investasi baru."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_old_asset_dep
+msgid "Sum of dep_current_year across all old assets."
+msgstr "Jumlah dep_current_year dari seluruh aset lama."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_physical_investment
+msgid "Sum of purchase_price across all new investments."
+msgstr "Jumlah purchase_price dari seluruh investasi baru."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_comparison__realized_amount
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_comparison__realized_amount
+msgid "Sum of realization across all 12 months."
+msgstr "Jumlah realisasi selama seluruh 12 bulan."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_comparison__realized_amount_ytd
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_comparison__realized_amount_ytd
+msgid "Sum of realization from month 1 through the current month, relative to the academic year."
+msgstr "Jumlah realisasi dari bulan 1 hingga bulan berjalan, relatif terhadap tahun akademik."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_student_count
+msgid "Sum of student_count across all assumption lines. Used as the divisor of the US tariff simulation."
+msgstr "Jumlah student_count dari seluruh baris asumsi. Dipakai sebagai pembagi simulasi tarif US."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_expense_bos
+msgid "Sum of the BOS column across all expense lines."
+msgstr "Jumlah kolom BOS dari seluruh baris biaya."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_expense_foundation
+msgid "Sum of the Foundation column across all expense lines."
+msgstr "Jumlah kolom Yayasan dari seluruh baris biaya."
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Summary"
+msgstr "Ringkasan"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Sync Contribution Allocation"
+msgstr "Sinkronkan Alokasi Kontribusi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__target_budget_id
+msgid "Target Budget"
+msgstr "Anggaran Target"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_comparative_result__expense
+msgid "Target's total expense, with parent allocation included."
+msgstr "Total biaya target, termasuk alokasi induk."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_comparative_result__revenue
+msgid "Target's total revenue, with parent allocation included."
+msgstr "Total pendapatan target, termasuk alokasi induk."
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Tariff"
+msgstr "Tarif"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Tariff Override"
+msgstr "Penggantian Tarif"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__academic_year_id
+msgid "The academic year this budget plans for."
+msgstr "Tahun akademik yang direncanakan oleh anggaran ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__branch_id
+msgid "The branch this budget belongs to. When Organization Type is Unit, this is automatically derived from the school's branch. Required when Organization Type is Branch."
+msgstr "Cabang tempat anggaran ini berada. Bila Tipe Organisasi adalah Unit, diturunkan otomatis dari cabang sekolah. Wajib diisi bila Tipe Organisasi adalah Cabang."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_allocation_result__budget_id
+msgid "The branch/center budget document (parent) this allocation result belongs to."
+msgstr "Dokumen anggaran cabang/pusat (induk) pemilik hasil alokasi ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_comparative_result__budget_id
+msgid "The branch/center budget document (parent) this comparative result belongs to."
+msgstr "Dokumen anggaran cabang/pusat (induk) pemilik hasil perbandingan ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_subsidy__provider_budget_id
+msgid "The branch/center budget document giving the subsidy."
+msgstr "Dokumen anggaran cabang/pusat yang memberikan subsidi."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_financial_investment__budget_id
+msgid "The branch/center budget document holding this financial investment."
+msgstr "Dokumen anggaran cabang/pusat yang memegang investasi keuangan ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_parent_expense_allocation__budget_id
+msgid "The branch/center budget document owning this allocation setting."
+msgstr "Dokumen anggaran cabang/pusat pemilik pengaturan alokasi ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_contribution_allocation__parent_budget_id
+msgid "The branch/center budget receiving the contribution."
+msgstr "Anggaran cabang/pusat yang menerima kontribusi."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_comparative_result__target_budget_id
+msgid "The budget being summarized: the parent itself, or one of its descendant units."
+msgstr "Anggaran yang diringkas: induk itu sendiri, atau salah satu unit turunannya."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_subsidy__recipient_budget_id
+msgid "The budget document receiving the subsidy. A branch may only subsidize its own units; a center may subsidize any branch or unit."
+msgstr "Dokumen anggaran yang menerima subsidi. Cabang hanya boleh mensubsidi unitnya sendiri; pusat boleh mensubsidi cabang atau unit mana pun."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_assumption_line__budget_id
+msgid "The budget document this assumption line belongs to."
+msgstr "Dokumen anggaran pemilik baris asumsi ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_comparison__budget_id
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_comparison__budget_id
+msgid "The budget document this comparison line belongs to."
+msgstr "Dokumen anggaran pemilik baris perbandingan ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__budget_id
+msgid "The budget document this expense line belongs to."
+msgstr "Dokumen anggaran pemilik baris biaya ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_result__budget_id
+msgid "The budget document this generated expense line belongs to."
+msgstr "Dokumen anggaran pemilik baris biaya hasil generate ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_result__budget_id
+msgid "The budget document this generated income line belongs to."
+msgstr "Dokumen anggaran pemilik baris pendapatan hasil generate ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_line__budget_id
+msgid "The budget document this income line belongs to."
+msgstr "Dokumen anggaran pemilik baris pendapatan ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment__budget_id
+msgid "The budget document this investment belongs to."
+msgstr "Dokumen anggaran pemilik investasi ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_old_asset__budget_id
+msgid "The budget document this old asset belongs to."
+msgstr "Dokumen anggaran pemilik aset lama ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_direct_income_override__budget_id
+msgid "The budget document this override belongs to."
+msgstr "Dokumen anggaran pemilik penggantian ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_realization__budget_id
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_realization__budget_id
+msgid "The budget document this realization line belongs to."
+msgstr "Dokumen anggaran pemilik baris realisasi ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_old_asset__fiscal_year
+msgid "The budget's fiscal year, used to compute the elapsed depreciation years."
+msgstr "Tahun fiskal anggaran, dipakai untuk menghitung tahun penyusutan yang telah berlalu."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__fiscal_year
+msgid "The calendar year the academic year starts in. Used by all depreciation computations in this budget."
+msgstr "Tahun kalender tempat tahun akademik dimulai. Dipakai oleh semua perhitungan penyusutan pada anggaran ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_allocation_result__child_budget_id
+msgid "The contributing unit budget."
+msgstr "Anggaran unit yang berkontribusi."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_direct_income_override__expense_category_id
+msgid "The direct-income expense category being overridden."
+msgstr "Kategori biaya pendapatan langsung yang diganti."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__date
+msgid "The document date, used by the sequence template."
+msgstr "Tanggal dokumen, dipakai oleh templat urutan."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_subsidy__expense_category_id
+msgid "The expense category booked at the provider."
+msgstr "Kategori biaya yang dibukukan pada pemberi."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_parent_expense_allocation__expense_category_id
+msgid "The expense category pushed down to children."
+msgstr "Kategori biaya yang didorong ke anak."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__expense_category_id
+msgid "The expense category this line is budgeted under."
+msgstr "Kategori biaya tempat baris ini dianggarkan."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_result__expense_category_id
+msgid "The expense category this line was generated for. Empty for synthetic rows that have no category equivalent."
+msgstr "Kategori biaya tempat baris ini dibuat. Kosong untuk baris sintetis yang tidak memiliki padanan kategori."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_grade_allocation__line_id
+msgid "The expense line this grade allocation belongs to."
+msgstr "Baris biaya pemilik alokasi jenjang ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_assumption_line__grade_id
+msgid "The grade level this student count applies to."
+msgstr "Jenjang yang menjadi sasaran jumlah siswa ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_grade_allocation__grade_id
+msgid "The grade this allocated amount applies to."
+msgstr "Jenjang yang menjadi sasaran jumlah alokasi ini."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_subsidy__income_category_id
+msgid "The income category booked at the recipient."
+msgstr "Kategori pendapatan yang dibukukan pada penerima."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__maps_to_income_category_id
+msgid "The income category that receives the direct income amount generated from this expense category. Required when 'Direct Income' is enabled."
+msgstr "Kategori pendapatan yang menerima jumlah pendapatan langsung yang dihasilkan dari kategori biaya ini. Wajib diisi bila 'Pendapatan Langsung' diaktifkan."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_line__income_category_id
+msgid "The income category this line is budgeted under. Only categories with Calculation Method = Manual are allowed."
+msgstr "Kategori pendapatan tempat baris ini dianggarkan. Hanya kategori dengan Metode Perhitungan = Manual yang diizinkan."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_result__income_category_id
+msgid "The income category this line was generated for. Empty for synthetic rows that have no category equivalent."
+msgstr "Kategori pendapatan tempat baris ini dibuat. Kosong untuk baris sintetis yang tidak memiliki padanan kategori."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment__investment_category_id
+msgid "The investment category, used to prefill Useful Life."
+msgstr "Kategori investasi, dipakai untuk mengisi awal Masa Manfaat."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__org_type
+msgid "The organization level this budget belongs to: a school Unit, a Branch, or the Center (company)."
+msgstr "Tingkat organisasi tempat anggaran ini berada: Unit sekolah, Cabang, atau Pusat (perusahaan)."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__school_id
+msgid "The school unit this budget belongs to. Required when Organization Type is Unit."
+msgstr "Unit sekolah tempat anggaran ini berada. Wajib diisi bila Tipe Organisasi adalah Unit."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_contribution_allocation__child_budget_id
+msgid "The unit budget contributing to the parent."
+msgstr "Anggaran unit yang berkontribusi pada induk."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_financial_investment__instrument_type__deposito
+msgid "Time Deposit"
+msgstr "Deposito Berjangka"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__amount_total
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_result__amount_total
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Total"
+msgstr "Total"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_accrual_expense
+msgid "Total Accrual Expense"
+msgstr "Total Biaya Akrual"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_accrual_revenue
+msgid "Total Accrual Revenue"
+msgstr "Total Pendapatan Akrual"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_allocatable_base_up
+msgid "Total Allocatable Base (UP)"
+msgstr "Total Basis yang Dapat Dialokasikan (UP)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_allocatable_base_us
+msgid "Total Allocatable Base (US)"
+msgstr "Total Basis yang Dapat Dialokasikan (US)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_cash_expense
+msgid "Total Cash Expense"
+msgstr "Total Biaya Kas"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_cash_revenue
+msgid "Total Cash Revenue"
+msgstr "Total Pendapatan Kas"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_cash_revenue_auto
+msgid "Total Cash Revenue (Auto)"
+msgstr "Total Pendapatan Kas (Otomatis)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_depreciation
+msgid "Total Depreciation"
+msgstr "Total Penyusutan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_expense
+msgid "Total Expense"
+msgstr "Total Biaya"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_expense_bos
+msgid "Total Expense (BOS)"
+msgstr "Total Biaya (BOS)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_expense_foundation
+msgid "Total Expense (Foundation)"
+msgstr "Total Biaya (Yayasan)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_expense_result
+msgid "Total Expense Result"
+msgstr "Total Hasil Biaya"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_expense_variance
+msgid "Total Expense Variance"
+msgstr "Total Selisih Biaya"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_financial_investment
+msgid "Total Financial Investment"
+msgstr "Total Investasi Keuangan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_income_result
+msgid "Total Income Result"
+msgstr "Total Hasil Pendapatan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_income_result_auto
+msgid "Total Income Result (Auto)"
+msgstr "Total Hasil Pendapatan (Otomatis)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_investment
+msgid "Total Investment"
+msgstr "Total Investasi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_investment_bos
+msgid "Total Investment BOS"
+msgstr "Total BOS Investasi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_income_manual
+msgid "Total Manual Income"
+msgstr "Total Pendapatan Manual"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_new_investment_dep
+msgid "Total New Investment Depreciation"
+msgstr "Total Penyusutan Investasi Baru"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_expense_non_operational
+msgid "Total Non Operational Expense Result"
+msgstr "Total Hasil Biaya Non Operasional"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_old_asset_dep
+msgid "Total Old Asset Depreciation"
+msgstr "Total Penyusutan Aset Lama"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_expense_operational
+msgid "Total Operational Expense Result"
+msgstr "Total Hasil Biaya Operasional"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_physical_investment
+msgid "Total Physical Investment"
+msgstr "Total Investasi Fisik"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_realized_expense
+msgid "Total Realized Expense"
+msgstr "Total Biaya Terealisasi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_realized_income
+msgid "Total Realized Income"
+msgstr "Total Pendapatan Terealisasi"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_student_count
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__total_student_count
+msgid "Total Student Count"
+msgstr "Total Jumlah Siswa"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_up_cost
+msgid "Total UP Cost"
+msgstr "Total Biaya UP"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_up_cost_with_dep
+msgid "Total UP Cost With Depreciation"
+msgstr "Total Biaya UP Dengan Penyusutan"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_up_dep
+msgid "Total UP Depreciation"
+msgstr "Total Penyusutan UP"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_up_revenue
+msgid "Total UP Revenue"
+msgstr "Total Pendapatan UP"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_us_cost
+msgid "Total US Cost"
+msgstr "Total Biaya US"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__total_us_revenue
+msgid "Total US Revenue"
+msgstr "Total Pendapatan US"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "Totals"
+msgstr "Total"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__name
+msgid ""
+"Transaction/document number\n"
+"\n"
+"* Unique indentifer of transaction\n"
+"* Leave '/' to automatically generate number\n"
+"* Change '/' into any number/identifier to manually assign number.\n"
+"  Manual number assignment can be done in 'Draft' state\n"
+"  Only user with 'Can Manualy Assign Number' policy can manually assign number.\n"
+"* Transaction with number other than '/' can not be deleted."
+msgstr ""
+"Nomor transaksi/dokumen\n"
+"\n"
+"* Pengenal unik transaksi\n"
+"* Biarkan '/' untuk membuat nomor secara otomatis\n"
+"* Ubah '/' menjadi nomor/pengenal apa pun untuk menetapkan nomor secara manual.\n"
+"  Penetapan nomor manual dapat dilakukan pada status 'Draf'\n"
+"  Hanya pengguna dengan kebijakan 'Dapat Memasukkan Nomor Dokumen Secara Manual' yang dapat menetapkan nomor secara manual.\n"
+"* Transaksi dengan nomor selain '/' tidak dapat dihapus."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_financial_investment__instrument_type
+msgid "Type of financial instrument."
+msgstr "Jenis instrumen keuangan."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__activity_exception_decoration
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__activity_exception_decoration
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__activity_exception_decoration
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Jenis aktivitas pengecualian pada record."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__is_up_component
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__is_up_component
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_expense_category_view_search
+msgid "UP Component"
+msgstr "Komponen UP"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__pct_up
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__pct_up
+msgid "UP Percentage"
+msgstr "Persentase UP"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "UP Simulation"
+msgstr "Simulasi UP"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_allocation_result__pct_us
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_contribution_allocation__pct_us
+msgid "US Percentage"
+msgstr "Persentase US"
+
+#. module: ssi_school_budget
+#: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
+msgid "US Simulation"
+msgstr "Simulasi US"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget__org_type__unit
+msgid "Unit"
+msgstr "Unit"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__contribution_allocation_ids
+msgid "Units contributing to this branch/center budget, with their proportion keys."
+msgstr "Unit yang berkontribusi pada anggaran cabang/pusat ini, beserta kunci proporsinya."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_unread
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_unread
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_unread
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_unread
+msgid "Unread Messages"
+msgstr "Pesan yang Belum Dibaca"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_unread_counter
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__message_unread_counter
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_unread_counter
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Penghitung Pesan yang Belum Dibaca"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__useful_life
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_old_asset__useful_life
+msgid "Useful Life (Years)"
+msgstr "Masa Manfaat (Tahun)"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment__useful_life
+msgid "Useful life in years."
+msgstr "Masa manfaat dalam tahun."
+
+#. module: ssi_school_budget
+#: model:res.groups,name:ssi_school_budget.school_budget_user_group
+msgid "User"
+msgstr "Pengguna"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__user_id
+msgid ""
+"User that responsible for document\n"
+"\n"
+"* Create user can be different with responsible user\n"
+"* Automatically filled with user that initiate document creation.\n"
+"  Default responsible can be changed."
+msgstr ""
+"Pengguna yang bertanggung jawab atas dokumen\n"
+"\n"
+"* Pengguna pembuat dapat berbeda dengan pengguna penanggung jawab\n"
+"* Otomatis diisi dengan pengguna yang memulai pembuatan dokumen.\n"
+"  Penanggung jawab bawaan dapat diubah."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__reviewer_id
+msgid ""
+"User that responsible to review document\n"
+"\n"
+"* Unless it configured to approve reviewer does not equal to approver"
+msgstr ""
+"Pengguna yang bertanggung jawab memeriksa dokumen\n"
+"\n"
+"* Kecuali dikonfigurasi untuk menyetujui, pemeriksa tidak sama dengan penyetuju"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__active_approver_user_ids
+msgid "Users that can approve/reject document"
+msgstr "Pengguna yang dapat menyetujui/menolak dokumen"
+
+#. module: ssi_school_budget
+#: model:res.groups,name:ssi_school_budget.school_budget_validator_group
+msgid "Validator"
+msgstr "Validator"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_comparison__variance
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_comparison__variance
+msgid "Variance"
+msgstr "Selisih"
+
+#. module: ssi_school_budget
+#: model:res.groups,name:ssi_school_budget.school_budget_viewer_group
+msgid "Viewer"
+msgstr "Pemirsa"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__website_message_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__website_message_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__website_message_ids
+#: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__website_message_ids
+msgid "Website Messages"
+msgstr "Pesan Situs Web"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__website_message_ids
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__website_message_ids
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__website_message_ids
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__website_message_ids
+msgid "Website communication history"
+msgstr "Riwayat komunikasi situs web"
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__include_parent_allocation
+msgid "When enabled (default), costs and depreciation pushed down from ancestor (branch/center) budgets are included in this unit's UP/US cost base. When disabled, every allocated component is treated as zero."
+msgstr "Bila diaktifkan (bawaan), biaya dan penyusutan yang didorong dari anggaran induk (cabang/pusat) disertakan dalam basis biaya UP/US unit ini. Bila dinonaktifkan, setiap komponen yang dialokasikan dianggap nol."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_contribution_allocation__is_pct_up_overridden
+msgid "When enabled, Override UP Percentage is used as pct_up instead of the automatically computed proportion. Substitute for the reference application's 'None = automatic' semantics: an override of 0.0 is a valid value."
+msgstr "Bila diaktifkan, Ganti Persentase UP dipakai sebagai pct_up menggantikan proporsi yang dihitung otomatis. Pengganti semantik 'None = otomatis' pada aplikasi acuan: penggantian bernilai 0,0 adalah nilai yang sah."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__is_up_rate_overridden
+msgid "When enabled, Override UP Rate is used as the final UP tariff instead of the automatically computed rate. This boolean is the substitute for the reference application's 'None = automatic' semantics: an override value of zero is only honored when this box is checked."
+msgstr "Bila diaktifkan, Ganti Tarif UP dipakai sebagai tarif UP final menggantikan tarif yang dihitung otomatis. Boolean ini adalah pengganti semantik 'None = otomatis' pada aplikasi acuan: nilai penggantian nol hanya diberlakukan bila kotak ini dicentang."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_contribution_allocation__is_pct_us_overridden
+msgid "When enabled, Override US Percentage is used as pct_us instead of the automatically computed proportion."
+msgstr "Bila diaktifkan, Ganti Persentase US dipakai sebagai pct_us menggantikan proporsi yang dihitung otomatis."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__is_us_rate_overridden
+msgid "When enabled, Override US Rate is used as the final US tariff instead of the automatically computed rate. This boolean is the substitute for the reference application's 'None = automatic' semantics: an override value of zero is only honored when this box is checked."
+msgstr "Bila diaktifkan, Ganti Tarif US dipakai sebagai tarif US final menggantikan tarif yang dihitung otomatis. Boolean ini adalah pengganti semantik 'None = otomatis' pada aplikasi acuan: nilai penggantian nol hanya diberlakukan bila kotak ini dicentang."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__is_up_component
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__is_up_component
+msgid "When enabled, expense lines under this category are included in the UP (Uang Pangkal) cost base used by the tariff simulation engine."
+msgstr "Bila diaktifkan, baris biaya pada kategori ini disertakan dalam basis biaya UP (Uang Pangkal) yang dipakai mesin simulasi tarif."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__is_direct_income
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__is_direct_income
+msgid "When enabled, expense lines under this category automatically generate a matching income line (based on the foundation-funded amount) booked under 'Maps to Income Category'."
+msgstr "Bila diaktifkan, baris biaya pada kategori ini otomatis membuat baris pendapatan yang sesuai (berdasarkan jumlah yang didanai yayasan) yang dibukukan pada 'Dipetakan ke Kategori Pendapatan'."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__is_operational
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__is_operational
+msgid "When enabled, this category represents an operational expense (e.g. account range 5110-5250). When disabled, it is a non-operational expense (e.g. account range 5500-5590)."
+msgstr "Bila diaktifkan, kategori ini mewakili biaya operasional (mis. rentang akun 5110-5250). Bila dinonaktifkan, kategori ini adalah biaya non operasional (mis. rentang akun 5500-5590)."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_parent_expense_allocation__affects_up
+msgid "When enabled, this cost category is pushed down into the children's UP base (split by new students). Otherwise it goes into the US base (split by total students)."
+msgstr "Bila diaktifkan, kategori biaya ini didorong ke basis UP anak (dibagi menurut siswa baru). Jika tidak, masuk ke basis US (dibagi menurut total siswa)."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_old_asset__dep_per_year
+msgid "acquisition_cost / useful_life."
+msgstr "acquisition_cost / useful_life."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__auto_up_revenue
+msgid "auto_up_rate * new_student_count."
+msgstr "auto_up_rate * new_student_count."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__auto_us_revenue
+msgid "auto_us_rate * total_student_count * 12."
+msgstr "auto_us_rate * total_student_count * 12."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_comparison__variance
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_comparison__variance
+msgid "budget_amount - realized_amount."
+msgstr "budget_amount - realized_amount."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment__dep_current_year
+msgid "dep_per_year * (13 - start_month) / 12, start_month clamped to 1..12."
+msgstr "dep_per_year * (13 - start_month) / 12, start_month dibatasi ke 1..12."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_old_asset__dep_current_year
+msgid "dep_per_year if the asset is still within its useful life this fiscal year, otherwise 0."
+msgstr "dep_per_year bila aset masih dalam masa manfaatnya pada tahun fiskal ini, jika tidak 0."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_up_revenue
+msgid "final_up_rate * new_student_count."
+msgstr "final_up_rate * new_student_count."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_us_revenue
+msgid "final_us_rate * total_student_count * 12."
+msgstr "final_us_rate * total_student_count * 12."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_old_asset__book_value
+msgid "max(0, acquisition_cost - dep_per_year * years elapsed)."
+msgstr "max(0, acquisition_cost - dep_per_year * tahun yang telah berlalu)."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__ending_cash_balance
+msgid "opening_cash_balance + cash_surplus_deficit."
+msgstr "opening_cash_balance + cash_surplus_deficit."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__final_up_rate
+msgid "override_up_rate as-is when Override UP Rate is enabled, otherwise auto_up_rate."
+msgstr "override_up_rate apa adanya bila Ganti Tarif UP diaktifkan, jika tidak auto_up_rate."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__final_us_rate
+msgid "override_us_rate as-is when Override US Rate is enabled, otherwise auto_us_rate."
+msgstr "override_us_rate apa adanya bila Ganti Tarif US diaktifkan, jika tidak auto_us_rate."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment__end_book_value
+msgid "purchase_price - dep_current_year."
+msgstr "purchase_price - dep_current_year."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment__dep_per_year
+msgid "purchase_price / useful_life (0 when useful_life <= 0)."
+msgstr "purchase_price / useful_life (0 bila useful_life <= 0)."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_comparison__absorption_rate
+msgid "realized_amount / budget_amount * 100. 0 when budget_amount is 0 (guarded against division by zero)."
+msgstr "realized_amount / budget_amount * 100. 0 bila budget_amount adalah 0 (dijaga dari pembagian dengan nol)."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_comparison__absorption_rate
+msgid "realized_amount / budget_amount * 100. 0 when budget_amount is 0 (guarded against division by zero). Values above 100 are valid (over-budget)."
+msgstr "realized_amount / budget_amount * 100. 0 bila budget_amount adalah 0 (dijaga dari pembagian dengan nol). Nilai di atas 100 adalah sah (melebihi anggaran)."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_accrual_expense
+msgid "total_cash_expense + total_depreciation (own assets only; accrual accounting expenses depreciation instead of the investment purchase)."
+msgstr "total_cash_expense + total_depreciation (hanya aset sendiri; akuntansi akrual membebankan penyusutan sebagai pengganti pembelian investasi)."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__cash_surplus_deficit
+msgid "total_cash_revenue - total_cash_expense - total_investment (cash accounting expenses the full investment purchase)."
+msgstr "total_cash_revenue - total_cash_expense - total_investment (akuntansi kas membebankan seluruh pembelian investasi)."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_depreciation
+msgid "total_new_investment_dep + total_old_asset_dep."
+msgstr "total_new_investment_dep + total_old_asset_dep."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_up_cost
+msgid "total_own_up_cost + allocated_up_branch + allocated_up_center."
+msgstr "total_own_up_cost + allocated_up_branch + allocated_up_center."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_us_cost
+msgid "total_own_us_cost + allocated_us_branch + allocated_us_center. Never includes depreciation."
+msgstr "total_own_us_cost + allocated_us_branch + allocated_us_center. Tidak pernah menyertakan penyusutan."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_investment
+msgid "total_physical_investment + total_financial_investment."
+msgstr "total_physical_investment + total_financial_investment."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__expense_absorption_rate
+msgid "total_realized_expense / total budgeted expense * 100. 0 when the budgeted total is 0 (guarded against division by zero)."
+msgstr "total_realized_expense / total biaya yang dianggarkan * 100. 0 bila total yang dianggarkan adalah 0 (dijaga dari pembagian dengan nol)."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_up_cost_with_dep
+msgid "total_up_cost + total_up_dep + allocated financial investments from branch and center. This is the UP tariff divisor's numerator."
+msgstr "total_up_cost + total_up_dep + investasi keuangan yang dialokasikan dari cabang dan pusat. Ini adalah pembilang pembagi tarif UP."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__auto_up_rate
+msgid "total_up_cost_with_dep / new_student_count (guarded: 0 students is treated as 1)."
+msgstr "total_up_cost_with_dep / new_student_count (dijaga: 0 siswa dianggap 1)."
+
+#. module: ssi_school_budget
+#: model:ir.model.fields,help:ssi_school_budget.field_school_budget__auto_us_rate
+msgid "total_us_cost / (total_student_count * 12), guarded: 0 students is treated as 1."
+msgstr "total_us_cost / (total_student_count * 12), dijaga: 0 siswa dianggap 1."
