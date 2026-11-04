@@ -100,7 +100,7 @@ msgstr ""
 "\n"
 "Konteks: Simpan anggaran sekolah\n"
 "ID Basis Data: %s\n"
-"Masalah: Anggaran untuk organisasi dan tahun akademik ini sudah ada\n"
+"Masalah: Anggaran untuk organisasi dan tahun ajaran ini sudah ada\n"
 "Solusi: Ubah anggaran yang sudah ada, jangan membuat duplikat\n"
 
 #. module: ssi_school_budget
@@ -172,7 +172,7 @@ msgstr ""
 "\n"
 "Konteks: Simpan baris asumsi anggaran sekolah\n"
 "ID Basis Data: %s\n"
-"Masalah: Hanya satu baris asumsi yang diizinkan per jenjang pada\n"
+"Masalah: Hanya satu baris asumsi yang diizinkan per tingkat pada\n"
 "anggaran yang sama\n"
 "Solusi: Ubah baris yang sudah ada, jangan membuat duplikat\n"
 
@@ -229,10 +229,10 @@ msgstr ""
 "Konteks: Simpan alokasi kontribusi anggaran sekolah\n"
 "ID Basis Data: %s\n"
 "Masalah: Tipe organisasi induk/anak tidak valid, induk sama dengan\n"
-"anak, tahun akademik tidak sama, atau persentase penggantian di\n"
+"anak, tahun ajaran tidak sama, atau persentase penggantian di\n"
 "luar rentang (0,0-1,0)\n"
 "Solusi: Anggaran induk harus berupa cabang/pusat, anggaran anak harus\n"
-"berupa unit pada tahun akademik yang sama dan berbeda dari induk,\n"
+"berupa unit pada tahun ajaran yang sama dan berbeda dari induk,\n"
 "dan persentase penggantian harus antara 0,0 dan 1,0\n"
 
 #. module: ssi_school_budget
@@ -357,9 +357,9 @@ msgid ""
 "duplicate\n"
 msgstr ""
 "\n"
-"Konteks: Simpan alokasi jenjang biaya anggaran sekolah\n"
+"Konteks: Simpan alokasi tingkat biaya anggaran sekolah\n"
 "ID Basis Data: %s\n"
-"Masalah: Hanya satu alokasi jenjang yang diizinkan per jenjang pada\n"
+"Masalah: Hanya satu alokasi tingkat yang diizinkan per tingkat pada\n"
 "baris biaya yang sama\n"
 "Solusi: Ubah alokasi yang sudah ada, jangan membuat duplikat\n"
 
@@ -602,7 +602,7 @@ msgstr ""
 "Solusi: Pemberi harus berupa anggaran cabang atau pusat, berbeda dari\n"
 "penerima. Cabang hanya boleh mensubsidi unitnya sendiri. Pusat\n"
 "boleh mensubsidi cabang atau unit mana pun (tetapi tidak pusat\n"
-"lain). Pemberi dan penerima harus berada pada tahun akademik yang\n"
+"lain). Pemberi dan penerima harus berada pada tahun ajaran yang\n"
 "sama, dan Jumlah tidak boleh negatif\n"
 
 #. module: ssi_school_budget
@@ -665,7 +665,7 @@ msgstr "Tingkat Penyerapan (%)"
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__academic_year_id
 #: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_search
 msgid "Academic Year"
-msgstr "Tahun Akademik"
+msgstr "Tahun Ajaran"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__account_id
@@ -750,7 +750,7 @@ msgstr "Aktivitas"
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__activity_exception_decoration
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr "Dekorasi Aktivitas Pengecualian"
+msgstr "Dekorasi Pengecualian Aktivitas"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__activity_state
@@ -965,7 +965,7 @@ msgid ""
 msgstr ""
 "Kebijakan setujui\n"
 "\n"
-"* Jika pengguna aktif dapat melihat dan menjalankan tombol 'Setujui'"
+"* Jika aktif, pengguna dapat melihat dan menekan tombol 'Setujui'"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__approved
@@ -1135,7 +1135,7 @@ msgstr "Dapat Diselesaikan"
 #. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__manual_number_ok
 msgid "Can Input Manual Document Number"
-msgstr "Dapat Memasukkan Nomor Dokumen Secara Manual"
+msgstr "Dapat Memasukkan Nomor Dokumen Manual"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__reject_ok
@@ -1166,7 +1166,7 @@ msgid ""
 msgstr ""
 "Kebijakan batal\n"
 "\n"
-"* Jika pengguna aktif dapat melihat dan menjalankan tombol 'Batal'"
+"* Jika aktif, pengguna dapat melihat dan menekan tombol 'Batal'"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_comparative_result__cash_surplus
@@ -1237,7 +1237,7 @@ msgstr "Mitra Perusahaan"
 #. module: ssi_school_budget
 #: model:res.groups,name:ssi_school_budget.school_budget_company_child_group
 msgid "Company and All Child Companies"
-msgstr "Perusahaan dan Semua Perusahaan Anak"
+msgstr "Perusahaan dan Semua Anak Perusahaan"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget__company_id
@@ -1250,7 +1250,7 @@ msgstr ""
 "Perusahaan pemilik dokumen\n"
 "\n"
 "* Otomatis diisi dengan perusahaan pengguna.\n"
-"  Perusahaan bawaan dapat diubah"
+"  Perusahaan default dapat diubah"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__comparative_result_ids
@@ -1276,7 +1276,7 @@ msgid ""
 msgstr ""
 "Kebijakan konfirmasi\n"
 "\n"
-"* Jika pengguna aktif dapat melihat dan menjalankan tombol 'Konfirmasi'"
+"* Jika aktif, pengguna dapat melihat dan menekan tombol 'Konfirmasi'"
 
 #. module: ssi_school_budget
 #: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_form
@@ -1451,7 +1451,7 @@ msgstr "Penggantian Pendapatan Langsung"
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_grade_allocation__amount
 msgid "Direct income amount allocated to this grade."
-msgstr "Jumlah pendapatan langsung yang dialokasikan ke jenjang ini."
+msgstr "Jumlah pendapatan langsung yang dialokasikan ke tingkat ini."
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_account_move__display_name
@@ -1501,7 +1501,7 @@ msgid ""
 msgstr ""
 "Kebijakan selesai\n"
 "\n"
-"* Jika pengguna aktif dapat melihat dan menjalankan tombol 'Selesai'"
+"* Jika aktif, pengguna dapat melihat dan menekan tombol 'Selesai'"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment__end_book_value
@@ -1666,7 +1666,7 @@ msgstr "Pengikut (Mitra)"
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__activity_type_icon
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr "Ikon Font awesome, mis. fa-tasks"
+msgstr "Ikon Font Awesome, misalnya fa-tasks"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__foundation
@@ -1750,23 +1750,23 @@ msgstr "Perbandingan diri sendiri vs unit turunan hasil generate, ditulis oleh a
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_assumption_line__grade_id
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_grade_allocation__grade_id
 msgid "Grade"
-msgstr "Jenjang"
+msgstr "Tingkat"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_line__grade_allocation_ids
 msgid "Grade Allocations"
-msgstr "Alokasi Jenjang"
+msgstr "Alokasi Tingkat"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_income_category__calc_method__grade_based
 msgid "Grade Based"
-msgstr "Berbasis Jenjang"
+msgstr "Berbasis Tingkat"
 
 #. module: ssi_school_budget
 #: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_income_category_view_search
 #: model_terms:ir.ui.view,arch_db:ssi_school_budget.school_budget_view_search
 msgid "Group By"
-msgstr "Kelompokkan Menurut"
+msgstr "Kelompokkan Berdasarkan"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__calc_method
@@ -1784,7 +1784,7 @@ msgstr ""
 "- Simulasi - UP: diambil dari pendapatan tarif UP (Uang Pangkal) hasil perhitungan unit.\n"
 "- Simulasi - US: diambil dari pendapatan tarif US (Uang Sekolah) hasil perhitungan unit.\n"
 "- Dari Kategori Biaya Pendapatan Langsung: diturunkan dari jumlah yang didanai yayasan pada baris biaya yang kategorinya mengaktifkan 'Pendapatan Langsung' dan dipetakan ke kategori ini.\n"
-"- Berbasis Jenjang: sama seperti di atas, tetapi dibagi menurut alokasi jenjang baris biaya bila tersedia.\n"
+"- Berbasis Tingkat: sama seperti di atas, tetapi dibagi menurut alokasi tingkat baris biaya bila tersedia.\n"
 "- Jumlah dari BOS: jumlah bagian yang didanai BOS dari seluruh baris biaya dan investasi pada anggaran."
 
 #. module: ssi_school_budget
@@ -1864,7 +1864,7 @@ msgstr "Jika dicentang, pesan baru memerlukan perhatian Anda."
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__message_has_error
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr "Jika dicentang, sebagian pesan mengalami kesalahan pengiriman."
+msgstr "Jika dicentang, beberapa pesan mengalami kesalahan pengiriman."
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__include_parent_allocation
@@ -2084,9 +2084,9 @@ msgid ""
 "\n"
 "* If active user can edit document number"
 msgstr ""
-"Kebijakan penetapan nomor manual\n"
+"Kebijakan penomoran manual\n"
 "\n"
-"* Jika pengguna aktif dapat mengubah nomor dokumen"
+"* Jika aktif, pengguna dapat mengubah nomor dokumen"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget__direct_income_override_ids
@@ -2142,10 +2142,10 @@ msgid ""
 msgstr ""
 "Status data master\n"
 "\n"
-"* Data tidak aktif tidak dapat dipilih saat membuat transaksi baru\n"
-"* Transaksi dengan data master tidak aktif tetap dapat dilihat\n"
-"* Jadikan data master tidak aktif bila data master tidak diperlukan lagi,\n"
-"tetapi data master sudah dipakai pada transaksi"
+"* Data nonaktif tidak dapat dipilih saat membuat transaksi baru\n"
+"* Transaksi dengan data master nonaktif tetap dapat dilihat\n"
+"* Atur data master sebagai nonaktif jika data master tidak lagi diperlukan,\n"
+"tetapi data master sudah digunakan pada transaksi"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_category__code
@@ -2161,10 +2161,10 @@ msgid ""
 msgstr ""
 "Pengenal unik data master.\n"
 "\n"
-"* Isi dengan '/' bila Anda tidak memerlukan pengenal unik\n"
+"* Isi dengan '/' jika Anda tidak memerlukan pengenal unik\n"
 "* Klik tombol 'Buat Kode' untuk menetapkan kode secara otomatis.\n"
-"  Templat urutan harus diatur untuk melakukan aksi ini\n"
-"  Hanya data master berkode '/' yang akan diberi kode otomatis"
+"  Templat urutan harus diatur untuk menjalankan tindakan ini\n"
+"  Hanya data master dengan kode '/' yang akan diberi kode otomatis"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__message_has_error
@@ -2197,7 +2197,7 @@ msgstr "Bulan (1-12) aset mulai digunakan, untuk penyusutan tahun pertama secara
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_realization__month
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_realization__month
 msgid "Month index, 1-12, relative to the academic year's start month (month 1 = the calendar month academic_year_id.date_start falls in), not the calendar year."
-msgstr "Indeks bulan, 1-12, relatif terhadap bulan awal tahun akademik (bulan 1 = bulan kalender tempat academic_year_id.date_start berada), bukan tahun kalender."
+msgstr "Indeks bulan, 1-12, relatif terhadap bulan awal tahun ajaran (bulan 1 = bulan kalender tempat academic_year_id.date_start berada), bukan tahun kalender."
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget__expense_realization_ids
@@ -2311,7 +2311,7 @@ msgstr "Jumlah Tindakan"
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_has_error_counter
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_has_error_counter
 msgid "Number of errors"
-msgstr "Jumlah kesalahan"
+msgstr "Jumlah galat"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget__message_needaction_counter
@@ -2347,7 +2347,7 @@ msgstr "Jumlah staf. Hanya bersifat informasi."
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget_assumption_line__student_count
 msgid "Number of students planned for this grade."
-msgstr "Jumlah siswa yang direncanakan untuk jenjang ini."
+msgstr "Jumlah siswa yang direncanakan untuk tingkat ini."
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget__message_unread_counter
@@ -2474,7 +2474,7 @@ msgstr "Alokasi Biaya Induk"
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget__assumption_line_ids
 msgid "Planned student headcount per grade (org_type=unit only)."
-msgstr "Rencana jumlah siswa per jenjang (hanya org_type=unit)."
+msgstr "Rencana jumlah siswa per tingkat (hanya org_type=unit)."
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__policy_template_id
@@ -2522,7 +2522,7 @@ msgid ""
 msgstr ""
 "Kebijakan tolak\n"
 "\n"
-"* Jika pengguna aktif dapat melihat dan menjalankan tombol 'Tolak'"
+"* Jika aktif, pengguna dapat melihat dan menekan tombol 'Tolak'"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__rejected
@@ -2556,7 +2556,7 @@ msgid ""
 msgstr ""
 "Kebijakan mulai ulang persetujuan\n"
 "\n"
-"* Jika pengguna aktif dapat melihat dan menjalankan tombol 'Mulai Ulang Persetujuan'"
+"* Jika aktif, pengguna dapat melihat dan menekan tombol 'Mulai Ulang Persetujuan'"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget__restart_ok
@@ -2567,7 +2567,7 @@ msgid ""
 msgstr ""
 "Kebijakan mulai ulang\n"
 "\n"
-"* Jika pengguna aktif dapat melihat dan menjalankan tombol 'Mulai Ulang'"
+"* Jika aktif, pengguna dapat melihat dan menekan tombol 'Mulai Ulang'"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__returning_student_count
@@ -2690,7 +2690,7 @@ msgstr "Perbandingan Biaya Anggaran Sekolah"
 #. module: ssi_school_budget
 #: model:ir.model,name:ssi_school_budget.model_school_budget_expense_grade_allocation
 msgid "School Budget Expense Grade Allocation"
-msgstr "Alokasi Jenjang Biaya Anggaran Sekolah"
+msgstr "Alokasi Tingkat Biaya Anggaran Sekolah"
 
 #. module: ssi_school_budget
 #: model:ir.model,name:ssi_school_budget.model_school_budget_expense_line
@@ -2818,7 +2818,7 @@ msgstr "Sumber"
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_line__grade_allocation_ids
 msgid "Split of this expense line's direct income across grades, used when the target income category is grade-based."
-msgstr "Pembagian pendapatan langsung baris biaya ini ke tiap jenjang, dipakai bila kategori pendapatan tujuan berbasis jenjang."
+msgstr "Pembagian pendapatan langsung baris biaya ini ke tiap tingkat, dipakai bila kategori pendapatan tujuan berbasis tingkat."
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__staff_count
@@ -2847,9 +2847,9 @@ msgid ""
 "Planned: Future activities."
 msgstr ""
 "Status berdasarkan aktivitas\n"
-"Terlambat: Tanggal jatuh tempo sudah lewat\n"
-"Hari ini: Tanggal aktivitas adalah hari ini\n"
-"Direncanakan: Aktivitas mendatang."
+"Terlambat: Batas waktu sudah lewat\n"
+"Hari Ini: Tanggal aktivitas hari ini\n"
+"Terjadwal: Aktivitas mendatang."
 
 #. module: ssi_school_budget
 #: model:ir.model.fields.selection,name:ssi_school_budget.selection__school_budget_financial_investment__instrument_type__saham
@@ -2979,7 +2979,7 @@ msgstr "Jumlah realisasi selama seluruh 12 bulan."
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_comparison__realized_amount_ytd
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_comparison__realized_amount_ytd
 msgid "Sum of realization from month 1 through the current month, relative to the academic year."
-msgstr "Jumlah realisasi dari bulan 1 hingga bulan berjalan, relatif terhadap tahun akademik."
+msgstr "Jumlah realisasi dari bulan 1 hingga bulan berjalan, relatif terhadap tahun ajaran."
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget__total_student_count
@@ -3034,7 +3034,7 @@ msgstr "Penggantian Tarif"
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget__academic_year_id
 msgid "The academic year this budget plans for."
-msgstr "Tahun akademik yang direncanakan oleh anggaran ini."
+msgstr "Tahun ajaran yang direncanakan oleh anggaran ini."
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget__branch_id
@@ -3141,7 +3141,7 @@ msgstr "Tahun fiskal anggaran, dipakai untuk menghitung tahun penyusutan yang te
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget__fiscal_year
 msgid "The calendar year the academic year starts in. Used by all depreciation computations in this budget."
-msgstr "Tahun kalender tempat tahun akademik dimulai. Dipakai oleh semua perhitungan penyusutan pada anggaran ini."
+msgstr "Tahun kalender tempat tahun ajaran dimulai. Dipakai oleh semua perhitungan penyusutan pada anggaran ini."
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget_allocation_result__child_budget_id
@@ -3181,17 +3181,17 @@ msgstr "Kategori biaya tempat baris ini dibuat. Kosong untuk baris sintetis yang
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_grade_allocation__line_id
 msgid "The expense line this grade allocation belongs to."
-msgstr "Baris biaya pemilik alokasi jenjang ini."
+msgstr "Baris biaya pemilik alokasi tingkat ini."
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget_assumption_line__grade_id
 msgid "The grade level this student count applies to."
-msgstr "Jenjang yang menjadi sasaran jumlah siswa ini."
+msgstr "Tingkat yang menjadi sasaran jumlah siswa ini."
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget_expense_grade_allocation__grade_id
 msgid "The grade this allocated amount applies to."
-msgstr "Jenjang yang menjadi sasaran jumlah alokasi ini."
+msgstr "Tingkat yang menjadi sasaran jumlah alokasi ini."
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget_subsidy__income_category_id
@@ -3431,10 +3431,10 @@ msgstr ""
 "Nomor transaksi/dokumen\n"
 "\n"
 "* Pengenal unik transaksi\n"
-"* Biarkan '/' untuk membuat nomor secara otomatis\n"
+"* Biarkan '/' untuk menghasilkan nomor secara otomatis\n"
 "* Ubah '/' menjadi nomor/pengenal apa pun untuk menetapkan nomor secara manual.\n"
-"  Penetapan nomor manual dapat dilakukan pada status 'Draf'\n"
-"  Hanya pengguna dengan kebijakan 'Dapat Memasukkan Nomor Dokumen Secara Manual' yang dapat menetapkan nomor secara manual.\n"
+"  Penetapan nomor manual dapat dilakukan dalam status 'Draf'\n"
+"  Hanya pengguna dengan kebijakan 'Dapat Memasukkan Nomor Dokumen Manual' yang dapat menetapkan nomor secara manual.\n"
 "* Transaksi dengan nomor selain '/' tidak dapat dihapus."
 
 #. module: ssi_school_budget
@@ -3448,7 +3448,7 @@ msgstr "Jenis instrumen keuangan."
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget_income_category__activity_exception_decoration
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget_investment_category__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr "Jenis aktivitas pengecualian pada record."
+msgstr "Jenis aktivitas pengecualian yang tercatat."
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_expense_category__is_up_component
@@ -3566,7 +3566,7 @@ msgstr "Selisih"
 #. module: ssi_school_budget
 #: model:res.groups,name:ssi_school_budget.school_budget_viewer_group
 msgid "Viewer"
-msgstr "Pemirsa"
+msgstr "Penampil"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget__website_message_ids
