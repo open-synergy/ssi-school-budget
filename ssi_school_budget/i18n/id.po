@@ -2311,7 +2311,7 @@ msgstr "Jumlah Tindakan"
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_income_category__message_has_error_counter
 #: model:ir.model.fields,field_description:ssi_school_budget.field_school_budget_investment_category__message_has_error_counter
 msgid "Number of errors"
-msgstr "Jumlah galat"
+msgstr "Jumlah kesalahan"
 
 #. module: ssi_school_budget
 #: model:ir.model.fields,help:ssi_school_budget.field_school_budget__message_needaction_counter
